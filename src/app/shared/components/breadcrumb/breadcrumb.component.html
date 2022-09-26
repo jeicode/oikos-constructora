@@ -1,0 +1,16 @@
+<div [class]="cssClass" [ngStyle]="{'color': colorTxt}">
+    <a routerLink="/" [ngStyle]="{'color': colorTxt}">
+        Home
+    </a>
+    <span class="material-symbols-outlined">
+        chevron_right
+    </span>
+
+    <a *ngIf="beforeCrumb" [routerLink]="beforeCrumb?.link" [ngStyle]="{'color': colorTxt}">
+        {{beforeCrumb?.title}}
+    </a>
+    <span *ngIf="beforeCrumb" class="material-symbols-outlined">
+        chevron_right
+    </span>
+    {{crumbTitle}}
+</div>

@@ -1,0 +1,16 @@
+<main class="cuerpo">
+    <div class="contenidogr">
+    <div>
+        <img src="{{imagen_prin[0]}}" alt="{{imagen_prin[1]}}" title="{{imagen_prin[2]}}" class="img-gracias" />
+    </div>
+
+    <div class="infogr">
+        <div class="titlegr">{{data['titulo_gracias']}}</div>
+        <hr class="saltogr" />
+
+        <div class="textogr" [innerHtml]="data['texto_gracias']"></div>
+
+        <button class="botongr"><a routerLink="/" style="color:#000;">Volver al inicio</a></button>
+    </div>
+    </div>
+</main>
