@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -9,10 +9,8 @@ const { api_url: API_URL} = environment
 })
 export class GlobalService {
 
-  configInfo = new EventEmitter<any>();
 
   constructor(private _http: HttpClient) {
-    // this.getConfigInfo();
   }
   
   
@@ -26,18 +24,14 @@ export class GlobalService {
       })
   }
 
-  async getConfigInfo(): Promise<any> {
+  async getConfigFooter(): Promise<any> {
     const url = `${API_URL}v1/getConfigInfo`;
 
-    const data = await this._http.get(url).toPromise().then()
+    return this._http.get(url).toPromise().then()
       .catch(err => {
         console.warn(err)
         return false
       })
-
-    setTimeout(() => {
-      this.configInfo.emit(data);
-    },1000)
 
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,12 @@ import { PageService } from 'src/app/shared/services/api/page.service';
 })
 export class HeaderComponent implements OnInit {
 
+  BASE_URL:string = environment.base_url;
+  menuMobileIsActive:boolean = false;
+  
+  // collections
   logos: any = [];
-  imagenes_url: string = '';
+  linksHeader:any[] = []
 
   constructor(private pageService: PageService) {
   }
@@ -19,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
   async init(){
     const tasks = [
-      () => this.getLogos()
+      () => this.getCollectionsPage()
     ]
 
     for (const task of tasks) {
@@ -27,8 +32,24 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  async getLogos(){
-    this.logos = await this.pageService.getElementsContent("titulo emprsa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
+  
+
+
+  async getCollectionsPage(){
+
+    const linksHeader = await this.pageService.getElementsContent('titulo menu', 'menu');
+    if (linksHeader && linksHeader?.length > 0) {
+      this.linksHeader = linksHeader
+    }
+    const logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
+    if (logos && logos?.length > 0) this.logos = logos
   }
+
+
+
+  toogleActiveMenuMobile(){
+    this.menuMobileIsActive = !this.menuMobileIsActive
+  }
+
 
 }

@@ -1,1 +1,80 @@
-<p>footer works</p>
+<footer class="footer">
+    <div class="cnt_lat_pie">
+        <div class="cnt_gen_inf_lat_pie">
+            <div class="cnt_logos_pie">
+                <a  *ngFor="let i of companies" class="logo_pie">
+                    <img [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                </a>
+            </div>
+            <div class="txt_pie">
+                {{ configFooter.texto_footer }}
+            </div>
+            <div class="direccion_pie">
+                <span class="material-icons">place</span>
+                {{ configFooter.address }}
+            </div>
+            <div class="cnt_gen_cert_pie">
+                <div class="logo_cert_pie" *ngFor="let i of logos">
+                    <img [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cnt_mid_pie">
+
+        <!-- MENU FOOTER -->
+        <div class="col_mid_men_pie" #menuEle *ngFor="let i of menuFooter">
+            <div class="h_cl_pie" (click)="dropdownToogleMenu(menuEle)">
+                {{i?.title}}
+            </div>
+            <ul class="menu_pie">
+                <li *ngFor="let c of i?.children">
+                    <a [routerLink]="c?.url_enlace_footer">
+                        {{ c?.field_content }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- FORM SUSCRIBE -->
+        <div class="col_susc_pie">
+            <div class="h_cl_pie">
+                Suscribirse
+            </div>
+
+            <div class="cnt_gen_susc_pie">
+                <div class="txt_susc_pie">
+                    Escribe tu e-mail para mantenerte al tanto de nuestra información
+                </div>
+                <form action="" class="form_susc">
+                    <input type="email" class="campo_susc_pie" placeholder="aquí tu e-mail"/>
+                    <input type="submit" class="bnt_susc">
+                </form>
+            </div>
+            <div class="datos_pie">
+                <div>
+                    {{ configFooter.address }}
+                </div>
+                <div>
+                    {{ configFooter.pbx }}
+                </div>
+                <div>
+                    {{configFooter.contactemails }}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="cnt_bot_pie">
+        <div class="cnt_redes_pie">
+            <a [href]="i?.url" target="_blank" *ngFor="let i of socialNetwork">
+                <div [class]="i?.class_footer" ></div>
+            </a>
+        </div>
+        <div class="copyr_pie">
+            ©GRUPO EMPRESARIAL OIKOS 2022. Todos los derechos reservados.
+        </div>
+    </div>
+</footer>
