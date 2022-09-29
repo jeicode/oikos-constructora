@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
+import { ProjectService } from 'src/app/shared/services/api/project.service';
 
 @Component({
   selector: 'app-vivienda',
@@ -24,7 +25,7 @@ export class ViviendaComponent implements OnInit {
   imagenes_url          : string = "";
   imagen_banner         : string = "";
 
-  constructor(private pageService: PageService, private router: Router, private configServ: ConfigService) {
+  constructor(private pageService: PageService, private router: Router, private configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
@@ -66,7 +67,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getProyectos(){
-    this.proyectos = await this.pageService.getProyectosByTipo('1');
+    this.proyectos = await this.projService.getProyectosByTipo('1');
   }
 
 }
