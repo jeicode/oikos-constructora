@@ -125,4 +125,9 @@ export class PageService {
     return this._http.get(url).toPromise().then();
   }
 
+  async getProyectosByTipo(tipo: string){
+    const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}`;
+    return this._http.get(url).toPromise().then();
+  }
+
 }

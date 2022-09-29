@@ -20,11 +20,11 @@ export class FooterComponent implements OnInit {
 
   socialNetwork : any = [];
   configFooter  : ConfigFooter = new ConfigFooter()
-  menuFooter:MenuFooter[] = []
   
   //collections
   companies     : any[] = [];
   logos         : any[] = [];
+  menuFooter    : any = [];
   constructor(private globalService: GlobalService, 
               private responsive: ResponsiveService,
               private pageService: PageService) {
@@ -71,8 +71,8 @@ export class FooterComponent implements OnInit {
 
 
   async getMenuFooter(){
-    const sectionsFooter = await this.pageService.getElementsContent('titulo seccion footer', 'secciones_footer');
-    const linksFooter = await this.pageService.getElementsContent('titulo enlace footer', 'enlaces_footer');
+    this.menuFooter = await this.globalService.getMenuFooter();
+    /*const linksFooter = await this.pageService.getElementsContent('titulo enlace footer', 'enlaces_footer');
 
     if (sectionsFooter && linksFooter) {
       sectionsFooter.forEach( (i:any)  => {
@@ -83,7 +83,7 @@ export class FooterComponent implements OnInit {
         })
       });
 
-    }
+    }*/
   }
 
 

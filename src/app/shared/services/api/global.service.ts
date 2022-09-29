@@ -93,4 +93,9 @@ export class GlobalService {
     return this._http.get(url).toPromise().then();
   }
 
+  async getMenuFooter(): Promise<any> {
+    const url = `${API_URL}v1/getMenuFooter`;
+    return this._http.get(url).toPromise().then();
+  }
+
 }

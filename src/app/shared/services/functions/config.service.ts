@@ -2,7 +2,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 
-declare function changeTab() : any;
+declare function searchMobile() : any;
+declare function heroProyectos() : any;
 
 @Injectable({
   providedIn: 'root'
@@ -34,12 +35,19 @@ export class ConfigService {
     }
   }
 
-  loadChangeTabJs(time = 0){
+  loadSearchMobile(time = 0){
     if (this.isBrowser) {
       setTimeout(() => {
-        changeTab()
+        searchMobile()
       }, time);
+    }
+  }
 
+  loadHeroProyectos(time = 0){
+    if (this.isBrowser) {
+      setTimeout(() => {
+        heroProyectos()
+      }, time);
     }
   }
 

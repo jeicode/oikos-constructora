@@ -1,0 +1,309 @@
+<section class="s_proyecto_vivienda">
+    <div class="cnt_central">
+
+        <div class="miga">
+            <a href="">OIKOS Constructora</a>
+            <span class="fas fa-chevron-right"></span>
+            <a href="">Proyectos_de_vivienda</a>
+        </div>
+
+        
+        <div class="c_proyecto_vivienda">
+            <h1 class="title_section al_center" [innerHTML]="data.titulo_proyecto_vivienda"></h1>
+            <div class="container_filtro">
+                <div class="act_filtro_mobile">
+                    <h3>
+                        {{data.titulo_busqueda}}
+                    </h3>
+                    <a class="btn_icon_search">
+                        <span class="fas fa-search"></span>
+                    </a>
+                </div>
+                <form class="filtro_proyectos">
+                    <select>
+                        <option value="NA" selected>Ciudad</option>
+                        <option value="{{i?.id}}" *ngFor="let i of ciudades">{{i?.field_content}}</option>
+                    </select>
+                    <select>
+                        <option value="" selected>Tipo de vivienda</option>
+                        <option value="{{i?.id}}" *ngFor="let i of tipo_proyecto">{{i?.field_content}}</option>
+                    </select>
+                    <select class="precio">
+                        <option value="" selected disabled>Precio desde</option>
+                        <option value="" >100.000.000</option>
+                        <option value="" >2</option>
+                        <option value="" >3</option>
+                        <option value="" >4</option>
+                        <option value="" >5</option>
+                    </select>
+                    <select class="precio">
+                        <option value="" selected disabled>Precio hasta</option>
+                        <option value="" >1.000.000.000</option>
+                        <option value="" >2</option>
+                        <option value="" >3</option>
+                        <option value="" >4</option>
+                        <option value="" >5</option>
+                    </select>
+                    <div class="cont_filtr_btns">
+                        <button type="reset" class="btn_link_reset">Limpiar <span class="fas fa-times"></span> </button>
+                        <button type="search" class="btn">Buscar <span class="fas fa-search"></span> </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+
+            
+    </div>
+</section>
+
+<section class="s_cards_proyectos">
+    <div class="cnt_central">
+        <div class="c_cards_proyectos">
+            <div class="card_p" *ngFor="let i of proyectos">
+                <picture>
+                    <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
+                    <div class="btns_icons" *ngIf="i?.vista360!='' || i?.url_waze!=''">
+                        <a href="{{i?.vista360}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.vista360!='' && i?.vista360!=null">
+                            <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                        </a>
+                        <a href="{{i?.url_waze}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.url_waze!='' && i?.url_waze!=null">
+                            <span class="fas fa-map-marker-alt"></span>
+                        </a>
+                    </div>
+                    <img width="350" height="219" src="{{imagenes_url+i?.imagen_fondo_proyecto}}" alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
+                </picture>
+                <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
+                    <picture>
+                        <img width="87" height="87" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" title="{{i?.title_logo}}">
+                    </picture>
+                    <div>{{i?.titulo_proyecto}}</div>
+                </h2>
+                <div class="datos_proyecto">
+                    <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                    <h4 *ngIf="i?.valor_proyecto!='' && i?.valor_proyecto!=null"><span>Desde</span> ${{i?.valor_proyecto_formato}} </h4>
+                </div>
+                <div class="franja_p">
+                    <!--<img width="20" height="20" src="images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">-->
+                    <span> {{i?.texto_adicional}} </span>
+                </div>
+                <div class="ctas_proyectos">
+                    <a href="{{i?.api_wsp}}" target="_blank" rel="noopener, nofollow" class="btn_whatsapp">
+                        <span class="fab fa-whatsapp"></span> Contactar
+                    </a>
+                    <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn">Ver proyecto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="s_futuros_proyectos">
+    
+    <!-- Swiper -->
+    <div class="swiper swiperFuturos">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="c_futuros_proyectos">
+                    <div class="info_fp">
+                        <h5>Futuros Proyectos</h5>
+                        <h2>Lorem ipsum dolor sit
+                            amet, consectetur adipiscing elit.
+                        </h2>
+                        <a href="" class="btn contacto_h">Conoce más</a>
+                    </div>
+                    <div class="img_fp">
+                        <img width="1280" height="720" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="c_futuros_proyectos">
+                    <div class="info_fp">
+                        <h5>Futuros Proyectos</h5>
+                        <h2>Lorem ipsum dolor sit
+                            amet, consectetur adipisasdasdasddasacing elit.
+                        </h2>
+                        <a href="" class="btn contacto_h">Conoce más</a>
+                    </div>
+                    <div class="img_fp">
+                        <img width="1280" height="720" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="c_futuros_proyectos">
+                    <div class="info_fp">
+                        <h5>Futuros Proyectos</h5>
+                        <h2>Lorem ipsum dolor sit
+                            amur adipiscing elit.
+                        </h2>
+                        <a href="" class="btn contacto_h">Conoce más</a>
+                    </div>
+                    <div class="img_fp">
+                        <img width="1280" height="720" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+        
+        
+
+
+</section>
+
+<section class="s_proyectos_ejecutados">
+    <div class="cnt_central">
+        <div class="c_proyectos_ejecutados">
+
+            <div class="title_section al-center"> <span> Proyectos</span> Ejecutados</div>
+
+            <div class="tabs_proyectos_eject">
+
+                <div class="holder"></div>
+
+                <div class="cont_proyecto_logo" id="itemContainer">
+                    <a class="animate__animated animate__fadeIn tab_logo_eject active" data-proyecto="1">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo1.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="2">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo2.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="3">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo3.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="4">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo1.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="5">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo2.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="6">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo3.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="7">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo1.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="8">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo2.png" alt="">
+                    </a>
+                    <a class="animate__animated animate__fadeIn tab_logo_eject" data-proyecto="9">
+                        <img width="76" height="65" src="assets/images/diseno/proyectos_vivienda/logo3.png" alt="">
+                    </a>
+                </div>
+            </div>
+
+            <div class="cont_proyecto_eject active" data-proyecto="1">
+                <div class="info_pe">
+                    <div class="title_pe">
+                        <h4>OIKOS</h4>
+                        <h2>PALMA REAL</h2>
+                    </div>
+                    <div class="lugar">
+                        Ricaurte - Cundinamarca Sector Peñalisa
+                    </div>
+                    <div class="info_datos_pe">
+                        <div> <b> Dirección:</b> Calle 67A #113c-27</div>
+                        <div> <b> Ciudad:</b> Bogotá</div>
+                        <div> <b> Zona:</b> Engativá</div>
+                    </div>
+                    <a href="" class="btn contacto_h">Ver proyecto</a>
+                </div>
+                <div class="c_slider_pe">
+                    <!-- Swiper -->
+                    <div class="swiper swiperPe">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="https://picsum.photos/600/400" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_proyecto_eject" data-proyecto="2">
+                <div class="info_pe">
+                    <div class="title_pe">
+                        <h4>OIKOS</h4>
+                        <h2>SAVANA</h2>
+                    </div>
+                    <div class="lugar">
+                        Ricaurte - Cundinamarca Sector Peñalisa
+                    </div>
+                    <div class="info_datos_pe">
+                        <div> <b> Dirección:</b> Calle 67A #113c-27</div>
+                        <div> <b> Ciudad:</b> Bogotá</div>
+                        <div> <b> Zona:</b> Engativá</div>
+                    </div>
+                    <a href="" class="btn contacto_h">Ver proyecto</a>
+                </div>
+                <div class="c_slider_pe">
+                    <!-- Swiper -->
+                    <div class="swiper swiperPe">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="https://picsum.photos/600/400" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_proyecto_eject" data-proyecto="3">
+                <div class="info_pe">
+                    <div class="title_pe">
+                        <h4>OIKOS</h4>
+                        <h2>SANTA CLARA</h2>
+                    </div>
+                    <div class="lugar">
+                        Ricaurte - Cundinamarca Sector Peñalisa
+                    </div>
+                    <div class="info_datos_pe">
+                        <div> <b> Dirección:</b> Calle 67A #113c-27</div>
+                        <div> <b> Ciudad:</b> Bogotá</div>
+                        <div> <b> Zona:</b> Engativá</div>
+                    </div>
+                    <a href="" class="btn contacto_h">Ver proyecto</a>
+                </div>
+                <div class="c_slider_pe">
+                    <!-- Swiper -->
+                    <div class="swiper swiperPe">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="https://picsum.photos/600/400" alt="">
+                            </div>
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="assets/images/diseno/proyectos_vivienda/img_banner_futuros.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+        </div>
+    </div>
+</section>

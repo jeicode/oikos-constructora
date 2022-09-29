@@ -23,15 +23,21 @@
     <div class="cnt_mid_pie">
 
         <!-- MENU FOOTER -->
-        <div class="col_mid_men_pie" #menuEle *ngFor="let i of menuFooter">
-            <div class="h_cl_pie" (click)="dropdownToogleMenu(menuEle)">
-                {{i?.title}}
+        <div class="col_mid_men_pie" *ngFor="let i of menuFooter">
+            <div class="h_cl_pie">
+                {{i?.field_content}}
             </div>
             <ul class="menu_pie">
-                <li *ngFor="let c of i?.children">
-                    <a [routerLink]="c?.url_enlace_footer">
-                        {{ c?.field_content }}
+                <li *ngFor="let j of i.hijos">
+                    <a [href]="j?.url_enlace_footer" target="_blank" rel="noopener" *ngIf="j?.url_enlace_footer?.includes('https://') || j?.url_enlace_footer?.includes('http://');else routerLink">
+                        {{ j?.field_content }}
                     </a>
+
+                    <ng-template #routerLink>
+                        <a routerLink="{{j?.url_enlace_footer}}">
+                            {{ j?.field_content }}
+                        </a>
+                    </ng-template>
                 </li>
             </ul>
         </div>
