@@ -5,17 +5,25 @@ import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-p
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then( m => m.HomeModule)
-  },{
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  }, 
+  {
     path: 'contactenos',
-    loadChildren: () => import('./modules/contact/contact.module').then( m => m.ContactModule)
-  },{
+    loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
+  }, 
+  {
     path: 'gracias/:slug',
-    loadChildren: () => import('./shared/pages/thanks/thanks.component').then( m => m.ThanksComponent)
-  },{
+    loadChildren: () => import('./shared/pages/thanks/thanks.component').then(m => m.ThanksComponent)
+  }, 
+  {
+    path: 'noticias',
+    loadChildren: () => import('./modules/blog/blog.module').then(m => m.BlogModule)
+  },
+  {
     path: '**',
     component: NotFoundPageComponent
-  },{
+  }, 
+  {
     path: '404',
     component: NotFoundPageComponent
   }

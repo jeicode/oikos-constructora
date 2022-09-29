@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { SeoPage } from 'src/app/core/models/seo-page.model';
 
 const { api_url: API_URL} = environment
 
@@ -10,9 +11,6 @@ const { api_url: API_URL} = environment
 export class PageService {
 
   currentPage : any;
-  dataPage    : any = [];
-
-  configInfo = new EventEmitter<any>();
 
   constructor(private _http: HttpClient) {}
   

@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { SeoPage } from 'src/app/core/models/seo-page.model';
 import { PageService } from '../api/page.service';
 
 @Injectable({
@@ -26,18 +27,16 @@ export class SeoService {
     this.doc.head.appendChild(element);
   }
 
-  setUpMetaTags() {
-    if (this.pageService.currentPage){
-
+  setUpMetaTags(seoPage:SeoPage) {
+    if (seoPage){
       var canonical = '';
-      if(this.pageService.currentPage.canonical!=''){
-        canonical = this.pageService.currentPage.canonical;
+      if(seoPage.canonical!=''){
+        canonical = seoPage.canonical;
       }
       this.updateCanonicalUrl(canonical);
-
-      this.titlePage.setTitle(this.pageService.currentPage['title'])
-      this.meta.updateTag({ name: 'description', content: this.pageService.currentPage['metadescription'] });
-      this.meta.updateTag({ name: 'robots', content: this.pageService.currentPage['metarobots'] });
+      this.titlePage.setTitle(seoPage.title)
+      this.meta.updateTag({ name: 'description', content: seoPage.metadescription });
+      this.meta.updateTag({ name: 'robots', content: seoPage.metarobots });
     }
   }
 }

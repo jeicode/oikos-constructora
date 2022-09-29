@@ -42,4 +42,9 @@ export class ConfigService {
 
     }
   }
+
+  renderView404(skipLocationChange:boolean = true){
+    this.router.navigateByUrl('404', { skipLocationChange });
+    return false;
+  }
 }

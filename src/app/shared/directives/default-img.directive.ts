@@ -6,8 +6,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class DefaultImgDirective{
 
-  deaultIsBroken:boolean = false;
-  @Input() defaultLink:string = 'https://client-setting-co-institucional-images.s3.amazonaws.com/large_bayport_generica_blog_a0731c1dba.jpeg';;
+  @Input() defaultLink:string = 'http://adminpaxzu-devcons.oikos.com.co/images/website/Image_not_available.png';
 
   constructor(private elementRef: ElementRef) { }
 
