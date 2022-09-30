@@ -6,11 +6,8 @@
         </span>
 
         <div class="cnt_central">
-            <div class="miga">
-                <a href="">OIKOS Constructora</a>
-                <span class="fas fa-chevron-right"></span>
-                <a href="">miga pan</a>
-            </div>
+            
+            <app-breadcrumb [numberRoutesToDelete]="numberRoutesToDelete"></app-breadcrumb>
 
             <div class="row_h_gen_noticias">
                 Noticias
@@ -20,7 +17,7 @@
             <div class="cnt_tob_not_dest">
 
                 <!-- 1 -->
-                <a [routerLink]="['noticias', mainBlog.friendly_url]" class="cnt_not_dest">
+                <a [routerLink]="['/noticias', mainBlog.friendly_url]" class="cnt_not_dest">
                     <div class="img_not_dest">
                         <img defaultImg [src]="BASE_URL+mainBlog.imagen" [alt]="mainBlog.imagen_alt"
                             [title]="mainBlog.imagen_title" width="616" height="375">
@@ -42,7 +39,7 @@
 
                 <!-- 2,3,4 -->
                 <div class="col_top_dest">
-                    <a [routerLink]="['noticias', i?.friendly_url]" *ngFor="let i of secondMainNews"
+                    <a [routerLink]="['/noticias', i?.friendly_url]" *ngFor="let i of secondMainNews"
                         class="cnt_otra_not_dest">
                         <div class="img_not_dest">
                             <img defaultImg [src]="BASE_URL+i?.imagen" [alt]="i?.imagen_alt" [title]="i?.imagen_title"
@@ -62,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="cnt_bot_not">
+            <div class="cnt_bot_not" id="pageUp">
 
                 <!-- MOST RECIENT BLOGS -->
                 <div class="col_gen_list_not">
@@ -85,7 +82,7 @@
                         </div>
                     </div>
                     <div class="list_not" id="list_container">
-                        <a href="" class="itm_list_not" *ngFor="let i of blogs">
+                        <a [routerLink]="['/noticias', i?.friendly_url]" class="itm_list_not" *ngFor="let i of blogs">
                             <div class="img_not_list">
                                 <img defaultImg [src]="BASE_URL+i?.imagen" [alt]="i?.imagen_alt" [title]="i?.imagen_title">
                             </div>
@@ -111,7 +108,7 @@
                             Posts descatados
                         </div>
                         <div class="list_post_dest">
-                            <a [routerLink]="['noticias', i?.friendly_url]" class="itm_post_dest"
+                            <a [routerLink]="['/noticias', i?.friendly_url]" class="itm_post_dest"
                                 *ngFor="let i of interestBlogs">
                                 <div class="row_fecha">
                                     <span class="material-icons ic_fech_not">access_time</span>

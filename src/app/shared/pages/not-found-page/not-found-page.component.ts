@@ -2,13 +2,16 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RESPONSE } from '@nguniversal/express-engine/tokens'
 import { Response } from 'express';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-not-found-page',
   templateUrl: './not-found-page.component.html',
   standalone: true,
   imports:[
-    RouterModule
+    RouterModule,
+
+    BreadcrumbComponent
   ]
 })
 export class NotFoundPageComponent implements OnInit {

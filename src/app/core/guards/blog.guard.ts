@@ -33,7 +33,6 @@ export class BlogGuard implements CanActivate {
           const blogs = await this.blogService.getMostRecentNews(`?num_pagina=${param}&limite=9`)
           
           if (blogs ){ 
-            console.log("blogsss ", blogs)
 
             // if not exist more blogs
             if (blogs?.restantes <= 0 && !blogs?.notas) return this.configServ.renderView404()
@@ -54,6 +53,7 @@ export class BlogGuard implements CanActivate {
 
     async defaultRender(){
       const blogs = await this.blogService.getMostRecentNews(`?num_pagina=1&limite=9`)
+
       const seo = await this.pageService.getSeoContentPage('noticias')
       if (blogs){
         this.blogService.currentBlogs = blogs?.notas

@@ -1,1 +1,286 @@
-<p>blog-detail works!</p>
+<body class="cuerpo">
+
+    <!-- BANNER SECTION -->
+    <section class="s_banner_not_int">
+        <div class="img_dest_not_int">
+            <img defaultImg [src]="BASE_URL+activeBlog.imagen" [alt]="activeBlog.imagen_alt"  [title]="activeBlog.imagen_title" width="1440" height="420">
+        </div>
+
+        <div class="cnt_central">
+
+            <app-breadcrumb colorTxt="white" [crumbTitle]="activeBlog.title_new"></app-breadcrumb>
+
+            <div class="cnt_inf_h_nota_int">
+                <div class="cat_not_int">{{ activeBlog.nombre_categoria }}</div>
+                <div class="h_not_int">
+                    {{ activeBlog.title_new }}
+                </div>
+                <div class="row_fecha_redes">
+                    <div class="fecha_not_int">
+                        <b>Publicado:</b> {{ activeBlog.date_format }}
+                    </div>
+                    <span>•</span>
+                    <div class="cnt_compartit_h_not_int">
+                        <div class="etq_compartir_h_not_int">Compartir</div>
+                        <div class="cnt_redes_h_not_int">
+                            <div class="red_h ic_fb" (click)="shareBy('fb')"></div>
+                            <div class="red_h ic_tw" (click)="shareBy('twitter')"></div>
+                            <div class="red_h ic_in" (click)="shareBy('linkedln')"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CONTENT NEW SECTION -->
+    <section class="s_cuerpo_not_int">
+        <div class="cnt_central">
+
+            <div class="cnt_nota_int">
+                <div class="cnt_top_nota_int">
+
+                    <!-- SHARE BY -->
+                    <div class="col_compartir_nota">
+                        <div class="cnt_redes_nota">
+                            <div class="red_nota ic_fb" (click)="shareBy('fb')"></div>
+                            <div class="red_nota ic_tw" (click)="shareBy('twitter')"></div>
+                            <div class="red_nota ic_in" (click)="shareBy('linkedln')"></div>
+                        </div>
+                    </div>
+
+                    <!-- CONTENT BLOG -->
+                    <div class="col_nota_int">
+                        
+                        <div class="txt_nota_int" [innerHtml]="activeBlog.dynamic"></div> 
+
+                        <div class="row_banner_not_int">
+                            <div class="cnt_banner_proy_not_int">
+                                <div class="img_banner_proy_not_int">
+                                    <img defaultImg width="300" height="121" alt="">
+                                </div>
+                                <div class="inf_banner_proy_not_int">
+                                    <div class="h_ban_proy_not_int">
+                                        Conoce nuestro<br/>
+                                        <span>proyecto ubicado en Flandes</span>
+                                    </div>
+                                    <div class="btn">
+                                        Ir al proyecto
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row_cta">
+                            <a [href]="activeBlog.link_cta" target="_blank" class="btn">
+                                {{ activeBlog.texto_cta}}
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- PAGINATION -->
+                <div class="cnt_ant_sig_not_int">
+
+                    <a *ngIf="activeBlog.url_ant" [routerLink]="['/noticias', activeBlog.url_ant ]" class="bnt_ant_sig_nota nota_ant">
+                        <div class="img_btn_ant_sig">
+                            <!-- ESTA SERÁ LA IMAGEN DE LA NOTICIA-->
+                            <img defaultImg [src]="BASE_URL+activeBlog.imagen" [alt]="activeBlog.imagen_alt"  [title]="activeBlog.imagen_title">
+                        </div>
+                        <div class="cnt_h_ant_sig_not">
+                            <span class="material-icons-round ic_ant_sig">west</span>
+                            Anterior
+                        </div>
+                        <div class="txt_ant_sig_not">
+                            {{ activeBlog.title_ant }}
+                        </div>
+                    </a>
+                    
+                    <a *ngIf="activeBlog.url_sig" [routerLink]="['/noticias', activeBlog.url_sig ]" class="bnt_ant_sig_nota nota_sig">
+                        <div class="img_btn_ant_sig">
+                            <!-- ESTA SERÁ LA IMAGEN DE LA NOTICIA -->
+                            <img defaultImg [src]="BASE_URL+activeBlog.imagen" [alt]="activeBlog.imagen_alt"  [title]="activeBlog.imagen_title">
+                        </div>
+                        <div class="cnt_h_ant_sig_not">
+                            Siguiente
+                            <span class="material-icons-round ic_ant_sig">east</span>
+                        </div>
+                        <div class="txt_ant_sig_not">
+                            {{ activeBlog.title_sig }}
+                        </div>
+                    </a>
+
+                </div>
+                <!-- PAGINATION -->
+
+
+                <div class="cnt_not_interes_int">
+                    <div class="h_not_interes_int">
+                        Post recientes
+                    </div>
+
+                    <div class="cnt_cards_not_interes_int">
+                        <a [routerLink]="['/noticias', i?.friendly_url]" *ngFor="let i of recentBlogs" class="card_not_list">
+                            <div class="img_card_not_int">
+                                <img defaultImg [src]="BASE_URL+i?.imagen" [alt]="i?.imagen_alt"  [title]="i?.imagen_title">
+                            </div>
+                            <div class="cnt_inf_card_not">
+                                <div class="fecha_nota_card_int">{{ i?.date_format }}</div>
+                                <div class="h_otra_not_dest">
+                                    {{ i?.title_new}}
+                                </div>
+                                <div class="txt_otra_not_dest" [innerHtml]="i?.summary"></div>
+                                <div class="row_ic_arrow">
+                                    <span class="material-icons ic_arrow_otra_nota_int">arrow_right_alt</span>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <div class="row_cta">
+                        <a routerLink="/noticias" class="btn">
+                            Ver más
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="s_carr_proy">
+
+        <span class="bg_round">
+            <span></span>
+        </span>
+
+        <div class="cnt_central">
+
+            <h2 class="title_section al_center"> <span>Proyectos </span> en construcción </h2>
+
+            <div class="cnt_car_proy_dest">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="card_p">
+                                <picture>
+                                    <span class="tag_state" style="background-color: Yellow;">Lanzamiento</span>
+                                    <div class="btns_icons">
+                                        <a href="" class="btn_icon">
+                                            <img src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                                        </a>
+                                        <a href="" class="btn_icon">
+                                            <span class="fas fa-map-marker-alt"></span>
+                                        </a>
+                                    </div>
+                                    <img width="350" height="219" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/img_proyecto.jpg" alt="">
+                                </picture>
+                                <h2 class="name_proyecto">
+                                    <picture>
+                                        <img width="87" height="87" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/logo_proyecto.jpg" alt="">
+                                    </picture>
+                                    <div>San Pablo Sport Club</div>
+                                </h2>
+                                <div class="datos_proyecto">
+                                    <h3>Cundinamarca / Fusagasugá</h3>
+                                    <h4><span>Desde</span> $238.686.400 </h4>
+                                </div>
+                                <div class="franja_p">
+                                    <img width="20" height="20" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                                    <span> Aplica subsidio de vivienda VIS </span>
+                                </div>
+                                <div class="ctas_proyectos">
+                                    <a href="" class="btn_whatsapp">
+                                        <span class="fab fa-whatsapp"></span> contactar
+                                    </a>
+                                    <a href="" class="btn">ver proyectos</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card_p">
+                                <picture>
+                                    <span class="tag_state" style="background-color: Yellow;">Lanzamiento</span>
+                                    <div class="btns_icons">
+                                        <a href="" class="btn_icon">
+                                            <img src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                                        </a>
+                                        <a href="" class="btn_icon">
+                                            <span class="fas fa-map-marker-alt"></span>
+                                        </a>
+                                    </div>
+                                    <img width="350" height="219" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/img_proyecto.jpg" alt="">
+                                </picture>
+                                <h2 class="name_proyecto">
+                                    <picture>
+                                        <img width="87" height="87" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/logo_proyecto.jpg" alt="">
+                                    </picture>
+                                    <div>San Pablo Sport Club</div>
+                                </h2>
+                                <div class="datos_proyecto">
+                                    <h3>Cundinamarca / Fusagasugá</h3>
+                                    <h4><span>Desde</span> $238.686.400 </h4>
+                                </div>
+                                <div class="franja_p">
+                                    <img width="20" height="20" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                                    <span> Aplica subsidio de vivienda VIS </span>
+                                </div>
+                                <div class="ctas_proyectos">
+                                    <a href="" class="btn_whatsapp">
+                                        <span class="fab fa-whatsapp"></span> contactar
+                                    </a>
+                                    <a href="" class="btn">ver proyectos</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card_p">
+                                <picture>
+                                    <span class="tag_state" style="background-color: Yellow;">Lanzamiento</span>
+                                    <div class="btns_icons">
+                                        <a href="" class="btn_icon">
+                                            <img src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                                        </a>
+                                        <a href="" class="btn_icon">
+                                            <span class="fas fa-map-marker-alt"></span>
+                                        </a>
+                                    </div>
+                                    <img width="350" height="219" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/img_proyecto.jpg" alt="">
+                                </picture>
+                                <h2 class="name_proyecto">
+                                    <picture>
+                                        <img width="87" height="87" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/logo_proyecto.jpg" alt="">
+                                    </picture>
+                                    <div>San Pablo Sport Club</div>
+                                </h2>
+                                <div class="datos_proyecto">
+                                    <h3>Cundinamarca / Fusagasugá</h3>
+                                    <h4><span>Desde</span> $238.686.400 </h4>
+                                </div>
+                                <div class="franja_p">
+                                    <img width="20" height="20" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                                    <span> Aplica subsidio de vivienda VIS </span>
+                                </div>
+                                <div class="ctas_proyectos">
+                                    <a href="" class="btn_whatsapp">
+                                        <span class="fab fa-whatsapp"></span> contactar
+                                    </a>
+                                    <a href="" class="btn">ver proyectos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+    
+</body>

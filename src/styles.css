@@ -421,6 +421,10 @@ h1 {
     text-align: right;
     margin: 20px 0 0;
 }
+.miga div {
+    display: flex;
+    gap: 8px;
+}
 
 .miga a {
     color: #000;

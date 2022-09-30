@@ -1,16 +1,7 @@
-<div [class]="cssClass" [ngStyle]="{'color': colorTxt}">
-    <a routerLink="/" [ngStyle]="{'color': colorTxt}">
-        Home
-    </a>
-    <span class="material-symbols-outlined">
-        chevron_right
-    </span>
-
-    <a *ngIf="beforeCrumb" [routerLink]="beforeCrumb?.link" [ngStyle]="{'color': colorTxt}">
-        {{beforeCrumb?.title}}
-    </a>
-    <span *ngIf="beforeCrumb" class="material-symbols-outlined">
-        chevron_right
-    </span>
-    {{crumbTitle}}
+<div class="miga" [style.color]="colorTxt">
+    <div *ngFor="let i of breadcrumbs; let index = index">
+        <a [style.color]="colorTxt" [routerLink]="i?.link">{{i?.title}}</a>
+        <span class="fas fa-chevron-right"></span>
+    </div>
+    <a [style.color]="colorTxt">{{crumbTitle}}</a>
 </div>

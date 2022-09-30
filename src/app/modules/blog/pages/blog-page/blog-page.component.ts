@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Blog } from 'src/app/core/models/blog.model';
 import { BlogService } from 'src/app/shared/services/api/blog.service';
-import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { environment } from 'src/environments/environment';
 
@@ -26,17 +26,20 @@ export class BlogPageComponent implements OnInit {
   interestBlogs:Blog[] = []
   blogs:Blog[] = []
 
+  numberRoutesToDelete:number = 2;
+
   routerListener:Subscription;
 
   constructor(private blogService: BlogService, private router: Router, 
               public responsiveService: ResponsiveService,
-              private configServ: ConfigService) {
+              @Inject(DOCUMENT) private doc: Document) {
     this.routerListener = this.router.events.subscribe(async (event:any) => {      
       if (event instanceof NavigationEnd  ) {
+
+        if (router.url.includes('pagina/')) this.numberRoutesToDelete = 2
         this.blogs = this.blogService.currentBlogs
         this.numPage = this.blogService.currentNumPage
         this.remainingPages = this.blogService.remainingPages
-        this.configServ.goUpPage()
       }
     });
   }
@@ -84,6 +87,8 @@ export class BlogPageComponent implements OnInit {
     if (this.remainingPages > 0) {
       this.numPage++;
       this.router.navigate(['/noticias/pagina/', this.numPage]);
+      this.doc.getElementById("pageUp")?.scrollIntoView();
+
     }
   }
 
@@ -91,6 +96,7 @@ export class BlogPageComponent implements OnInit {
     if (this.numPage > 1){
       this.numPage--;
       this.router.navigate(['/noticias/pagina/', this.numPage]);
+      this.doc.getElementById("pageUp")?.scrollIntoView();
     }
   }
 
