@@ -60,4 +60,25 @@ export class ProjectService {
     return this._http.get(url).toPromise().then();
   }
 
+  /**
+   * 
+   * @param cuota 
+   * @param valorafinanciar 
+   * @param porcentajeefectivoanual 
+   * @returns Promise<any>
+   */
+  async getPlazoanios(cuota: any, valorafinanciar: any){
+    const url = `${API_URL}v1/getPlazoanios?cuota=${cuota}&valorafinanciar=${valorafinanciar}`;
+    return this._http.get(url).toPromise().then();
+  }
+
+  /**
+   * 
+   * @param data 
+   * @returns Promise<any>
+   */
+   setCalculadoraForm(data: any): Promise<any> {
+    const url = `${API_URL}v1/setCalculadoraForm`;
+    return this._http.post(url, JSON.stringify(data)).toPromise().then();
+  }
 }

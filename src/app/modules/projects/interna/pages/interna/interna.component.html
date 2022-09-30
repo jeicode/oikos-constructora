@@ -391,7 +391,7 @@
     <a class="close_calc">
         <span class="fas fa-arrow-right"></span>
     </a>
-    <form action="" class="f_calculadora">
+    <form class="f_calculadora" [formGroup]="contactForm" (ngSubmit)="insertContact()" novalidate>
         <div class="csp_calc">
             <!-- Swiper -->
             <div class="swiper swiperCalcP">
@@ -409,12 +409,15 @@
         <div class="grand_c_inputs">
             <div class="datos_persona">
                 <div class="cont_input_x1">
-                    <input type="text" placeholder="Nombre">
+                    <input type="text" placeholder="Nombre" formControlName="nombre">
                 </div><br>
+                <div *ngIf="hasErrorsFieldForm('nombre')" class="error-text">Existen errores, por favor revisar*</div>
                 <div class="cont_input_x2">
-                    <input type="email" placeholder="Email" required>
-                    <input type="number" placeholder="Teléfono" required>
+                    <input type="email" placeholder="Email" formControlName="email">
+                    <input type="tel" placeholder="Teléfono" formControlName="telefono">
                 </div>
+                <div *ngIf="hasErrorsFieldForm('email')" class="error-text">Existen errores, por favor revisar*</div>
+                <div *ngIf="hasErrorsFieldForm('telefono')" class="error-text">Existen errores, por favor revisar* <br> Mínimo 7, Máximo 10 números</div>
             </div>
             <div class="datos_cuota_inicial">
                 <div class="cont_input_x2">
@@ -436,7 +439,7 @@
                     </div>
                     <div class="info">
                         <label for="">Separación <b> 2%</b></label>
-                        <input type="text" value="$ {{data?.cuota_separacion}}" readonly>
+                        <input type="text" class="separacion" value="$ {{data?.cuota_separacion}}" readonly>
                     </div>
                     <div class="info highlight">
                         <label for="">Saldo cuota inicial</label>
@@ -452,7 +455,7 @@
                 <div class="solo_info x2">
                     <div class="info">
                         <label for="">Saldo a financiar %</label>
-                        <input type="text" value="{{porcFinanciar}}" readonly>
+                        <input type="text" value="{{porcFinanciar}}" class="porcentajeFinanciar" readonly>
                     </div>
                     <div class="info highlight">
                         <label for="">Valor</label>
@@ -462,7 +465,7 @@
                 <div class="cont_input_x2">
                     <div class="info">
                         <label for="">Plazo en años</label>
-                        <select class="plazoaniosa">
+                        <select class="plazoaniosa" (change)="plazoanios()">
                             <option value="10">10</option>
                             <option value="15">15</option>
                             <option value="20">20</option>
@@ -470,16 +473,17 @@
                     </div>
                     <div class="info">
                         <label for="">Valor estimado cuota hipotecaria</label>
-                        <input type="text" value="$ " readonly>
+                        <input type="text" value="$ " class="cuotahipoteca" readonly>
                     </div>
                 </div>
             </div>
             <div class="cont_chk">
-                <input type="checkbox" name="" id="calc_form_chk">
+                <input type="checkbox" id="calc_form_chk" formControlName="terminos">
                 <label for="calc_form_chk"> Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
             </div>
+            <div *ngIf="hasErrorsFieldForm('terminos')" class="error-text">Existen errores, por favor revisar*</div>
             <div class="cont_submit">
-                <button type="submit" class="btn">Enviar</button>
+                <button type="submit" class="btn" [disabled]="contactForm.invalid">Enviar</button>
             </div>
 
 
