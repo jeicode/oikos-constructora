@@ -408,6 +408,9 @@
         </div>
         <div class="grand_c_inputs">
             <div class="datos_persona">
+                <div class="cont_input_x1">
+                    <input type="text" placeholder="Nombre">
+                </div><br>
                 <div class="cont_input_x2">
                     <input type="email" placeholder="Email" required>
                     <input type="number" placeholder="Teléfono" required>
@@ -415,58 +418,59 @@
             </div>
             <div class="datos_cuota_inicial">
                 <div class="cont_input_x2">
-                    <input type="number" min="{{data?.porcentaje_minimo}}" max="100" value="{{data?.porcentaje_minimo}}">
-                    <select name="" id="">
-                        <option value="" selected disabled>N. cuotas</option>
-                        <option value="">12</option>
-                        <option value="">24</option>
-                        <option value="">36</option>
-                        <option value="">48</option>
-                        <option value="">60</option>
-                    </select>
+                    <div class="info">
+                        <label for="">Cuota inicial %</label>
+                        <input type="number" min="{{data?.porcentaje_minimo}}" (click)="calculoPorcentaje()" class="cambiarPorcentaje" max="100" value="{{data?.porcentaje_minimo}}">
+                    </div>
+                    <div class="info">
+                        <label for="">Número de cuotas</label>
+                        <select class="cuotasinicialfinanciar" (change)="diferenciadordecuotasmensuales()">
+                            <option value="{{i.nro}}" [selected]="j==0" *ngFor="let i of data.numero_cuotas; index as j">{{i.nro}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="solo_info x3">
                     <div class="info">
                         <label for="">Valor cuota inicial</label>
-                        <input type="text" value="$ {{data?.cuota_inicial}}" readonly disabled>
+                        <input type="text" class="valorCuotaInicial" value="$ {{data?.cuota_inicial}}" readonly>
                     </div>
                     <div class="info">
                         <label for="">Separación <b> 2%</b></label>
-                        <input type="text" value="$ {{data?.cuota_separacion}}" readonly disabled>
+                        <input type="text" value="$ {{data?.cuota_separacion}}" readonly>
                     </div>
                     <div class="info highlight">
                         <label for="">Saldo cuota inicial</label>
-                        <input type="text" value="$ 63.866.880" disabled>
+                        <input type="text" class="diferencia" value="$ {{data?.saldo_cuota}}" readonly>
                     </div>
                 </div>
                 <div class="solo_info x1">
                     <label for="">Valor cuota mensual</label>
-                    <input type="text" value="$ 5.535.130" disabled>
+                    <input type="text" class="cuotamensual" readonly>
                 </div>
             </div>
             <div class="datos_financiacion">
                 <div class="solo_info x2">
                     <div class="info">
-                        <label for="">Saldo a financiar</label>
-                        <input type="text" value="$ 63.866.880" disabled>
+                        <label for="">Saldo a financiar %</label>
+                        <input type="text" value="{{porcFinanciar}}" readonly>
                     </div>
                     <div class="info highlight">
                         <label for="">Valor</label>
-                        <input type="text" value="$ 149.022.720" disabled>
+                        <input type="text" value="$ {{data?.financiar}}" class="valorafinanciar" readonly>
                     </div>
                 </div>
                 <div class="cont_input_x2">
-                    <select name="" id="">
-                        <option value="">Plazo en años</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
                     <div class="info">
-                        <label for="">Valor cuota hipotecaria</label>
-                        <input type="text" value="$ 149.022.720" disabled>
+                        <label for="">Plazo en años</label>
+                        <select class="plazoaniosa">
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+                    <div class="info">
+                        <label for="">Valor estimado cuota hipotecaria</label>
+                        <input type="text" value="$ " readonly>
                     </div>
                 </div>
             </div>
