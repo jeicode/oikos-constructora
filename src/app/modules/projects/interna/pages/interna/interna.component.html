@@ -1,11 +1,5 @@
 <section class="s_proyecto_h">
-    <div class="cnt_central">
-        <div class="miga">
-            <a href="">OIKOS</a>
-            <span> > </span>
-            <a href="">Proyecto</a>
-        </div>
-    </div>
+    
 
     <div class="hero_proyecto">
         <div class="info_h_proyecto">
@@ -387,11 +381,11 @@
 
 
 <span class="bg_dark"></span>
-<div class="s_modal_calculadora active">
+<div class="s_modal_calculadora">
     <a class="close_calc">
         <span class="fas fa-arrow-right"></span>
     </a>
-    <form action="" class="f_calculadora">
+    <form class="f_calculadora" [formGroup]="contactForm" (ngSubmit)="insertContact()" novalidate>
         <div class="csp_calc">
             <!-- Swiper -->
             <div class="swiper swiperCalcP">
@@ -408,74 +402,82 @@
         </div>
         <div class="grand_c_inputs">
             <div class="datos_persona">
+                <div class="cont_input_x1">
+                    <input type="text" placeholder="Nombre" formControlName="nombre">
+                </div><br>
+                <div *ngIf="hasErrorsFieldForm('nombre')" class="error-text">Existen errores, por favor revisar*</div>
                 <div class="cont_input_x2">
-                    <input type="email" placeholder="Email" required>
-                    <input type="number" placeholder="Teléfono" required>
+                    <input type="email" placeholder="Email" formControlName="email">
+                    <input type="tel" placeholder="Teléfono" formControlName="telefono">
                 </div>
+                <div *ngIf="hasErrorsFieldForm('email')" class="error-text">Existen errores, por favor revisar*</div>
+                <div *ngIf="hasErrorsFieldForm('telefono')" class="error-text">Existen errores, por favor revisar* <br> Mínimo 7, Máximo 10 números</div>
             </div>
             <div class="datos_cuota_inicial">
                 <div class="cont_input_x2">
-                    <input type="number" min="{{data?.porcentaje_minimo}}" max="100" value="{{data?.porcentaje_minimo}}">
-                    <select name="" id="">
-                        <option value="" selected disabled>N. cuotas</option>
-                        <option value="">12</option>
-                        <option value="">24</option>
-                        <option value="">36</option>
-                        <option value="">48</option>
-                        <option value="">60</option>
-                    </select>
+                    <div class="info">
+                        <label for="">Cuota inicial %</label>
+                        <input type="number" min="{{data?.porcentaje_minimo}}" (click)="calculoPorcentaje()" class="cambiarPorcentaje" max="100" value="{{data?.porcentaje_minimo}}">
+                    </div>
+                    <div class="info">
+                        <label for="">Número de cuotas</label>
+                        <select class="cuotasinicialfinanciar" (change)="diferenciadordecuotasmensuales()">
+                            <option value="{{i.nro}}" [selected]="j==0" *ngFor="let i of data.numero_cuotas; index as j">{{i.nro}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="solo_info x3">
                     <div class="info">
                         <label for="">Valor cuota inicial</label>
-                        <input type="text" value="$ {{data?.cuota_inicial}}" readonly disabled>
+                        <input type="text" class="valorCuotaInicial" value="$ {{data?.cuota_inicial}}" readonly>
                     </div>
                     <div class="info">
                         <label for="">Separación <b> 2%</b></label>
-                        <input type="text" value="$ {{data?.cuota_separacion}}" readonly disabled>
+                        <input type="text" class="separacion" value="$ {{data?.cuota_separacion}}" readonly>
                     </div>
                     <div class="info highlight">
                         <label for="">Saldo cuota inicial</label>
-                        <input type="text" value="$ 63.866.880" disabled>
+                        <input type="text" class="diferencia" value="$ {{data?.saldo_cuota}}" readonly>
                     </div>
                 </div>
                 <div class="solo_info x1">
                     <label for="">Valor cuota mensual</label>
-                    <input type="text" value="$ 5.535.130" disabled>
+                    <input type="text" class="cuotamensual" readonly>
                 </div>
             </div>
             <div class="datos_financiacion">
                 <div class="solo_info x2">
                     <div class="info">
-                        <label for="">Saldo a financiar</label>
-                        <input type="text" value="$ 63.866.880" disabled>
+                        <label for="">Saldo a financiar %</label>
+                        <input type="text" value="{{porcFinanciar}}" class="porcentajeFinanciar" readonly>
                     </div>
                     <div class="info highlight">
                         <label for="">Valor</label>
-                        <input type="text" value="$ 149.022.720" disabled>
+                        <input type="text" value="$ {{data?.financiar}}" class="valorafinanciar" readonly>
                     </div>
                 </div>
                 <div class="cont_input_x2">
-                    <select name="" id="">
-                        <option value="">Plazo en años</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
                     <div class="info">
-                        <label for="">Valor cuota hipotecaria</label>
-                        <input type="text" value="$ 149.022.720" disabled>
+                        <label for="">Plazo en años</label>
+                        <select class="plazoaniosa" (change)="plazoanios()">
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+                    <div class="info">
+                        <label for="">Valor estimado cuota hipotecaria</label>
+                        <input type="text" value="$ " class="cuotahipoteca" readonly>
                     </div>
                 </div>
             </div>
             <div class="cont_chk">
-                <input type="checkbox" name="" id="calc_form_chk">
+                <input type="checkbox" id="calc_form_chk" formControlName="terminos">
                 <label for="calc_form_chk"> Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
             </div>
+            <div *ngIf="hasErrorsFieldForm('terminos')" class="error-text">Existen errores, por favor revisar*</div>
             <div class="cont_submit">
-                <button type="submit" class="btn">Enviar</button>
+                <button type="submit" class="btn" [disabled]="contactForm.invalid">Enviar</button>
             </div>
 
 

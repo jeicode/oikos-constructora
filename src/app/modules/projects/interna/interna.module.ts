@@ -5,6 +5,8 @@ import { InternaRoutingModule } from './interna-routing.module';
 import { InternaComponent } from './pages/interna/interna.component';
 import { ComponentSharedModule } from 'src/app/shared/components/components.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaModule } from "ng-recaptcha";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     InternaRoutingModule,
     ComponentSharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    RecaptchaModule
   ]
 })
 export class InternaModule { }

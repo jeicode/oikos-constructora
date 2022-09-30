@@ -13,7 +13,7 @@ const routes: Routes = [
   }, 
   {
     path: 'gracias/:slug',
-    loadChildren: () => import('./shared/pages/thanks/thanks.component').then(m => m.ThanksComponent)
+    loadChildren: () => import('./modules/thanks/thanks.module').then(m => m.ThanksModule)
   }, 
   {
     path: 'noticias',
@@ -26,8 +26,10 @@ const routes: Routes = [
   {
     path: 'proyecto/:slug',
     loadChildren: () => import('./modules/projects/interna/interna.module').then(m => m.InternaModule)
-  },
-  {
+  },{
+    path: 'legales/:slug',
+    loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
+  },{
     path: '**',
     component: NotFoundPageComponent
   }, 

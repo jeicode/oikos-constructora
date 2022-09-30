@@ -19,7 +19,7 @@ export class ContactGuard implements CanActivate {
           
           if (page) {
             this.pageService.currentPage = page
-            this.seoService.setUpMetaTags()
+            this.seoService.setUpMetaTags(page)
             return true
           }
 
