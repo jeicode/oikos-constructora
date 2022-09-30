@@ -6,14 +6,15 @@ import { SeoService } from "src/app/shared/services/functions/seo.service";
 @Injectable({
     providedIn: 'root'
 })
-export class ViviendaGuard implements CanActivate {
+export class LegalesGuard implements CanActivate {
     constructor(private pageService: PageService, private router: Router, private seoService: SeoService) { }
 
     async canActivate(
         _route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot):Promise<boolean> {
+        const slug = _route.params['slug']
 
-        const page = await this.pageService.getSeoContentPage('proyectos-construccion-vivienda');
+        const page = await this.pageService.getSeoContentPage(slug);
 
         if(page?.friendly_url!=null){
           this.pageService.currentPage = page
