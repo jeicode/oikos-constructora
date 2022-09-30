@@ -392,7 +392,8 @@ h1 {
 .cuerpo {
     width: 100%;
     position: relative;
-    padding-top: 93px;
+    padding-top: 46.5px ;
+    /* padding-top: 93px; */
     display: block;
     flex-direction: column;
     justify-content: center;

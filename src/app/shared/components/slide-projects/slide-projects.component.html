@@ -1,0 +1,54 @@
+<div class="cnt_car_proy_dest">
+    <div class="swiper-container">
+        <swiper [config]="config">
+            <ng-template swiperSlide *ngFor="let i of projects">
+                <div class="card_p">
+                    <picture>
+                        <span class="tag_state" style="background-color: Yellow;">{{i?.estado_proyecto}}</span>
+                        <div class="btns_icons">
+                            <a href="" class="btn_icon">
+                                <img defaultImg [src]="BASE_URL+i?.imagen_og_proyecto" width="20" height="20"  
+                                    [alt]="i?.alt_logo" [title]="i?.title_logo">
+                            </a>
+                            <a href="" class="btn_icon">
+                                <span class="fas fa-map-marker-alt"></span>
+                            </a>
+                        </div>
+                        <img width="350" height="219" 
+                            defaultImg
+                            [src]="BASE_URL+i?.imagen_principal_proyecto" 
+                            [alt]="i?.alt_principal" 
+                            [title]="i?.title_principal">
+                    </picture>
+                    <h2 class="name_proyecto">
+                        <picture>
+                            <img width="87" height="87" defaultImg
+                                [src]="BASE_URL+i?.imagen_og_proyecto" 
+                                [alt]="i?.alt_logo" 
+                                [title]="i?.title_logo">
+                        </picture>
+                        <div>{{i?.titulo_proyecto}}</div>
+                    </h2>
+                    <div class="datos_proyecto">
+                        <h3>{{i?.ubicacion_proyecto}}</h3>
+                        <h4><span>Desde</span> {{i?.porcentaje_minimo}} </h4>
+                    </div>
+                    <div class="franja_p">
+                        <img width="20" height="20" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                        <span> Aplica subsidio de vivienda VIS </span>
+                    </div>
+                    <div class="ctas_proyectos">
+                        <a [href]="i?.api_wsp" target="_blank" class="btn_whatsapp">
+                            <span class="fab fa-whatsapp"></span> contactar
+                        </a>
+                        <a routerLink="/proyectos-construccion-vivienda" class="btn">ver proyectos</a>
+                    </div>
+                </div>
+            </ng-template>
+        </swiper>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+

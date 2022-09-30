@@ -16,6 +16,8 @@ export class BlogPageComponent implements OnInit {
 
   BASE_URL = environment.base_url
 
+  oninitIsExecute:boolean = false;
+
   //pagination
   numPage:number = 1;
   remainingPages:number = 0
@@ -40,6 +42,8 @@ export class BlogPageComponent implements OnInit {
         this.blogs = this.blogService.currentBlogs
         this.numPage = this.blogService.currentNumPage
         this.remainingPages = this.blogService.remainingPages
+        if (this.oninitIsExecute) this.doc.getElementById("pageUp")?.scrollIntoView();
+
       }
     });
   }
@@ -47,6 +51,7 @@ export class BlogPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.init()
+    this.oninitIsExecute = true
   }
 
 
@@ -87,7 +92,6 @@ export class BlogPageComponent implements OnInit {
     if (this.remainingPages > 0) {
       this.numPage++;
       this.router.navigate(['/noticias/pagina/', this.numPage]);
-      this.doc.getElementById("pageUp")?.scrollIntoView();
 
     }
   }
@@ -96,7 +100,6 @@ export class BlogPageComponent implements OnInit {
     if (this.numPage > 1){
       this.numPage--;
       this.router.navigate(['/noticias/pagina/', this.numPage]);
-      this.doc.getElementById("pageUp")?.scrollIntoView();
     }
   }
 

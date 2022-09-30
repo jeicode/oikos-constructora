@@ -37,6 +37,7 @@ export class BlogGuard implements CanActivate {
             // if not exist more blogs
             if (blogs?.restantes <= 0 && !blogs?.notas) return this.configServ.renderView404()
             
+
             this.blogService.currentNumPage = param
             this.blogService.currentBlogs = blogs?.notas
             this.blogService.remainingPages = blogs?.restantes

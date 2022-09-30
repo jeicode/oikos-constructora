@@ -20,7 +20,7 @@ export class ProjectService {
    * @param tipo 
    * @returns Promise<any>
    */
-   async getProyectosByTipo(tipo: string){
+  async getProyectosByTipo(tipo: string):Promise<any>{
     const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}`;
     return this._http.get(url).toPromise().then();
   }
