@@ -61,7 +61,7 @@ export class SlideProjectsComponent implements OnInit {
 
   async getProjectsByType(){
     if (this.projects.length == 0) {
-      const projects = await this.projectService.getProyectosByTipo('2')
+      const projects = await this.projectService.getProyectosByTipo('1')
       if(projects) this.projects = projects
     }
   }

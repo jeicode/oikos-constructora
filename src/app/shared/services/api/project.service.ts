@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SeoPage } from 'src/app/core/models/seo-page.model';
+import { firstValueFrom } from 'rxjs';
 
 const { api_url: API_URL} = environment
 
@@ -22,7 +23,13 @@ export class ProjectService {
    */
   async getProyectosByTipo(tipo: string):Promise<any>{
     const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}`;
-    return this._http.get(url).toPromise().then();
+    return firstValueFrom(this._http.get(url)).then()
+      .catch(err => {
+        console.warn(err)
+        return false
+      })
+
+
   }
 
   /**
@@ -30,7 +37,7 @@ export class ProjectService {
    * @param tipo 
    * @returns Promise<any>
    */
-   async getProyectoByUrl(slug: any){
+  async getProyectoByUrl(slug: any){
     const url = `${API_URL}v1/getProyectoByUrl?friendly_url=${slug}`;
     return this._http.get(url).toPromise().then();
   }
