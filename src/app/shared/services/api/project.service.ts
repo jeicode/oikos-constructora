@@ -19,17 +19,13 @@ export class ProjectService {
   /**
    * 
    * @param tipo 
+   * @param ciudad
+   * @param tipo_proyecto
    * @returns Promise<any>
    */
-  async getProyectosByTipo(tipo: string):Promise<any>{
-    const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}`;
-    return firstValueFrom(this._http.get(url)).then()
-      .catch(err => {
-        console.warn(err)
-        return false
-      })
-
-
+  async getProyectosByTipo(tipo: string, ciudad?: string, tipo_proyecto?: string):Promise<any>{
+    const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}&ciudad=${ciudad}&tipo_proyecto=${tipo_proyecto}`;
+    return this._http.get(url).toPromise().then();
   }
 
   /**
