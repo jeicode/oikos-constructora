@@ -18,10 +18,12 @@ const routes: Routes = [
   {
     path: 'noticias',
     loadChildren: () => import('./modules/blog/blog.module').then(m => m.BlogModule)
-  },{
+  },
+  {
     path: 'proyectos-construccion-vivienda',
     loadChildren: () => import('./modules/projects/vivienda/vivienda.module').then(m => m.ViviendaModule)
-  },{
+  },
+  {
     path: 'proyecto/:slug',
     loadChildren: () => import('./modules/projects/interna/interna.module').then(m => m.InternaModule)
   },{

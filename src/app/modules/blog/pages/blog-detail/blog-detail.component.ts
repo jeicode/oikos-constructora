@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Blog } from 'src/app/core/models/blog.model';
 import { BlogService } from 'src/app/shared/services/api/blog.service';
+import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { environment } from 'src/environments/environment';
 
+
+declare const $:any; 
 @Component({
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
@@ -17,21 +20,24 @@ export class BlogDetailComponent implements OnInit {
   activeBlog: Blog = new Blog();
   recentBlogs:Blog[] = []
 
+  scrollPaginationIsActive:boolean = false;
+
   routerListener:Subscription;
 
-  constructor(private blogService: BlogService, private router: Router, private configServ: ConfigService) {
+  constructor(private blogService: BlogService, 
+              private router: Router, 
+              private configServ: ConfigService) {
 
     this.routerListener = this.router.events.subscribe(async (event:any) => {      
       if (event instanceof NavigationEnd  ) {
         this.activeBlog = this.blogService.activeBlog
-        // console.log("activeBlog ", this.activeBlog)
         this.configServ.goUpPage()
       }
     });
   }
 
   ngOnInit(): void {
-    this.getInterestNews()
+    this.getInterestNews()    
   }
 
 
@@ -61,6 +67,21 @@ export class BlogDetailComponent implements OnInit {
         }
       
         window.open(link, "_blank");
-      }
+    }
+
+
+    @HostListener('window:scroll', ['$event']) // for window scroll events
+    configScrollPagination(){
+      if($(window).width() > 1200){
+          var scroll = $(window).scrollTop();
+          if (scroll >= 420) {
+              this.scrollPaginationIsActive = true
+          } else {
+            this.scrollPaginationIsActive = false
+          }
+
+        }
+
+  }
   
 }

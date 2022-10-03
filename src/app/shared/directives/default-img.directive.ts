@@ -13,7 +13,6 @@ export class DefaultImgDirective{
   @HostListener('error')
   loadDefaultImage(){
     const image:HTMLImageElement = this.elementRef.nativeElement
-
     if(image.src === this.defaultLink){
       console.error(`La imagen por default ${this.defaultLink} está rota, por favor asigna una url válida`)
     } else {
