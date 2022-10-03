@@ -33,7 +33,7 @@ export class ProjectService {
    * @param tipo 
    * @returns Promise<any>
    */
-  async getProyectoByUrl(slug: any){
+  async getProyectoByUrl(slug: any):Promise<any>{
     const url = `${API_URL}v1/getProyectoByUrl?friendly_url=${slug}`;
     return this._http.get(url).toPromise().then();
   }
@@ -47,7 +47,7 @@ export class ProjectService {
    * @param valorafinanciaranios
    * @returns Promise<any>
    */
-  async getCalculoPorcentaje(valorProyecto: any, porcentaje: any, cuotasinicialfinanciar: any, plazo: any, valorafinanciaranios: any){
+  async getCalculoPorcentaje(valorProyecto: any, porcentaje: any, cuotasinicialfinanciar: any, plazo: any, valorafinanciaranios: any):Promise<any>{
     const url = `${API_URL}v1/getCalculoPorcentaje?valorProyecto=${valorProyecto}&porcentaje=${porcentaje}&cuotasinicialfinanciar=${cuotasinicialfinanciar}&plazo=${plazo}&valorafinanciaranios=${valorafinanciaranios}`;
     return this._http.get(url).toPromise().then();
   }
@@ -58,7 +58,7 @@ export class ProjectService {
    * @param numerocuota 
    * @returns Promise<any>
    */
-  async getCalculoCuota(saldocuota: any, numerocuota: any){
+  async getCalculoCuota(saldocuota: any, numerocuota: any):Promise<any>{
     const url = `${API_URL}v1/getCalculoCuota?cuota=${numerocuota}&saldocuotainicial=${saldocuota}`;
     return this._http.get(url).toPromise().then();
   }
@@ -70,7 +70,7 @@ export class ProjectService {
    * @param porcentajeefectivoanual 
    * @returns Promise<any>
    */
-  async getPlazoanios(cuota: any, valorafinanciar: any){
+  async getPlazoanios(cuota: any, valorafinanciar: any):Promise<any>{
     const url = `${API_URL}v1/getPlazoanios?cuota=${cuota}&valorafinanciar=${valorafinanciar}`;
     return this._http.get(url).toPromise().then();
   }

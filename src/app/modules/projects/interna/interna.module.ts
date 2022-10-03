@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule } from "ng-recaptcha";
 
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { RecaptchaModule } from "ng-recaptcha";
     ComponentSharedModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RecaptchaModule
+    RecaptchaModule,
+    GoogleMapsModule
   ]
 })
 export class InternaModule { }

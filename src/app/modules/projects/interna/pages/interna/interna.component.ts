@@ -32,6 +32,10 @@ export class InternaComponent implements OnInit {
   isSubmitted           : boolean = false;
   showErrors            : boolean = false
 
+  zoom = 14;
+  center = {lat: 0, lng: 0};
+  markers: any = [];
+
   contactForm: FormGroup = this.fb.group({
     nombre: new FormControl('', Validators.required),
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
@@ -85,6 +89,24 @@ export class InternaComponent implements OnInit {
 
     this.calculoPorcentaje();
     this.diferenciadordecuotasmensuales();
+
+    this.center = {
+      lat: this.data.latitude,
+      lng: this.data.longitude
+    }
+
+    this.markers.push({
+      position: {
+        lat: this.data.latitude,
+        lng: this.data.longitude
+      },
+      icon: {
+        url: "assets/images/diseno/pin_sede.png"
+      },
+      options: {
+        animation: google.maps.Animation.BOUNCE
+      }
+    })
   }
 
   trasladar(el: any){
