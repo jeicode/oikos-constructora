@@ -13,12 +13,12 @@
                     </a>
                 </div>
                 <form class="filtro_proyectos">
-                    <select>
+                    <select #nomCiudad (change)="getCiudad(nomCiudad.value)">
                         <option value="NA" selected>Ciudad</option>
                         <option value="{{i?.id}}" *ngFor="let i of ciudades">{{i?.field_content}}</option>
                     </select>
-                    <select>
-                        <option value="" selected>Tipo de vivienda</option>
+                    <select #nomTipo (change)="getTipo(nomTipo.value)">
+                        <option value="NA" selected>Tipo de vivienda</option>
                         <option value="{{i?.id}}" *ngFor="let i of tipo_proyecto">{{i?.field_content}}</option>
                     </select>
                     <select class="precio">
@@ -38,8 +38,8 @@
                         <option value="" >5</option>
                     </select>
                     <div class="cont_filtr_btns">
-                        <button type="reset" class="btn_link_reset">Limpiar <span class="fas fa-times"></span> </button>
-                        <button type="search" class="btn">Buscar <span class="fas fa-search"></span> </button>
+                        <button type="button" class="btn_link_reset" (click)="limpiarFiltros()">Limpiar <span class="fas fa-times"></span> </button>
+                        <button type="button" class="btn" (click)="buscarProyectos()">Buscar <span class="fas fa-search"></span> </button>
                     </div>
                 </form>
             </div>

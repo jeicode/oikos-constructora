@@ -24,6 +24,8 @@ export class ViviendaComponent implements OnInit {
   captcha               : string = "";
   imagenes_url          : string = "";
   imagen_banner         : string = "";
+  ciudad                : string = "NA";
+  tipo_search           : string = "NA";
 
   constructor(private pageService: PageService, private router: Router, private configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
@@ -66,8 +68,23 @@ export class ViviendaComponent implements OnInit {
     this.tipo_proyecto = await this.pageService.getElementsContent('titulo tipo proyecto', 'tipos_proyectos');
   }
 
+  getCiudad(ciudad: any){
+    this.ciudad = ciudad;
+  }
+
+  getTipo(tipo: any){
+    this.tipo_search = tipo;
+  }
+
   async getProyectos(){
     this.proyectos = await this.projService.getProyectosByTipo('1');
   }
 
+  async buscarProyectos(){
+    this.proyectos = await this.projService.getProyectosByTipo('1', this.ciudad, this.tipo_search);
+  }
+
+  async limpiarFiltros(){
+    this.getProyectos();
+  }
 }
