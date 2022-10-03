@@ -1,0 +1,108 @@
+<div class="cnt_gen_proy_ejec">
+
+    <div class="s_proyecto_vivienda">
+        <div class="cnt_central">
+            <div class="miga">
+                <a href="">OIKOS Constructora</a>
+                <span class="fas fa-chevron-right"></span>
+                <a href="">miga pan</a>
+            </div>
+
+            <h1 class="title_section al_center"> <span>Proyectos </span> Ejecutados </h1>
+        </div>
+    </div>
+
+    <section class="s_list_proy_dest">
+        <div class="cnt_central">
+
+            <div class="cnt_list_proy_ejec">
+
+                <div class="card_p proy_dest" *ngFor="let i of proyectos">
+                    <picture>
+                        <!-- <span class="tag_state" style="background-color: Yellow;">Lanzamiento</span> -->
+                        <div class="btns_icons" *ngIf="i?.url_waze!='' && i?.url_waze!=null">
+                            <a href="{{i?.url_waze}}" target="_blank" rel="nofollow,noopener" class="btn_icon">
+                                <span class="fas fa-map-marker-alt"></span>
+                            </a>
+                        </div>
+                        <img width="350" height="219" src="{{imagenes_url+i?.imagen_principal_proyecto}}" alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
+                    </picture>
+                    <h2 class="name_proyecto">
+                        <picture>
+                            <img width="87" height="87" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" title="{{i?.title_logo}}">
+                        </picture>
+                        <div>{{i?.titulo_proyecto}}</div>
+                    </h2>
+                    <div class="datos_proyecto">
+                        <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                    </div>
+                    <div class="ctas_proyectos">
+                        <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn">Ver proyecto</a>
+                    </div>
+                </div>
+
+            </div>
+            <!--<div class="row_bnt">
+                <div class="btn">Cargar más proyectos</div>
+            </div>-->
+
+        </div>
+    </section>
+
+    <section class="s_carr_proy">
+
+        <span class="bg_round">
+            <span></span>
+        </span>
+
+        <div class="cnt_central">
+
+            <h2 class="title_section al_center"> <span>Proyectos </span> en construcción </h2>
+
+            <div class="cnt_car_proy_dest">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="card_p">
+                                <picture>
+                                    <span class="tag_state" style="background-color: Yellow;">Lanzamiento</span>
+                                    <div class="btns_icons">
+                                        <a href="" class="btn_icon">
+                                            <img src="images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                                        </a>
+                                        <a href="" class="btn_icon">
+                                            <span class="fas fa-map-marker-alt"></span>
+                                        </a>
+                                    </div>
+                                    <img width="350" height="219" src="images/diseno/proyectos_vivienda/img_proyecto.jpg" alt="">
+                                </picture>
+                                <h2 class="name_proyecto">
+                                    <picture>
+                                        <img width="87" height="87" src="images/diseno/proyectos_vivienda/logo_proyecto.jpg" alt="">
+                                    </picture>
+                                    <div>San Pablo Sport Club</div>
+                                </h2>
+                                <div class="datos_proyecto">
+                                    <h3>Cundinamarca / Fusagasugá</h3>
+                                    <h4><span>Desde</span> $238.686.400 </h4>
+                                </div>
+                                <div class="franja_p">
+                                    <img width="20" height="20" src="images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                                    <span> Aplica subsidio de vivienda VIS </span>
+                                </div>
+                                <div class="ctas_proyectos">
+                                    <a href="" class="btn_whatsapp">
+                                        <span class="fab fa-whatsapp"></span> contactar
+                                    </a>
+                                    <a href="" class="btn">ver proyectos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+</div>

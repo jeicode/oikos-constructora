@@ -30,6 +30,9 @@ const routes: Routes = [
     path: 'legales/:slug',
     loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
   },{
+    path: 'proyectos-ejecutados',
+    loadChildren: () => import('./modules/projects/ejecutados/ejecutados.module').then( m => m.EjecutadosModule )
+  },{
     path: '**',
     component: NotFoundPageComponent
   }, 
