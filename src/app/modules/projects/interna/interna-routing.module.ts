@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//import { InternaProyectoGuard } from 'src/app/core/guards/internaproyecto.guard';
+import { InternaProyectoGuard } from 'src/app/core/guards/internaproyecto.guard';
 import { InternaComponent } from './pages/interna/interna.component';
 
 const routes: Routes = [
   {
     path: '',
     component: InternaComponent,
-    //canActivate: [InternaProyectoGuard]
+    canActivate: [InternaProyectoGuard]
   }
 ];
 

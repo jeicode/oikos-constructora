@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 declare function searchMobile() : any;
 declare function heroProyectos() : any;
+declare function changeTab() : any;
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,14 @@ export class ConfigService {
     if (this.isBrowser) {
       setTimeout(() => {
         heroProyectos()
+      }, time);
+    }
+  }
+
+  loadChangeTab(time = 0){
+    if (this.isBrowser) {
+      setTimeout(() => {
+        changeTab()
       }, time);
     }
   }

@@ -84,4 +84,30 @@ export class ProjectService {
     const url = `${API_URL}v1/setCalculadoraForm`;
     return this._http.post(url, JSON.stringify(data)).toPromise().then();
   }
+
+  /**
+   * 
+   * @param id_proyecto 
+   * @returns Promise<any>
+   */
+  async getCategoriasInteres(id_proyecto: string): Promise<any> {
+    const url = `${API_URL}v1/getCategoriasInteres?id_proyecto=${id_proyecto}`;
+    return this._http.get(url).toPromise().then()
+  }
+
+  /**
+   * 
+   * @param id_categoria 
+   * @param id_proyecto 
+   * @returns Promise<any>
+   */
+  async getSitiosInteres(id_categoria: string, id_proyecto: string): Promise<any>{
+    const url = `${API_URL}v1/getSitiosInteres?id_proyecto=${id_proyecto}&id_categoria=${id_categoria}`;
+    return this._http.get(url).toPromise().then()
+  }
+
+  async getSeoContentProject(slug: string): Promise<any>{
+    const url = `${API_URL}v1/getSeoContentProject?friendly_url=${slug}`;
+    return this._http.get(url).toPromise().then()
+  }
 }
