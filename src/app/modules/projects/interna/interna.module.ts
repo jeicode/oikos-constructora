@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule } from "ng-recaptcha";
 
 import { GoogleMapsModule } from '@angular/google-maps';
+import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     HttpClientModule,
     ReactiveFormsModule,
     RecaptchaModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    SafePipe
   ]
 })
 export class InternaModule { }
