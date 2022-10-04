@@ -35,7 +35,6 @@ export class NotFoundPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("response ", this.response)
     if (this.response) this.response.statusCode = 404;
     this.init()
   }

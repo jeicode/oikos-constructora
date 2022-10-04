@@ -109,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var src_app_shared_services_api_blog_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/shared/services/api/blog.service */ 77280);
 /* harmony import */ var src_app_shared_services_functions_seo_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/services/functions/seo.service */ 80655);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 52816);
 /* harmony import */ var src_app_shared_services_functions_config_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/services/functions/config.service */ 84130);
 
 
@@ -116,10 +117,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 class DeatilBlogGuard {
-  constructor(blogService, seoService, configServ) {
+  constructor(blogService, seoService, router, configServ) {
     this.blogService = blogService;
     this.seoService = seoService;
+    this.router = router;
     this.configServ = configServ;
   }
 
@@ -137,9 +140,8 @@ class DeatilBlogGuard {
           _this.seoService.setUpMetaTags(blog);
 
           _this.blogService.activeBlog = blog;
+          return true;
         }
-
-        return true;
       }
 
       return _this.configServ.renderView404();
@@ -149,7 +151,7 @@ class DeatilBlogGuard {
 }
 
 DeatilBlogGuard.ɵfac = function DeatilBlogGuard_Factory(t) {
-  return new (t || DeatilBlogGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_api_blog_service__WEBPACK_IMPORTED_MODULE_1__.BlogService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_seo_service__WEBPACK_IMPORTED_MODULE_2__.SeoService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_config_service__WEBPACK_IMPORTED_MODULE_3__.ConfigService));
+  return new (t || DeatilBlogGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_api_blog_service__WEBPACK_IMPORTED_MODULE_1__.BlogService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_seo_service__WEBPACK_IMPORTED_MODULE_2__.SeoService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_config_service__WEBPACK_IMPORTED_MODULE_3__.ConfigService));
 };
 
 DeatilBlogGuard.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
@@ -1228,7 +1230,6 @@ class SlideProjectsComponent {
     return (0,_home_jeiobaco_codes_company_projects_paxzu_oikos_oikos_contructora_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this.projects.length == 0) {
         const projects = yield _this.projectService.getProyectosByTipo('1');
-        console.log("projects ", projects);
         if (projects) _this.projects = projects;
       }
     })();
@@ -1429,11 +1430,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _home_jeiobaco_codes_company_projects_paxzu_oikos_oikos_contructora_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/environments/environment */ 92340);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 26469);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rxjs__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 28784);
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 28784);
 
 
 
@@ -1448,19 +1446,18 @@ class ProjectService {
   /**
    *
    * @param tipo
+   * @param ciudad
+   * @param tipo_proyecto
    * @returns Promise<any>
    */
 
 
-  getProyectosByTipo(tipo) {
+  getProyectosByTipo(tipo, ciudad, tipo_proyecto) {
     var _this = this;
 
     return (0,_home_jeiobaco_codes_company_projects_paxzu_oikos_oikos_contructora_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}`;
-      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.firstValueFrom)(_this._http.get(url)).then().catch(err => {
-        console.warn(err);
-        return false;
-      });
+      const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}&ciudad=${ciudad}&tipo_proyecto=${tipo_proyecto}`;
+      return _this._http.get(url).toPromise().then();
     })();
   }
   /**
@@ -1545,10 +1542,10 @@ class ProjectService {
 }
 
 ProjectService.ɵfac = function ProjectService_Factory(t) {
-  return new (t || ProjectService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient));
+  return new (t || ProjectService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient));
 };
 
-ProjectService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
+ProjectService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
   token: ProjectService,
   factory: ProjectService.ɵfac,
   providedIn: 'root'

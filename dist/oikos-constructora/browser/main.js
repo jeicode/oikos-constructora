@@ -777,7 +777,6 @@ class NotFoundPageComponent {
   }
 
   ngOnInit() {
-    console.log("response ", this.response);
     if (this.response) this.response.statusCode = 404;
     this.init();
   }

@@ -82,6 +82,16 @@ export class Project {
         public wsp_flotante:string = "", 
         public wsp_home:string = "", 
         public wsp_interna:string = "", 
-        public zona_proyecto: string    
+        public zona_proyecto: string = '',
+        public galeria: any[] = [],
+        public planos: any[] = [],
+        public tipologia: any[] = [],
+        public avances: any[] = [],
+        public zonas: any[] = [],
+        public cuota_inicial: string = "",
+        public cuota_separacion: string = "",
+        public saldo_cuota: string = "",
+        public numero_cuotas: any[] = [],
+        public financiar: string = "",
         ){}
-}
+    }

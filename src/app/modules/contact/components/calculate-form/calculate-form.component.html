@@ -1,0 +1,131 @@
+<form (ngSubmit)="insertContact()" class="form_mod_contacto" [formGroup]="calculateForm">
+    <section class="s_form_cnt">
+        <div class="cnt_campo_form">
+            <input formControlName="full_name" type="text" class="campo_form" placeholder="Nombre completo *">
+            <div class="text-danger" style="height: 7px;">
+                <small *ngIf="hasErrorsFieldForm('full_name')">campo inválido*</small>
+            </div>
+        </div>
+        <div class="cnt_campo_form w_50">
+            <input type="email" class="campo_form" placeholder="Email *">
+            <div class="text-danger" style="height: 7px;">
+                <small *ngIf="hasErrorsFieldForm('email')">campo inválido*</small>
+            </div>
+        </div>
+        <div class="cnt_campo_form w_50">
+            <input type="tel" class="campo_form" placeholder="Teléfono *">
+            <div class="text-danger" style="height: 7px;">
+                <small *ngIf="hasErrorsFieldForm('phone')">campo inválido*</small>
+            </div>
+        </div>
+    </section>
+    <section class="s_form_cnt">
+        <div class="cnt_campo_form">
+            <div class="etq_form_cnt">Elige el proyecto a cotizar</div>
+            <select formControlName="project_slug" class="campo_form" name="" id="" (change)="updateProjectSelected()">
+                <option value="">Selecciona el proyecto</option>
+                <option [value]="i?.url_amigable" *ngFor="let i of housingProjects">{{i?.titulo_proyecto}}</option>
+            </select>
+            <div class="text-danger" style="height: 7px;">
+                <small *ngIf="hasErrorsFieldForm('project_slug')">campo inválido*</small>
+            </div>
+        </div>
+    </section>
+    <div class="calculate-container" [ngClass]="{'disable-ele': disableForm}">
+        <section class="s_form_cnt">
+            <div class="cnt_campo_form w_50">
+                <label for="">Cuota inicial %</label>
+                <input  class="cambiarPorcentaje" type="number" 
+                        [min]="selectedProject.porcentaje_minimo" 
+                        formControlName="initial_fee"
+                        (change)="calculatePercentage()">
+                <div class="text-danger" style="height: 7px;">
+                    <small *ngIf="hasErrorsFieldForm('initial_fee')">
+                        Ingresa un valor entre {{selectedProject.porcentaje_minimo}} y 100
+                    </small>
+                </div>
+            </div>
+            <div class="cnt_campo_form w_50">
+                <label for="">Número de cuotas</label>
+                <select class="campo_form cuotasinicialfinanciar" 
+                        (change)="diferenciadordecuotasmensuales()">
+                    <option value="{{i.nro}}" [selected]="j==0" 
+                            *ngFor="let i of selectedProject.numero_cuotas; index as j">
+                            {{i.nro}}
+                    </option>
+                </select>
+                <div class="text-danger" style="height: 7px;">
+                    <small *ngIf="hasErrorsFieldForm('total_fees')">campo inválido*</small>
+                </div>
+            </div>
+            <div class="cnt_campo_form w_30">
+                <div class="etq_form_cnt center">Valor cuota inicial</div>
+                <!-- clase "center" para centrar label -->
+                <input type="text" class="campo_form filled valorCuotaInicial"  
+                        value="$ {{selectedProject.cuota_inicial}}" readonly>
+                <!-- clase "filled" para textos en azul -->
+            </div>
+            <div class="cnt_campo_form w_30">
+                <div class="etq_form_cnt center">Separación 2%</div>
+                <!-- clase "center" para centrar label -->
+                <input type="text" class="campo_form filled separacion"
+                        value="$ {{selectedProject.cuota_separacion}}" readonly>
+                <!-- clase "filled" para textos en azul -->
+            </div>
+            <div class="cnt_campo_form w_30">
+                <div class="etq_form_cnt center">Saldo cuota inicial</div>
+                <!-- clase "center" para centrar label -->
+                <input type="text" class="campo_form filled esp diferencia" 
+                        value="$ {{selectedProject.saldo_cuota}}"> 
+                <!-- clase "filled" y esp para textos en blanco fondo azul -->
+            </div>
+    
+            <div class="cnt_campo_form w_30">
+                <label for="">Valor cuota mensual</label>
+                <input type="text" class="campo_form filled cuotamensual" readonly>
+            </div>
+    
+        </section>
+        <section class="s_form_cnt">
+            <div class="cnt_campo_form w_50">
+                <div class="etq_form_cnt center">Saldo a financiar</div>
+                <!-- clase "center" para centrar label -->
+                <input value="{{porcFinanciar}}" type="text" class="campo_form filled porcentajeFinanciar" readonly>
+                <!-- clase "filled" para textos en azul -->
+            </div>
+            <div class="cnt_campo_form w_50">
+                <div class="etq_form_cnt center">Valor</div>
+                <!-- clase "center" para centrar label -->
+                <input type="text" class="campo_form filled valorafinanciar" value="$ {{selectedProject.financiar}}" readonly>
+                <!-- clase "filled" para textos en azul -->
+            </div>
+        </section>
+        <section class="s_form_cnt">
+            <div class="cnt_campo_form w_50">
+                <div class="etq_form_cnt">Plazo en años</div>
+                <select class="campo_form" formControlName="termInYears" (change)="termInYears()">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div class="cnt_campo_form w_50">
+                <div class="etq_form_cnt">Valor cuota hipotecaria</div>
+                <input type="text" class="campo_form filled cuotahipoteca" readonly>
+            </div>
+        </section>
+    </div>
+    
+    <div class="cont_politicas">
+        <input formControlName="terms" type="checkbox" name="" id="politicas1">
+        <label for="politicas1">Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
+        <div class="text-danger" style="height: 7px;">
+            <small *ngIf="hasErrorsFieldForm('terms')">Debes aceptar la Política de Tratamiento de Datos*</small>
+        </div>
+    </div>
+
+    <div class="row_btn">
+        <button type="submit" class="btn">Enviar</button>
+    </div>
+    
+</form>

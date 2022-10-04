@@ -1,0 +1,51 @@
+<form action="" class="form_mod_contacto" (ngSubmit)="submitContactForm()" [formGroup]="contactForm">
+    <section class="s_form_cnt">
+        <div class="cnt_campo_form">
+            <input formControlName="full_name" type="text" class="campo_form" placeholder="Nombre completo *">
+        </div>
+        <div class="text-danger" style="height: 7px;">
+            <small *ngIf="hasErrorsFieldForm('full_name')">campo inválido*</small>
+        </div>
+        <div class="cnt_campo_form w_100">
+            <input formControlName="email" type="email" class="campo_form" placeholder="Email *">
+        </div>
+        <div class="text-danger" style="height: 7px;">
+            <small *ngIf="hasErrorsFieldForm('email')">campo inválido*</small>
+        </div>
+        <div class="cnt_campo_form w_100">
+            <input formControlName="phone" type="tel" class="campo_form" placeholder="Teléfono *">
+        </div>
+        <div class="text-danger" style="height: 7px;">
+            <small *ngIf="hasErrorsFieldForm('phone')">campo inválido*</small>
+        </div>
+        <div class="cnt_campo_form w_100" *ngIf="typeForm === 'general'">
+            <select formControlName="affair" id="">
+                <option value="" selected disabled>Selecciona el asunto</option>
+                <option [value]="i?.field_content" *ngFor="let i of affairList">{{i?.field_content}}</option>
+            </select>
+        </div>
+        <div class="text-danger" style="height: 7px;">
+            <small *ngIf="hasErrorsFieldForm('affair')">campo inválido*</small>
+        </div>
+        <div class="cnt_campo_form w_100">
+            <textarea formControlName="message" cols="10" rows="4" placeholder="Mensaje *"></textarea>
+        </div>
+        <div class="text-danger" style="height: 7px;">
+            <small *ngIf="hasErrorsFieldForm('message')">campo inválido*</small>
+        </div>
+    </section>
+    
+    
+    <div class="cont_politicas">
+        <input formControlName="terms" type="checkbox" name="" id="politicas1">
+        <label for="politicas1">Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
+    </div>
+    <div class="text-danger" style="height: 7px;">
+        <small *ngIf="hasErrorsFieldForm('terms')">debes aceptar la política de tratamiento de datos*</small>
+    </div>
+
+    <div class="row_btn">
+        <button type="submit" class="btn">Enviar</button>
+    </div>
+    
+</form>

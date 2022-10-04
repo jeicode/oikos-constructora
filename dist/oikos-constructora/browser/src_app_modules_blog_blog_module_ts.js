@@ -107,6 +107,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var src_app_shared_services_api_blog_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/shared/services/api/blog.service */ 7280);
 /* harmony import */ var src_app_shared_services_functions_seo_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/services/functions/seo.service */ 655);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 124);
 /* harmony import */ var src_app_shared_services_functions_config_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/services/functions/config.service */ 4130);
 
 
@@ -114,10 +115,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 class DeatilBlogGuard {
-  constructor(blogService, seoService, configServ) {
+  constructor(blogService, seoService, router, configServ) {
     this.blogService = blogService;
     this.seoService = seoService;
+    this.router = router;
     this.configServ = configServ;
   }
 
@@ -135,9 +138,8 @@ class DeatilBlogGuard {
           _this.seoService.setUpMetaTags(blog);
 
           _this.blogService.activeBlog = blog;
+          return true;
         }
-
-        return true;
       }
 
       return _this.configServ.renderView404();
@@ -147,7 +149,7 @@ class DeatilBlogGuard {
 }
 
 DeatilBlogGuard.ɵfac = function DeatilBlogGuard_Factory(t) {
-  return new (t || DeatilBlogGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_api_blog_service__WEBPACK_IMPORTED_MODULE_1__.BlogService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_seo_service__WEBPACK_IMPORTED_MODULE_2__.SeoService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_config_service__WEBPACK_IMPORTED_MODULE_3__.ConfigService));
+  return new (t || DeatilBlogGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_api_blog_service__WEBPACK_IMPORTED_MODULE_1__.BlogService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_seo_service__WEBPACK_IMPORTED_MODULE_2__.SeoService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](src_app_shared_services_functions_config_service__WEBPACK_IMPORTED_MODULE_3__.ConfigService));
 };
 
 DeatilBlogGuard.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
@@ -1224,7 +1226,6 @@ class SlideProjectsComponent {
     return (0,_home_jeiobaco_codes_company_projects_paxzu_oikos_oikos_contructora_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this.projects.length == 0) {
         const projects = yield _this.projectService.getProyectosByTipo('1');
-        console.log("projects ", projects);
         if (projects) _this.projects = projects;
       }
     })();
@@ -1409,6 +1410,43 @@ BlogService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵ
   factory: BlogService.ɵfac,
   providedIn: 'root'
 });
+
+/***/ }),
+
+/***/ 4363:
+/*!***************************************************************!*\
+  !*** ./node_modules/rxjs/dist/esm/internal/firstValueFrom.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "firstValueFrom": () => (/* binding */ firstValueFrom)
+/* harmony export */ });
+/* harmony import */ var _util_EmptyError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/EmptyError */ 4423);
+/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Subscriber */ 9904);
+
+
+function firstValueFrom(source, config) {
+  const hasConfig = typeof config === 'object';
+  return new Promise((resolve, reject) => {
+    const subscriber = new _Subscriber__WEBPACK_IMPORTED_MODULE_0__.SafeSubscriber({
+      next: value => {
+        resolve(value);
+        subscriber.unsubscribe();
+      },
+      error: reject,
+      complete: () => {
+        if (hasConfig) {
+          resolve(config.defaultValue);
+        } else {
+          reject(new _util_EmptyError__WEBPACK_IMPORTED_MODULE_1__.EmptyError());
+        }
+      }
+    });
+    source.subscribe(subscriber);
+  });
+}
 
 /***/ }),
 
