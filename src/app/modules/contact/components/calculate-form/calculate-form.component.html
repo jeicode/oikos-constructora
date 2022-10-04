@@ -7,13 +7,13 @@
             </div>
         </div>
         <div class="cnt_campo_form w_50">
-            <input type="email" class="campo_form" placeholder="Email *">
+            <input type="email" class="campo_form" placeholder="Email *" formControlName="email">
             <div class="text-danger" style="height: 7px;">
                 <small *ngIf="hasErrorsFieldForm('email')">campo inválido*</small>
             </div>
         </div>
         <div class="cnt_campo_form w_50">
-            <input type="tel" class="campo_form" placeholder="Teléfono *">
+            <input type="tel" class="campo_form" placeholder="Teléfono *" formControlName="phone">
             <div class="text-danger" style="height: 7px;">
                 <small *ngIf="hasErrorsFieldForm('phone')">campo inválido*</small>
             </div>
@@ -48,7 +48,7 @@
             <div class="cnt_campo_form w_50">
                 <label for="">Número de cuotas</label>
                 <select class="campo_form cuotasinicialfinanciar" 
-                        (change)="diferenciadordecuotasmensuales()">
+                        (change)="diferenciadordecuotasmensuales()" formControlName="total_fees">
                     <option value="{{i.nro}}" [selected]="j==0" 
                             *ngFor="let i of selectedProject.numero_cuotas; index as j">
                             {{i.nro}}
@@ -81,7 +81,7 @@
             </div>
     
             <div class="cnt_campo_form w_30">
-                <label for="">Valor cuota mensual</label>
+                <div class="etq_form_cnt center">Valor cuota mensual</div>
                 <input type="text" class="campo_form filled cuotamensual" readonly>
             </div>
     
