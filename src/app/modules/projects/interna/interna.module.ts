@@ -10,6 +10,7 @@ import { RecaptchaModule } from "ng-recaptcha";
 
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
+import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
     ReactiveFormsModule,
     RecaptchaModule,
     GoogleMapsModule,
-    SafePipe
+    SafePipe,
+    //standalones
+    SlideProjectsComponent
   ]
 })
 export class InternaModule { }

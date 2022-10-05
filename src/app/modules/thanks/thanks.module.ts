@@ -5,6 +5,7 @@ import { ThanksRoutingModule } from './thanks-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentSharedModule } from 'src/app/shared/components/components.module';
 import { ThanksComponent } from './pages/thanks/thanks.component';
+import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { ThanksComponent } from './pages/thanks/thanks.component';
     CommonModule,
     ThanksRoutingModule,
     HttpClientModule,
-    ComponentSharedModule
+    ComponentSharedModule,
+    // standolnes
+    SlideProjectsComponent
   ]
 })
 export class ThanksModule { }
