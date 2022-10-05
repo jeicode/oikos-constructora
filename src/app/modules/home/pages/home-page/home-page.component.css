@@ -55,7 +55,7 @@
     padding: 40px;
 }
 
-.cnt_edge h2 {
+:host ::ng-deep .cnt_edge h2 p {
     font-size: 50px;
     text-align: left;
     line-height: 1;
@@ -65,7 +65,7 @@
     margin: 0 0 20px;
 }
 
-.cnt_edge h2 span {
+:host ::ng-deep .cnt_edge h2 p span {
     display: inline-block;
     line-height: 1;
     font-size: 24px;

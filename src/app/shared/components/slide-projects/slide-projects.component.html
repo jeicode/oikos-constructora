@@ -33,11 +33,11 @@
                         <h4><span>Desde</span> {{i?.valor_proyecto_formato}} </h4>
                     </div>
                     <div class="franja_p">
-                        <img width="20" height="20" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                        <img width="20" height="20" src="/assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
                         <span> Aplica subsidio de vivienda VIS </span>
                     </div>
                     <div class="ctas_proyectos">
-                        <a [href]="i?.api_wsp" target="_blank" class="btn_whatsapp">
+                        <a [href]="i?.api_wsp" target="_blank" class="btn_whatsapp" *ngIf="i?.api_wsp">
                             <span class="fab fa-whatsapp"></span> contactar
                         </a>
                         <a [routerLink]="['/proyecto', i?.url_amigable]" class="btn">ver proyecto</a>

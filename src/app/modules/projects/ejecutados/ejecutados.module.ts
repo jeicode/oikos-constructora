@@ -5,6 +5,7 @@ import { EjecutadosRoutingModule } from './ejecutados-routing.module';
 import { EjecutadosComponent } from './pages/ejecutados/ejecutados.component';
 import { ComponentSharedModule } from 'src/app/shared/components/components.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 
 
 @NgModule({
@@ -15,7 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     EjecutadosRoutingModule,
     HttpClientModule,
-    ComponentSharedModule
+    ComponentSharedModule,
+
+    //standalones
+    SlideProjectsComponent
   ]
 })
 export class EjecutadosModule { }

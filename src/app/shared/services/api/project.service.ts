@@ -1,7 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { SeoPage } from 'src/app/core/models/seo-page.model';
 import { firstValueFrom } from 'rxjs';
 
 const { api_url: API_URL} = environment
@@ -17,6 +16,18 @@ export class ProjectService {
   
 
   /**
+   * @returns Promise<any>
+   */
+  async getFeaturedProjects():Promise<any>{
+    const url = `${API_URL}v1/getProyectosDestacados`;
+    return firstValueFrom(this._http.get(url)).then().catch(err => {
+      console.warn(err)
+      return false
+    });
+  }
+
+
+  /**
    * 
    * @param tipo 
    * @param ciudad
@@ -25,7 +36,10 @@ export class ProjectService {
    */
   async getProyectosByTipo(tipo: string, ciudad?: string, tipo_proyecto?: string):Promise<any>{
     const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}&ciudad=${ciudad}&tipo_proyecto=${tipo_proyecto}`;
-    return this._http.get(url).toPromise().then();
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    });
   }
 
   /**
@@ -35,7 +49,10 @@ export class ProjectService {
    */
   async getProyectoByUrl(slug: any):Promise<any>{
     const url = `${API_URL}v1/getProyectoByUrl?friendly_url=${slug}`;
-    return this._http.get(url).toPromise().then();
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    });
   }
 
   /**
@@ -49,7 +66,10 @@ export class ProjectService {
    */
   async getCalculoPorcentaje(valorProyecto: any, porcentaje: any, cuotasinicialfinanciar: any, plazo: any, valorafinanciaranios: any):Promise<any>{
     const url = `${API_URL}v1/getCalculoPorcentaje?valorProyecto=${valorProyecto}&porcentaje=${porcentaje}&cuotasinicialfinanciar=${cuotasinicialfinanciar}&plazo=${plazo}&valorafinanciaranios=${valorafinanciaranios}`;
-    return this._http.get(url).toPromise().then();
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    });
   }
 
   /**
@@ -60,7 +80,10 @@ export class ProjectService {
    */
   async getCalculoCuota(saldocuota: any, numerocuota: any):Promise<any>{
     const url = `${API_URL}v1/getCalculoCuota?cuota=${numerocuota}&saldocuotainicial=${saldocuota}`;
-    return this._http.get(url).toPromise().then();
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    });
   }
 
   /**
@@ -72,7 +95,10 @@ export class ProjectService {
    */
   async getPlazoanios(cuota: any, valorafinanciar: any):Promise<any>{
     const url = `${API_URL}v1/getPlazoanios?cuota=${cuota}&valorafinanciar=${valorafinanciar}`;
-    return this._http.get(url).toPromise().then();
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    });
   }
 
   /**
@@ -82,7 +108,10 @@ export class ProjectService {
    */
    setCalculadoraForm(data: any): Promise<any> {
     const url = `${API_URL}v1/setCalculadoraForm`;
-    return this._http.post(url, JSON.stringify(data)).toPromise().then();
+    return this._http.post(url, JSON.stringify(data)).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    });
   }
 
   /**
@@ -92,7 +121,10 @@ export class ProjectService {
    */
   async getCategoriasInteres(id_proyecto: string): Promise<any> {
     const url = `${API_URL}v1/getCategoriasInteres?id_proyecto=${id_proyecto}`;
-    return this._http.get(url).toPromise().then()
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    })
   }
 
   /**
@@ -103,11 +135,17 @@ export class ProjectService {
    */
   async getSitiosInteres(id_categoria: string, id_proyecto: string): Promise<any>{
     const url = `${API_URL}v1/getSitiosInteres?id_proyecto=${id_proyecto}&id_categoria=${id_categoria}`;
-    return this._http.get(url).toPromise().then()
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    })
   }
 
   async getSeoContentProject(slug: string): Promise<any>{
     const url = `${API_URL}v1/getSeoContentProject?friendly_url=${slug}`;
-    return this._http.get(url).toPromise().then()
+    return this._http.get(url).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    })
   }
 }

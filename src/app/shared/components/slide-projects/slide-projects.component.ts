@@ -55,13 +55,14 @@ export class SlideProjectsComponent implements OnInit {
   constructor(private projectService: ProjectService) {}
   
   ngOnInit(): void {
-    this.getProjectsByType()  
+    this.getFeaturedProjects()  
   }
 
 
-  async getProjectsByType(){
+  async getFeaturedProjects(){
     if (this.projects.length == 0) {
-      const projects = await this.projectService.getProyectosByTipo('1')
+      const projects = await this.projectService.getFeaturedProjects()
+      console.log('%cslide-projects.component.ts line:65 projects', 'color: #007acc;', projects);
       if(projects) this.projects = projects
     }
   }
