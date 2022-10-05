@@ -68,6 +68,8 @@ export class CalculateFormComponent implements OnInit {
       this.calculateForm.patchValue({
         'initial_fee': this.selectedProject.porcentaje_minimo
       })
+
+      this.calculatePercentage();
       this.disableForm = false;
     } else {
       alert("Ocurrió un error, por favor contactése con el administrador")
@@ -126,32 +128,30 @@ export class CalculateFormComponent implements OnInit {
     $(".cuotahipoteca").val('$ '+this.datosAnio['total']);
   }
 
-
-
-
   async insertContact(){
     const data = {
       nombre: this.calculateForm.controls['full_name']?.value,
       email: this.calculateForm.controls['email']?.value,
       telefono: this.calculateForm.controls['phone']?.value,
-      // cuotaInicial: $(".cambiarPorcentaje").val(),
-      // numeroCuotas: $(".cuotasinicialfinanciar").val(),
-      // valorCuotaInicial: $(".valorCuotaInicial").val(),
-      // separacion: $(".separacion").val(),
-      // saldoCuotaInicial: $(".diferencia").val(),
-      // cuotamensual: $(".cuotamensual").val(),
-      // porcentajeFinanciar: $(".porcentajeFinanciar").val(),
-      // valorafinanciar: $(".valorafinanciar").val(),
-      // plazoaniosa: $(".plazoaniosa").val(),
-      // cuotahipoteca: $(".cuotahipoteca").val(),
-      // porcentajeseparacion: this.data.porcentaje_separacion,
-      // url_proyecto: window.location.href,
-      // proyecto: this.data.titulo_proyecto,
-      // valorProyecto: this.data.valor_proyecto,
-      // sendTo: this.data.email_contactos,
-      // id_proyecto: this.data.id
+      cuotaInicial: this.calculateForm.controls['initial_fee']?.value,
+      numeroCuotas: this.calculateForm.controls['total_fees']?.value,
+      valorCuotaInicial: $(".valorCuotaInicial").val(),
+      separacion: $(".separacion").val(),
+      saldoCuotaInicial: $(".diferencia").val(),
+      cuotamensual: $(".cuotamensual").val(),
+      porcentajeFinanciar: $(".porcentajeFinanciar").val(),
+      valorafinanciar: $(".valorafinanciar").val(),
+      plazoaniosa: this.calculateForm.controls['termInYears']?.value,
+      cuotahipoteca: $(".cuotahipoteca").val(),
+      porcentajeseparacion: this.selectedProject.porcentaje_separacion,
+      url_proyecto: window.location.href,
+      proyecto: this.selectedProject.titulo_proyecto,
+      valorProyecto: this.selectedProject.valor_proyecto,
+      sendTo: this.selectedProject.email_contactos,
+      id_proyecto: this.selectedProject.id
     }
 
+    console.log(data);
     if(this.calculateForm.valid){
       const {resp} = await this.projectService.setCalculadoraForm(data);
       if(resp!='no') this.router.navigateByUrl(resp)

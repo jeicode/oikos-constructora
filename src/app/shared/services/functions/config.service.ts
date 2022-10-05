@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 declare function searchMobile() : any;
 declare function heroProyectos() : any;
 declare function changeTab() : any;
+declare function bannerProyectos() : any;
+declare function bannerEjecutados() : any;
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +58,22 @@ export class ConfigService {
     if (this.isBrowser) {
       setTimeout(() => {
         changeTab()
+      }, time);
+    }
+  }
+
+  loadBannerProyectos(time = 0){
+    if (this.isBrowser) {
+      setTimeout(() => {
+        bannerProyectos()
+      }, time);
+    }
+  }
+
+  loadbannerEjecutados(time = 0){
+    if (this.isBrowser) {
+      setTimeout(() => {
+        bannerEjecutados()
       }, time);
     }
   }
