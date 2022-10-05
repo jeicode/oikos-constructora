@@ -19,6 +19,8 @@ export class ViviendaComponent implements OnInit {
   ciudades              : any = [];
   tipo_proyecto         : any = [];
   proyectos             : any = [];
+  banners               : any = [];
+  ejecutados            : any = [];
   suscribeListenRouter  : Subscription;
   isSubmitted           : boolean = false;
   captcha               : string = "";
@@ -39,13 +41,15 @@ export class ViviendaComponent implements OnInit {
   ngOnInit(): void {
     this.init();
     this.configServ.loadSearchMobile(1000);
+    this.configServ.loadBannerProyectos(1000);
   }
 
   async init(){
     const tasks = [
       () => this.getData(),
       () => this.getSecciones(),
-      () => this.getProyectos()
+      () => this.getProyectos(),
+      () => this.getEjecutados()
     ]
 
     for (const task of tasks) {
@@ -66,6 +70,8 @@ export class ViviendaComponent implements OnInit {
   async getSecciones() {
     this.ciudades = await this.pageService.getElementsContent('nombre ciudad', 'ciudades');
     this.tipo_proyecto = await this.pageService.getElementsContent('titulo tipo proyecto', 'tipos_proyectos');
+
+    this.banners = await this.pageService.getElementsContent('titulo banner vivienda', 'banner_vivienda');
   }
 
   getCiudad(ciudad: any){
@@ -86,5 +92,10 @@ export class ViviendaComponent implements OnInit {
 
   async limpiarFiltros(){
     this.getProyectos();
+  }
+
+  async getEjecutados(){
+    this.ejecutados = await this.projService.getProyectosByTipo('4');
+    this.configServ.loadbannerEjecutados(1000);
   }
 }

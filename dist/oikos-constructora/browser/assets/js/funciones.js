@@ -1,3 +1,33 @@
+const changeTab = () => {
+    const catg = document.querySelectorAll(".botonpfc");
+    const infCatg = document.querySelectorAll(".info");
+
+    console.log(catg)
+
+    let selectCatg = null;
+
+    catg.forEach((pest) => {
+        pest.addEventListener("click", (e) => {
+            catg.forEach((el) => {
+                el.classList.remove("active");
+            });
+            e.currentTarget.classList.toggle("active");
+
+            selectCatg = pest.getAttribute("ncol");
+
+            infCatg.forEach((infel) => {
+                if (infel.getAttribute("ncol") === selectCatg) {
+                    infel.classList.add("active");
+                    infel.classList.remove("oculto");
+                } else {
+                    infel.classList.remove("active");
+                    infel.classList.add("oculto");
+                }
+            });
+        });
+    });
+}
+
 const searchMobile = () => {
     const btnFiltro = document.querySelector('.act_filtro_mobile');
     const containerFiltro = document.querySelector('.filtro_proyectos');
@@ -107,6 +137,24 @@ const heroProyectos = () => {
         pagination: {
             clickable:true,
             el: ".swiper-pagination",
+        },
+    });
+}
+
+const bannerProyectos = () => {
+    let swiper = new Swiper(".swiperFuturos", {
+        autoplay: {
+            delay: 8000,
+        },
+        slidesPerView:1,
+        effect: "fade",
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
         },
     });
 }

@@ -140,3 +140,133 @@ const heroProyectos = () => {
         },
     });
 }
+
+const bannerProyectos = () => {
+    let swiper = new Swiper(".swiperFuturos", {
+        autoplay: {
+            delay: 8000,
+        },
+        slidesPerView:1,
+        effect: "fade",
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+}
+
+const bannerEjecutados = () => {
+    let swiper = new Swiper(".swiperPe", {
+        autoplay: {
+            delay: 8000,
+        },
+        loop:true,
+        slidesPerView:1,
+        effect: "fade",
+        pagination: {
+            clickable:true,
+            el: ".swiper-pagination",
+        },
+    });
+    
+    if ($(window).width() >= 960) {
+        $(function(){
+            /* initiciate jPages */
+            $("div.holder").jPages({
+                previous:'← Anterior',
+                next:'Siguiente →',
+                perPage:7,
+                containerID : "itemContainer",
+                animation   : "bounceInUp"
+            });
+            /* on select change */
+            $("select").change(function(){
+                /* get new css animation */
+            var newAnimation = $(this).val();
+            /* destroy jPages and initiate plugin again */
+            $("div.holder").jPages("destroy").jPages({
+                    containerID   : "itemContainer",
+                    animation     : newAnimation
+                });
+            });
+        });
+    }
+    else if ($(window).width() >= 480) {
+        $(function(){
+            /* initiciate jPages */
+            $("div.holder").jPages({
+                previous:'← Anterior',
+                next:'Siguiente →',
+                perPage:4,
+                containerID : "itemContainer",
+                animation   : "bounceInUp"
+            });
+            /* on select change */
+            $("select").change(function(){
+                /* get new css animation */
+            var newAnimation = $(this).val();
+            /* destroy jPages and initiate plugin again */
+            $("div.holder").jPages("destroy").jPages({
+                    containerID   : "itemContainer",
+                    animation     : newAnimation
+                });
+            });
+        });
+    }
+    else{
+        $(function(){
+            /* initiciate jPages */
+            $("div.holder").jPages({
+                previous:'← Anterior',
+                next:'Siguiente →',
+                perPage:3,
+                containerID : "itemContainer",
+                animation   : "bounceInUp"
+            });
+            /* on select change */
+            $("select").change(function(){
+                /* get new css animation */
+            var newAnimation = $(this).val();
+            /* destroy jPages and initiate plugin again */
+            $("div.holder").jPages("destroy").jPages({
+                    containerID   : "itemContainer",
+                    animation     : newAnimation
+                });
+            });
+        });
+    }
+
+    
+
+    /* FUNCION TABS PROYECTOS EJECUTADOS */
+
+    const tabLogo = document.querySelectorAll('.tab_logo_eject');
+    const containerProyecto = document.querySelectorAll('.cont_proyecto_eject');
+    let comparador = null;
+
+    tabLogo.forEach((logo) => {
+        logo.addEventListener('click', (e) => {
+
+            console.log('prueba')
+            
+            tabLogo.forEach((el) => {
+                el.classList.remove('active');
+            });
+            e.currentTarget.classList.add('active');
+            comparador = e.currentTarget.dataset.proyecto;
+
+            containerProyecto.forEach((cont) => {
+                if(cont.dataset.proyecto === comparador){
+                    cont.classList.add('active');
+                    console.log('si es el contenedor')
+                }else{
+                    cont.classList.remove('active');
+                }
+            });
+        })
+    });
+}
