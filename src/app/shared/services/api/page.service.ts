@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SeoPage } from 'src/app/core/models/seo-page.model';
+import { firstValueFrom } from 'rxjs';
 
 const { api_url: API_URL} = environment
 
@@ -62,6 +63,22 @@ export class PageService {
     }
 
     return this._http.post(url, JSON.stringify(values)).toPromise().then()
+      .catch(err => {
+        console.warn(err)
+        return false
+      })
+  }
+
+  /**
+   * 
+   * @param name 
+   * @param content 
+   * @returns any[] || boolean:false
+   */
+
+  async getBannersHome(name: string, content: string): Promise<any> {
+    const url = `${API_URL}v1/getBannersHome?name=${name}&content=${content}`;
+    return firstValueFrom(this._http.get(url)).then()
       .catch(err => {
         console.warn(err)
         return false

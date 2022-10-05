@@ -2,41 +2,26 @@
     "elements": [
         {
             "content_type": "input",
-            "name": "titulo item contacto",
-            "field_name": "titulo item contacto",
+            "name": "titulo banner home",
+            "field_name": "titulo banner home",
             "element_main": "1"
         },
         {
-            "content_type": "textarea",
-            "name": "descripcion item contacto",
-            "field_name": "descripcion item contacto"
-        },
-        {
-            "content_type": "input",
-            "name": "tipo formulario contacto",
-            "field_name": "tipo formulario contacto"
-        },
-        {
-            "content_type": "input",
-            "name": "correo destinatario",
-            "field_name": "correo destinatario"
+            "content_type": "image",
+            "name": "imagen banner home",
+            "field_name": "imagen banner home",
+            "size": "2050x575"
         },
         {
             "content_type": "image",
-            "name": "imagen item contacto",
-            "field_name": "imagen item contacto",
-            "size": "x"
-        },
-        {
-            "content_type": "image",
-            "name": "icono item contacto",
-            "field_name": "icono item contacto",
-            "size": "x"
+            "name": "imagen banner home movil",
+            "field_name": "imagen banner home movil",
+            "size": "2050x575"
         },
         {
             "content_type": "input",
-            "name": "texto boton item contacto",
-            "field_name": "texto boton item contacto"
+            "name": "enlace banner home",
+            "field_name": "enlace banner home"
         }
     ]
 }
