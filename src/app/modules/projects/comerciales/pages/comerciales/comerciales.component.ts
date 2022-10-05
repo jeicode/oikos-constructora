@@ -8,11 +8,11 @@ import { ProjectService } from 'src/app/shared/services/api/project.service';
 
 declare var $:any;
 @Component({
-  selector: 'app-vivienda',
-  templateUrl: './vivienda.component.html',
-  styleUrls: ['./vivienda.component.css']
+  selector: 'app-comerciales',
+  templateUrl: './comerciales.component.html',
+  styleUrls: ['./comerciales.component.css']
 })
-export class ViviendaComponent implements OnInit {
+export class ComercialesComponent implements OnInit {
 
   data                  : any = []; //data page
   general               : any = []; //data website
@@ -63,11 +63,11 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getData(){
-    this.data = await this.pageService.getContentPage('proyectos-construccion-vivienda')
+    this.data = await this.pageService.getContentPage('proyectos-construccion-comerciales-industriales')
   }
 
   async getImagenes(){
-    this.imagenes = await this.pageService.getImagesBySlugPage('proyectos-construccion-vivienda');
+    this.imagenes = await this.pageService.getImagesBySlugPage('proyectos-construccion-comerciales-industriales');
 
     this.imagen_banner = this.imagenes_url+this.imagenes[0]['field_content'];
   }
@@ -76,7 +76,7 @@ export class ViviendaComponent implements OnInit {
     this.ciudades = await this.pageService.getElementsContent('nombre ciudad', 'ciudades');
     this.tipo_proyecto = await this.pageService.getElementsContent('titulo tipo proyecto', 'tipos_proyectos');
 
-    this.banners = await this.pageService.getElementsContent('titulo banner vivienda', 'banner_vivienda');
+    this.banners = await this.pageService.getElementsContent('titulo banner comerciales', 'banner_comerciales');
   }
 
   getCiudad(ciudad: any){
@@ -92,7 +92,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getProyectos(){
-    this.proyectos = await this.projService.getProyectosByTipo('1');
+    this.proyectos = await this.projService.getProyectosByTipo('2');
 
     if(this.proyectos.length==0){
       this.proyectos_ver = false;
@@ -102,7 +102,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async buscarProyectos(){
-    this.proyectos = await this.projService.getProyectosByTipo('1', this.ciudad, this.tipo_search, this.precio_search);
+    this.proyectos = await this.projService.getProyectosByTipo('2', this.ciudad, this.tipo_search, this.precio_search);
 
     if(this.proyectos.length==0){
       this.proyectos_ver = false;
@@ -124,6 +124,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getPreciosProyectos(){
-    this.precios = await this.projService.getPreciosProyectos('1');
+    this.precios = await this.projService.getPreciosProyectos('2');
   }
+
 }

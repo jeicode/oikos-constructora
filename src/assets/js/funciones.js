@@ -26,6 +26,18 @@ const changeTab = () => {
             });
         });
     });
+
+    $('.btn_wa_flt, .whatsapp_init').click(function(){            
+        if($('.layer_negro_wa_form').hasClass('active')){
+            $('.layer_negro_wa_form, .cont_gen_form_wa').removeClass('active');
+        }else{
+            $('.layer_negro_wa_form, .cont_gen_form_wa').addClass('active');
+        }
+      });
+      
+      $('.ic_cerrar_wa_form').click(function(){
+          $('.layer_negro_wa_form, .cont_gen_form_wa').removeClass('active');
+      });
 }
 
 const searchMobile = () => {
