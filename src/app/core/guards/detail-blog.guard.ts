@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { BlogService } from "src/app/shared/services/api/blog.service";
 import { ConfigService } from "src/app/shared/services/functions/config.service";
 import { SeoService } from "src/app/shared/services/functions/seo.service";
@@ -11,7 +11,6 @@ import { SeoService } from "src/app/shared/services/functions/seo.service";
 export class DeatilBlogGuard implements CanActivate {
     constructor(  private blogService: BlogService, 
                   private seoService: SeoService,
-                  private router: Router,
                   private configServ: ConfigService) { }
 
     async canActivate(
@@ -29,7 +28,6 @@ export class DeatilBlogGuard implements CanActivate {
             return true
           }  
         } 
-
         return this.configServ.renderView404()
       
     }

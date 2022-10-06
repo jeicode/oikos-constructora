@@ -14,16 +14,16 @@ const routes: Routes = [
   },
 
   {
+    path:':slug',
+    component: BlogDetailComponent,
+    canActivate: [DeatilBlogGuard]
+  },
+  {
     path:'pagina/:numberPage',
     component: BlogPageComponent,
     canActivate:[BlogGuard]
   },
 
-  {
-    path:':slug',
-    component: BlogDetailComponent,
-    canActivate: [DeatilBlogGuard]
-  }
 ];
 
 @NgModule({

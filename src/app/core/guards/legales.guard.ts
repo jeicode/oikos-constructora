@@ -17,9 +17,9 @@ export class LegalesGuard implements CanActivate {
         const page = await this.pageService.getSeoContentPage(slug);
 
         if(page?.friendly_url!=null){
-          this.pageService.currentPage = page
-          this.seoService.setUpMetaTags(page)
-          return true;
+            this.pageService.currentPage = page
+            this.seoService.setUpMetaTags(page)
+            return true;
         }
 
         this.router.navigateByUrl('404', { skipLocationChange: true });

@@ -1686,7 +1686,7 @@
     height: 45px;
     position: fixed;
     bottom: 25px;
-    *left: 16px;
+    left: 16px;
     right: 40px;
     z-index: 31
 }
