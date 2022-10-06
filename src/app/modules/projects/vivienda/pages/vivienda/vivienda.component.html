@@ -1,164 +1,160 @@
-
-
-<section class="s_proyecto_vivienda">
-    <div class="cnt_central">
-
+<body class="cuerpo">
+    <section class="s_proyecto_vivienda">
         <div class="cnt_central">
-            <div class="miga">
-                <a href="">OIKOS</a>
-                <span> > </span>
-                <a href="">Proyecto</a>
-            </div>
-        </div>
-        
-        <div class="c_proyecto_vivienda">
-            <h1 class="title_section al_center" [innerHTML]="data.titulo_proyecto_vivienda"></h1>
-            <div class="container_filtro">
-                <div class="act_filtro_mobile">
-                    <h3>
-                        {{data.titulo_busqueda}}
-                    </h3>
-                    <a class="btn_icon_search">
-                        <span class="fas fa-search"></span>
-                    </a>
-                </div>
-                <form class="filtro_proyectos">
-                    <select #nomCiudad (change)="getCiudad(nomCiudad.value)" class="filtroCiudad">
-                        <option value="NA" selected>Ciudad</option>
-                        <option value="{{i?.id}}" *ngFor="let i of ciudades">{{i?.field_content}}</option>
-                    </select>
-                    <select #nomTipo (change)="getTipo(nomTipo.value)" class="filtroTipo">
-                        <option value="NA" selected>Tipo de vivienda</option>
-                        <option value="{{i?.id}}" *ngFor="let i of tipo_proyecto">{{i?.field_content}}</option>
-                    </select>
-                    <select #nomPrecio class="precio filtroPrecio" (change)="getPrecio(nomPrecio.value)">
-                        <option value="NA" selected>Precio</option>
-                        <option value="{{i?.rango}}" *ngFor="let i of precios">{{i?.mostrar}}</option>
-                    </select>
-                    <div class="cont_filtr_btns">
-                        <button type="button" class="btn_link_reset" (click)="limpiarFiltros()">Limpiar <span class="fas fa-times"></span> </button>
-                        <button type="button" class="btn" (click)="buscarProyectos()">Buscar <span class="fas fa-search"></span> </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        
-
-            
-    </div>
-</section>
-
-<section class="s_cards_proyectos">
-    <div class="cnt_central">
-        <div class="c_cards_proyectos">
-            <div class="card_p" *ngFor="let i of proyectos">
-                <picture>
-                    <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
-                    <div class="btns_icons" *ngIf="i?.vista360!='' || i?.url_waze!=''">
-                        <a href="{{i?.vista360}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.vista360!='' && i?.vista360!=null">
-                            <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
-                        </a>
-                        <a href="{{i?.url_waze}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.url_waze!='' && i?.url_waze!=null">
-                            <span class="fas fa-map-marker-alt"></span>
-                        </a>
-                    </div>
-                    <img width="350" height="219" src="{{imagenes_url+i?.imagen_fondo_proyecto}}" alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
-                </picture>
-                <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
-                    <picture>
-                        <img width="87" height="87" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" title="{{i?.title_logo}}">
-                    </picture>
-                    <div>{{i?.titulo_proyecto}}</div>
-                </h2>
-                <div class="datos_proyecto">
-                    <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
-                    <h4 *ngIf="i?.valor_proyecto!='' && i?.valor_proyecto!=null"><span>Desde</span> ${{i?.valor_proyecto_formato}} </h4>
-                </div>
-                <div class="franja_p">
-                    <!--<img width="20" height="20" src="images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">-->
-                    <span> {{i?.texto_adicional}} </span>
-                </div>
-                <div class="ctas_proyectos">
-                    <a href="{{i?.api_wsp}}" target="_blank" rel="noopener, nofollow" class="btn_whatsapp">
-                        <span class="fab fa-whatsapp"></span> Contactar
-                    </a>
-                    <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn">Ver proyecto</a>
-                </div>
-            </div>
-            <p *ngIf="!proyectos_ver" style="text-align:center;">No existe información relacionado con el filtro utilizado</p>
-        </div>
-    </div>
-</section>
-
-<section class="s_futuros_proyectos" *ngIf="banners.length>0">    
-    <!-- Swiper -->
-    <div class="swiper swiperFuturos">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" *ngFor="let i of banners">
-                <div class="c_futuros_proyectos">
-                    <div class="info_fp">
-                        <h5>{{i?.field_content}}</h5>
-                        <h2 [innerHTML]="i?.subtitulo_banner_vivienda"></h2>
-                        <a href="{{i?.enlace_cta_banner_vivienda}}" class="btn contacto_h">{{i?.texto_cta_banner_vivienda}}</a>
-                    </div>
-                    <div class="img_fp">
-                        <img width="1280" height="720" src="{{imagenes_url+i?.imagen}}" alt="{{i?.imagen_alt}}" title="{{i?.imagen_title}}">
-                    </div>
-                </div>
+    
+            <div class="cnt_central">
+                <app-breadcrumb></app-breadcrumb>
             </div>
             
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-    </div>
-</section>
-
-<section class="s_proyectos_ejecutados">
-    <div class="cnt_central">
-        <div class="c_proyectos_ejecutados">
-
-            <div class="title_section al-center" [innerHTML]="data.subtitulo_proyectos_ejecutados"></div>
-
-            <div class="tabs_proyectos_eject">
-
-                <div class="holder"></div>
-
-                <div class="cont_proyecto_logo" id="itemContainer">
-                    <a class="animate__animated animate__fadeIn tab_logo_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
-                        <img width="76" height="65" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}">
-                    </a>
-                </div>
-            </div>
-
-            <div class="cont_proyecto_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
-                <div class="info_pe">
-                    <div class="title_pe">
-                        <h2>{{i?.titulo_proyecto}}</h2>
+            <div class="c_proyecto_vivienda">
+                <h1 class="title_section al_center" [innerHTML]="data.titulo_proyecto_vivienda"></h1>
+                <div class="container_filtro">
+                    <div class="act_filtro_mobile">
+                        <h3>
+                            {{data.titulo_busqueda}}
+                        </h3>
+                        <a class="btn_icon_search">
+                            <span class="fas fa-search"></span>
+                        </a>
                     </div>
-                    <div class="lugar">
-                        {{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}
-                    </div>
-                    <div class="info_datos_pe">
-                        <div> <b> Dirección:</b> {{i?.direccion_proyecto}}</div>
-                        <div> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
-                        <div> <b> Zona:</b> {{i?.zona_proyecto}}</div>
-                    </div>
-                    <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn contacto_h">Ver proyecto</a>
-                </div>
-                <div class="c_slider_pe">
-                    <!-- Swiper -->
-                    <div class="swiper swiperPe">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" *ngFor="let k of i?.galeria">
-                                <img width="530" height="390" src="{{imagenes_url+k?.field_content}}" alt="{{i?.titulo_proyecto}}">
-                            </div>
+                    <form class="filtro_proyectos">
+                        <select #nomCiudad (change)="getCiudad(nomCiudad.value)" class="filtroCiudad">
+                            <option value="NA" selected>Ciudad</option>
+                            <option value="{{i?.id}}" *ngFor="let i of ciudades">{{i?.field_content}}</option>
+                        </select>
+                        <select #nomTipo (change)="getTipo(nomTipo.value)" class="filtroTipo">
+                            <option value="NA" selected>Tipo de vivienda</option>
+                            <option value="{{i?.id}}" *ngFor="let i of tipo_proyecto">{{i?.field_content}}</option>
+                        </select>
+                        <select #nomPrecio class="precio filtroPrecio" (change)="getPrecio(nomPrecio.value)">
+                            <option value="NA" selected>Precio</option>
+                            <option value="{{i?.rango}}" *ngFor="let i of precios">{{i?.mostrar}}</option>
+                        </select>
+                        <div class="cont_filtr_btns">
+                            <button type="button" class="btn_link_reset" (click)="limpiarFiltros()">Limpiar <span class="fas fa-times"></span> </button>
+                            <button type="button" class="btn" (click)="buscarProyectos()">Buscar <span class="fas fa-search"></span> </button>
                         </div>
-                        <div class="swiper-pagination"></div>
+                    </form>
+                </div>
+            </div>
+            
+    
+                
+        </div>
+    </section>
+    
+    <section class="s_cards_proyectos">
+        <div class="cnt_central">
+            <div class="c_cards_proyectos">
+                <div class="card_p" *ngFor="let i of proyectos">
+                    <picture>
+                        <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
+                        <div class="btns_icons" *ngIf="i?.vista360!='' || i?.url_waze!=''">
+                            <a href="{{i?.vista360}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.vista360!='' && i?.vista360!=null">
+                                <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                            </a>
+                            <a href="{{i?.url_waze}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.url_waze!='' && i?.url_waze!=null">
+                                <span class="fas fa-map-marker-alt"></span>
+                            </a>
+                        </div>
+                        <img width="350" height="219" src="{{imagenes_url+i?.imagen_fondo_proyecto}}" alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
+                    </picture>
+                    <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
+                        <picture>
+                            <img width="87" height="87" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" title="{{i?.title_logo}}">
+                        </picture>
+                        <div>{{i?.titulo_proyecto}}</div>
+                    </h2>
+                    <div class="datos_proyecto">
+                        <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                        <h4 *ngIf="i?.valor_proyecto!='' && i?.valor_proyecto!=null"><span>Desde</span> ${{i?.valor_proyecto_formato}} </h4>
+                    </div>
+                    <div class="franja_p">
+                        <!--<img width="20" height="20" src="images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">-->
+                        <span> {{i?.texto_adicional}} </span>
+                    </div>
+                    <div class="ctas_proyectos">
+                        <a href="{{i?.api_wsp}}" target="_blank" rel="noopener, nofollow" class="btn_whatsapp">
+                            <span class="fab fa-whatsapp"></span> Contactar
+                        </a>
+                        <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn">Ver proyecto</a>
                     </div>
                 </div>
-            </div>            
-
+                <p *ngIf="!proyectos_ver" style="text-align:center;">No existe información relacionado con el filtro utilizado</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+    
+    <section class="s_futuros_proyectos" *ngIf="banners.length>0">    
+        <!-- Swiper -->
+        <div class="swiper swiperFuturos">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" *ngFor="let i of banners">
+                    <div class="c_futuros_proyectos">
+                        <div class="info_fp">
+                            <h5>{{i?.field_content}}</h5>
+                            <h2 [innerHTML]="i?.subtitulo_banner_vivienda"></h2>
+                            <a href="{{i?.enlace_cta_banner_vivienda}}" class="btn contacto_h">{{i?.texto_cta_banner_vivienda}}</a>
+                        </div>
+                        <div class="img_fp">
+                            <img width="1280" height="720" src="{{imagenes_url+i?.imagen}}" alt="{{i?.imagen_alt}}" title="{{i?.imagen_title}}">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    
+    <section class="s_proyectos_ejecutados">
+        <div class="cnt_central">
+            <div class="c_proyectos_ejecutados">
+    
+                <div class="title_section al-center" [innerHTML]="data.subtitulo_proyectos_ejecutados"></div>
+    
+                <div class="tabs_proyectos_eject">
+    
+                    <div class="holder"></div>
+    
+                    <div class="cont_proyecto_logo" id="itemContainer">
+                        <a class="animate__animated animate__fadeIn tab_logo_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
+                            <img width="76" height="65" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}">
+                        </a>
+                    </div>
+                </div>
+    
+                <div class="cont_proyecto_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
+                    <div class="info_pe">
+                        <div class="title_pe">
+                            <h2>{{i?.titulo_proyecto}}</h2>
+                        </div>
+                        <div class="lugar">
+                            {{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}
+                        </div>
+                        <div class="info_datos_pe">
+                            <div> <b> Dirección:</b> {{i?.direccion_proyecto}}</div>
+                            <div> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
+                            <div> <b> Zona:</b> {{i?.zona_proyecto}}</div>
+                        </div>
+                        <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn contacto_h">Ver proyecto</a>
+                    </div>
+                    <div class="c_slider_pe">
+                        <!-- Swiper -->
+                        <div class="swiper swiperPe">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" *ngFor="let k of i?.galeria">
+                                    <img width="530" height="390" src="{{imagenes_url+k?.field_content}}" alt="{{i?.titulo_proyecto}}">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>            
+    
+            </div>
+        </div>
+    </section>
+</body>
