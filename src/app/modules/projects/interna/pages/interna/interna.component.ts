@@ -245,4 +245,9 @@ export class InternaComponent implements OnInit {
     }
   }
 
+  seguirLeyendo(){
+    $(".read").remove();
+    $(".descripcion_proyecto").css('height','max-content');
+  }
+
 }
