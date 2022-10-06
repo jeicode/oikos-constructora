@@ -11,7 +11,7 @@ import { existsSync } from 'fs';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const distFolder = join(process.cwd(), 'dist/oikos-constructora/browser');
+  const distFolder = join(process.cwd(), './browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   console.log('%cserver.ts line:17 process.cwd()', 'color: #007acc;', process.cwd());
@@ -39,7 +39,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4200;
+  const port = process.env['PORT'] || 8083;
 
   // Start up the Node server
   const server = app();

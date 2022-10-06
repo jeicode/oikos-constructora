@@ -133,10 +133,11 @@
 
                 <div class="info_proj" id="sect1" *ngIf="data?.descripcion_proyecto && data?.descripcion_proyecto!=null">
                     <h3 class="title_section"> <span> Descripción del</span> Proyecto</h3>
-                    <div [innerHTML]="data?.descripcion_proyecto"></div>
-                    <!--<div class="cont_btn_seguir">
-                        <a href="" class="btn read">Seguir Leyendo</a>
-                    </div>-->
+                    <div class="descripcion_proyecto" [innerHTML]="data?.descripcion_proyecto" style="height:100px;overflow:hidden;"></div>
+                    <br>
+                    <div class="cont_btn_seguir">
+                        <a style="cursor:pointer" class="btn read" (click)="seguirLeyendo()">Seguir Leyendo</a>
+                    </div>
                     <picture>
                         <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank" *ngIf="data.vista360!='' && data.vista360!=null">Recorrido <img src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
                         <img width="838" height="350" src="{{imagenes_url+data?.imagen_banner_proyecto}}" alt="{{data?.alt_banner}}" title="{{data?.title_banner}}">

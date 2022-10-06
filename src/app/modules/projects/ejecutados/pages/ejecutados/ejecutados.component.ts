@@ -16,8 +16,10 @@ export class EjecutadosComponent implements OnInit {
   data                  : any = []; //data page
   general               : any = []; //data website
   proyectos             : any = [];
+  total                 : any = [];
   suscribeListenRouter  : Subscription;
   imagenes_url          : string = "";
+  limt                  : number = 12;
 
   constructor(private pageService: PageService, private router: Router, private configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
@@ -48,7 +50,13 @@ export class EjecutadosComponent implements OnInit {
   }
 
   async getProyectos(){
-    this.proyectos = await this.projService.getProyectosByTipo('4');
+    this.proyectos = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', this.limt);
+    this.total = await this.projService.getProyectosByTipo('4');
+  }
+
+  cargarMas(){
+    this.limt += 12;
+    this.getProyectos();
   }
 
 }
