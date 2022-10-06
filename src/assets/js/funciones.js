@@ -2,8 +2,6 @@ const changeTab = () => {
     const catg = document.querySelectorAll(".botonpfc");
     const infCatg = document.querySelectorAll(".info");
 
-    console.log(catg)
-
     let selectCatg = null;
 
     catg.forEach((pest) => {
@@ -263,7 +261,6 @@ const bannerEjecutados = () => {
     tabLogo.forEach((logo) => {
         logo.addEventListener('click', (e) => {
 
-            console.log('prueba')
             
             tabLogo.forEach((el) => {
                 el.classList.remove('active');
@@ -274,7 +271,6 @@ const bannerEjecutados = () => {
             containerProyecto.forEach((cont) => {
                 if(cont.dataset.proyecto === comparador){
                     cont.classList.add('active');
-                    console.log('si es el contenedor')
                 }else{
                     cont.classList.remove('active');
                 }

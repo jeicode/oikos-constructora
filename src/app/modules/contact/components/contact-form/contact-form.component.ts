@@ -89,7 +89,6 @@ export class ContactFormComponent implements OnInit {
       }
       const {resp} = await this.contactService.postContactForm(data)
       if (resp){
-        console.log("resp ", resp)
         this.router.navigateByUrl(resp)
       } else {
         alert('Opps ocurrió un error enviando el formulario')

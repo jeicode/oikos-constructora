@@ -62,7 +62,6 @@ export class SlideProjectsComponent implements OnInit {
   async getFeaturedProjects(){
     if (this.projects.length == 0) {
       const projects = await this.projectService.getFeaturedProjects()
-      console.log('%cslide-projects.component.ts line:65 projects', 'color: #007acc;', projects);
       if(projects) this.projects = projects
     }
   }

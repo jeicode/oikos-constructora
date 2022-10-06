@@ -88,7 +88,6 @@ export class CalculateFormComponent implements OnInit {
                                                                     cuotasinicialfinanciar, plazoaniosa, financiar);
                                                                   
     this.datosCalc = datosCalc
-    console.log("datosCalc ", datosCalc)
 
     $(".valorCuotaInicial").val('$ '+this.datosCalc['cuotaInicial']);
     $(".diferencia").val('$ '+this.datosCalc['diferencia']);
@@ -117,12 +116,7 @@ export class CalculateFormComponent implements OnInit {
   async termInYears(){
     var cuota = this.calculateForm.getRawValue()?.termInYears
     var valorafinanciar = $(".valorafinanciar").val();
-
-    console.log("cuota ", cuota)
-    console.log('%ccalculate-form.component.ts line:116 valorafinanciar', 'color: #007acc;', valorafinanciar);
-
     this.datosAnio = await this.projectService.getPlazoanios(cuota, valorafinanciar);
-    console.log("datosAnio ", this.datosAnio)
     this.datosAnio = this.datosAnio[0];
 
     $(".cuotahipoteca").val('$ '+this.datosAnio['total']);
@@ -151,7 +145,6 @@ export class CalculateFormComponent implements OnInit {
       id_proyecto: this.selectedProject.id
     }
 
-    console.log(data);
     if(this.calculateForm.valid){
       const {resp} = await this.projectService.setCalculadoraForm(data);
       if(resp!='no') this.router.navigateByUrl(resp)

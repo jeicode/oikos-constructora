@@ -57,18 +57,22 @@
                         <div class="txt_nota_int" [innerHtml]="activeBlog.dynamic"></div> 
 
                         <div class="row_banner_not_int">
-                            <div class="cnt_banner_proy_not_int">
+                            <div class="cnt_banner_proy_not_int" *ngIf="activeBlog.proyecto">
                                 <div class="img_banner_proy_not_int">
-                                    <img defaultImg src=".." width="300" height="121" alt="">
+                                    <img defaultImg [src]="BASE_URL+activeBlog.proyecto.imagen_principal_proyecto" 
+                                        [alt]="activeBlog.proyecto.alt_principal" [title]="activeBlog.proyecto.title_principal" 
+                                        width="300" height="121" alt="">
                                 </div>
                                 <div class="inf_banner_proy_not_int">
                                     <div class="h_ban_proy_not_int">
                                         Conoce nuestro<br/>
-                                        <span>proyecto ubicado en Flandes</span>
+                                        <span>proyecto ubicado en {{activeBlog.proyecto.ubicacion_proyecto}}</span>
                                     </div>
-                                    <div class="btn">
-                                        Ir al proyecto
-                                    </div>
+                                    <a *ngIf="activeBlog.proyecto.url_amigable" [routerLink]="['/proyecto', activeBlog.proyecto.url_amigable]">
+                                        <div class="btn">
+                                            Ir al proyecto
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>

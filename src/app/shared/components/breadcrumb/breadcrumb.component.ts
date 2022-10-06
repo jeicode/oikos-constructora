@@ -28,11 +28,11 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit(): void {
     
     let paths = this.router.url.split('/');
-    const {paths:completePaths, crumbTitle} = this.deletePathsInRoute(paths)
+    let {paths:completePaths, crumbTitle} = this.deletePathsInRoute(paths)
     paths = completePaths;
     
     if (!this.crumbTitle)  {
-      this.crumbTitle = this.capitalizeFirstLetter(crumbTitle[0])
+      this.crumbTitle = this.capitalizeFirstLetter(crumbTitle)
     }
     
     let linkBuilder = ''
@@ -49,16 +49,17 @@ export class BreadcrumbComponent implements OnInit {
   
   /**
    * 
-   * @param paths ex: 'noticias/'
+   * @param paths ex: '[noticias,proyectos]'
    * @returns 
    */
   deletePathsInRoute(paths:string[]){
     let pathsLen = paths.length
-    if (this.numberRoutesToDelete && this.numberRoutesToDelete < pathsLen) {
+    if (this.numberRoutesToDelete && (this.numberRoutesToDelete < pathsLen)) {
       paths.splice( paths.length - this.numberRoutesToDelete, pathsLen)
     }
-    
-    const crumbTitle = paths.splice( pathsLen-1, pathsLen);
+  
+    let [crumbTitle] = paths.splice( pathsLen-1, pathsLen);
+    crumbTitle = crumbTitle.replace(/-/ig, ' ');
     return { paths, crumbTitle }
   }
 

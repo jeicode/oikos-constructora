@@ -1,3 +1,4 @@
+import { Project } from "./project.model";
 
 export class Blog {
 
@@ -19,7 +20,8 @@ export class Blog {
         public nombre_categoria:string = "",
         public color_categoria:string = "",
         public link_cta:string = "",
-        public texto_cta:string = ""
+        public texto_cta:string = "",
+        public proyecto: Project = new Project()
     ) { }
 
 }

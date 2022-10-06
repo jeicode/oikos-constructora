@@ -11,6 +11,7 @@ import { RecaptchaModule } from "ng-recaptcha";
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
 import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
+import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects
     GoogleMapsModule,
     SafePipe,
     //standalones
-    SlideProjectsComponent
+    SlideProjectsComponent,
+    BreadcrumbComponent
   ]
 })
 export class InternaModule { }
