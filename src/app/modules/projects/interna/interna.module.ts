@@ -29,7 +29,8 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
     SafePipe,
     //standalones
     SlideProjectsComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    SafePipe
   ]
 })
 export class InternaModule { }

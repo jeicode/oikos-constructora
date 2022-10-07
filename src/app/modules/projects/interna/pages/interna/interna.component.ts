@@ -4,8 +4,9 @@ import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { FormBuilder, FormGroup, Validators, FormControl, FormControlName } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/functions/form.service';
+
 
 declare var $:any;
 @Component({
@@ -14,6 +15,7 @@ declare var $:any;
   styleUrls: ['./interna.component.css']
 })
 export class InternaComponent implements OnInit {
+
 
   data                  : any = [];
   datosCalc             : any = [];
@@ -63,24 +65,16 @@ export class InternaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.init();
     this.configServ.loadHeroProyectos(1000);
     this.configServ.loadChangeTab(1000);
   }
 
-  async init(){
-    const tasks = [
-      () => this.getData()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
-  }
 
   async getData(){
     this.data = await this.projService.getProyectoByUrl(this.slug);
     this.data = this.data[0];
+
+    console.log('%cinterna.component.ts line:90 this.data.galeria', 'color: #007acc;', this.data.galeria[0]);
 
     this.porcFinanciar = (100-this.data.porcentaje_minimo);
 

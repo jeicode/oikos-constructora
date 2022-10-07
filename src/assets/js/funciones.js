@@ -9,7 +9,7 @@ const changeTab = () => {
             catg.forEach((el) => {
                 el.classList.remove("active");
             });
-            e.currentTarget.classList.toggle("active");
+            e?.currentTarget.classList.toggle("active");
 
             selectCatg = pest.getAttribute("ncol");
 
@@ -67,6 +67,14 @@ const heroProyectos = () => {
         thumbs: {
             swiper: swiper,
         },
+    });
+    swiper2.on('activeIndexChange', function (e) {
+        const videos = document.querySelectorAll('.iframe_video_gallery');
+        console.log('slide changed ', videos);
+        $('.iframe_video_gallery').each(function(){
+            console.log('%cfunciones.js line:75 video contentWindow', 'color: #007acc; ', this.contentWindow);
+            this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*')
+        });
     });
 
     let swiper3 = new Swiper(".swiperPlanos", {
@@ -190,9 +198,12 @@ const bannerEjecutados = () => {
                 previous:'← Anterior',
                 next:'Siguiente →',
                 perPage:7,
+                startRange: 0,
+                midRange:0,
+                endRange:0,
                 containerID : "itemContainer",
                 animation   : "bounceInUp"
-            });
+            }).pages.showing = false;
             /* on select change */
             $("select").change(function(){
                 /* get new css animation */

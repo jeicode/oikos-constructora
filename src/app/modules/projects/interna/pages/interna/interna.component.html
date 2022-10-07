@@ -50,7 +50,11 @@
                     <span>{{data?.texto_adicional}}</span>
 
                 </div>
-                <a target="_blank" rel="noopener, nofollow" class="btn whatsapp whatsapp_init" style="cursor:pointer">Contactar <span class="fab fa-whatsapp"></span> </a>
+                <a target="_blank" class="btn whatsapp whatsapp_init" 
+                    style="cursor:pointer">
+                    Contactar 
+                    <span class="fab fa-whatsapp"></span> 
+                </a>
             </div>
 
         </div>
@@ -61,8 +65,13 @@
 
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2" >
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let i of galeria">
-                            <img src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}" title="{{i?.title}}"/>
+                        <div class="swiper-slide" *ngFor="let i of galeria; let index=index">
+                            <img *ngIf="i?.field_content" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}" title="{{i?.title}}"/>
+                            <div *ngIf="i?.field_description && !i?.field_content" class="embed-responsive">
+                                <iframe class="embed-responsive-item iframe_video_gallery" [src]="i?.field_description | safeResourceUrl" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
                         </div>
                     </div>
                     <div class="container_arrows">
@@ -197,7 +206,6 @@
                     </div>
                     <div class="map">
                         <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank" *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt=""> </a>
-
                         <google-map width="1050" height="350" [center]="center" [zoom]="zoom">
                             <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" [title]="marker.title" [options]="marker.options" [icon]="marker.icon"></map-marker>
                         </google-map>
@@ -277,7 +285,12 @@
             <div class="swiper swiperCalcP">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" *ngFor="let i of galeria">
-                        <img width="400" height="200" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                        <img *ngIf="i?.field_content" width="400" height="200" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                        <div *ngIf="i?.field_description && !i?.field_content" class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" [src]="i?.field_description | safeResourceUrl" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -372,14 +385,7 @@
 </div>
 
 <!--whatsapp-->
-<div class="layer_negro_wa_form"></div>
-<div class="cont_gen_wa_form_flt">
-    
-    
-    <div class="btn_wa_flt">
-        <i class="fab fa-whatsapp" ></i>
-    </div>
-    
+<div class="layer_negro_wa_form">
     <div class="cont_gen_form_wa">
         <div class="cont_top_form_wa">
             <div class="cont_gen_prof_a_form">
@@ -430,7 +436,13 @@
             <input type="hidden" name="mensaje" value="{{data?.msg_wsp_flotante}}">
             <input type="hidden" name="telefono_wsp" value="{{data?.wsp_flotante}}">
             <input type="hidden" name="id_proyecto" value="{{data?.id}}">
-			<input type="hidden" name="url" value="{{data?.url_amigable}}">
+            <input type="hidden" name="url" value="{{data?.url_amigable}}">
         </form>
     </div>
-  </div>
+</div>
+
+<div class="cont_gen_wa_form_flt">
+    <div class="btn_wa_flt">
+        <i class="fab fa-whatsapp" ></i>
+    </div>
+</div>
