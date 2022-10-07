@@ -646,6 +646,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
+    text-align: left;
+}
+.item_prjct img{
+    filter: grayscale(1) brightness(8);
 }
 
 .datos_info_prjct {
