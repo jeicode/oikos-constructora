@@ -709,4 +709,12 @@
     .card_p .datos_proyecto {
       padding: 30px 20px 10px;
     }
-  }/*# sourceMappingURL=proyectos_vivienda.css.map */
+  }
+
+:host ::ng-deep .holder span {
+  display: none;
+}
+  
+/*# sourceMappingURL=proyectos_vivienda.css.map */
+
+

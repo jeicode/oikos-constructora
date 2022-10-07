@@ -1948,6 +1948,24 @@
     }
 }
 
+.embed-responsive {
+  height: 0;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	position: relative;
+}
+
+.embed-responsive .embed-responsive-item, 
+.embed-responsive-item object, 
+.embed-responsive-item embed {
+  height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
 .btn_form_wa:disabled{
   background-color: #ccc;
 }
