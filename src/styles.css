@@ -392,8 +392,8 @@ h1 {
 .cuerpo {
     width: 100%;
     position: relative;
-    padding-top: 46.5px ;
-    /* padding-top: 93px; */
+    /*padding-top: 46.5px ;*/
+     padding-top: 93px; 
     display: block;
     flex-direction: column;
     justify-content: center;
@@ -476,7 +476,7 @@ h1 {
     z-index: 2;
     position: absolute;
     box-sizing: border-box;
-    padding: 62px 48px 64px 40px;
+    padding: 32px 48px 64px 40px;
     background: #fff;
     border-radius: 0 0 58px 0;
     transform: skewX(-6deg);
@@ -522,17 +522,20 @@ h1 {
     color: #1B1B1A;
     padding: 32px 40px 32px 0;
 }
-
+.cnt_dir_pie{
+    width: 100%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 24px;
+    padding: 12px 0;
+}
 .direccion_pie {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 8px;
     text-align: left;
-    padding: 16px 0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 24px;
+    padding: 4px 0;
 }
 
 .cnt_gen_cert_pie {
@@ -549,12 +552,13 @@ h1 {
 
 .cnt_mid_pie {
     width: 100%;
-    padding: 54px 0 110px;
+    padding: 84px 0 80px;
     padding-left: 36%;
     padding-right: 56px;
     box-sizing: border-box;
     display: flex;
     column-gap: 24px;
+    min-height: 440px;
 }
 
 .col_mid_men_pie {
@@ -588,6 +592,7 @@ h1 {
     font-size: 14px;
     list-style: none;
     transition: none;
+    padding: 0;
 }
 
 .menu_pie li {
@@ -768,6 +773,8 @@ h1 {
 }
 
 /*********************/
+
+
 @media screen and (max-width: 1400px) {
     .nav ul li {
         margin: 0 1%;
@@ -946,8 +953,12 @@ h1 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
+        min-height: auto;
     }
-
+    .cnt_dir_pie{
+        display: flex;
+        gap: 24px;
+    }
     .cnt_bot_pie {
         position: initial;
         padding: 20px;
@@ -1217,6 +1228,10 @@ input[type=file]::-webkit-file-upload-button {
 
     .cont_input_x2 {
         grid-template-columns: 1fr;
+    }
+    .cnt_dir_pie{
+        flex-direction: column;
+        gap: 0;
     }
 }
 

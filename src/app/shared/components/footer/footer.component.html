@@ -9,9 +9,15 @@
             <div class="txt_pie">
                 {{ configFooter.texto_footer }}
             </div>
-            <div class="direccion_pie">
-                <span class="material-icons">place</span>
-                {{ configFooter.address }}
+            <div class="cnt_dir_pie">
+                <div class="direccion_pie">
+                    <span class="material-icons">place</span>
+                    {{ configFooter.address }}
+                </div>
+                <div class="direccion_pie">
+                    <span class="material-icons">mail</span>
+                    {{configFooter.contactemails }}
+                </div>
             </div>
             <div class="cnt_gen_cert_pie">
                 <div class="logo_cert_pie" *ngFor="let i of logos">
