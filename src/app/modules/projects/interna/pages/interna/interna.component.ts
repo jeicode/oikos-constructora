@@ -7,6 +7,9 @@ import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
+import SwiperCore,{ Navigation, Pagination, SwiperOptions, Lazy} from 'swiper';
+
+SwiperCore.use([Navigation, Pagination, Lazy]);
 
 declare var $:any;
 @Component({
@@ -16,13 +19,25 @@ declare var $:any;
 })
 export class InternaComponent implements OnInit {
 
+  // swiper
+  config:SwiperOptions = {
+    slidesPerView: 1,
+    pagination: { clickable: true },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  }
 
   data                  : any = [];
   datosCalc             : any = [];
   datosCuota            : any = [];
   datosAnio             : any = [];
   galeria               : any = [];
-  avances               : any = [];
+  avancesObra           : any = []; 
+  avancesObraActivos    : any = [];
+  fechasAvancesObra     : any = [];
+  indiceFechaActiva     : number = 0;
   tipologia             : any = [];
   planos                : any = [];
   zonas                 : any = [];
@@ -48,7 +63,12 @@ export class InternaComponent implements OnInit {
   })
 
 
-  constructor(private configServ: ConfigService, private projService: ProjectService, private router: Router, private activateRoute: ActivatedRoute, private fb: FormBuilder, private formServ: FormService) {
+  constructor(  private configServ: ConfigService, 
+                private projService: ProjectService, 
+                private router: Router, 
+                private activateRoute: ActivatedRoute, 
+                private fb: FormBuilder, 
+                private formServ: FormService) {
     this.slug = this.activateRoute.snapshot.paramMap.get('slug');
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
@@ -71,42 +91,68 @@ export class InternaComponent implements OnInit {
 
 
   async getData(){
-    this.data = await this.projService.getProyectoByUrl(this.slug);
-    this.data = this.data[0];
+    const [data] = await this.projService.getProyectoByUrl(this.slug);
 
-    this.porcFinanciar = (100-this.data.porcentaje_minimo);
+    if (data){
+      this.data = data;
+      
+      this.porcFinanciar = (100-this.data?.porcentaje_minimo);
+      
+      this.zonas = this.data?.zonas;
+      this.galeria = this.data?.galeria;
+      this.planos = this.data?.planos;
+      this.tipologia = this.data?.tipologia;
+      this.avancesObra = this.data?.avances;
 
-    this.zonas = this.data.zonas;
-    this.galeria = this.data.galeria;
-    this.planos = this.data.planos;
-    this.tipologia = this.data.tipologia;
-    this.avances = this.data.avances;
-
-    this.calculoPorcentaje();
-    this.diferenciadordecuotasmensuales();
-
-    this.sitiosInteres = await this.projService.getCategoriasInteres(this.data.id);
-
-    this.center = {
-      lat: this.data.latitude,
-      lng: this.data.longitude
-    }
-
-    this.markers = [];
-    this.markers.push({
-      position: {
+      if (this.avancesObra) {
+        let listDates = this.avancesObra.map( (a:any) => a?.title)
+        this.fechasAvancesObra = this.configServ.removeRepeatElementsArray(listDates);
+        this.actualizarAvanceObraActivo(0, this.fechasAvancesObra[0])
+      }
+  
+      this.calculoPorcentaje();
+      this.diferenciadordecuotasmensuales();
+  
+      this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
+  
+      this.center = {
         lat: this.data.latitude,
         lng: this.data.longitude
-      },
-      icon: {
-        url: this.imagenes_url+this.data?.logo_proyecto,
-        scaledSize: new google.maps.Size(30, 30), // scaled size
-      },
-      options: {
-        animation: google.maps.Animation.BOUNCE
       }
-    })
+  
+      this.markers = [];
+      this.markers.push({
+        position: {
+          lat: this.data.latitude,
+          lng: this.data.longitude
+        },
+        icon: {
+          url: this.imagenes_url+this.data?.logo_proyecto,
+          scaledSize: new google.maps.Size(30, 30), // scaled size
+        },
+        options: {
+          animation: google.maps.Animation.BOUNCE
+        }
+      })
+
+    }
   }
+
+  /**
+   * 
+   * @param index indice de la fecha activa
+   * @param fecha parametro de fecha para hacer el filtro
+   */
+  actualizarAvanceObraActivo(index:number, fecha:string){
+    this.indiceFechaActiva = index
+    this.avancesObraActivos = this.avancesObra?.filter( (a:any) => a?.title === fecha);
+
+    this.avancesObraActivos.forEach((element:any) => console.log('%cinterna.component.ts line:150 element.title', 'color: #007acc;', element.title));
+    // console.log('%cinterna.component.ts line:149 this.avancesObraActivos', 'color: #007acc;', this.avancesObraActivos);
+  }
+
+
+
 
   trasladar(el: any){
     var pos = Number($("#"+el).offset().top)-100;

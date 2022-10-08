@@ -12,6 +12,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
 import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
     //standalones
     SlideProjectsComponent,
     BreadcrumbComponent,
-    SafePipe
+    SafePipe,
+    SwiperModule
   ]
 })
 export class InternaModule { }

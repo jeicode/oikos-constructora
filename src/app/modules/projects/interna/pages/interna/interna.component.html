@@ -107,6 +107,8 @@
 <section class="s_desc_proyecto">
     <div class="cnt_central">
         <div class="c_desc_proyecto">
+
+            <!-- aside progress current project -->
             <aside class="progress_state">
                 <a class="state active sect1" (click)="trasladar('sect1')" style="cursor:pointer" *ngIf="data?.descripcion_proyecto && data?.descripcion_proyecto!=null">
                     <span class="fas fa-circle"></span>
@@ -124,7 +126,7 @@
                     <span class="fas fa-circle-notch"></span>
                     <h4>Zonas comunes</h4>
                 </a>
-                <a class="state sect5" (click)="trasladar('sect5')" style="cursor:pointer" *ngIf="avances.length>0">
+                <a class="state sect5" (click)="trasladar('sect5')" style="cursor:pointer" *ngIf="avancesObra.length>0">
                     <span class="fas fa-circle-notch"></span>
                     <h4>Avance obra</h4>
                 </a>
@@ -134,8 +136,11 @@
                 </a>
                 
             </aside>
+
+
             <div class="container_desc_project">
 
+                <!-- seccion descripcion proyecto -->
                 <div class="info_proj" id="sect1" *ngIf="data?.descripcion_proyecto && data?.descripcion_proyecto!=null">
                     <h3 class="title_section"> <span> Descripción del</span> Proyecto</h3>
                     <div class="descripcion_proyecto" [innerHTML]="data?.descripcion_proyecto" style="height:100px;overflow:hidden;"></div>
@@ -150,6 +155,8 @@
                 </div>
 
                 <div class="info_planos" id="sect2">
+
+                    <!-- swiper planos -->
                     <div class="container_pp" *ngIf="planos.length>0">
                         <h3 class="">Planos</h3>
                         
@@ -173,6 +180,7 @@
                         </div>
                     </div>
 
+                    <!-- swiper tipologias -->
                     <div class="container_pp" *ngIf="tipologia.length>0">
                         <h3>Tipologías</h3>
                         <!-- Swiper -->
@@ -196,9 +204,10 @@
                         </div>
                         
                     </div>
+
                 </div>
 
-
+                <!-- seccion sitios de interes -->
                 <div class="info_sitios_interes" id="sect3" *ngIf="sitiosInteres.length>0">
                     <h3 class="title_section"> <span> Sitios de </span>Interés</h3>
                     <div class="tags_s_interes">
@@ -209,10 +218,11 @@
                         <google-map width="1050" height="350" [center]="center" [zoom]="zoom">
                             <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" [title]="marker.title" [options]="marker.options" [icon]="marker.icon"></map-marker>
                         </google-map>
-                        <!-- <img width="838" height="350" src="https://picsum.photos/600" alt=""> -->
                     </div>
                 </div>
 
+
+                <!-- seccion zonas comunes -->
                 <div class="info_zonas_comunes" id="sect4" *ngIf="zonas.length>0">
                     <h3 class="title_section"><span> Zonas</span> Comunes</h3>
                     <div class="c_zonas_c">
@@ -223,44 +233,43 @@
                     </div>
                 </div>
 
-                <div class="info_avance_obra" id="sect5" *ngIf="avances.length>0">
+                
+                <!-- seccion avances Obra -->
+                <div class="info_avance_obra" id="sect5" *ngIf="avancesObra?.length>0">
                     <h3 class="title_section"><span> Avance de</span> obra</h3>
                     <div class="fechas_a_obra">
                         <div class="tabs_nav_obra">
                             <div class="wrap_nav_obra">
-                                <a class="botonpfc" [ngClass]="j==0 ? 'active' : ''" [attr.ncol]="j+1" *ngFor="let i of avances; index as j">{{i?.title}}</a>
+                                <a class="botonpfc" [ngClass]="index==0 ? 'active' : ''"  
+                                    *ngFor="let i of fechasAvancesObra; index as index"
+                                    (click)="actualizarAvanceObraActivo(index, i)">
+                                    {{i}}
+                                </a>
                             </div>
                         </div>
-                        <div class="cont_tab_video info" [ngClass]="j!=0 ? 'oculto' : ''" [attr.ncol]="j+1" *ngFor="let i of avances; index as j">
+                        <div class="cont_tab_video info">
                             <!-- SWIPER GALERÍA OBRA -->
-                            <div class="swiper swp_avc_obra">
-                                <div class="swiper-wrapper">
+                            <swiper [config]="config">
+                                <ng-template swiperSlide *ngFor="let i of avancesObraActivos">
                                     <div class="swiper-slide">
-                                        <iframe width="514" height="300" [src]="i?.field_description | safeResourceUrl" class="js-modal-btn" *ngIf="i?.field_description!='' && i?.field_description!=null; else routerVideo">
+                                        <iframe width="514" height="300" [src]="i?.field_description | safeResourceUrl" class="js-modal-btn" 
+                                                *ngIf="i?.field_description!='' && i?.field_description!=null; else routerVideo">
                                             <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
                                         </iframe>
                                         <ng-template #routerVideo>
                                             <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
                                         </ng-template>
                                     </div>
-                                </div>
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                            </div>
+                                </ng-template>
+                            </swiper>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
-                        <script>
-                            /* funcion SWIPER GALERÍA OBRA */
-                            var swiper = new Swiper(".swp_avc_obra", {
-                                navigation: {
-                                nextEl: ".swp_avc_obra .swiper-button-next",
-                                prevEl: ".swp_avc_obra .swiper-button-prev",
-                                },
-                            });
-                        </script>
+
                     </div>
-                    <div class="resumen_a_obra info" [ngClass]="j!=0 ? 'oculto' : ''" [attr.ncol]="j+1" *ngFor="let i of avances; index as j" [innerHTML]="i?.alt"></div>
                 </div>
 
+                <!-- seccion Calcula -->
                 <div class="info_banner_calcula" id="sect6" *ngIf="data?.calculadora=='1'">
                     <picture>
                         <img width="571" height="110" src="assets/images/diseno/int_proyecto/img_calcula.jpg" alt="">
@@ -269,6 +278,8 @@
                         <a class="btn contacto_h btn_calc_1">Calcula <span class="fas fa-calculator"></span> </a>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -305,12 +316,17 @@
             <div class="swiper swiperCalcP">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" *ngFor="let i of galeria">
-                        <img *ngIf="!i?.field_description" width="400" height="200" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
-                        <div *ngIf="i?.field_description" class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item iframe_video_gallery_2" [src]="i?.field_description | safeResourceUrl" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
+                        <img *ngIf="!i?.field_description; else iframeYT" width="400" height="200" 
+                            src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                        
+                        <ng-template #iframeYT>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item iframe_video_gallery_2" 
+                                        [src]="i?.field_description | safeResourceUrl" allowfullscreen>
+                                </iframe>
+                            </div>
+                        </ng-template>
+                        
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>

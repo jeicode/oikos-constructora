@@ -82,4 +82,8 @@ export class ConfigService {
     this.router.navigateByUrl('404', { skipLocationChange });
     return false;
   }
+
+  removeRepeatElementsArray(list:any[]): any[] {
+    return [...new Set(list)];
+  }
 }
