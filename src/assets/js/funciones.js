@@ -56,7 +56,7 @@ const heroProyectos = () => {
         freeMode: true,
         watchSlidesProgress: true,
     });
-
+   
     /* SLIDER SOLO */
     let swiper2 = new Swiper(".mySwiper2", {
         spaceBetween: 10,
@@ -69,10 +69,8 @@ const heroProyectos = () => {
         },
     });
     swiper2.on('activeIndexChange', function (e) {
-        const videos = document.querySelectorAll('.iframe_video_gallery');
-        console.log('slide changed ', videos);
+        // pause iframes videos yt
         $('.iframe_video_gallery').each(function(){
-            console.log('%cfunciones.js line:75 video contentWindow', 'color: #007acc; ', this.contentWindow);
             this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*')
         });
     });
@@ -157,6 +155,13 @@ const heroProyectos = () => {
             el: ".swiper-pagination",
         },
     });
+    swiper5.on('activeIndexChange', function (e) {
+        // pause iframes videos yt
+        $('.iframe_video_gallery_2').each(function(){
+            this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*')
+        });
+    });
+
 }
 
 const bannerProyectos = () => {

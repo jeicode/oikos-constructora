@@ -74,8 +74,6 @@ export class InternaComponent implements OnInit {
     this.data = await this.projService.getProyectoByUrl(this.slug);
     this.data = this.data[0];
 
-    console.log('%cinterna.component.ts line:90 this.data.galeria', 'color: #007acc;', this.data.galeria[0]);
-
     this.porcFinanciar = (100-this.data.porcentaje_minimo);
 
     this.zonas = this.data.zonas;
