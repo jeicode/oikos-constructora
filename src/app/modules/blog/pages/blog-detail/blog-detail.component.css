@@ -223,8 +223,8 @@
     line-height: 140%;
 }
 
-.txt_nota_int a {
-    color: var(--c_link);
+.txt_nota_int .section a {
+    color: var(--color-c2);
 }
 
 .txt_nota_int ul {

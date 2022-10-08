@@ -227,16 +227,36 @@
                     <h3 class="title_section"><span> Avance de</span> obra</h3>
                     <div class="fechas_a_obra">
                         <div class="tabs_nav_obra">
-                            <a class="botonpfc" [ngClass]="j==0 ? 'active' : ''" [attr.ncol]="j+1" *ngFor="let i of avances; index as j">{{i?.title}}</a>
+                            <div class="wrap_nav_obra">
+                                <a class="botonpfc" [ngClass]="j==0 ? 'active' : ''" [attr.ncol]="j+1" *ngFor="let i of avances; index as j">{{i?.title}}</a>
+                            </div>
                         </div>
                         <div class="cont_tab_video info" [ngClass]="j!=0 ? 'oculto' : ''" [attr.ncol]="j+1" *ngFor="let i of avances; index as j">
-                            <iframe width="514" height="300" [src]="i?.field_description | safeResourceUrl" class="js-modal-btn" *ngIf="i?.field_description!='' && i?.field_description!=null; else routerVideo">
-                                <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
-                            </iframe>
-                            <ng-template #routerVideo>
-                                <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
-                            </ng-template>
+                            <!-- SWIPER GALERÍA OBRA -->
+                            <div class="swiper swp_avc_obra">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <iframe width="514" height="300" [src]="i?.field_description | safeResourceUrl" class="js-modal-btn" *ngIf="i?.field_description!='' && i?.field_description!=null; else routerVideo">
+                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                                        </iframe>
+                                        <ng-template #routerVideo>
+                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
                         </div>
+                        <script>
+                            /* funcion SWIPER GALERÍA OBRA */
+                            var swiper = new Swiper(".swp_avc_obra", {
+                                navigation: {
+                                nextEl: ".swp_avc_obra .swiper-button-next",
+                                prevEl: ".swp_avc_obra .swiper-button-prev",
+                                },
+                            });
+                        </script>
                     </div>
                     <div class="resumen_a_obra info" [ngClass]="j!=0 ? 'oculto' : ''" [attr.ncol]="j+1" *ngFor="let i of avances; index as j" [innerHTML]="i?.alt"></div>
                 </div>
