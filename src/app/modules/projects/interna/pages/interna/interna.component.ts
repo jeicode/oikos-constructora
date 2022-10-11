@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -54,6 +54,7 @@ export class InternaComponent implements OnInit {
   zoom = 14;
   center = {lat: 0, lng: 0};
   markers: any = [];
+  notifyChanges: Subject<any> = new Subject<any>();
 
   contactForm: FormGroup = this.fb.group({
     nombre: new FormControl('', Validators.required),
@@ -78,6 +79,10 @@ export class InternaComponent implements OnInit {
         this.getData();
       }
     });
+  }
+
+  openModal(){
+    this.notifyChanges.next('open_modal_wpp');
   }
 
   resolved(captchaResponse: string) {

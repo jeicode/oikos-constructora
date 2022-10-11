@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
+import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 
 declare var $:any;
 @Component({
@@ -33,7 +34,8 @@ export class ComercialesComponent implements OnInit {
   tipo_search           : string = "NA";
   precio_search         : string = "NA";
 
-  constructor(private pageService: PageService, private router: Router, private configServ: ConfigService, private projService: ProjectService) {
+  constructor(private pageService: PageService, private router: Router, 
+              private configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {

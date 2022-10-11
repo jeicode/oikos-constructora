@@ -13,6 +13,7 @@ import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
 import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 import { SwiperModule } from 'swiper/angular';
+import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { SwiperModule } from 'swiper/angular';
     SlideProjectsComponent,
     BreadcrumbComponent,
     SafePipe,
-    SwiperModule
+    SwiperModule,
+    WppModalProjectComponent
   ]
 })
 export class InternaModule { }

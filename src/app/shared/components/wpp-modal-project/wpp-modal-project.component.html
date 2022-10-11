@@ -1,0 +1,62 @@
+<!--whatsapp-->
+<div class="layer_negro_wa_form" [ngClass]="{'active': modalIsOpen}">
+    <div class="cont_gen_form_wa" [ngClass]="{'active': modalIsOpen}">
+        <div class="cont_top_form_wa">
+            <div class="cont_gen_prof_a_form">
+                <div class="img_pr_wa_form">
+                    <img class="lazyload" data-src="{{BASE_URL+project.logo_proyecto}}"/>
+                </div>
+                <div class="cont_nom_est_wa_form">
+                    <div class="nomb_wa_fl">{{project.titulo_proyecto}}</div>
+                    <div class="estado_wa_form">
+                        en linea
+                    </div>
+                </div>
+            </div>
+            <span class="ic_cerrar_wa_form" (click)="closeModal()"></span>
+        </div>
+        <form class="cont_gen_s_chat validateForm" method="post" target="_blank">
+            <div class="cont_s_chat_conv_bl">
+                <div class="s_chat_conv_bl">
+                    {{project.msg_wsp_flotante}}
+                </div>
+            </div>
+            <div class="cont_s_chat_conv_ver">
+                <div class="s_chat_conv_ver">
+                    <div class="cont_etq_campo_wa_form">
+                        <label class="etq_wa_form">Nombre:*</label>
+                        <input type="text" name="nombre" class="campo_wa_form" id="inp_name_wa_form" style="background: none;" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_s_chat_conv_ver">
+                <div class="s_chat_conv_ver">
+                    <div class="cont_etq_campo_wa_form">
+                        <label class="etq_wa_form">Email:*</label>
+                        <input type="email" name="email" class="campo_wa_form" id="inp_email_wa_form" style="background: none;" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_s_chat_conv_ver cnt_tel">
+                <div class="s_chat_conv_ver">
+                    <div class="cont_etq_campo_wa_form">
+                        <label class="etq_wa_form">Celular:*</label>
+                        <input type="tel" name="telefono" class="campo_wa_form" id="inp_tel_wa_form" style="background: none;" required/>
+                    </div>
+                </div>
+            </div>
+            <a href="{{project.api_wsp}}" target="_blank" rel="noopener,nofollow" type="submit" class="btn_form_wa" id="btn_form_wa_{{project.titulo_proyecto}}" style="border:none;text-align: center;">Iniciar conversación</a>
+            <input type="hidden" name="task" value="insertWhatsappData">
+            <input type="hidden" name="mensaje" value="{{project.msg_wsp_flotante}}">
+            <input type="hidden" name="telefono_wsp" value="{{project.wsp_flotante}}">
+            <input type="hidden" name="id_proyecto" value="{{project.id}}">
+            <input type="hidden" name="url" value="{{project.url_amigable}}">
+        </form>
+    </div>
+</div>
+
+<div class="cont_gen_wa_form_flt c-pointer" *ngIf="showFloatingButton" (click)="modalIsOpen = !modalIsOpen">
+    <div class="btn_wa_flt">
+        <i class="fab fa-whatsapp" ></i>
+    </div>
+</div>

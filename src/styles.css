@@ -393,7 +393,7 @@ h1 {
     width: 100%;
     position: relative;
     /*padding-top: 46.5px ;*/
-     padding-top: 93px; 
+    padding-top: 93px;
     display: block;
     flex-direction: column;
     justify-content: center;
@@ -422,6 +422,7 @@ h1 {
     text-align: right;
     margin: 20px 0 0;
 }
+
 .miga div {
     display: flex;
     gap: 8px;
@@ -522,13 +523,15 @@ h1 {
     color: #1B1B1A;
     padding: 32px 40px 32px 0;
 }
-.cnt_dir_pie{
+
+.cnt_dir_pie {
     width: 100%;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     margin-bottom: 24px;
     padding: 12px 0;
 }
+
 .direccion_pie {
     width: 100%;
     display: flex;
@@ -955,10 +958,12 @@ h1 {
         gap: 20px;
         min-height: auto;
     }
-    .cnt_dir_pie{
+
+    .cnt_dir_pie {
         display: flex;
         gap: 24px;
     }
+
     .cnt_bot_pie {
         position: initial;
         padding: 20px;
@@ -1229,7 +1234,8 @@ input[type=file]::-webkit-file-upload-button {
     .cont_input_x2 {
         grid-template-columns: 1fr;
     }
-    .cnt_dir_pie{
+
+    .cnt_dir_pie {
         flex-direction: column;
         gap: 0;
     }
@@ -1237,20 +1243,24 @@ input[type=file]::-webkit-file-upload-button {
 
 /*# sourceMappingURL=estilos.css.map */
 
-.error-text{
+.error-text {
     color: #f00;
-    font-size:12px;
+    font-size: 12px;
     text-align: left;
     width: 100%;
-  }
-  
-  .error-text2{
+}
+
+.error-text2 {
     color: #f00;
-    font-size:12px;
+    font-size: 12px;
     text-align: left;
     width: 94%;
-  }
-  
-  .txt_nota_int .section a {
+}
+
+.txt_nota_int .section a {
     color: #1839b7;
+}
+
+.c-pointer {
+    cursor: pointer;
 }

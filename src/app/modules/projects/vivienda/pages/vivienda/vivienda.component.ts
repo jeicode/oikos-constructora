@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
+import { Project } from 'src/app/core/models/project.model';
 
 declare var $:any;
 @Component({
@@ -19,7 +20,7 @@ export class ViviendaComponent implements OnInit {
   imagenes              : any = [];
   ciudades              : any = [];
   tipo_proyecto         : any = [];
-  proyectos             : any = [];
+  proyectos             : Project[] = [];
   banners               : any = [];
   ejecutados            : any = [];
   precios               : any = [];
@@ -32,8 +33,13 @@ export class ViviendaComponent implements OnInit {
   ciudad                : string = "NA";
   tipo_search           : string = "NA";
   precio_search         : string = "NA";
+  projectSelectedToModal:Project = new Project()
 
-  constructor(private pageService: PageService, private router: Router, private configServ: ConfigService, private projService: ProjectService) {
+  notifyChanges: Subject<boolean> = new Subject<boolean>();
+
+
+  constructor(private pageService: PageService, private router: Router, 
+              private configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
@@ -61,6 +67,12 @@ export class ViviendaComponent implements OnInit {
       await task();
     }
   }
+
+  selectProjectToModal(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChanges.next(true);
+  }
+
 
   async getData(){
     this.data = await this.pageService.getContentPage('proyectos-construccion-vivienda')

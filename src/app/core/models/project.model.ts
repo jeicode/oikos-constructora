@@ -80,6 +80,7 @@ export class Project {
         public valor_proyecto_formato:string = "", 
         public vista360:string = "", 
         public wsp_flotante:string = "", 
+        public api_wsp_web:string = "",
         public wsp_home:string = "", 
         public wsp_interna:string = "", 
         public zona_proyecto: string = '',
