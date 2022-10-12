@@ -38,7 +38,11 @@
     
     <div class="cont_politicas">
         <input formControlName="terms" type="checkbox" name="" id="politicas1">
-        <label for="politicas1">Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
+        <label for="politicas1">Acepto y Autorizo la 
+            <a [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank"> 
+                Política de Tratamiento de Datos
+            </a>
+        </label>
     </div>
     <div class="text-danger" style="height: 7px;">
         <small *ngIf="hasErrorsFieldForm('terms')">debes aceptar la política de tratamiento de datos*</small>

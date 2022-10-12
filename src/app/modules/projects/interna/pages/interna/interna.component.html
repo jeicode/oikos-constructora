@@ -411,7 +411,11 @@
             </div>
             <div class="cont_chk">
                 <input type="checkbox" id="calc_form_chk" formControlName="terminos">
-                <label for="calc_form_chk"> Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
+                <label for="calc_form_chk"> Acepto y Autorizo la 
+                    <a [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank"> 
+                        Política de Tratamiento de Datos
+                    </a>
+                </label>
             </div>
             <div *ngIf="hasErrorsFieldForm('terminos')" class="error-text">Existen errores, por favor revisar*</div>
             <div class="cont_submit">

@@ -6,7 +6,7 @@ import { SeoService } from "src/app/shared/services/functions/seo.service";
 @Injectable({
     providedIn: 'root'
 })
-export class ContactGuard implements CanActivate {
+export class HomeGuard implements CanActivate {
     constructor(  private pageService: PageService, 
                   private seoService: SeoService) { }
 
@@ -14,7 +14,7 @@ export class ContactGuard implements CanActivate {
         _route: ActivatedRouteSnapshot,
         _state: RouterStateSnapshot):Promise<boolean> {
     
-          const page = await this.pageService.getSeoContentPage('contactanos');
+          const page = await this.pageService.getSeoContentPage('/');
           
           if (page) {
             this.pageService.currentPage = page
