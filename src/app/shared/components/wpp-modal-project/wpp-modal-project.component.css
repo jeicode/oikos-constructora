@@ -1,4 +1,7 @@
 /* MODAL STYLES WPP */
+.error-form-field {
+    border: solid 2px rgb(213, 34, 34);
+}
 .layer_negro_wa_form {
     width: 100%;
     height: 100%;
@@ -229,6 +232,7 @@
     box-sizing: border-box;
     padding: 0 8px;
     border: none;
+    background: none;
 }
 
 .btn_form_wa {

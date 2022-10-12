@@ -155,4 +155,13 @@ export class ProjectService {
     const url = `${API_URL}v1/getPreciosProyectos?tipo=${tipo}`;
     return this._http.get(url).toPromise().then()
   }
+
+
+  async createContactWppProject(data:any): Promise<any>{
+    const url = `${API_URL}v1/createContactWppProject`;
+    return this._http.post(url, data).toPromise().then()
+  }
+
+
+
 }

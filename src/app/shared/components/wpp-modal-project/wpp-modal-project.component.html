@@ -15,42 +15,48 @@
             </div>
             <span class="ic_cerrar_wa_form" (click)="closeModal()"></span>
         </div>
-        <form class="cont_gen_s_chat validateForm" method="post" target="_blank">
+        <form class="cont_gen_s_chat validateForm" 
+            [formGroup]="contactWppForm">
             <div class="cont_s_chat_conv_bl">
                 <div class="s_chat_conv_bl">
                     {{project.msg_wsp_flotante}}
                 </div>
             </div>
             <div class="cont_s_chat_conv_ver">
-                <div class="s_chat_conv_ver">
+                <div class="s_chat_conv_ver" [ngClass]="{'error-form-field': hasErrorsFieldForm('name')}">
                     <div class="cont_etq_campo_wa_form">
                         <label class="etq_wa_form">Nombre:*</label>
-                        <input type="text" name="nombre" class="campo_wa_form" id="inp_name_wa_form" style="background: none;" required/>
+                        <input formControlName="name" type="text" name="name" 
+                                class="campo_wa_form" id="inp_name_wa_form" 
+                                />
                     </div>
                 </div>
             </div>
             <div class="cont_s_chat_conv_ver">
-                <div class="s_chat_conv_ver">
+                <div class="s_chat_conv_ver" [ngClass]="{'error-form-field': hasErrorsFieldForm('email')}">
                     <div class="cont_etq_campo_wa_form">
                         <label class="etq_wa_form">Email:*</label>
-                        <input type="email" name="email" class="campo_wa_form" id="inp_email_wa_form" style="background: none;" required/>
+                        <input formControlName="email" type="email" name="email" 
+                                class="campo_wa_form" 
+                                id="inp_email_wa_form"/>
                     </div>
                 </div>
             </div>
             <div class="cont_s_chat_conv_ver cnt_tel">
-                <div class="s_chat_conv_ver">
+                <div class="s_chat_conv_ver" [ngClass]="{'error-form-field': hasErrorsFieldForm('phone')}">
                     <div class="cont_etq_campo_wa_form">
                         <label class="etq_wa_form">Celular:*</label>
-                        <input type="tel" name="telefono" class="campo_wa_form" id="inp_tel_wa_form" style="background: none;" required/>
+                        <input type="tel" name="telefono" class="campo_wa_form" 
+                                formControlName="phone" id="inp_tel_wa_form" />
                     </div>
                 </div>
             </div>
-            <a href="{{project.api_wsp}}" target="_blank" rel="noopener,nofollow" type="submit" class="btn_form_wa" id="btn_form_wa_{{project.titulo_proyecto}}" style="border:none;text-align: center;">Iniciar conversación</a>
-            <input type="hidden" name="task" value="insertWhatsappData">
-            <input type="hidden" name="mensaje" value="{{project.msg_wsp_flotante}}">
-            <input type="hidden" name="telefono_wsp" value="{{project.wsp_flotante}}">
-            <input type="hidden" name="id_proyecto" value="{{project.id}}">
-            <input type="hidden" name="url" value="{{project.url_amigable}}">
+            <a  type="submit" class="btn_form_wa" 
+                (click)="sendContactUserWpp()"
+                id="btn_form_wa_{{project.titulo_proyecto}}" 
+                style="border:none;text-align: center;">
+                Iniciar conversación
+            </a>
         </form>
     </div>
 </div>
