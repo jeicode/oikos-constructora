@@ -287,7 +287,6 @@
 }
 
 .card_p .btns_icons::before {
-    content: "";
     position: absolute;
     left: 0;
     right: 0;
@@ -491,7 +490,7 @@
     height: 12px;
 }
 
-:host ::ng-deep .swiper-pagination-bullet-active {    
+:host ::ng-deep .swiper-pagination-bullet-active {
     width: 12px;
     height: 12px;
     background: #253489;
@@ -649,7 +648,8 @@
     width: 100%;
     text-align: left;
 }
-.item_prjct img{
+
+.item_prjct img {
     filter: grayscale(1) brightness(8);
 }
 
