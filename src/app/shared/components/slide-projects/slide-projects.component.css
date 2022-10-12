@@ -135,7 +135,6 @@
 }
 
 .card_p .btns_icons::before {
-    content: "";
     position: absolute;
     left: 0;
     right: 0;
