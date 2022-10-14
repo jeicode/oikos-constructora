@@ -640,6 +640,7 @@
 @media screen and (max-width: 480px) {
     .cnt_inf_h_nota_int {
         gap: 12px;
+        padding-left: 32px;
     }
 
     .h_not_int {

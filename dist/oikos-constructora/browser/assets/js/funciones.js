@@ -82,7 +82,10 @@ const heroProyectos = () => {
 
     lightbox.option({
         'resizeDuration': 200,
-        'wrapAround': true
+        'wrapAround': true,
+        'alwaysShowNavOnTouchDevices': true,
+        'disableScrolling': true,
+        'positionFromTop': 250
     });
 
     $(".js-modal-btn").modalVideo();

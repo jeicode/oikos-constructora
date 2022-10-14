@@ -707,6 +707,10 @@ input {
   border-radius: 10px;
 }
 
+.map google-map, .map .map-container{
+  max-width: 100%;
+}
+
 .map .btn {
   position: absolute;
   bottom: 20px;
@@ -978,6 +982,10 @@ input {
   background: linear-gradient(90deg, #35C24D 0%, #48E263 45.83%, #35C24D 100%);
 }
 
+.descripcion_proyecto{
+  line-height: 21px;
+}
+
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
     font-size: 14px;
@@ -998,6 +1006,7 @@ input {
   }
 
   .c_desc_proyecto {
+    display: flex;
     grid-template-columns: 1fr;
   }
 
@@ -1054,6 +1063,11 @@ input {
     text-align: center;
     justify-content: center;
   }
+
+  .container_pp>h3, .title_section{
+    text-align: center;
+  }
+
 }
 
 @media screen and (max-width: 480px) {

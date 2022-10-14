@@ -13,11 +13,13 @@
                                 <span class="fas fa-map-marker-alt"></span>
                             </a>
                         </div>
-                        <img width="350" height="219" 
-                            defaultImg
-                            [src]="BASE_URL+i?.imagen_principal_proyecto" 
-                            [alt]="i?.alt_principal" 
-                            [title]="i?.title_principal">
+                        <a [routerLink]="['/proyecto', i?.url_amigable]">
+                            <img width="350" height="219" 
+                                defaultImg
+                                [src]="BASE_URL+i?.imagen_principal_proyecto" 
+                                [alt]="i?.alt_principal" 
+                                [title]="i?.title_principal">
+                        </a>
                     </picture>
                     <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
                         <picture>

@@ -1,4 +1,5 @@
 .bg_grad {
+    padding-top: 64px;
     background: linear-gradient(to top, #F0F2F7, #ffffff, #EEF1F9);
 }
 
@@ -253,9 +254,16 @@
     height: 100%;
 }
 
-.card_p picture img {
+.card_p picture a{
     width: 100%;
     height: 100%;
+}
+
+.card_p picture a img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
 }
 
 .card_p .tag_state {

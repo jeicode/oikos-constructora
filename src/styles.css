@@ -475,7 +475,7 @@ h1 {
 }
 
 .cnt_lat_pie {
-    width: 32%;
+    width: 38%;
     height: 100%;
     z-index: 2;
     position: absolute;
@@ -552,14 +552,14 @@ h1 {
 
 .logo_cert_pie img {
     height: auto;
-    max-height: 38px;
+    max-height: 66px;
     object-fit: cover;
 }
 
 .cnt_mid_pie {
     width: 100%;
     padding: 84px 0 80px;
-    padding-left: 36%;
+    padding-left: 40%;
     padding-right: 56px;
     box-sizing: border-box;
     display: flex;
@@ -670,7 +670,7 @@ h1 {
 .cnt_bot_pie {
     width: 100%;
     padding: 12px 0;
-    padding-left: 36%;
+    padding-left: 40%;
     padding-right: 56px;
     box-sizing: border-box;
     display: flex;
@@ -1271,6 +1271,10 @@ input[type=file]::-webkit-file-upload-button {
         flex-direction: column;
         gap: 0;
     }
+
+    .lb-loader, .lightbox{
+        position: fixed;
+    }
 }
 
 /*# sourceMappingURL=estilos.css.map */
@@ -1295,4 +1299,8 @@ input[type=file]::-webkit-file-upload-button {
 
 .c-pointer {
     cursor: pointer;
+}
+
+.map-container{
+    max-width: 100%;
 }

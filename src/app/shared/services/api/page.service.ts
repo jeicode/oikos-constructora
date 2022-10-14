@@ -98,7 +98,7 @@ export class PageService {
    * @returns 
    */
 
-  async getElementsContent(name: string, content: string, condicional?: string, children?: string, excluir?: string, destacado?: string): Promise<any> {
+  async getElementsContent(name: string, content: string, condicional?: string, children?: any, excluir?: string, destacado?: string): Promise<any> {
     const url = `${API_URL}v1/getElementsContent`;
     const values = {
       name,

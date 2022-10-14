@@ -71,6 +71,7 @@ export class Project {
         public title_logo:string = "", 
         public title_principal:string = "", 
         public titulo_proyecto:string = "", 
+        public titulo_proyecto_wsp:string = "", 
         public tourguiado:string = "", 
         public ubicacion_proyecto:string = "", 
         public url_amigable:string = "", 

@@ -6,11 +6,13 @@ import { PagosComponent } from './pages/pagos/pagos.component';
 import { ComponentSharedModule } from 'src/app/shared/components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
+import { InternaPagosComponent } from './interna-pagos/pages/interna-pagos/interna-pagos.component';
 
 
 @NgModule({
   declarations: [
-    PagosComponent
+    PagosComponent,
+    InternaPagosComponent
   ],
   imports: [
     CommonModule,

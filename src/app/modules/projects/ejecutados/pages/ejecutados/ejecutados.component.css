@@ -72,10 +72,12 @@
       padding-bottom: 0px;
     }
     .cnt_list_proy_ejec {
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px;
     }
     .cnt_list_proy_ejec .card_p picture {
-      height: 120px;
+      height: 200px;
     }
     .cnt_list_proy_ejec .card_p picture > img {
       object-fit: cover;
@@ -815,4 +817,9 @@
     .card_p .datos_proyecto {
       padding: 30px 20px 10px;
     }
+
+    .cnt_gen_proy_ejec{
+      min-height:190px ;
+    }
+
   }/*# sourceMappingURL=proyectos_vivienda.css.map */

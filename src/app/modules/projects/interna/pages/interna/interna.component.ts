@@ -277,7 +277,7 @@ export class InternaComponent implements OnInit {
     if(this.contactForm.valid){
       const resp = await this.projService.setCalculadoraForm(values);
       if(resp.resp!='no'){
-        this.router.navigateByUrl(resp.resp)
+        window.location.href = resp.resp;
       }
     }else{
       console.log('Por favor completa todos los datos');
