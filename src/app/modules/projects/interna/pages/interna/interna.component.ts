@@ -93,6 +93,7 @@ export class InternaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.calculoPorcentaje();
     this.configServ.loadHeroProyectos(1000);
     this.configServ.loadChangeTab(1000);
   }
@@ -122,8 +123,9 @@ export class InternaComponent implements OnInit {
         this.actualizarAvanceObraActivo(0, this.fechasAvancesObra[0])
       }
 
-      this.calculoPorcentaje();
-      this.diferenciadordecuotasmensuales();
+
+      await this.calculoPorcentaje();
+      await this.diferenciadordecuotasmensuales();
 
       this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
 
@@ -204,7 +206,7 @@ export class InternaComponent implements OnInit {
   }
 
   async calculoPorcentaje(){
-    var porcentaje = $(".cambiarPorcentaje").val();
+    var porcentaje = this.data.porcentaje_minimo;
     var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
     var plazoaniosa = $(".plazoaniosa").val();
     var financiar = $(".valorafinanciar").val();
@@ -277,7 +279,7 @@ export class InternaComponent implements OnInit {
     if(this.contactForm.valid){
       const resp = await this.projService.setCalculadoraForm(values);
       if(resp.resp!='no'){
-        window.location.href = resp.resp;
+        this.router.navigateByUrl(resp.resp)
       }
     }else{
       console.log('Por favor completa todos los datos');

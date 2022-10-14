@@ -1,0 +1,49 @@
+.cont_central {
+    width: 100%;
+    display: inline-block;
+    max-width: 1300px;
+}
+
+.cont_lista_logos {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    justify-content: center;
+}
+
+.logo_list_pago {
+    width: 22%;
+    position: relative;
+    border: 1px solid #ccc;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    align-content: center;
+    -webkit-align-content: center;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    margin: 10px 1%;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all .3s;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+
+.logo_list_pago img {
+    width: 70%;
+}
+
+.cont_txt_logos_pago {
+    font-size: 16px;
+    font-weight: 700;
+    width: 100%;
+    color: grey;
+    background: #fafafa;
+    padding: 5px 2.5%;
+    box-sizing: border-box;
+}

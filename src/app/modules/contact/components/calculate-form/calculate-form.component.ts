@@ -147,7 +147,8 @@ export class CalculateFormComponent implements OnInit {
 
     if(this.calculateForm.valid){
       const {resp} = await this.projectService.setCalculadoraForm(data);
-      if(resp!='no') this.router.navigateByUrl(resp)
+      console.log(resp)
+      if(resp!='no') window.location.href = resp;
     }else{
       this.showErrors = true
     }

@@ -6,6 +6,7 @@ import { firstValueFrom } from 'rxjs';
 
 const { api_url: API_URL} = environment
 
+declare var $:any;
 @Injectable({
   providedIn: 'root'
 })
@@ -142,5 +143,10 @@ export class PageService {
     return this._http.get(url).toPromise().then();
   }
 
+  closeNav(){
+    if($(".btn_menu_movil").hasClass('active')){
+      $(".btn_menu_movil").click();
+    }
+  }
 
 }

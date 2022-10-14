@@ -6,6 +6,7 @@ import { Blog } from 'src/app/core/models/blog.model';
 import { BlogService } from 'src/app/shared/services/api/blog.service';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { environment } from 'src/environments/environment';
+import { PageService } from 'src/app/shared/services/api/page.service';
 
 @Component({
   selector: 'app-blog-page',
@@ -34,7 +35,7 @@ export class BlogPageComponent implements OnInit {
 
   constructor(private blogService: BlogService, private router: Router, 
               public responsiveService: ResponsiveService,
-              @Inject(DOCUMENT) private doc: Document) {
+              @Inject(DOCUMENT) private doc: Document, private pageService: PageService) {
     this.routerListener = this.router.events.subscribe(async (event:any) => {      
       if (event instanceof NavigationEnd  ) {
 
@@ -52,6 +53,7 @@ export class BlogPageComponent implements OnInit {
   ngOnInit(): void {
     this.init()
     this.oninitIsExecute = true
+    this.pageService.closeNav();
   }
 
 

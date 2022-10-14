@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/thanks/thanks.module').then(m => m.ThanksModule)
   }, 
   {
-    path: 'noticias',
+    path: 'noticias-constructora',
     loadChildren: () => import('./modules/blog/blog.module').then(m => m.BlogModule)
   },
   {
@@ -37,6 +37,9 @@ const routes: Routes = [
   },{
     path: 'proyectos-ejecutados',
     loadChildren: () => import('./modules/projects/ejecutados/ejecutados.module').then( m => m.EjecutadosModule )
+  },{
+    path: 'pagos-constructora',
+    loadChildren: () => import('./modules/pagos/pagos.module').then( m => m.PagosModule )
   },{
     path: '**',
     component: NotFoundPageComponent
