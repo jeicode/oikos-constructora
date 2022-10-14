@@ -51,12 +51,12 @@
                     </div>
                 </div>
             </div>
-            <a  type="submit" class="btn_form_wa" 
-                (click)="sendContactUserWpp()"
-                id="btn_form_wa_{{project.titulo_proyecto_wsp}}" 
-                style="border:none;text-align: center;">
+            <button type="submit" class="btn_form_wa disabled" 
+                    (click)="sendContactUserWpp()"
+                    [disabled]="contactWppForm.invalid"
+                    id="btn_form_wa_{{project.titulo_proyecto_wsp}}">
                 Iniciar conversación
-            </a>
+            </button>
         </form>
     </div>
 </div>
