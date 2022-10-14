@@ -122,6 +122,7 @@ textarea {
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
 }
 
 .btn_link_reset {
@@ -213,6 +214,7 @@ h1 {
 .btn_oikos_logos {
     display: inline-block;
     margin: 0 8px;
+    height: 37px;
 }
 
 .btn_oikos_logos img {
@@ -426,6 +428,7 @@ h1 {
 .miga div {
     display: flex;
     gap: 8px;
+    align-items: center;
 }
 
 .miga a {
@@ -712,7 +715,7 @@ h1 {
 .s_carr_proy {
     width: 100%;
     position: relative;
-    padding: 24px 0 80px;
+    padding: 24px 0 0px;
 }
 
 .bg_round {
@@ -747,7 +750,7 @@ h1 {
     width: 100%;
     box-sizing: border-box;
     position: relative;
-    padding: 32px 0;
+    padding:  0;
 }
 
 .cnt_car_proy_dest .card_p {
@@ -758,7 +761,10 @@ h1 {
 
 .cnt_car_proy_dest .swiper-container {
     overflow: hidden;
-    padding: 0 5% 48px;
+    padding: 0 5% 0;
+}
+.cnt_car_proy_dest .swiper{
+    padding-bottom: 60px;
 }
 
 .cnt_car_proy_dest .swiper-slide {
@@ -801,8 +807,12 @@ h1 {
     .btn_z_clientes,
     .txt_pse {
         font-size: 12px;
+        padding: 0 8px;
+        text-align: center;
     }
-
+    .btn_pse{
+        padding-left: 0px;
+    }
     .nav_bar_h {
         padding: 0 24px;
     }
@@ -1156,6 +1166,11 @@ input[type=file]::-webkit-file-upload-button {
     .title_section {
         font-size: 32px;
     }
+    .logo_pri {
+        width: 104px;
+        height: 60px;
+        top: 45px;
+    }
 
     /*   ESTILOS FOOTER */
     .cnt_mid_pie {
@@ -1210,9 +1225,26 @@ input[type=file]::-webkit-file-upload-button {
     .cnt_gen_cert_pie {
         justify-content: center;
     }
+    .cnt_logos_pie{
+        justify-content: center;
+    }
+    .logo_pie{
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 480px) {
+    .cuerpo{
+        padding-top: 84px;
+    }
+    .miga{
+        margin: 0;
+        font-size: 10px;
+        text-align: left;
+        line-height: 10px;
+    }
+    
     .nav_bar_h {
         padding: 0 8px;
     }
@@ -1224,7 +1256,7 @@ input[type=file]::-webkit-file-upload-button {
     .logo_pri {
         width: 84px;
         height: 50px;
-        top: 26px;
+        top: 45px;
     }
 
     .logo_pri a {

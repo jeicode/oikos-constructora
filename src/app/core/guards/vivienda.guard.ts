@@ -20,8 +20,7 @@ export class ViviendaGuard implements CanActivate {
           this.seoService.setUpMetaTags(page)
           return true;
         }
-
-        this.router.navigateByUrl('404', { skipLocationChange: true });
+        
         return false;
     }
 }

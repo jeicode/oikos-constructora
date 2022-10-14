@@ -42,6 +42,7 @@ export class ComercialesComponent implements OnInit {
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
         this.configServ.goUpPage()
+        this.pageService.closeNav();
       }
     });
   }
@@ -49,6 +50,7 @@ export class ComercialesComponent implements OnInit {
   ngOnInit(): void {
     this.init();
     this.configServ.loadBannerProyectos(1000);
+    this.pageService.closeNav();
   }
 
   async init(){

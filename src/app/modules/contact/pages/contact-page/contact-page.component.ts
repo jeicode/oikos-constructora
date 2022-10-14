@@ -22,6 +22,7 @@ export class ContactPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.init()
+    this.pageService.closeNav();
   }
 
 

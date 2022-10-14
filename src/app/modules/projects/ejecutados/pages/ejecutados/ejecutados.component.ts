@@ -32,6 +32,7 @@ export class EjecutadosComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
+    this.pageService.closeNav();
   }
 
   async init(){

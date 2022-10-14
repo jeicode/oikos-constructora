@@ -1,0 +1,20 @@
+<div class="cuerpo">
+    <app-breadcrumb></app-breadcrumb>
+    <div class="cnt_central" bis_skin_checked="1">
+        <div class="contenidopol" bis_skin_checked="1">
+            <h1 class="title">
+            Pagos Constructora
+            </h1>
+            
+            <section class="cont_central">
+                <div class="cont_lista_logos">
+                    <a href="{{i?.enlace_seccion_categoria_pagos}}" target="_blank" rel="noopener, nofollow" class="logo_list_pago" *ngFor="let i of data">
+                        <img class=" lazyloaded" data-src="{{imagenes+i?.imagen}}" title="" alt="" src="{{imagenes+i?.imagen}}">
+                        <div class="cont_txt_logos_pago">
+                            {{i?.direccion_seccion_categoria_pagos}}               </div>
+                    </a>
+                            </div>
+            </section>
+        </div>
+    </div>
+</div>

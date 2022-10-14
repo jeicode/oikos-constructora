@@ -5,22 +5,24 @@
                 <a  *ngIf="i?.enlace?.includes('https://') ||
                     i?.enlace?.includes('http://'); else routerLink" 
                     [href]="i?.enlace" target="_blank" class="btn_oikos_logos">
+                    <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
                 </a>
                 <ng-template #routerLink>
-                    <a [routerLink]="i?.enlace" target="_blank" class="btn_oikos_logos"></a>
+                    <a [routerLink]="i?.enlace" target="_blank" class="btn_oikos_logos">
+                        <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                    </a>
                 </ng-template>
 
-                <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" 
-                [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                
             </div>
 
 
 
 
-            <a href="" class="btn_z_clientes">
+            <!--<a href="" class="btn_z_clientes">
                 Zona de Clientes
-            </a>
-            <a href="" class="btn_pse">
+            </a>-->
+            <a routerLink="/pagos-constructora" class="btn_pse">
                 <div class="txt_pse">Pague aquí</div>
                 <span class="ic_pse"></span>
             </a>
@@ -36,7 +38,7 @@
 
     <nav class="nav" [ngClass]="{'active': menuMobileIsActive}">
         <ul>
-            <li *ngFor="let i of linksHeader">                
+            <li *ngFor="let i of linksHeader" (click)="closeNav()">                
                 <a  *ngIf="i?.enlace_menu?.includes('https://') ||
                     i?.enlace_menu?.includes('http://'); else routerLink" 
                     [href]="i?.enlace_menu" target="_blank">
@@ -47,7 +49,7 @@
                     <a [routerLink]="i?.enlace_menu">{{i?.field_content}}</a>
                 </ng-template>
             </li>
-            <a routerLink="contactanos" class="btn contacto_h">
+            <a routerLink="contactanos" class="btn contacto_h" (click)="closeNav()">
                 Contacto
             </a>                
         </ul>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
 
+declare var $:any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
@@ -32,8 +33,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  
-
+  closeNav(){
+    if($(".btn_menu_movil").hasClass('active')){
+      $(".btn_menu_movil").click();
+    }
+  }
 
   async getCollectionsPage(){
 
