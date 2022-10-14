@@ -57,7 +57,7 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   
   
   sendContactUserWpp(){
-    console.log("validando")
+
     if (this.contactWppForm.valid){
       this.contactWppForm.patchValue({
         project_id: this.project.id

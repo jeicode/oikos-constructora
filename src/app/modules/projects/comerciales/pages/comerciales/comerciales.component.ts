@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { Project } from 'src/app/core/models/project.model';
+import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 
 declare var $:any;
 @Component({
@@ -35,7 +36,8 @@ export class ComercialesComponent implements OnInit {
   precio_search         : string = "NA";
 
   constructor(private pageService: PageService, private router: Router, 
-              private configServ: ConfigService, private projService: ProjectService) {
+              private configServ: ConfigService, private projService: ProjectService,
+              private responsiveService: ResponsiveService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
@@ -77,7 +79,8 @@ export class ComercialesComponent implements OnInit {
     const typesProject = await this.projService.getHousingTypesByType('2');
     if (typesProject) this.typesProject = typesProject;
 
-    this.ciudades = await this.pageService.getElementsContent('nombre ciudad', 'ciudades');
+    const ciudades = await this.projService.getCitiesByProjectType('2');
+    if (ciudades) this.ciudades = ciudades;
 
     this.banners = await this.pageService.getElementsContent('titulo banner comerciales', 'banner_comerciales');
   }
@@ -96,8 +99,10 @@ export class ComercialesComponent implements OnInit {
 
 
   toogleContainerSearch(){
-    const containerFiltro = document.querySelector('.filtro_proyectos');
-    $(containerFiltro).slideToggle().css('display', 'flex')
+    if(this.responsiveService.isMobile){
+      const containerFiltro = document.querySelector('.filtro_proyectos');
+      $(containerFiltro).slideToggle().css('display', 'flex')
+    }
 
   }
 

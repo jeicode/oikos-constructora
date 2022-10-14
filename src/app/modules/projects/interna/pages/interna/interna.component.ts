@@ -188,8 +188,6 @@ export class InternaComponent implements OnInit {
   actualizarAvanceObraActivo(index:number, fecha:string){
     this.indiceFechaActiva = index
     this.avancesObraActivos = this.avancesObra?.filter( (a:any) => a?.title === fecha);
-
-    this.avancesObraActivos.forEach((element:any) => console.log('%cinterna.component.ts line:150 element.title', 'color: #007acc;', element.title));
   }
 
 

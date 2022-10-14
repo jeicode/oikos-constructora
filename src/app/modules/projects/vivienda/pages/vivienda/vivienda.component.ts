@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { Project } from 'src/app/core/models/project.model';
+import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 
 declare var $:any;
 @Component({
@@ -38,7 +39,8 @@ export class ViviendaComponent implements OnInit {
   notifyChanges: Subject<boolean> = new Subject<boolean>();
 
 
-  constructor(private pageService: PageService, private router: Router, 
+  constructor(private pageService: PageService, private router: Router,
+              private responsiveService:ResponsiveService, 
               private configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
@@ -49,8 +51,10 @@ export class ViviendaComponent implements OnInit {
   }
 
   toogleContainerSearch(){
-    const containerFiltro = document.querySelector('.filtro_proyectos');
-    $(containerFiltro).slideToggle().css('display', 'flex')
+    if(this.responsiveService.isMobile){
+      const containerFiltro = document.querySelector('.filtro_proyectos');
+      $(containerFiltro).slideToggle().css('display', 'flex')
+    }
 
   }
 
@@ -90,10 +94,13 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getSecciones() {
+
+    const ciudades = await this.projService.getCitiesByProjectType('1');
+    if (ciudades) this.ciudades = ciudades;
+
     const typesProject = await this.projService.getHousingTypesByType('1');
     if (typesProject) this.typesProject = typesProject;
     
-    this.ciudades = await this.pageService.getElementsContent('nombre ciudad', 'ciudades');
     this.banners = await this.pageService.getElementsContent('titulo banner vivienda', 'banner_vivienda');
   }
 

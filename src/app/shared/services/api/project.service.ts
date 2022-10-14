@@ -14,7 +14,13 @@ export class ProjectService {
 
   constructor(private _http: HttpClient) {}
 
-  
+  async getCitiesByProjectType(project_type:string):Promise<any>{
+    const url = `${API_URL}v1/getCitiesByProjectType?project_type=${project_type}`;
+    return firstValueFrom(this._http.get(url)).then().catch(err => {
+      console.warn(err)
+      return false
+    });
+  }
 
   /**
    * @returns Promise<any>
