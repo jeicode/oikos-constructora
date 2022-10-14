@@ -1,0 +1,98 @@
+.tabs_proyectos_eject {
+    margin: 0 0 40px;
+}
+
+.holder {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+:host ::ng-deep .holder a:not(.jp-previous, .jp-next),
+:host ::ng-deep .holder span {
+    display: none;
+}
+
+:host ::ng-deep .holder .jp-previous,
+:host ::ng-deep .holder .jp-next {
+    color: #182360 !important;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+:host ::ng-deep .holder .jp-previous.jp-disabled,
+:host ::ng-deep .holder .jp-next.jp-disabled {
+    opacity: 0.5;
+}
+
+
+.cont_proyecto_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.cont_proyecto_logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E4E4E4;
+    max-width: 100px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: 400ms ease;
+    border-radius: 9px;
+}
+
+.cont_proyecto_logo a img {
+    border-radius: 9px;
+}
+
+.cont_proyecto_logo a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    width: 70px;
+    height: 60px;
+    border-radius: 100%;
+    margin: auto;
+    z-index: -1;
+    background: #333663;
+    opacity: 0;
+    filter: blur(26px);
+    transition: 400ms ease;
+}
+
+.cont_proyecto_logo a:hover {
+    transform: scale(1.2) translateY(0px);
+    z-index: 2;
+}
+
+.cont_proyecto_logo a:hover::before {
+    opacity: 0.58;
+    bottom: -20px;
+}
+
+.cont_proyecto_logo a.active {
+    transform: scale(1.05) translateY(-15px);
+    z-index: 2;
+}
+
+.cont_proyecto_logo a.active::before {
+    opacity: 0.58;
+    bottom: -10px;
+}
+
+.cont_proyecto_logo a img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

@@ -9,7 +9,7 @@
             <div class="c_proyecto_vivienda">
                 <h1 class="title_section al_center" [innerHTML]="data.titulo_proyecto_vivienda"></h1>
                 <div class="container_filtro">
-                    <div class="act_filtro_mobile">
+                    <div class="act_filtro_mobile" (click)="toogleContainerSearch()">
                         <h3>
                             {{data.titulo_busqueda}}
                         </h3>
@@ -24,7 +24,7 @@
                         </select>
                         <select #nomTipo (change)="getTipo(nomTipo.value)" class="filtroTipo">
                             <option value="NA" selected>Tipo de vivienda</option>
-                            <option value="{{i?.id}}" *ngFor="let i of tipo_proyecto">{{i?.field_content}}</option>
+                            <option value="{{i?.id}}" *ngFor="let i of typesProject">{{i?.field_content}}</option>
                         </select>
                         <select #nomPrecio class="precio filtroPrecio" (change)="getPrecio(nomPrecio.value)">
                             <option value="NA" selected>Precio</option>
@@ -70,7 +70,6 @@
                         <h4 *ngIf="i?.valor_proyecto!='' && i?.valor_proyecto!=null"><span>Desde</span> ${{i?.valor_proyecto_formato}} </h4>
                     </div>
                     <div class="franja_p">
-                        <!--<img width="20" height="20" src="images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">-->
                         <span> {{i?.texto_adicional}} </span>
                     </div>
                     <div class="ctas_proyectos">
@@ -118,16 +117,7 @@
     
                 <div class="title_section al-center" [innerHTML]="data.subtitulo_proyectos_ejecutados"></div>
     
-                <div class="tabs_proyectos_eject">
-    
-                    <div class="holder"></div>
-    
-                    <div class="cont_proyecto_logo" id="itemContainer">
-                        <a class="animate__animated animate__fadeIn tab_logo_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
-                            <img width="76" height="65" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}">
-                        </a>
-                    </div>
-                </div>
+                <app-executed-projects-slide-pag></app-executed-projects-slide-pag>
     
                 <div class="cont_proyecto_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
                     <div class="info_pe">

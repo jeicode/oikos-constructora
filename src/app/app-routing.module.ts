@@ -22,13 +22,16 @@ const routes: Routes = [
   {
     path: 'proyectos-construccion-vivienda',
     loadChildren: () => import('./modules/projects/vivienda/vivienda.module').then(m => m.ViviendaModule)
-  },{
+  },
+  {
     path: 'proyectos-construccion-comerciales-industriales',
     loadChildren: () => import('./modules/projects/comerciales/comerciales.module').then( m => m.ComercialesModule )
-  },{
+  },
+  {
     path: 'proyecto/:slug',
     loadChildren: () => import('./modules/projects/interna/interna.module').then(m => m.InternaModule)
-  },{
+  },
+  {
     path: 'legales/:slug',
     loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
   },{

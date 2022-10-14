@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
 import SwiperCore,{ Navigation, Pagination, SwiperOptions, Lazy} from 'swiper';
+import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
 
 SwiperCore.use([Navigation, Pagination, Lazy]);
 
@@ -18,6 +19,8 @@ declare var $:any;
   styleUrls: ['./interna.component.css']
 })
 export class InternaComponent implements OnInit {
+
+  breadcrumbs:Breadcrumb[] = [];
 
   // swiper
   config:SwiperOptions = {
@@ -34,7 +37,7 @@ export class InternaComponent implements OnInit {
   datosCuota            : any = [];
   datosAnio             : any = [];
   galeria               : any = [];
-  avancesObra           : any = []; 
+  avancesObra           : any = [];
   avancesObraActivos    : any = [];
   fechasAvancesObra     : any = [];
   indiceFechaActiva     : number = 0;
@@ -64,11 +67,11 @@ export class InternaComponent implements OnInit {
   })
 
 
-  constructor(  private configServ: ConfigService, 
-                private projService: ProjectService, 
-                private router: Router, 
-                private activateRoute: ActivatedRoute, 
-                private fb: FormBuilder, 
+  constructor(  private configServ: ConfigService,
+                private projService: ProjectService,
+                private router: Router,
+                private activateRoute: ActivatedRoute,
+                private fb: FormBuilder,
                 private formServ: FormService) {
     this.slug = this.activateRoute.snapshot.paramMap.get('slug');
     this.imagenes_url = environment.imagenes_url;
@@ -100,9 +103,13 @@ export class InternaComponent implements OnInit {
 
     if (data){
       this.data = data;
-      
+
+      const {seccion} = this.data
+
+      this.breadcrumbs = this.getBreadcrumbList(seccion);
+
       this.porcFinanciar = (100-this.data?.porcentaje_minimo);
-      
+
       this.zonas = this.data?.zonas;
       this.galeria = this.data?.galeria;
       this.planos = this.data?.planos;
@@ -114,17 +121,17 @@ export class InternaComponent implements OnInit {
         this.fechasAvancesObra = this.configServ.removeRepeatElementsArray(listDates);
         this.actualizarAvanceObraActivo(0, this.fechasAvancesObra[0])
       }
-  
+
       this.calculoPorcentaje();
       this.diferenciadordecuotasmensuales();
-  
+
       this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
-  
+
       this.center = {
         lat: this.data.latitude,
         lng: this.data.longitude
       }
-  
+
       this.markers = [];
       this.markers.push({
         position: {
@@ -143,8 +150,38 @@ export class InternaComponent implements OnInit {
     }
   }
 
+
+  getBreadcrumbList(seccion:string):any[]{
+    let breads = [new Breadcrumb('Oikos Constructora', '/'),]
+
+    switch (seccion) {
+      case '1':
+        breads.push(
+          new Breadcrumb('Proyectos contrucción vivienda', '/proyectos-construccion-vivienda'),
+          new Breadcrumb(this.data?.titulo_proyecto),
+        )
+        break;
+      
+      case '2':
+        breads.push(
+          new Breadcrumb('Proyectos contrucción comerciales', '/proyectos-construccion-comerciales-industriales'),
+          new Breadcrumb(this.data?.titulo_proyecto),
+        )
+        break;
+      
+      case '4':
+          breads.push(
+            new Breadcrumb('Proyectos ejecutados', '/proyectos-ejecutados'),
+            new Breadcrumb(this.data?.titulo_proyecto),
+        )
+          break;
+    }
+    return breads;
+    
+  }
+
   /**
-   * 
+   *
    * @param index indice de la fecha activa
    * @param fecha parametro de fecha para hacer el filtro
    */
@@ -153,7 +190,6 @@ export class InternaComponent implements OnInit {
     this.avancesObraActivos = this.avancesObra?.filter( (a:any) => a?.title === fecha);
 
     this.avancesObraActivos.forEach((element:any) => console.log('%cinterna.component.ts line:150 element.title', 'color: #007acc;', element.title));
-    // console.log('%cinterna.component.ts line:149 this.avancesObraActivos', 'color: #007acc;', this.avancesObraActivos);
   }
 
 

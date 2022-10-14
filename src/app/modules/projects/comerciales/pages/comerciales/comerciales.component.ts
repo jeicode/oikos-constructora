@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
-import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
+import { Project } from 'src/app/core/models/project.model';
 
 declare var $:any;
 @Component({
@@ -19,10 +19,10 @@ export class ComercialesComponent implements OnInit {
   general               : any = []; //data website
   imagenes              : any = [];
   ciudades              : any = [];
-  tipo_proyecto         : any = [];
+  typesProject         : any = [];
   proyectos             : any = [];
   banners               : any = [];
-  ejecutados            : any = [];
+  ejecutados            : Project[] = [];
   precios               : any = [];
   suscribeListenRouter  : Subscription;
   isSubmitted           : boolean = false;
@@ -46,7 +46,6 @@ export class ComercialesComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    this.configServ.loadSearchMobile(1000);
     this.configServ.loadBannerProyectos(1000);
   }
 
@@ -75,8 +74,10 @@ export class ComercialesComponent implements OnInit {
   }
 
   async getSecciones() {
+    const typesProject = await this.projService.getHousingTypesByType('2');
+    if (typesProject) this.typesProject = typesProject;
+
     this.ciudades = await this.pageService.getElementsContent('nombre ciudad', 'ciudades');
-    this.tipo_proyecto = await this.pageService.getElementsContent('titulo tipo proyecto', 'tipos_proyectos');
 
     this.banners = await this.pageService.getElementsContent('titulo banner comerciales', 'banner_comerciales');
   }
@@ -93,6 +94,13 @@ export class ComercialesComponent implements OnInit {
     this.precio_search = precio;
   }
 
+
+  toogleContainerSearch(){
+    const containerFiltro = document.querySelector('.filtro_proyectos');
+    $(containerFiltro).slideToggle().css('display', 'flex')
+
+  }
+
   async getProyectos(){
     this.proyectos = await this.projService.getProyectosByTipo('2');
 
@@ -104,6 +112,7 @@ export class ComercialesComponent implements OnInit {
   }
 
   async buscarProyectos(){
+    this.toogleContainerSearch()
     this.proyectos = await this.projService.getProyectosByTipo('2', this.ciudad, this.tipo_search, this.precio_search);
 
     if(this.proyectos.length==0){
@@ -114,6 +123,7 @@ export class ComercialesComponent implements OnInit {
   }
 
   async limpiarFiltros(){
+    this.toogleContainerSearch()
     this.getProyectos();
     $(".filtroCiudad").val("NA");
     $(".filtroTipo").val("NA");

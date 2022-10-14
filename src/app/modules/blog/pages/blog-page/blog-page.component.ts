@@ -28,7 +28,7 @@ export class BlogPageComponent implements OnInit {
   interestBlogs:Blog[] = []
   blogs:Blog[] = []
 
-  numberRoutesToDelete:number = 2;
+  spliceRoutes:number[] = [];
 
   routerListener:Subscription;
 
@@ -38,7 +38,7 @@ export class BlogPageComponent implements OnInit {
     this.routerListener = this.router.events.subscribe(async (event:any) => {      
       if (event instanceof NavigationEnd  ) {
 
-        if (router.url.includes('pagina/')) this.numberRoutesToDelete = 2
+        if (router.url.includes('pagina/')) this.spliceRoutes = [2,4];
         this.blogs = this.blogService.currentBlogs
         this.numPage = this.blogService.currentNumPage
         this.remainingPages = this.blogService.remainingPages

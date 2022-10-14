@@ -10,7 +10,7 @@
         <div class="c_proyecto_vivienda">
             <h1 class="title_section al_center" [innerHTML]="data.titulo_proyecto_comerciales"></h1>
             <div class="container_filtro">
-                <div class="act_filtro_mobile">
+                <div class="act_filtro_mobile" (click)="toogleContainerSearch()">
                     <h3>
                         {{data.titulo_busqueda}}
                     </h3>
@@ -24,8 +24,8 @@
                         <option value="{{i?.id}}" *ngFor="let i of ciudades">{{i?.field_content}}</option>
                     </select>
                     <select #nomTipo (change)="getTipo(nomTipo.value)" class="filtroTipo">
-                        <option value="NA" selected>Tipo de vivienda</option>
-                        <option value="{{i?.id}}" *ngFor="let i of tipo_proyecto">{{i?.field_content}}</option>
+                        <option value="NA" selected>Tipo de proyecto comercial</option>
+                        <option value="{{i?.id}}" *ngFor="let i of typesProject">{{i?.field_content}}</option>
                     </select>
                     <select #nomPrecio class="precio filtroPrecio" (change)="getPrecio(nomPrecio.value)">
                         <option value="NA" selected>Precio</option>
@@ -116,16 +116,7 @@
 
             <div class="title_section al-center" [innerHTML]="data.subtitulo_proyectos_ejecutados"></div>
 
-            <div class="tabs_proyectos_eject">
-
-                <div class="holder"></div>
-
-                <div class="cont_proyecto_logo" id="itemContainer">
-                    <a class="animate__animated animate__fadeIn tab_logo_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
-                        <img width="76" height="65" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}">
-                    </a>
-                </div>
-            </div>
+            <app-executed-projects-slide-pag></app-executed-projects-slide-pag>
 
             <div class="cont_proyecto_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
                 <div class="info_pe">
@@ -140,14 +131,14 @@
                         <div> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
                         <div> <b> Zona:</b> {{i?.zona_proyecto}}</div>
                     </div>
-                    <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn contacto_h">Ver proyecto</a>
+                    <!-- <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn contacto_h">Ver proyecto</a> -->
                 </div>
                 <div class="c_slider_pe">
                     <!-- Swiper -->
                     <div class="swiper swiperPe">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" *ngFor="let k of i?.galeria">
-                                <img width="530" height="390" src="{{imagenes_url+k?.field_content}}" alt="{{i?.titulo_proyecto}}">
+                            <div class="swiper-slide">
+                                <img width="530" height="390" src="{{imagenes_url+i?.imagen_principal_proyecto}}" alt="{{i?.alt_principal}}">
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>

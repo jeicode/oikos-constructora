@@ -1,9 +1,21 @@
 <header class="header">
     <div class="topbar_h">
         <div class="cnt_inf_topbar_h">
-            <a *ngFor="let i of logos" [routerLink]="i?.enlace" class="btn_oikos_logos">
-                <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
-            </a>
+            <div *ngFor="let i of logos">
+                <a  *ngIf="i?.enlace?.includes('https://') ||
+                    i?.enlace?.includes('http://'); else routerLink" 
+                    [href]="i?.enlace" target="_blank" class="btn_oikos_logos">
+                </a>
+                <ng-template #routerLink>
+                    <a [routerLink]="i?.enlace" target="_blank" class="btn_oikos_logos"></a>
+                </ng-template>
+
+                <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" 
+                [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+            </div>
+
+
+
 
             <a href="" class="btn_z_clientes">
                 Zona de Clientes
@@ -24,8 +36,16 @@
 
     <nav class="nav" [ngClass]="{'active': menuMobileIsActive}">
         <ul>
-            <li *ngFor="let i of linksHeader">
-                <a [routerLink]="i?.enlace_menu">{{i?.field_content}}</a>                            
+            <li *ngFor="let i of linksHeader">                
+                <a  *ngIf="i?.enlace_menu?.includes('https://') ||
+                    i?.enlace_menu?.includes('http://'); else routerLink" 
+                    [href]="i?.enlace_menu" target="_blank">
+                    {{i?.field_content}}
+                </a>
+
+                <ng-template #routerLink>
+                    <a [routerLink]="i?.enlace_menu">{{i?.field_content}}</a>
+                </ng-template>
             </li>
             <a routerLink="contactanos" class="btn contacto_h">
                 Contacto

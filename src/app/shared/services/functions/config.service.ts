@@ -2,7 +2,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 
-declare function searchMobile() : any;
 declare function heroProyectos() : any;
 declare function changeTab() : any;
 declare function bannerProyectos() : any;
@@ -38,13 +37,6 @@ export class ConfigService {
     }
   }
 
-  loadSearchMobile(time = 0){
-    if (this.isBrowser) {
-      setTimeout(() => {
-        searchMobile()
-      }, time);
-    }
-  }
 
   loadHeroProyectos(time = 0){
     if (this.isBrowser) {

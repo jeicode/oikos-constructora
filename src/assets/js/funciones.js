@@ -27,14 +27,6 @@ const changeTab = () => {
 
 }
 
-const searchMobile = () => {
-    const btnFiltro = document.querySelector('.act_filtro_mobile');
-    const containerFiltro = document.querySelector('.filtro_proyectos');
-
-    $(btnFiltro).click(function(){
-        $(containerFiltro).slideToggle().css('display', 'flex')
-    })
-}
 
 const heroProyectos = () => {
     /* SLIDER THUMBS */
@@ -184,77 +176,6 @@ const bannerEjecutados = () => {
             el: ".swiper-pagination",
         },
     });
-    
-    if ($(window).width() >= 960) {
-        $(function(){
-            /* initiciate jPages */
-            $("div.holder").jPages({
-                previous:'← Anterior',
-                next:'Siguiente →',
-                perPage:7,
-                startRange: 0,
-                midRange:0,
-                endRange:0,
-                containerID : "itemContainer",
-                animation   : "bounceInUp"
-            }).pages.showing = false;
-            /* on select change */
-            $("select").change(function(){
-                /* get new css animation */
-            var newAnimation = $(this).val();
-            /* destroy jPages and initiate plugin again */
-            $("div.holder").jPages("destroy").jPages({
-                    containerID   : "itemContainer",
-                    animation     : newAnimation
-                });
-            });
-        });
-    }
-    else if ($(window).width() >= 480) {
-        $(function(){
-            /* initiciate jPages */
-            $("div.holder").jPages({
-                previous:'← Anterior',
-                next:'Siguiente →',
-                perPage:4,
-                containerID : "itemContainer",
-                animation   : "bounceInUp"
-            });
-            /* on select change */
-            $("select").change(function(){
-                /* get new css animation */
-            var newAnimation = $(this).val();
-            /* destroy jPages and initiate plugin again */
-            $("div.holder").jPages("destroy").jPages({
-                    containerID   : "itemContainer",
-                    animation     : newAnimation
-                });
-            });
-        });
-    }
-    else{
-        $(function(){
-            /* initiciate jPages */
-            $("div.holder").jPages({
-                previous:'← Anterior',
-                next:'Siguiente →',
-                perPage:3,
-                containerID : "itemContainer",
-                animation   : "bounceInUp"
-            });
-            /* on select change */
-            $("select").change(function(){
-                /* get new css animation */
-            var newAnimation = $(this).val();
-            /* destroy jPages and initiate plugin again */
-            $("div.holder").jPages("destroy").jPages({
-                    containerID   : "itemContainer",
-                    animation     : newAnimation
-                });
-            });
-        });
-    }
-
     
 
     /* FUNCION TABS PROYECTOS EJECUTADOS */

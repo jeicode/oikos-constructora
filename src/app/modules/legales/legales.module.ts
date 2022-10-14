@@ -5,6 +5,7 @@ import { LegalesRoutingModule } from './legales-routing.module';
 import { LegalesComponent } from './pages/legales/legales.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentSharedModule } from 'src/app/shared/components/components.module';
+import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { ComponentSharedModule } from 'src/app/shared/components/components.modu
     CommonModule,
     LegalesRoutingModule,
     HttpClientModule,
-    ComponentSharedModule
+    ComponentSharedModule,
+    // components
+    BreadcrumbComponent
   ]
 })
 export class LegalesModule { }

@@ -19,8 +19,8 @@ export class ViviendaComponent implements OnInit {
   general               : any = []; //data website
   imagenes              : any = [];
   ciudades              : any = [];
-  tipo_proyecto         : any = [];
   proyectos             : Project[] = [];
+  typesProject          : any = [];
   banners               : any = [];
   ejecutados            : any = [];
   precios               : any = [];
@@ -48,9 +48,15 @@ export class ViviendaComponent implements OnInit {
     });
   }
 
+  toogleContainerSearch(){
+    const containerFiltro = document.querySelector('.filtro_proyectos');
+    $(containerFiltro).slideToggle().css('display', 'flex')
+
+  }
+
+
   ngOnInit(): void {
     this.init();
-    this.configServ.loadSearchMobile(1000);
     this.configServ.loadBannerProyectos(1000);
   }
 
@@ -59,7 +65,6 @@ export class ViviendaComponent implements OnInit {
       () => this.getData(),
       () => this.getSecciones(),
       () => this.getProyectos(),
-      () => this.getEjecutados(),
       () => this.getPreciosProyectos()
     ]
 
@@ -85,9 +90,10 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getSecciones() {
+    const typesProject = await this.projService.getHousingTypesByType('1');
+    if (typesProject) this.typesProject = typesProject;
+    
     this.ciudades = await this.pageService.getElementsContent('nombre ciudad', 'ciudades');
-    this.tipo_proyecto = await this.pageService.getElementsContent('titulo tipo proyecto', 'tipos_proyectos');
-
     this.banners = await this.pageService.getElementsContent('titulo banner vivienda', 'banner_vivienda');
   }
 
@@ -114,6 +120,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async buscarProyectos(){
+    this.toogleContainerSearch();
     this.proyectos = await this.projService.getProyectosByTipo('1', this.ciudad, this.tipo_search, this.precio_search);
 
     if(this.proyectos.length==0){
@@ -124,15 +131,11 @@ export class ViviendaComponent implements OnInit {
   }
 
   async limpiarFiltros(){
+    this.toogleContainerSearch();
     this.getProyectos();
     $(".filtroCiudad").val("NA");
     $(".filtroTipo").val("NA");
     $(".filtroPrecio").val("NA");
-  }
-
-  async getEjecutados(){
-    this.ejecutados = await this.projService.getProyectosByTipo('4');
-    this.configServ.loadbannerEjecutados(1000);
   }
 
   async getPreciosProyectos(){

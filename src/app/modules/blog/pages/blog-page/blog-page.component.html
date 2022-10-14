@@ -7,7 +7,7 @@
 
         <div class="cnt_central">
             
-            <app-breadcrumb [numberRoutesToDelete]="numberRoutesToDelete"></app-breadcrumb>
+            <app-breadcrumb [spliceRoutes]="spliceRoutes"></app-breadcrumb>
 
             <div class="row_h_gen_noticias">
                 Noticias
@@ -23,7 +23,7 @@
                             [title]="mainBlog.imagen_title" width="616" height="375">
                     </div>
                     <div class="cnt_inf_not_dest">
-                        <div class="cat_not">
+                        <div class="cat_not" *ngIf="mainBlog.nombre_categoria">
                             {{ mainBlog.nombre_categoria }}
                         </div>
                         <div class="row_fecha">
@@ -46,7 +46,7 @@
                                 width="282" height="178">
                         </div>
                         <div class="cnt_inf_not_dest">
-                            <div class="cat_not">
+                            <div class="cat_not" *ngIf="i.nombre_categoria">
                                 {{ i?.nombre_categoria }}
                             </div>
                             <div class="row_fecha">
@@ -86,7 +86,7 @@
                             <div class="img_not_list">
                                 <img defaultImg [src]="BASE_URL+i?.imagen" [alt]="i?.imagen_alt" [title]="i?.imagen_title">
                             </div>
-                            <div class="catedoria">
+                            <div class="catedoria" *ngIf="i.nombre_categoria">
                                 {{ i?.nombre_categoria }}
                             </div>
                             <div class="cnt_inf_nota_list">

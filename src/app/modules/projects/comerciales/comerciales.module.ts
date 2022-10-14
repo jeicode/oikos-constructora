@@ -6,6 +6,7 @@ import { ComercialesComponent } from './pages/comerciales/comerciales.component'
 import { ComponentSharedModule } from 'src/app/shared/components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
+import { ExecutedProjectsSlidePagComponent } from 'src/app/shared/components/executed-projects-slide-pag/executed-projects-slide-pag.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
     ComercialesRoutingModule,
     ComponentSharedModule,
     HttpClientModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ExecutedProjectsSlidePagComponent
   ]
 })
 export class ComercialesModule { }

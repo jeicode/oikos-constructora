@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
 
 @Component({
@@ -12,32 +13,62 @@ import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
     RouterModule
   ]
 })
-export class BreadcrumbComponent implements OnInit {
+export class BreadcrumbComponent implements OnInit, OnDestroy {
 
   @Input() cssClass:string = "";
   @Input() colorTxt:string = "" || "black"
   @Input() crumbTitle: string = "";
   @Input() breadcrumbs:Breadcrumb[] = []
-  @Input() numberRoutesToDelete:number = 0;
-  @Input() test:number = 0
+  @Input() spliceRoutes:number[] = [];
 
-  constructor(private router: Router) {}
+  private paths:string[] = [];
+  private ngOnInitFirstCalled:boolean = false;
+  private suscribeListenRouter:Subscription;
+
+  constructor(private router: Router) {
+    this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
+      if (event instanceof NavigationEnd  ) {
+        if (this.ngOnInitFirstCalled){
+          this.ngOnInit()
+          this.mappingRoutes()
+        }
+      }
+    });
+  }
 
 
-  
+  ngOnDestroy(): void {
+    this.suscribeListenRouter.unsubscribe()
+  }
   ngOnInit(): void {
+
+    this.paths = this.router.url.split('/');
+
+    this.paths = this.deletePathsInRoute()
+    this.paths = this.clearPaths()
     
-    let paths = this.router.url.split('/');
-    let {paths:completePaths, crumbTitle} = this.deletePathsInRoute(paths)
-    paths = completePaths;
-    
-    if (!this.crumbTitle)  {
-      this.crumbTitle = this.capitalizeFirstLetter(crumbTitle)
+    if (this.crumbTitle) {
+      this.paths.splice(this.paths.length-1, this.paths.length);
+      this.paths.push(this.crumbTitle)
     }
     
-    let linkBuilder = ''
-    this.breadcrumbs = paths.map( p => {
 
+    if(this.breadcrumbs.length === 0){
+      this.mappingRoutes()
+    }
+
+    this.ngOnInitFirstCalled = true
+
+  }
+
+
+  /**
+   * 
+   * @returns 
+   */
+  mappingRoutes(){
+    let linkBuilder = ''
+    this.breadcrumbs = this.paths.map( p => {
       linkBuilder += `${p}/`
       const crumb = new Breadcrumb()
       crumb.title = this.capitalizeFirstLetter(p)
@@ -52,16 +83,25 @@ export class BreadcrumbComponent implements OnInit {
    * @param paths ex: '[noticias,proyectos]'
    * @returns 
    */
-  deletePathsInRoute(paths:string[]){
-    let pathsLen = paths.length
-    if (this.numberRoutesToDelete && (this.numberRoutesToDelete < pathsLen)) {
-      paths.splice( paths.length - this.numberRoutesToDelete, pathsLen)
+  deletePathsInRoute(){
+    if (this.spliceRoutes.length > 0) {
+      const [pos1, pos2] = this.spliceRoutes
+      this.paths.splice(pos1, pos2)
     }
-  
-    let [crumbTitle] = paths.splice( pathsLen-1, pathsLen);
-    crumbTitle = crumbTitle.replace(/-/ig, ' ');
-    return { paths, crumbTitle }
+    return this.paths
   }
+
+
+  /**
+   * 
+   * @returns 
+   */
+  clearPaths():string[]{
+    return this.paths.map( p => p.replace(/-/ig, ' ')) // clear path
+  }
+
+
+
 
 
   /**

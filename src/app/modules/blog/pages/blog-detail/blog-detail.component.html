@@ -11,7 +11,9 @@
             <app-breadcrumb colorTxt="white" [crumbTitle]="activeBlog.title_new"></app-breadcrumb>
 
             <div class="cnt_inf_h_nota_int">
-                <div class="cat_not_int">{{ activeBlog.nombre_categoria }}</div>
+                <div class="cat_not_int" *ngIf="activeBlog.nombre_categoria">
+                    {{ activeBlog.nombre_categoria }}
+                </div>
                 <div class="h_not_int">
                     {{ activeBlog.title_new }}
                 </div>

@@ -1,0 +1,10 @@
+<div class="tabs_proyectos_eject">
+    <div class="holder"></div>
+
+    <div class="cont_proyecto_logo" id="itemContainer">
+        <a class="animate__animated animate__fadeIn tab_logo_eject" 
+            [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
+            <img width="76" height="65" src="{{BASE_URL+i?.logo_proyecto}}" alt="{{i?.alt_logo}}">
+        </a>
+    </div>
+</div>

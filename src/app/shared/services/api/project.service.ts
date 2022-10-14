@@ -13,6 +13,19 @@ export class ProjectService {
   currentPage : any;
 
   constructor(private _http: HttpClient) {}
+
+  
+
+  /**
+   * @returns Promise<any>
+   */
+  async getHousingTypesByType(project_type:string):Promise<any>{
+    const url = `${API_URL}v1/getHousingTypesByType?project_type=${project_type}`;
+    return firstValueFrom(this._http.get(url)).then().catch(err => {
+      console.warn(err)
+      return false
+    });
+  }
   
 
   /**

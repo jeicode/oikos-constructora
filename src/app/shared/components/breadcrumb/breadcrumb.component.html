@@ -1,7 +1,13 @@
 <div class="miga" [style.color]="colorTxt">
     <div *ngFor="let i of breadcrumbs; let index = index">
-        <a [style.color]="colorTxt" [routerLink]="i?.link">{{i?.title}}</a>
-        <span class="fas fa-chevron-right"></span>
+        <div *ngIf="index < breadcrumbs.length - 1;else lastItem" >
+            <a [style.color]="colorTxt" [routerLink]="i?.link">{{i?.title}}</a>
+            <span class="fas fa-chevron-right"></span>
+        </div>
+
+        <ng-template #lastItem>
+            <a [style.color]="colorTxt">{{i?.title}}</a>
+        </ng-template>
+        
     </div>
-    <a [style.color]="colorTxt">{{crumbTitle}}</a>
 </div>
