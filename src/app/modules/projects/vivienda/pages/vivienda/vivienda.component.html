@@ -111,7 +111,7 @@
         </div>
     </section>
     
-    <section class="s_proyectos_ejecutados" style="display:none">
+    <section class="s_proyectos_ejecutados">
         <div class="cnt_central">
             <div class="c_proyectos_ejecutados">
     
@@ -119,7 +119,8 @@
     
                 <app-executed-projects-slide-pag></app-executed-projects-slide-pag>
     
-                <div class="cont_proyecto_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" *ngFor="let i of ejecutados; index as j">
+                <div class="cont_proyecto_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" 
+                    *ngFor="let i of ejecutados; index as j">
                     <div class="info_pe">
                         <div class="title_pe">
                             <h2>{{i?.titulo_proyecto}}</h2>
@@ -132,20 +133,19 @@
                             <div> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
                             <div> <b> Zona:</b> {{i?.zona_proyecto}}</div>
                         </div>
-                        <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn contacto_h">Ver proyecto</a>
                     </div>
                     <div class="c_slider_pe">
                         <!-- Swiper -->
                         <div class="swiper swiperPe">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide" *ngFor="let k of i?.galeria">
-                                    <img width="530" height="390" src="{{imagenes_url+k?.field_content}}" alt="{{i?.titulo_proyecto}}">
+                                <div class="swiper-slide">
+                                    <img width="530" height="390" src="{{imagenes_url+i?.imagen_principal_proyecto}}" alt="{{i?.alt_principal}}">
                                 </div>
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
                     </div>
-                </div>            
+                </div>           
     
             </div>
         </div>

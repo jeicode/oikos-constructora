@@ -593,7 +593,7 @@
   justify-content: center;
   width: 100%;
   align-items: stretch;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/bg_pe.jpg"), rgba(10, 16, 45, 0.9215686275);
+  background: url("/assets/images/diseno/proyectos_vivienda/bg_pe.jpg"), rgba(10, 16, 45, 0.9215686275);
   border-radius: 48px 48px 97px 48px;
   background-blend-mode: multiply;
   background-size: cover;

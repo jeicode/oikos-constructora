@@ -49,7 +49,6 @@ export class ComercialesComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    this.configServ.loadBannerProyectos(1000);
     this.pageService.closeNav();
   }
 

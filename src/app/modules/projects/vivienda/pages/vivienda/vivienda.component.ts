@@ -46,6 +46,7 @@ export class ViviendaComponent implements OnInit {
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
         this.configServ.goUpPage()
+        this.pageService.closeNav();
       }
     });
   }
@@ -61,7 +62,7 @@ export class ViviendaComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    this.configServ.loadBannerProyectos(1000);
+    this.pageService.closeNav();
   }
 
   async init(){
@@ -69,6 +70,7 @@ export class ViviendaComponent implements OnInit {
       () => this.getData(),
       () => this.getSecciones(),
       () => this.getProyectos(),
+      () => this.getEjecutados(),
       () => this.getPreciosProyectos()
     ]
 
@@ -85,6 +87,11 @@ export class ViviendaComponent implements OnInit {
 
   async getData(){
     this.data = await this.pageService.getContentPage('proyectos-construccion-vivienda')
+  }
+
+  async getEjecutados(){
+    this.ejecutados = await this.projService.getProyectosByTipo('4');
+    this.configServ.loadbannerEjecutados(1000);
   }
 
   async getImagenes(){

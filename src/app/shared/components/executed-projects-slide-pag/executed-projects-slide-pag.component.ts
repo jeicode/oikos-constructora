@@ -44,7 +44,7 @@ export class ExecutedProjectsSlidePagComponent implements OnInit {
               endRange:0,
               containerID : "itemContainer",
               animation   : "bounceInUp"
-          }).pages.showing = false;
+          }).pages["showing"] = false;
           /* on select change */
           $("select").change(function(){
 
