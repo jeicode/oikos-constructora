@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angul
 import { BlogService } from "src/app/shared/services/api/blog.service";
 import { PageService } from "src/app/shared/services/api/page.service";
 import { ConfigService } from "src/app/shared/services/functions/config.service";
+import { ResponsiveService } from "src/app/shared/services/functions/responsive.service";
 import { SeoService } from "src/app/shared/services/functions/seo.service";
 
 
@@ -13,6 +14,7 @@ export class BlogGuard implements CanActivate {
     constructor(  private blogService: BlogService, 
                   private configServ: ConfigService,
                   private seoService: SeoService,
+                  private responsiveService:ResponsiveService,
                   private pageService:PageService) { }
 
     async canActivate(
@@ -20,17 +22,19 @@ export class BlogGuard implements CanActivate {
         _state: RouterStateSnapshot):Promise<boolean> {
 
           const param = _route.params['numberPage'];
+          let limit!:number;
+          this.responsiveService.isMobile ? limit = 8 : limit = 9 
 
           // if we are in /noticias 
           if (!param){
-            return this.defaultRender()
+            return this.defaultRender(limit)
           } 
     
           // if we are in /noticias/pagina/:numPage
           const numPage = Number(param)
           if (!numPage || numPage > 5000) return this.configServ.renderView404()
           
-          const blogs = await this.blogService.getMostRecentNews(`?num_pagina=${param}&limite=9`)
+          const blogs = await this.blogService.getMostRecentNews(`?num_pagina=${param}&limite=${limit}`)
           
           if (blogs ){ 
 
@@ -52,8 +56,8 @@ export class BlogGuard implements CanActivate {
 
 
 
-    async defaultRender(){
-      const blogs = await this.blogService.getMostRecentNews(`?num_pagina=1&limite=9`)
+    async defaultRender(limit:number){
+      const blogs = await this.blogService.getMostRecentNews(`?num_pagina=1&limite=${limit}`)
 
       const seo = await this.pageService.getSeoContentPage('noticias')
       if (blogs){

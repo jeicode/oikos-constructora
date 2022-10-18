@@ -134,7 +134,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async buscarProyectos(){
-    //this.toogleContainerSearch();
+    this.toogleContainerSearch();
     this.proyectos = await this.projService.getProyectosByTipo('1', this.ciudad, this.tipo_search, this.precio_search);
 
     if(this.proyectos.length==0){
@@ -145,7 +145,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async limpiarFiltros(){
-    //this.toogleContainerSearch();
+    this.toogleContainerSearch();
     this.getProyectos();
     $(".filtroCiudad").val("NA");
     $(".filtroTipo").val("NA");
