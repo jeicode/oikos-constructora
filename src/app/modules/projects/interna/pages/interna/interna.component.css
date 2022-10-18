@@ -228,7 +228,7 @@ input {
 
 .precio_hp {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, auto) ;
   gap: 30px;
   align-items: center;
   justify-content: flex-start;
@@ -255,7 +255,7 @@ input {
   border-radius: 8px;
   color: #FFF;
   font-weight: 900;
-  font-size: 34px;
+  font-size: 26px;
   padding: 8px 14px;
 }
 
@@ -985,6 +985,11 @@ input {
 .descripcion_proyecto{
   line-height: 21px;
 }
+.btn_calc_1{
+  padding: 8px 12px; 
+  text-align: center;
+  height: auto;
+}
 
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
@@ -994,6 +999,10 @@ input {
   .col_slide_p {
     max-width: initial;
   }
+  .precio_hp{
+    grid-template-columns: repeat(2, auto);
+  }
+
 }
 
 @media screen and (max-width: 1050px) {
@@ -1023,6 +1032,9 @@ input {
 
   .fechas_a_obra {
     grid-template-columns: 1fr;
+  }
+  .precio_hp{
+    grid-template-columns: repeat(3, auto);
   }
 }
 

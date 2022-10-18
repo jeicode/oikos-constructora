@@ -55,6 +55,7 @@
                     Contactar 
                     <span class="fab fa-whatsapp"></span> 
                 </a>
+                <a class="btn btn_calc_1" *ngIf="data?.calculadora=='1'">Calcule su cuota mensual <!--<img src="assets/images/diseno/int_proyecto/icono_calc.svg" width="20" height="20" alt="">--> </a>
             </div>
 
         </div>
@@ -96,7 +97,6 @@
             <div class="grand_cont_ctas">
                 <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank" *ngIf="data.vista360!='' && data.vista360!=null">Recorrido <img src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
                 <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank" *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt=""> </a>
-                <a class="btn btn_calc_1" *ngIf="data?.calculadora=='1'">Calcule su cuota mensual <img src="assets/images/diseno/int_proyecto/icono_calc.svg" width="20" height="20" alt=""> </a>
             </div>
                 
             </div>
