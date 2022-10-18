@@ -1273,7 +1273,7 @@ input[type=file]::-webkit-file-upload-button {
     }
 
     .lb-loader, .lightbox{
-        position: fixed;
+        /*position: fixed;*/
     }
 }
 
