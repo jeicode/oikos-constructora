@@ -517,9 +517,16 @@ h1 {
 }
 
 .logo_pie {
-    width: 20%;
+    width: 25%;
+    max-width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.logo_pie img{
+    width: 100%;
+    max-width: 80px;
+}
 .txt_pie {
     width: 100%;
     font-size: 13px;
@@ -533,10 +540,13 @@ h1 {
     border-bottom: 1px solid #ccc;
     margin-bottom: 24px;
     padding: 12px 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
 }
 
 .direccion_pie {
-    width: 100%;
+    width: auto;
     display: flex;
     align-items: center;
     gap: 8px;
