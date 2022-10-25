@@ -990,6 +990,9 @@ input {
   text-align: center;
   height: auto;
 }
+.slide_h_proyecto{
+  width: 100%;
+}
 
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
@@ -1007,7 +1010,8 @@ input {
 
 @media screen and (max-width: 1050px) {
   .hero_proyecto {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 
   .progress_state {

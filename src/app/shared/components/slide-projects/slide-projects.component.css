@@ -302,6 +302,8 @@
 .card_p .btn {
     width: fit-content;
     justify-self: flex-end;
+    padding: 4px 16px;
+    font-size: 14px;
 }
 
 .act_filtro_mobile {

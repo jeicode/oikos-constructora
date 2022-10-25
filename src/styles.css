@@ -1285,6 +1285,9 @@ input[type=file]::-webkit-file-upload-button {
     .lb-loader, .lightbox{
         /*position: fixed;*/
     }
+    .s_carr_proy{
+        padding-top: 1px;
+    }
 }
 
 /*# sourceMappingURL=estilos.css.map */
