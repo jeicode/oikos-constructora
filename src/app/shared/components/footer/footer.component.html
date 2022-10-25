@@ -29,7 +29,8 @@
     <div class="cnt_mid_pie">
 
         <!-- MENU FOOTER -->
-        <div class="col_mid_men_pie" *ngFor="let i of menuFooter">
+        <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)" 
+            *ngFor="let i of menuFooter">
             <div class="h_cl_pie">
                 {{i?.field_content}}
             </div>

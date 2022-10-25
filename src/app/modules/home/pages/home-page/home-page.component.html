@@ -6,7 +6,8 @@
                     <div class="swiper-slide">
                         <!-- IMAGEN DE FONDO BLANCA -->
                         <div class="bg_img_h_hero" data-swiper-parallax-opacity="0.6">
-                            <img class="bg_img_h_hero" width="1920" height="700" src="/assets/images/diseno/home/img_bg_her.jpg">
+                            <img class="bg_img_h_hero" width="1920" height="700" 
+                                [src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
                         </div>
     
                         <div class="cnt_h_hero">
@@ -127,7 +128,7 @@
                             <span>{{i?.texto_adicional}}</span>
                         </div>
                         <div class="ctas_proyectos">
-                            <a [href]="i?.api_wsp" target="_blank" class="btn_whatsapp">
+                            <a (click)="selectProjectToModal(i)" target="_blank" class="btn_whatsapp c-pointer">
                                 <span class="fab fa-whatsapp"></span> contactar
                             </a>
                             <a [routerLink]="['/proyecto', i?.url_amigable]" class="btn">ver proyecto</a>
@@ -190,6 +191,10 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- modal wpp -->
+    <app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" 
+                            [project]="projectSelectedToModal">
+    </app-wpp-modal-project>
     
 </body>
