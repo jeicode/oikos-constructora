@@ -147,8 +147,9 @@ export class CalculateFormComponent implements OnInit {
 
     if(this.calculateForm.valid){
       const {resp} = await this.projectService.setCalculadoraForm(data);
-      console.log(resp)
-      if(resp!='no') window.location.href = resp;
+      if(resp!='no') {
+        this.router.navigateByUrl(resp, { state: { nameContact: this.calculateForm.controls['full_name']?.value } })
+      }
     }else{
       this.showErrors = true
     }

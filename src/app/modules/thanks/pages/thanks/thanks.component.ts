@@ -18,8 +18,12 @@ export class ThanksComponent implements OnInit {
   imagen_prin           : any = [];
   slug                  : string | null;
   suscribeListenRouter  : Subscription;
+  nameContact: string = ""
 
-  constructor(private pageService: PageService, private router: Router, private configServ: ConfigService, private activateRoute: ActivatedRoute) {
+  constructor(private pageService: PageService, private router: Router, private configServ: ConfigService, 
+              private activateRoute: ActivatedRoute) {
+    const state = this.router.getCurrentNavigation()?.extras.state
+    if(state) this.nameContact = state['nameContact']
     this.slug = this.activateRoute.snapshot.paramMap.get('slug');
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {

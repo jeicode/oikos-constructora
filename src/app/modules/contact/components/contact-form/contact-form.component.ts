@@ -63,7 +63,9 @@ export class ContactFormComponent implements OnInit {
 
   }
 
-
+  /**
+   * Traer lista de asuntos
+   */
   async getAffairList() {
     const affairList = await this.pageService.getElementsContent('titulo asunto contacto', 'asunto_contacto');
     if (affairList?.length > 0) this.affairList = affairList
@@ -87,9 +89,9 @@ export class ContactFormComponent implements OnInit {
         asunto: affair,
         correo_destinatario: this.recipient_mail
       }
-      const {resp} = await this.contactService.postContactForm(data)
-      if (resp){
-        this.router.navigateByUrl(resp)
+      const response = await this.contactService.postContactForm(data)
+      if (response?.resp){
+        this.router.navigateByUrl(response?.resp, { state: { nameContact: full_name } })
       } else {
         alert('Opps ocurrió un error enviando el formulario')
       }

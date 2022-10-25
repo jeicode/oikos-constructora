@@ -15,8 +15,8 @@
             <div class="txt_contacto" [innerHtml]="data?.descripcion"></div>
 
             <div class="row_mod_contacto">
-                <div class="mod_contacto" [ngClass]="{'active':formIsShow ? index === indexItemActive : true}" (click)="activeItemContact(index)" 
-                    *ngFor="let i of itemsContact; let index=index">
+                <div class="mod_contacto" [ngClass]="{'active':formIsShow ? index === indexItemActive : true}" 
+                    (click)="activeItemContact(index)" *ngFor="let i of itemsContact; let index=index">
                     <div class="img_mod_contacto">
                         <img [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
                     </div>

@@ -10,6 +10,8 @@ const BASE_URL = environment.base_url
 })
 export class ContactService {
 
+  nameContact:string = ""
+
   constructor(private _http: HttpClient) { }
 
 
