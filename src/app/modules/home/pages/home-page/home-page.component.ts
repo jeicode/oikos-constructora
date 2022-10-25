@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { BannerHome } from 'src/app/core/models/banner-home.model';
 import { Project } from 'src/app/core/models/project.model';
 import { PageService } from 'src/app/shared/services/api/page.service';
@@ -17,6 +18,10 @@ SwiperCore.use([Navigation, Pagination]);
 export class HomePageComponent implements OnInit {
 
   housingProjects:Project[] = []
+  projectSelectedToModal:Project = new Project()
+  notifyChanges: Subject<boolean> = new Subject<boolean>();
+
+
   data:any;
   BASE_URL:string = environment.base_url
 
@@ -85,5 +90,16 @@ export class HomePageComponent implements OnInit {
     const housingProjects = await this.projectService.getProyectosByTipo('1');
     if (housingProjects) this.housingProjects = housingProjects;
   }
+
+
+  /**
+   * 
+   * @param project selected project to modal
+   */
+  selectProjectToModal(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChanges.next(true);
+  }
+
 
 }

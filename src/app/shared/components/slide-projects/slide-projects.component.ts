@@ -7,6 +7,8 @@ import { Project } from 'src/app/core/models/project.model';
 import { environment } from 'src/environments/environment';
 import { DefaultImgDirective } from '../../directives/default-img.directive';
 import { RouterModule } from '@angular/router';
+import { Subject } from 'rxjs';
+import { WppModalProjectComponent } from '../wpp-modal-project/wpp-modal-project.component';
 
 
 SwiperCore.use([Navigation, Pagination]);
@@ -22,12 +24,15 @@ SwiperCore.use([Navigation, Pagination]);
     RouterModule,
 
     // directives
-    DefaultImgDirective
+    DefaultImgDirective,
+    WppModalProjectComponent
   ]
 })
 export class SlideProjectsComponent implements OnInit {
 
   BASE_URL:string = environment.base_url
+  projectSelectedToModal:Project = new Project()
+  notifyChanges: Subject<boolean> = new Subject<boolean>();
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -64,6 +69,16 @@ export class SlideProjectsComponent implements OnInit {
       const projects = await this.projectService.getFeaturedProjects()
       if(projects) this.projects = projects
     }
+  }
+
+
+  /**
+   * 
+   * @param project selected project to modal
+   */
+  selectProjectToModal(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChanges.next(true);
   }
 
 }

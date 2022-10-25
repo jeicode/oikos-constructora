@@ -6,6 +6,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SwiperModule } from 'swiper/angular';
 import { DefaultImgDirective } from 'src/app/shared/directives/default-img.directive';
+import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DefaultImgDirective } from 'src/app/shared/directives/default-img.direc
     HomeRoutingModule,
     HttpClientModule,
     SwiperModule,
-    DefaultImgDirective
+    DefaultImgDirective,
+    WppModalProjectComponent
   ]
 })
 export class HomeModule { }

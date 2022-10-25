@@ -39,7 +39,7 @@
                         <span>{{i?.texto_adicional}}</span>
                     </div>
                     <div class="ctas_proyectos">
-                        <a [href]="i?.api_wsp" target="_blank" class="btn_whatsapp" *ngIf="i?.api_wsp">
+                        <a (click)="selectProjectToModal(i)" target="_blank" class="btn_whatsapp c-pointer" *ngIf="i?.api_wsp">
                             <span class="fab fa-whatsapp"></span> contactar
                         </a>
                         <a [routerLink]="['/proyecto', i?.url_amigable]" class="btn">ver proyecto</a>
@@ -51,5 +51,12 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
 </div>
+
+
+
+<!-- modal wpp -->
+<app-wpp-modal-project  [modalEvent]="notifyChanges.asObservable()" 
+                        [project]="projectSelectedToModal">
+</app-wpp-modal-project>
 
 

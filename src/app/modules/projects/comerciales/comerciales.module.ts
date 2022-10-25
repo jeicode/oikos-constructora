@@ -7,6 +7,7 @@ import { ComponentSharedModule } from 'src/app/shared/components/components.modu
 import { HttpClientModule } from '@angular/common/http';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 import { ExecutedProjectsSlidePagComponent } from 'src/app/shared/components/executed-projects-slide-pag/executed-projects-slide-pag.component';
+import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ExecutedProjectsSlidePagComponent } from 'src/app/shared/components/exe
     ComponentSharedModule,
     HttpClientModule,
     BreadcrumbComponent,
-    ExecutedProjectsSlidePagComponent
+    ExecutedProjectsSlidePagComponent,
+    WppModalProjectComponent
   ]
 })
 export class ComercialesModule { }

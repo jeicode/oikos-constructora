@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
@@ -34,6 +34,10 @@ export class ComercialesComponent implements OnInit {
   ciudad                : string = "NA";
   tipo_search           : string = "NA";
   precio_search         : string = "NA";
+
+
+  projectSelectedToModal:Project = new Project()
+  notifyChanges: Subject<boolean> = new Subject<boolean>();
 
   constructor(private pageService: PageService, private router: Router, 
               private configServ: ConfigService, private projService: ProjectService,
@@ -143,6 +147,16 @@ export class ComercialesComponent implements OnInit {
 
   async getPreciosProyectos(){
     this.precios = await this.projService.getPreciosProyectos('2');
+  }
+
+
+  /**
+   * 
+   * @param project selected project to modal
+   */
+  selectProjectToModal(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChanges.next(true);
   }
 
 }
