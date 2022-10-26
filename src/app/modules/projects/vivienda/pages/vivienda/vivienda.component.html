@@ -74,14 +74,36 @@
                     <div class="franja_p">
                         <span> {{i?.texto_adicional}} </span>
                     </div>
-                    <div class="ctas_proyectos">
-                        <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
+                    <div class="ctas_proyectos" 
+                        *ngIf="i?.interna === 'si'; else redirect">
+                        <a *ngIf="i?.interna === 'si'" class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
                             <span class="fab fa-whatsapp"></span> 
                             Contactar
                         </a>
 
-                        <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn">Ver proyecto</a>
+                        <a routerLink="/proyecto/{{i?.url_amigable}}" 
+                            class="btn">
+                            Ver proyecto
+                        </a>
+
                     </div>
+
+                    <ng-template #redirect>
+                        <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
+                            <a *ngIf="configServ.isExternalUrl(i?.redirigir);else routerLink"  [href]="i?.redirigir" 
+                                target="_blank" class="btn">
+                                Inscribirse
+                            </a>
+    
+                            <ng-template #routerLink>
+                                <a [routerLink]="i?.redirigir" class="btn">
+                                Inscribirse
+                            </a>
+                            </ng-template>
+                        </div>
+                        
+                    </ng-template>
+                        
                 </div>
                 <p *ngIf="!proyectos_ver" style="text-align:center;">No existe información relacionado con el filtro utilizado</p>
             </div>

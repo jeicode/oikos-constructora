@@ -40,7 +40,7 @@ export class ComercialesComponent implements OnInit {
   notifyChanges: Subject<boolean> = new Subject<boolean>();
 
   constructor(private pageService: PageService, private router: Router, 
-              private configServ: ConfigService, private projService: ProjectService,
+              public configServ: ConfigService, private projService: ProjectService,
               private responsiveService: ResponsiveService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {

@@ -41,7 +41,7 @@ export class ViviendaComponent implements OnInit {
 
   constructor(private pageService: PageService, private router: Router,
               private responsiveService:ResponsiveService, 
-              private configServ: ConfigService, private projService: ProjectService) {
+              public configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
@@ -125,8 +125,7 @@ export class ViviendaComponent implements OnInit {
 
   async getProyectos(){
     this.proyectos = await this.projService.getProyectosByTipo('1');
-
-    if(this.proyectos.length==0){
+    if(this.proyectos?.length==0){
       this.proyectos_ver = false;
     }else{
       this.proyectos_ver = true;

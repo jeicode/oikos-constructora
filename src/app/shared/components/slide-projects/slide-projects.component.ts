@@ -9,6 +9,7 @@ import { DefaultImgDirective } from '../../directives/default-img.directive';
 import { RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { WppModalProjectComponent } from '../wpp-modal-project/wpp-modal-project.component';
+import { ConfigService } from '../../services/functions/config.service';
 
 
 SwiperCore.use([Navigation, Pagination]);
@@ -57,7 +58,7 @@ export class SlideProjectsComponent implements OnInit {
 
 
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectService: ProjectService, public configServ:ConfigService) {}
   
   ngOnInit(): void {
     this.getFeaturedProjects()  

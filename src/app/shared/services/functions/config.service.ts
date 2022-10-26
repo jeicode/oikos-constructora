@@ -78,4 +78,11 @@ export class ConfigService {
   removeRepeatElementsArray(list:any[]): any[] {
     return [...new Set(list)];
   }
+
+  isExternalUrl(url:string|undefined){
+    if (url){
+      return (url.split('',8).join('') === 'https://') || (url.split('',7).join('') === 'http://')
+    } 
+    return url
+  }
 }

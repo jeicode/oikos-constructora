@@ -4,6 +4,7 @@ import { BannerHome } from 'src/app/core/models/banner-home.model';
 import { Project } from 'src/app/core/models/project.model';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
+import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { environment } from 'src/environments/environment.prod';
 import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
@@ -47,7 +48,7 @@ export class HomePageComponent implements OnInit {
 }
 
   constructor(private projectService: ProjectService, private pageService: PageService,
-              public responsiveService: ResponsiveService) { }
+              public responsiveService: ResponsiveService, public configServ:ConfigService) { }
 
   ngOnInit(): void {
     this.init()
