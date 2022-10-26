@@ -75,7 +75,7 @@ h1 span {
 }
 
 .c_404 {
-  height: 60vh;
+  height: auto;
   padding: 60px 0 100px;
   position: relative;
 }

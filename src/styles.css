@@ -793,10 +793,10 @@ h1 {
 
 /*********************/
 
-
 @media screen and (max-width: 1400px) {
     .nav ul li {
         margin: 0 1%;
+
     }
 }
 
@@ -1316,4 +1316,7 @@ input[type=file]::-webkit-file-upload-button {
 
 .map-container{
     max-width: 100%;
+}
+:host ::ng-deep .cuerpo .contenidopol .title{
+    font-size: 30px;
 }
