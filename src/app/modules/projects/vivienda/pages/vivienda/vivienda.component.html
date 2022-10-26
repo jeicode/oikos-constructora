@@ -169,11 +169,16 @@
                         <div class="cont_input_x1">
                             <input type="text" placeholder="Nombre" required="">
                         </div>
-                        <div class="cont_input_x2">
+                        <div class="cont_input_x1">
+                            <input type="text" placeholder="Apellidos" required="">
+                        </div>
+                        <div class="cont_input_x1">
                             <input type="email" placeholder="Email" required="">
+                        </div>
+                        <div class="cont_input_x1">
                             <input type="number" placeholder="Teléfono" required="">
                         </div>
-                        <textarea name="" id="" placeholder="Mensaje"></textarea>
+                        
                     </div>
                     
                     <div class="cont_chk">
@@ -188,7 +193,6 @@
             </form>
         </div>
     -->
-
     <!-- modal wpp -->
     <app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" 
                             [project]="projectSelectedToModal">
