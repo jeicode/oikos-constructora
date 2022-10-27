@@ -56,9 +56,20 @@
                             <span class="fas fa-map-marker-alt"></span>
                         </a>
                     </div>
-                    <a routerLink="/proyecto/{{i?.url_amigable}}">
-                        <img width="350" height="219" src="{{imagenes_url+i?.imagen_fondo_proyecto}}" alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
+                    <a *ngIf="i?.interna === 'si'; else notRedirect" 
+                            routerLink="/proyecto/{{i?.url_amigable}}">
+                            <img width="350" height="219" 
+                            defaultImg [src]="imagenes_url+i?.imagen_principal_proyecto" 
+                            [alt]="i?.alt_principal" 
+                            [title]="i?.title_principal">
                     </a>
+                    <ng-template #notRedirect>
+                        <img width="350" height="219" 
+                        defaultImg
+                        [src]="imagenes_url+i?.imagen_principal_proyecto" 
+                        [alt]="i?.alt_principal" 
+                        [title]="i?.title_principal">
+                    </ng-template>
                 </picture>
                 <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
                     <picture>
@@ -68,7 +79,10 @@
                 </h2>
                 <div class="datos_proyecto">
                     <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
-                    <h4 *ngIf="i?.valor_proyecto!='' && i?.valor_proyecto!=null"><span>Desde</span> ${{i?.valor_proyecto_formato}} </h4>
+                    <h4 *ngIf="i?.valor_proyecto">
+                        <span>Desde</span> 
+                        ${{i?.valor_proyecto_formato}} 
+                    </h4>
                 </div>
                 <div class="franja_p">
                     <span> {{i?.texto_adicional}} </span>
