@@ -32,6 +32,8 @@ export class ModalPreLaunchProjectComponent implements OnInit, OnDestroy {
     phone: ['', [Validators.required, Validators.pattern(regexNumber)]],
     terms: ['', Validators.requiredTrue],
     project_id: [''],
+    title_project: [''],
+    sendTo: ['']
   }) 
 
   constructor(private fb:FormBuilder, private formService: FormService,
@@ -40,7 +42,7 @@ export class ModalPreLaunchProjectComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.eventsSubscription.unsubscribe()
   }
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.eventsSubscription = this.modalEvent.subscribe((event:any) => {
       const {openModal} = event
       if (openModal){
@@ -52,7 +54,9 @@ export class ModalPreLaunchProjectComponent implements OnInit, OnDestroy {
   async saveFormData(){
     if (this.form.valid){
       this.form.patchValue({
-        project_id: this.project.id
+        project_id: this.project.id,
+        title_project: this.project.titulo_proyecto,
+        sendTo: this.project.email_contactos
       })
 
       const res = await this.projectService.createContactPreLaunchProject(this.form.getRawValue())

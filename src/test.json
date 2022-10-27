@@ -1,27 +1,29 @@
 {
-    "elements": [
-        {
-            "content_type": "input",
-            "name": "titulo banner home",
-            "field_name": "titulo banner home",
-            "element_main": "1"
-        },
-        {
-            "content_type": "image",
-            "name": "imagen banner home",
-            "field_name": "imagen banner home",
-            "size": "2050x575"
-        },
-        {
-            "content_type": "image",
-            "name": "imagen banner home movil",
-            "field_name": "imagen banner home movil",
-            "size": "2050x575"
-        },
-        {
-            "content_type": "input",
-            "name": "enlace banner home",
-            "field_name": "enlace banner home"
-        }
-    ]
+	"elements": [{
+		"content_type": "input",
+		"name": "titulo banner home",
+		"field_name": "titulo banner home",
+		"element_main": "1"
+	}, {
+		"content_type": "input",
+		"name": "descripcion banner home",
+		"field_name": "descripcion banner home"
+	}, {
+		"content_type": "input",
+		"name": "texto cta banner",
+		"field_name": "texto cta banner"
+	}, {
+		"content_type": "input",
+		"name": "link cta banner",
+		"field_name": "link cta banner"
+	}, {
+		"content_type": "input",
+		"name": "proyecto relacionado",
+		"field_name": "proyecto relacionado"
+	}, {
+		"content_type": "image",
+		"name": "imagen banner home",
+		"field_name": "imagen banner home",
+		"size": "450x454"
+	}]
 }

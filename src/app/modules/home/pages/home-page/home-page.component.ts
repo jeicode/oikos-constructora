@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BannerHome } from 'src/app/core/models/banner-home.model';
+import { BannerHome, Zona } from 'src/app/core/models/banner-home.model';
 import { Project } from 'src/app/core/models/project.model';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
@@ -70,9 +70,22 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  getCustomBenefitsProject(benefits:string, zonas:Zona[]): (Zona | undefined)[]{
+    const arrBenefits = benefits.split(',')
+    if (arrBenefits.length > 0){
+      return arrBenefits.map( b => {
+        return zonas.find( z => z.nombre == b)
+      })
+    }
+
+    return []
+  }
+
   async getBannersHome(){
     const bannersHome = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
     if (bannersHome) this.bannersHome = bannersHome
+
+    console.log('%chome-page.component.ts line:77 bannersHome', 'color: #007acc;', bannersHome);
 
   }
   async getData(){
