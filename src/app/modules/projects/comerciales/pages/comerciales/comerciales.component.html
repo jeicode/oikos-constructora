@@ -48,7 +48,7 @@
             <div class="card_p" *ngFor="let i of proyectos">
                 <picture>
                     <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
-                    <div class="btns_icons" *ngIf="i?.vista360!='' || i?.url_waze!=''">
+                    <div class="btns_icons" *ngIf="i?.vista360 && i?.url_waze">
                         <a href="{{i?.vista360}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.vista360!='' && i?.vista360!=null">
                             <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
                         </a>
