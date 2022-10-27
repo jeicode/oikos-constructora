@@ -26,10 +26,10 @@ export class ModalPreLaunchProjectComponent implements OnInit, OnDestroy {
 
 
   form: FormGroup = this.fb.group({
-    name: ['test1', Validators.required],
-    last_name: ['test12', Validators.required],
-    email: ['test1@gmail.com', [Validators.required, Validators.pattern(regexEmail)]],
-    phone: ['31223223131', [Validators.required, Validators.pattern(regexNumber)]],
+    name: ['', Validators.required],
+    last_name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(regexEmail)]],
+    phone: ['', [Validators.required, Validators.pattern(regexNumber)]],
     terms: ['', Validators.requiredTrue],
     project_id: [''],
   }) 
