@@ -43,19 +43,13 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.eventsSubscription = this.modalEvent.subscribe((event) => this.openModal());
+    this.eventsSubscription = this.modalEvent.subscribe((event:any) => this.setOpenModalValue(event?.openModal));
   }
   
-  openModal(){
-    this.modalIsOpen = true
+  setOpenModalValue(openModal:boolean|undefined){
+    if (openModal !== undefined) this.modalIsOpen = openModal
+  }
     
-  }
-  
-  closeModal(){
-    this.modalIsOpen = false
-  }
-  
-  
   sendContactUserWpp(){
 
     if (this.contactWppForm.valid){

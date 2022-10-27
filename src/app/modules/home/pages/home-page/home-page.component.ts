@@ -20,7 +20,8 @@ export class HomePageComponent implements OnInit {
 
   housingProjects:Project[] = []
   projectSelectedToModal:Project = new Project()
-  notifyChanges: Subject<boolean> = new Subject<boolean>();
+  notifyChanges: Subject<any> = new Subject<any>();
+  notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
 
   data:any;
@@ -99,7 +100,17 @@ export class HomePageComponent implements OnInit {
    */
   selectProjectToModal(project:Project){
     this.projectSelectedToModal = project
-    this.notifyChanges.next(true);
+    this.notifyChanges.next({openModal:true});
+  }
+
+
+  /**
+   * 
+   * @param project project selected to prelaunch modal form
+   */
+  selectProjectToPreLaunch(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChangesPreLaunchProject.next({openModal:true});
   }
 
 

@@ -37,7 +37,8 @@ export class ComercialesComponent implements OnInit {
 
 
   projectSelectedToModal:Project = new Project()
-  notifyChanges: Subject<boolean> = new Subject<boolean>();
+  notifyChanges: Subject<any> = new Subject<any>();
+  notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
   constructor(private pageService: PageService, private router: Router, 
               public configServ: ConfigService, private projService: ProjectService,
@@ -156,7 +157,17 @@ export class ComercialesComponent implements OnInit {
    */
   selectProjectToModal(project:Project){
     this.projectSelectedToModal = project
-    this.notifyChanges.next(true);
+    this.notifyChanges.next({openModal:true});
+  }
+
+
+  /**
+   * 
+   * @param project project selected to prelaunch modal form
+   */
+  selectProjectToPreLaunch(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChangesPreLaunchProject.next({openModal:true});
   }
 
 }

@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { WppModalProjectComponent } from '../wpp-modal-project/wpp-modal-project.component';
 import { ConfigService } from '../../services/functions/config.service';
+import { ModalPreLaunchProjectComponent } from '../modal-pre-launch-project/modal-pre-launch-project.component';
 
 
 SwiperCore.use([Navigation, Pagination]);
@@ -26,14 +27,16 @@ SwiperCore.use([Navigation, Pagination]);
 
     // directives
     DefaultImgDirective,
-    WppModalProjectComponent
+    WppModalProjectComponent,
+    ModalPreLaunchProjectComponent
   ]
 })
 export class SlideProjectsComponent implements OnInit {
 
   BASE_URL:string = environment.base_url
   projectSelectedToModal:Project = new Project()
-  notifyChanges: Subject<boolean> = new Subject<boolean>();
+  notifyChanges: Subject<any> = new Subject<any>();
+  notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -79,7 +82,16 @@ export class SlideProjectsComponent implements OnInit {
    */
   selectProjectToModal(project:Project){
     this.projectSelectedToModal = project
-    this.notifyChanges.next(true);
+    this.notifyChanges.next({openModal:true});
+  }
+
+  /**
+   * 
+   * @param project project selected to prelaunch modal form
+   */
+  selectProjectToPreLaunch(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChangesPreLaunchProject.next({openModal:true});
   }
 
 }

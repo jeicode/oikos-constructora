@@ -1,0 +1,65 @@
+<!-- <section class="s_cards_proyectos">
+    <div class="cnt_central">
+        <div class="c_cards_proyectos">
+            <div class="card_p" *ngFor="let i of projects">
+                <picture>
+                    <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
+                    <div class="btns_icons" *ngIf="i?.vista360!='' || i?.url_waze!=''">
+                        <a  href="{{i?.vista360}}" target="_blank" rel="nofollow,noopener" 
+                            class="btn_icon" *ngIf="i?.vista360!='' && i?.vista360!=null">
+                            <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                        </a>
+                        <a  href="{{i?.url_waze}}" target="_blank" rel="nofollow,noopener" class="btn_icon" 
+                            *ngIf="i?.url_waze!='' && i?.url_waze!=null">
+                            <span class="fas fa-map-marker-alt"></span>
+                        </a>
+                    </div>
+                    <a routerLink="/proyecto/{{i?.url_amigable}}" >
+                        <img width="350" height="219" src="{{BASE_URL+i?.imagen_fondo_proyecto}}" 
+                            alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
+                    </a>
+                </picture>
+                <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
+                    <picture>
+                        <img width="87" height="87" src="{{BASE_URL+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" 
+                            title="{{i?.title_logo}}">
+                    </picture>
+                    <div>{{i?.titulo_proyecto}}</div>
+                </h2>
+                <div class="datos_proyecto">
+                    <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                    <h4 *ngIf="i?.valor_proyecto">
+                        <span>Desde</span> ${{i?.valor_proyecto_formato}} 
+                    </h4>
+                </div>
+                <div class="franja_p">
+                    <span> {{i?.texto_adicional}} </span>
+                </div>
+                <div class="ctas_proyectos" 
+                    *ngIf="i?.interna === 'si'; else redirect">
+                    <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
+                        <span class="fab fa-whatsapp"></span> 
+                        Contactar
+                    </a>
+
+                    <a routerLink="/proyecto/{{i?.url_amigable}}" 
+                        class="btn">
+                        Ver proyecto
+                    </a>
+
+                </div>
+
+                <ng-template #redirect>
+                    <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
+                        <a  class="btn" (click)="selectProjectToPreLaunch(i)">
+                            Inscribirse
+                        </a>
+                    </div>
+                    
+                </ng-template>
+                    
+            </div>
+            <p *ngIf="projects?.length === 0" style="text-align:center;">No existe información relacionado con el filtro utilizado</p>
+        </div>
+    </div>
+</section> -->

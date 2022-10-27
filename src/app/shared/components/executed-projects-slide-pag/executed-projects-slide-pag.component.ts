@@ -35,7 +35,7 @@ export class ExecutedProjectsSlidePagComponent implements OnInit {
     if ($(window).width() >= 960) {
       $(function(){
           /* initiciate jPages */
-          $("div.holder").jPages({
+          const pages = $("div.holder").jPages({
               previous:'← Anterior',
               next:'Siguiente →',
               perPage:7,
@@ -44,7 +44,11 @@ export class ExecutedProjectsSlidePagComponent implements OnInit {
               endRange:0,
               containerID : "itemContainer",
               animation   : "bounceInUp"
-          }).pages["showing"] = false;
+          }).pages
+
+          if (pages && pages.hasOwnProperty('showing')){
+            pages['showing'] = false
+          }
           /* on select change */
           $("select").change(function(){
 

@@ -6,6 +6,7 @@
                 <app-breadcrumb></app-breadcrumb>
             </div>
             
+            <!-- buscador -->
             <div class="c_proyecto_vivienda">
                 <h1 class="title_section al_center" [innerHTML]="data.titulo_proyecto_vivienda"></h1>
                 <div class="container_filtro">
@@ -36,10 +37,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
-            
-    
-                
+            </div>    
         </div>
     </section>
     
@@ -76,7 +74,7 @@
                     </div>
                     <div class="ctas_proyectos" 
                         *ngIf="i?.interna === 'si'; else redirect">
-                        <a *ngIf="i?.interna === 'si'" class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
+                        <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
                             <span class="fab fa-whatsapp"></span> 
                             Contactar
                         </a>
@@ -90,16 +88,9 @@
 
                     <ng-template #redirect>
                         <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
-                            <a *ngIf="configServ.isExternalUrl(i?.redirigir);else routerLink"  [href]="i?.redirigir" 
-                                target="_blank" class="btn">
+                            <a  class="btn" (click)="selectProjectToPreLaunch(i)">
                                 Inscribirse
                             </a>
-    
-                            <ng-template #routerLink>
-                                <a [routerLink]="i?.redirigir" class="btn">
-                                Inscribirse
-                            </a>
-                            </ng-template>
                         </div>
                         
                     </ng-template>
@@ -174,49 +165,12 @@
             </div>
         </div>
     </section>
-
-    <!-- modal especial -->
-    <!--
-        <span _ngcontent-serverapp-c76="" class="bg_dark" style="display: block;"></span>
-        <div class="s_modal_calculadora active">
-            <a class="close_calc">
-                <span class="fas fa-arrow-right"></span>
-            </a>
-            <form action="" class="f_calculadora">
-                <div class="h_form_proy_esp">
-                    Llene el formulario a continuación para inscribirse
-                </div>
-                <div class="grand_c_inputs">
-                    <div class="datos_persona">
-                        <div class="cont_input_x1">
-                            <input type="text" placeholder="Nombre" required="">
-                        </div>
-                        <div class="cont_input_x1">
-                            <input type="text" placeholder="Apellidos" required="">
-                        </div>
-                        <div class="cont_input_x1">
-                            <input type="email" placeholder="Email" required="">
-                        </div>
-                        <div class="cont_input_x1">
-                            <input type="number" placeholder="Teléfono" required="">
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="cont_chk">
-                        <input type="checkbox" name="" id="calc_form_chk">
-                        <label for="calc_form_chk"> Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
-                    </div>
-                    <div class="cont_submit">
-                        <button type="submit" class="btn">Enviar</button>
-                    </div>
-
-                </div>
-            </form>
-        </div>
-    -->
-    <!-- modal wpp -->
+    
+    <app-modal-pre-launch-project   [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
+                                    [project]="projectSelectedToModal">
+    </app-modal-pre-launch-project>
     <app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" 
                             [project]="projectSelectedToModal">
     </app-wpp-modal-project>
+
 </body>

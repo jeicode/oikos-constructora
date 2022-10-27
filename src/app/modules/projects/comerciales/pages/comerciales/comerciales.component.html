@@ -39,8 +39,6 @@
             </div>
         </div>
 
-
-
     </div>
 </section>
 
@@ -76,31 +74,24 @@
                     <span> {{i?.texto_adicional}} </span>
                 </div>
                 <div class="ctas_proyectos" 
-                        *ngIf="i?.interna === 'si'; else redirect">
-                        <a *ngIf="i?.interna === 'si'" class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
-                            <span class="fab fa-whatsapp"></span> 
-                            Contactar
-                        </a>
+                    *ngIf="i?.interna === 'si'; else redirect">
+                    <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
+                        <span class="fab fa-whatsapp"></span> 
+                        Contactar
+                    </a>
 
-                        <a routerLink="/proyecto/{{i?.url_amigable}}" 
-                            class="btn">
-                            Ver proyecto
-                        </a>
+                    <a routerLink="/proyecto/{{i?.url_amigable}}" 
+                        class="btn">
+                        Ver proyecto
+                    </a>
 
                 </div>
 
                 <ng-template #redirect>
                     <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
-                        <a *ngIf="configServ.isExternalUrl(i?.redirigir);else routerLink"  [href]="i?.redirigir" 
-                            target="_blank" class="btn">
+                        <a  class="btn" (click)="selectProjectToPreLaunch(i)">
                             Inscribirse
                         </a>
-
-                        <ng-template #routerLink>
-                            <a [routerLink]="i?.redirigir" class="btn">
-                            Inscribirse
-                        </a>
-                        </ng-template>
                     </div>
                     
                 </ng-template>
@@ -174,9 +165,14 @@
         </div>
     </div>
 
-
-    <!-- modal wpp -->
-    <app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" 
-                            [project]="projectSelectedToModal">
-    </app-wpp-modal-project>
 </section>
+
+<app-modal-pre-launch-project   [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
+                                [project]="projectSelectedToModal">
+</app-modal-pre-launch-project>
+
+
+<!-- modal wpp -->
+<app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" 
+                        [project]="projectSelectedToModal">
+</app-wpp-modal-project>

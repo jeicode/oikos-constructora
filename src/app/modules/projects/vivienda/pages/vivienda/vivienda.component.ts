@@ -36,7 +36,10 @@ export class ViviendaComponent implements OnInit {
   precio_search         : string = "NA";
   projectSelectedToModal:Project = new Project()
 
-  notifyChanges: Subject<boolean> = new Subject<boolean>();
+  modalLaunchProjectIsOpen: boolean = false;
+
+  notifyChanges: Subject<any> = new Subject<any>();
+  notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
 
   constructor(private pageService: PageService, private router: Router,
@@ -50,6 +53,12 @@ export class ViviendaComponent implements OnInit {
       }
     });
   }
+
+
+  openModalPreLaunchProject(){
+    this.modalLaunchProjectIsOpen = true;
+  }
+
 
   toogleContainerSearch(){
     if(this.responsiveService.isMobile){
@@ -79,9 +88,14 @@ export class ViviendaComponent implements OnInit {
     }
   }
 
+  selectProjectToPreLaunch(project:Project){
+    this.projectSelectedToModal = project
+    this.notifyChangesPreLaunchProject.next({openModal:true});
+  }
+
   selectProjectToModal(project:Project){
     this.projectSelectedToModal = project
-    this.notifyChanges.next(true);
+    this.notifyChanges.next({openModal:true});
   }
 
 

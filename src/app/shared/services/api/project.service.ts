@@ -183,4 +183,14 @@ export class ProjectService {
 
 
 
+  async createContactPreLaunchProject(data:any): Promise<any>{
+    const url = `${API_URL}v1/createContactPreLaunchProject`;
+    return this._http.post(url, data).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    })
+  }
+
+
+
 }
