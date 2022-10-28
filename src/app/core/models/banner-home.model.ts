@@ -32,6 +32,7 @@ export class BannerHome {
         public color_primario: string | undefined = "",
         public color_secundario: string | undefined = "",
         public estado_proyecto: string | undefined = "",
+        public beneficios_proyecto:string = "",
         public galeria: Galeria[] = [],
         public zonas: Zona[] | undefined = [],
     ) { }

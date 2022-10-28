@@ -8,6 +8,7 @@ import { SwiperModule } from 'swiper/angular';
 import { DefaultImgDirective } from 'src/app/shared/directives/default-img.directive';
 import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 import { ModalPreLaunchProjectComponent } from 'src/app/shared/components/modal-pre-launch-project/modal-pre-launch-project.component';
+import { SortArrayPipe } from 'src/app/shared/pipes/sort-array.pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ModalPreLaunchProjectComponent } from 'src/app/shared/components/modal-
     SwiperModule,
     DefaultImgDirective,
     WppModalProjectComponent,
-    ModalPreLaunchProjectComponent
+    ModalPreLaunchProjectComponent,
+    SortArrayPipe
   ]
 })
 export class HomeModule { }

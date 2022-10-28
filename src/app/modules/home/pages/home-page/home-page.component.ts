@@ -84,10 +84,9 @@ export class HomePageComponent implements OnInit {
   async getBannersHome(){
     const bannersHome = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
     if (bannersHome) this.bannersHome = bannersHome
-
-    console.log('%chome-page.component.ts line:77 bannersHome', 'color: #007acc;', bannersHome);
-
   }
+
+  
   async getData(){
     const data = await this.pageService.getPageContent('/');
     if (data) this.data = data

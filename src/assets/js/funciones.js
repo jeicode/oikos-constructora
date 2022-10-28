@@ -102,7 +102,7 @@ const heroProyectos = () => {
         $(this).find('span').addClass('fa-circle');
     });
 
-    const btn1 = document.querySelectorAll('.btn_calc_1'); 
+    // const btn1 = document.querySelectorAll('.btn_calc_1'); 
     // const btn2 = document.querySelector('.btn_calc_2'); 
 
     const backButtonCalculadora = document.querySelector('.close_calc span');
@@ -119,10 +119,6 @@ const heroProyectos = () => {
         $(modalCalculadora).removeClass('active');
     });
 
-    $(btn1).click(function(){
-        $(bg_dark).fadeIn();
-        $(modalCalculadora).addClass('active');
-    });
 
     let swiper5 = new Swiper(".swiperCalcP", {
         slidesPerView: 1,

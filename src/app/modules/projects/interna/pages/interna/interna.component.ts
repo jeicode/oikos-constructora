@@ -54,6 +54,8 @@ export class InternaComponent implements OnInit {
   isSubmitted           : boolean = false;
   showErrors            : boolean = false
 
+  modalIsOpen: boolean = false;
+
   zoom = 14;
   center = {lat: 0, lng: 0};
   markers: any = [];
@@ -83,6 +85,7 @@ export class InternaComponent implements OnInit {
       }
     });
   }
+
 
   openModal(){
     this.notifyChanges.next('open_modal_wpp');

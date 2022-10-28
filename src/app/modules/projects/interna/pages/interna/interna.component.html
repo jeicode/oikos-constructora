@@ -55,7 +55,7 @@
                     Contactar 
                     <span class="fab fa-whatsapp"></span> 
                 </a>
-                <a class="btn btn_calc_1" *ngIf="data?.calculadora=='1'">Calcule su cuota mensual <!--<img src="assets/images/diseno/int_proyecto/icono_calc.svg" width="20" height="20" alt="">--> </a>
+                <a class="btn btn_calc_1" (click)="modalIsOpen=true" *ngIf="data?.calculadora=='1'">Calcule su cuota mensual</a>
             </div>
 
         </div>
@@ -274,7 +274,7 @@
                     <picture>
                         <img width="571" height="110" src="assets/images/diseno/int_proyecto/img_calcula.jpg" alt="">
                     </picture>
-                    <div class="cnt_btn_calc">
+                    <div class="cnt_btn_calc" (click)="modalIsOpen = true">
                         <a class="btn contacto_h btn_calc_1">Calcula <span class="fas fa-calculator"></span> </a>
                     </div>
                 </div>
@@ -308,9 +308,9 @@
 </app-wpp-modal-project>
 
 <!-- MODAL CALCULADORA -->
-<span class="bg_dark"></span>
-<div class="s_modal_calculadora">
-    <a class="close_calc">
+<span class="bg_dark" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none'}"></span>
+<div class="s_modal_calculadora" [ngClass]="{'active': modalIsOpen}">
+    <a class="close_calc" (click)="modalIsOpen=false">
         <span class="fas fa-arrow-right"></span>
     </a>
     <form class="f_calculadora" [formGroup]="contactForm" (ngSubmit)="insertContact()" novalidate>

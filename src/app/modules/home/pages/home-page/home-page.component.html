@@ -20,7 +20,7 @@
                                         <div class="place_prjct">
                                             {{i?.titulo_proyecto}}
                                         </div>
-                                        <div class="item_prjct" *ngFor='let z of i?.zonas | slice:0:4 '>
+                                        <div class="item_prjct" *ngFor='let z of i?.zonas | slice:0:4'>
                                             <img defaultImg  width="28" height="28" [src]="BASE_URL+z?.imagen" [title]="z?.title" [alt]="z?.alt">
                                             <span>{{z?.nombre}}</span>
                                         </div>
