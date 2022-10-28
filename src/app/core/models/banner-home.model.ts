@@ -34,7 +34,7 @@ export class BannerHome {
         public estado_proyecto: string | undefined = "",
         public beneficios_proyecto:string = "",
         public galeria: Galeria[] = [],
-        public zonas: Zona[] | undefined = [],
+        public zonas: Zona[]  = [],
     ) { }
 
 }

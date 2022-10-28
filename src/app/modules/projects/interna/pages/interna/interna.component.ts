@@ -88,7 +88,7 @@ export class InternaComponent implements OnInit {
 
 
   openModal(){
-    this.notifyChanges.next('open_modal_wpp');
+    this.notifyChanges.next({openModal:true});
   }
 
   resolved(captchaResponse: string) {

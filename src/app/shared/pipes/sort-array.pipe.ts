@@ -1,28 +1,27 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'sortArray',
+    name: 'sortArraySplitStr',
     standalone: true
 })
-export class SortArrayPipe implements PipeTransform {
+export class SortArrayStringSplitPipe implements PipeTransform {
 
-    transform(listItems: any[] | undefined, delimitToOrder:string = ""): any[] {
-        const arrDelimit = delimitToOrder.split(',')
-        
-        if (delimitToOrder && listItems && listItems?.length > 0){ // 1 is last, -1 es first  
-            listItems.sort( (p1:any, p2:any):any => {
+    transform(listItems: any[] = [], stringsToSplit:string = "", separator:string = ','): any[] {
 
-                arrDelimit.forEach( del => {
-                    
+        if (stringsToSplit){
+            const arrDelimit = stringsToSplit.split(separator)
+            const orderList:any = []
+            if (stringsToSplit && listItems && listItems?.length > 0) {
+                arrDelimit.forEach( (name:string) => {
+                    const item = listItems.find( i => i?.nombre.toLowerCase() == name.trim().toLowerCase())
+                    if (item) orderList.push(item)
                 })
-                if(arrDelimit.includes(p1?.nombre)){
-
-
-                }
-            })
+            }
+            return orderList.slice(0,4)
         }
-    
-        return []
+
+
+        return listItems.slice(0,4)
     }
 
 }
