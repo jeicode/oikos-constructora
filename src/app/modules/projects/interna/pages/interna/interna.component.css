@@ -993,6 +993,18 @@ input {
 .slide_h_proyecto{
   width: 100%;
 }
+.contacto_flotante{
+  padding-left: 4%;
+  padding-right: 4%;
+  height: auto;
+  top: 10%;
+  overflow-y: auto;
+}
+.contacto_flotante .datos_persona{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
