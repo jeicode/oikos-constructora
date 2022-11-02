@@ -24,6 +24,12 @@
                         <b>  Dirección proyecto: </b> {{data?.direccion_proyecto}}
                     </div>
                 </div>
+                <div class="item_hp" *ngIf="data?.direccion_salaventas!='' && data?.direccion_salaventas!=null">
+                    <span class="fas fa-map-marker-alt"></span>
+                    <div>
+                        <b>  Dirección sala de ventas: </b> {{data?.direccion_salaventas}}
+                    </div>
+                </div>
                 <div class="item_hp" *ngIf="data?.telefono_salaventas!='' && data?.telefono_salaventas!=null">
                     <span class="fas fa-phone-alt"></span>
                     <div><b> Teléfono: </b> <a href="tel:{{data?.telefono_salaventas}}"> {{data?.telefono_salaventas}}</a></div>
@@ -95,7 +101,7 @@
             <!-- BOTONES CTA -->
 
             <div class="grand_cont_ctas">
-                <div class="btn">Contacto<span class="material-icons">mail_outline</span></div>
+                <div class="btn" (click)="activarFlotante()">Contacto<span class="material-icons">mail_outline</span></div>
                 <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank" *ngIf="data.vista360!='' && data.vista360!=null">Recorrido <img src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
                 <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank" *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt=""> </a>
             </div>
@@ -428,34 +434,42 @@
 
 <!-- MODAL CONTACTO -->
 <!-- RECORDAR USAR EL LAYER NEGRO DEL MODAL DE ARRIBA  -->
-<div class="s_modal_calculadora contacto_flotante active">
-    <a class="close_calc">
+<div class="s_modal_calculadora contacto_flotante">
+    <a class="close_calc" (click)="activarFlotante()">
         <span class="fas fa-arrow-right"></span>
     </a>
-    <form action="" class="f_calculadora">
-        <div _ngcontent-serverapp-c57="" class="h_form_proy_esp"> Contáctanos</div>
+    <form class="f_calculadora" [formGroup]="contactForm2" (ngSubmit)="insertContactForm()" novalidate>
+        <div class="h_form_proy_esp"> Contáctanos</div>
         <div class="grand_c_inputs">
             <div class="datos_persona">
                 <div class="cont_input_x1">
-                    <input type="text" placeholder="Nobre" required="">
+                    <input type="text" placeholder="Nombre" formControlName="nombre2">
+                    <div *ngIf="hasErrorsFieldForm2('nombre2')" class="error-text">Existen errores, por favor revisar*</div>
                 </div>
                 <div class="cont_input_x1">
-                    <input type="email" placeholder="Email" required="">
+                    <input type="email" placeholder="Email" formControlName="email2">
+                    <div *ngIf="hasErrorsFieldForm2('email2')" class="error-text">Existen errores, por favor revisar*</div>
                 </div>
                 <div class="cont_input_x1">
-                    <input type="tel" placeholder="Teléfono" required="">
+                    <input type="tel" placeholder="Teléfono" formControlName="telefono2">
+                    <div *ngIf="hasErrorsFieldForm2('telefono2')" class="error-text">Existen errores, por favor revisar* <br> Mínimo 7, Máximo 10 números</div>
                 </div>
                 <div class="cont_input_x1">
-                    <textarea name="" id="" rows="4" placeholder="Mensaje"></textarea>
+                    <textarea formControlName="mensaje2" rows="4" placeholder="Mensaje"></textarea>
+                    <div *ngIf="hasErrorsFieldForm2('mensaje2')" class="error-text">Existen errores, por favor revisar*</div>
                 </div>
             </div>
+
+            <re-captcha (resolved)="resolved($event)" siteKey="6LfpwdYhAAAAABcTB3UDqML8fsyTJvDfj3IfOEIU"></re-captcha>
+            <div *ngIf="captcha=='' && isSubmitted" class="error-text">Falta validar el catpcha*</div>
             
             <div class="cont_chk">
-                <input type="checkbox" name="" id="calc_form_chk">
-                <label for="calc_form_chk"> Acepto y Autorizo la <a href=""> Política de Tratamiento de Datos</a></label>
+                <input type="checkbox" formControlName="terminos2" id="calc_form_chk">
+                <label for="calc_form_chk"> Acepto y Autorizo la <a [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank"> Política de Tratamiento de Datos</a></label>
             </div>
+            <div *ngIf="hasErrorsFieldForm2('terminos2')" class="error-text">Existen errores, por favor revisar*</div>
             <div class="cont_submit">
-                <button type="submit" class="btn">Enviar</button>
+                <button type="submit" class="btn" [disabled]="contactForm2.invalid">Enviar</button>
             </div>
 
 

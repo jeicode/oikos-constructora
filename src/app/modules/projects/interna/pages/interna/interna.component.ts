@@ -9,6 +9,7 @@ import { FormService } from 'src/app/shared/services/functions/form.service';
 
 import SwiperCore,{ Navigation, Pagination, SwiperOptions, Lazy} from 'swiper';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
+import { throws } from 'assert';
 
 SwiperCore.use([Navigation, Pagination, Lazy]);
 
@@ -68,6 +69,13 @@ export class InternaComponent implements OnInit {
     terminos: new FormControl(false, Validators.requiredTrue)
   })
 
+  contactForm2: FormGroup = this.fb.group({
+    nombre2: new FormControl('', Validators.required),
+    email2: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+    telefono2: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^-?([0-9]{7,10})?$/)])),
+    mensaje2: new FormControl('', Validators.required),
+    terminos2: new FormControl(false, Validators.requiredTrue)
+  })
 
   constructor(  private configServ: ConfigService,
                 private projService: ProjectService,
@@ -253,6 +261,11 @@ export class InternaComponent implements OnInit {
     return this.formServ.hasErrorsFieldForm(form, field, this.showErrors)
   }
 
+  hasErrorsFieldForm2(field:string): Boolean {
+    const form = this.contactForm2
+    return this.formServ.hasErrorsFieldForm(form, field, this.showErrors)
+  }
+
   async insertContact(){
     this.isSubmitted = true;
     const values = {
@@ -330,6 +343,36 @@ export class InternaComponent implements OnInit {
   seguirLeyendo(){
     $(".read").remove();
     $(".descripcion_proyecto").css('height','max-content');
+  }
+
+  async insertContactForm(){
+    this.isSubmitted = true;
+    const values = {
+      nombre: this.contactForm2.controls['nombre2'].value,
+      email: this.contactForm2.controls['email2'].value,
+      telefono: this.contactForm2.controls['telefono2'].value,
+      mensaje: this.contactForm2.controls['mensaje2'].value,
+      id_proyecto: this.data.id,
+      nombre_proyecto: this.data.titulo_proyecto,
+      sendTo: this.data.email_contactos
+    }
+
+    if(this.contactForm2.valid && this.captcha!=''){
+      const resp = await this.projService.setContactFormProyecto(values);
+      if(resp.resp!='no'){
+        window.location.href = resp.resp;
+      }
+    }else{
+      console.log('Por favor completa todos los datos');
+    }
+  }
+
+  activarFlotante(){
+    if($(".contacto_flotante").hasClass('active')){
+      $(".contacto_flotante").removeClass('active');
+    }else{
+      $(".contacto_flotante").addClass('active');
+    }
   }
 
 }
