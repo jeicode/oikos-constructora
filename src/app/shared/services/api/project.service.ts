@@ -137,6 +137,19 @@ export class ProjectService {
 
   /**
    * 
+   * @param data 
+   * @returns Promise<any>
+   */
+  setContactFormProyecto(data: any): Promise<any> {
+    const url = `${API_URL}v1/setContactFormProyecto`;
+    return this._http.post(url, JSON.stringify(data)).toPromise().then().catch(err => {
+      console.warn(err)
+      return false
+    });
+  }
+
+  /**
+   * 
    * @param id_proyecto 
    * @returns Promise<any>
    */
