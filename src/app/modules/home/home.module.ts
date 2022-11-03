@@ -9,6 +9,7 @@ import { DefaultImgDirective } from 'src/app/shared/directives/default-img.direc
 import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 import { ModalPreLaunchProjectComponent } from 'src/app/shared/components/modal-pre-launch-project/modal-pre-launch-project.component';
 import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
+import { ThousandNumber } from 'src/app/shared/pipes/thousand-number.pipe';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
     DefaultImgDirective,
     WppModalProjectComponent,
     ModalPreLaunchProjectComponent,
-    SortArrayStringSplitPipe
+    SortArrayStringSplitPipe,
+    ThousandNumber
   ]
 })
 export class HomeModule { }
