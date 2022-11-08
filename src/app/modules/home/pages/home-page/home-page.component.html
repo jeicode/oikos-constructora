@@ -133,6 +133,10 @@
                                 <span>Desde</span>
                                 ${{i?.valor_proyecto_formato}} 
                             </h4>
+                            <div class="precio_usd" *ngIf="i?.dollar_value">
+                                Precio de referencia 
+                                <b>USD {{i?.dollar_value | thousandNumber:'es'}}</b>
+                            </div>
                         </div>
                         <div class="franja_p">
                             <img width="20" height="20" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">

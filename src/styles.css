@@ -523,10 +523,12 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-.logo_pie img{
+
+.logo_pie img {
     width: 100%;
     max-width: 80px;
 }
+
 .txt_pie {
     width: 100%;
     font-size: 13px;
@@ -760,7 +762,7 @@ h1 {
     width: 100%;
     box-sizing: border-box;
     position: relative;
-    padding:  0;
+    padding: 0;
 }
 
 .cnt_car_proy_dest .card_p {
@@ -773,7 +775,8 @@ h1 {
     overflow: hidden;
     padding: 0 5% 0;
 }
-.cnt_car_proy_dest .swiper{
+
+.cnt_car_proy_dest .swiper {
     padding-bottom: 60px;
 }
 
@@ -820,9 +823,11 @@ h1 {
         padding: 0 8px;
         text-align: center;
     }
-    .btn_pse{
+
+    .btn_pse {
         padding-left: 0px;
     }
+
     .nav_bar_h {
         padding: 0 24px;
     }
@@ -1176,6 +1181,7 @@ input[type=file]::-webkit-file-upload-button {
     .title_section {
         font-size: 32px;
     }
+
     .logo_pri {
         width: 104px;
         height: 60px;
@@ -1235,26 +1241,29 @@ input[type=file]::-webkit-file-upload-button {
     .cnt_gen_cert_pie {
         justify-content: center;
     }
-    .cnt_logos_pie{
+
+    .cnt_logos_pie {
         justify-content: center;
     }
-    .logo_pie{
+
+    .logo_pie {
         justify-content: center;
         text-align: center;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .cuerpo{
+    .cuerpo {
         padding-top: 84px;
     }
-    .miga{
+
+    .miga {
         margin: 0;
         font-size: 10px;
         text-align: left;
         line-height: 10px;
     }
-    
+
     .nav_bar_h {
         padding: 0 8px;
     }
@@ -1282,10 +1291,12 @@ input[type=file]::-webkit-file-upload-button {
         gap: 0;
     }
 
-    .lb-loader, .lightbox{
+    .lb-loader,
+    .lightbox {
         /*position: fixed;*/
     }
-    .s_carr_proy{
+
+    .s_carr_proy {
         padding-top: 1px;
     }
 }
@@ -1314,9 +1325,21 @@ input[type=file]::-webkit-file-upload-button {
     cursor: pointer;
 }
 
-.map-container{
+.map-container {
     max-width: 100%;
 }
-:host ::ng-deep .cuerpo .contenidopol .title{
+
+:host ::ng-deep .cuerpo .contenidopol .title {
     font-size: 30px;
+}
+
+.precio_usd {
+    color: #436ac9;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+
+.precio_usd b {
+    font-size: 18px;
 }

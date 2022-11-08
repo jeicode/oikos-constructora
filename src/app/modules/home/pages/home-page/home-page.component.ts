@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { BannerHome, Zona } from 'src/app/core/models/banner-home.model';
 import { Project } from 'src/app/core/models/project.model';
+import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
@@ -49,7 +50,8 @@ export class HomePageComponent implements OnInit {
 }
 
   constructor(private projectService: ProjectService, private pageService: PageService,
-              public responsiveService: ResponsiveService, public configServ:ConfigService) { }
+              public responsiveService: ResponsiveService, public configServ:ConfigService,
+              private currencyConverter:CurrencyConverterService) { }
 
   ngOnInit(): void {
     this.init()
@@ -61,6 +63,7 @@ export class HomePageComponent implements OnInit {
     const tasks = [
       () => this.getBannersHome(),
       () => this.getProjectsHome(),
+      () => this.convertCopToUsdProjects(),
       () => this.getData(),
       () => this.getCollections()
     ]
@@ -68,6 +71,11 @@ export class HomePageComponent implements OnInit {
     for (const task of tasks) {
       await task();
     }
+  }
+
+
+  async convertCopToUsdProjects(){
+    await this.currencyConverter.convertCopToUsdProjects(this.housingProjects)
   }
 
   getCustomBenefitsProject(benefits:string, zonas:Zona[]): (Zona | undefined)[]{

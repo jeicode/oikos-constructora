@@ -11,6 +11,8 @@ import { Subject } from 'rxjs';
 import { WppModalProjectComponent } from '../wpp-modal-project/wpp-modal-project.component';
 import { ConfigService } from '../../services/functions/config.service';
 import { ModalPreLaunchProjectComponent } from '../modal-pre-launch-project/modal-pre-launch-project.component';
+import { ThousandNumber } from '../../pipes/thousand-number.pipe';
+import { CurrencyConverterService } from '../../services/api/currency-converter.service';
 
 
 SwiperCore.use([Navigation, Pagination]);
@@ -28,7 +30,8 @@ SwiperCore.use([Navigation, Pagination]);
     // directives
     DefaultImgDirective,
     WppModalProjectComponent,
-    ModalPreLaunchProjectComponent
+    ModalPreLaunchProjectComponent,
+    ThousandNumber
   ]
 })
 export class SlideProjectsComponent implements OnInit {
@@ -61,7 +64,8 @@ export class SlideProjectsComponent implements OnInit {
 
 
 
-  constructor(private projectService: ProjectService, public configServ:ConfigService) {}
+  constructor(private projectService: ProjectService, public configServ:ConfigService,
+              private currencyConverter:CurrencyConverterService) {}
   
   ngOnInit(): void {
     this.getFeaturedProjects()  
@@ -71,7 +75,10 @@ export class SlideProjectsComponent implements OnInit {
   async getFeaturedProjects(){
     if (this.projects.length == 0) {
       const projects = await this.projectService.getFeaturedProjects()
-      if(projects) this.projects = projects
+      if(projects) {
+        this.projects = projects
+        await this.currencyConverter.convertCopToUsdProjects(this.projects)
+      }
     }
   }
 

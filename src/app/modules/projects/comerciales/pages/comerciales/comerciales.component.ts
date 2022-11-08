@@ -7,6 +7,7 @@ import { ConfigService } from 'src/app/shared/services/functions/config.service'
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { Project } from 'src/app/core/models/project.model';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
+import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
 
 declare var $:any;
 @Component({
@@ -42,7 +43,7 @@ export class ComercialesComponent implements OnInit {
 
   constructor(private pageService: PageService, private router: Router, 
               public configServ: ConfigService, private projService: ProjectService,
-              private responsiveService: ResponsiveService) {
+              private responsiveService: ResponsiveService, private currencyConverter:CurrencyConverterService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
@@ -62,6 +63,7 @@ export class ComercialesComponent implements OnInit {
       () => this.getData(),
       () => this.getSecciones(),
       () => this.getProyectos(),
+      () => this.convertCopToUsdProjects(),
       () => this.getEjecutados(),
       () => this.getPreciosProyectos()
     ]
@@ -69,6 +71,11 @@ export class ComercialesComponent implements OnInit {
     for (const task of tasks) {
       await task();
     }
+  }
+
+
+  async convertCopToUsdProjects(){
+    await this.currencyConverter.convertCopToUsdProjects(this.proyectos)
   }
 
   async getData(){

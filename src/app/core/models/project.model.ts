@@ -95,5 +95,7 @@ export class Project {
         public saldo_cuota: string = "",
         public numero_cuotas: any[] = [],
         public financiar: string = "",
+        public dollar_value:number = 0
         ){}
+
     }

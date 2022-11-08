@@ -7,6 +7,7 @@ import { ConfigService } from 'src/app/shared/services/functions/config.service'
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { Project } from 'src/app/core/models/project.model';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
+import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
 
 declare var $:any;
 @Component({
@@ -43,7 +44,7 @@ export class ViviendaComponent implements OnInit {
 
 
   constructor(private pageService: PageService, private router: Router,
-              private responsiveService:ResponsiveService, 
+              private responsiveService:ResponsiveService, private currencyConverter: CurrencyConverterService,
               public configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
@@ -79,14 +80,21 @@ export class ViviendaComponent implements OnInit {
       () => this.getData(),
       () => this.getSecciones(),
       () => this.getProyectos(),
+      () => this.convertCopToUsdProjects(),
       () => this.getEjecutados(),
-      () => this.getPreciosProyectos()
+      () => this.getPreciosProyectos(),
     ]
 
     for (const task of tasks) {
       await task();
     }
   }
+
+
+  async convertCopToUsdProjects(){
+    await this.currencyConverter.convertCopToUsdProjects(this.proyectos)
+  }
+
 
   selectProjectToPreLaunch(project:Project){
     this.projectSelectedToModal = project
