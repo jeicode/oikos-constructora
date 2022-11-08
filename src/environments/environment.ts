@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_url: 'https://adminpaxzu-cons.oikos.com.co/', 
+  base_url: 'https://adminpaxzu-cons.oikos.com.co/',
   api_url: 'https://adminpaxzu-cons.oikos.com.co/api/', //establecer el subdominio para esta sección
 
   imagenes_url: 'https://adminpaxzu-cons.oikos.com.co/', //establecer el subdominio para esta sección
