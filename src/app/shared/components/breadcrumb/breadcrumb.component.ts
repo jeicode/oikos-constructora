@@ -3,6 +3,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
+import { PageService } from '../../services/api/page.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -13,7 +14,7 @@ import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
     RouterModule
   ]
 })
-export class BreadcrumbComponent implements OnInit, OnDestroy {
+export class BreadcrumbComponent implements OnInit {
 
   @Input() cssClass:string = "";
   @Input() colorTxt:string = "" || "black"
@@ -25,7 +26,10 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   private ngOnInitFirstCalled:boolean = false;
   private suscribeListenRouter:Subscription;
 
-  constructor(private router: Router) {
+  rutas       : any = [];
+
+
+  constructor(private router: Router, private pageService: PageService) {
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
         if (this.ngOnInitFirstCalled){
@@ -36,29 +40,22 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  ngOnDestroy(): void {
-    this.suscribeListenRouter.unsubscribe()
-  }
   ngOnInit(): void {
+    this.init();
+  }
 
-    this.paths = this.router.url.split('/');
+  async init(){
+    const tasks = [
+      () => this.getBreadCrumb()
+    ]
 
-    this.paths = this.deletePathsInRoute()
-    this.paths = this.clearPaths()
-    
-    if (this.crumbTitle) {
-      this.paths.splice(this.paths.length-1, this.paths.length);
-      this.paths.push(this.crumbTitle)
+    for (const task of tasks) {
+      await task();
     }
-    
+  }
 
-    if(this.breadcrumbs.length === 0){
-      this.mappingRoutes()
-    }
-
-    this.ngOnInitFirstCalled = true
-
+  async getBreadCrumb(){
+    this.rutas = await this.pageService.getBreadCrumb(window.location.href);
   }
 
 
