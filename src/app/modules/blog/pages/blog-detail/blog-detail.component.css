@@ -539,6 +539,10 @@
     transition: all 0.5s;
 }
 
+.cnt_not_interes_int .row_cta{
+    padding: 16px 0;
+}
+
 /* RESPONISIVE */
 @media screen and (max-width: 1300px) {
 
@@ -587,10 +591,10 @@
 }
 
 @media screen and (max-width: 768px) {
-    .cnt_nota_int {
-        padding: 0 0 64px;
+    .cnt_nota_int, .cnt_not_interes_int {
+        padding: 0 ;
     }
-
+    
     .col_compartir_nota {
         min-width: inherit;
     }
