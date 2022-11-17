@@ -41,6 +41,9 @@ const routes: Routes = [
     path: 'pagos-constructora',
     loadChildren: () => import('./modules/pagos/pagos.module').then( m => m.PagosModule )
   },{
+    path: 'mapa-del-sitio',
+    loadChildren: () => import('./modules/mapa/mapa.module').then( m => m.MapaModule )
+  },{
     path: '**',
     component: NotFoundPageComponent
   }, 

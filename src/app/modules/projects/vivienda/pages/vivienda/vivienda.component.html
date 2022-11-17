@@ -161,9 +161,12 @@
                             {{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}
                         </div>
                         <div class="info_datos_pe">
-                            <div> <b> Dirección:</b> {{i?.direccion_proyecto}}</div>
-                            <div> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
-                            <div> <b> Zona:</b> {{i?.zona_proyecto}}</div>
+                            <div *ngIf="i?.direccion_proyecto!=''"> <b> Dirección:</b> {{i?.direccion_proyecto}}</div>
+                            <div *ngIf="i?.ubicacion_proyecto!=''"> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
+                            <div *ngIf="i?.zona_proyecto!=''"> <b> Zona:</b> {{i?.zona_proyecto}}</div>
+                            <div *ngIf="i?.telefono_salaventas!=''"> <b> Teléfono:</b> {{i?.telefono_salaventas}}</div>
+                            <div *ngIf="i?.celular_salaventas!=''"> <b> Celular:</b> {{i?.celular_salaventas}}</div>
+                            <div *ngIf="i?.email!=''"> <b> Email:</b> {{i?.email}}</div>
                         </div>
                     </div>
                     <div class="c_slider_pe">

@@ -165,7 +165,8 @@
 
                     <!-- swiper planos -->
                     <div class="container_pp" *ngIf="planos.length>0">
-                        <h3 class="">Planos</h3>
+                        <h3 class="" *ngIf="data?.id=='83'">Aliados</h3>
+                        <h3 class="" *ngIf="data?.id!='83'">Planos</h3>
                         
                         <div class="swiper swiperPlanos">
                             <div class="swiper-wrapper">

@@ -93,7 +93,7 @@ export class BlogPageComponent implements OnInit {
   nextPage(){
     if (this.remainingPages > 0) {
       this.numPage++;
-      this.router.navigate(['/noticias/pagina/', this.numPage]);
+      this.router.navigate(['/noticias-constructora/pagina/', this.numPage]);
 
     }
   }
@@ -101,7 +101,7 @@ export class BlogPageComponent implements OnInit {
   beforePage(){
     if (this.numPage > 1){
       this.numPage--;
-      this.router.navigate(['/noticias/pagina/', this.numPage]);
+      this.router.navigate(['/noticias-constructora/pagina/', this.numPage]);
     }
   }
 

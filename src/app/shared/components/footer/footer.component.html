@@ -60,8 +60,10 @@
                 <div class="txt_susc_pie">
                     Escribe tu e-mail para mantenerte al tanto de nuestra información
                 </div>
-                <form action="" class="form_susc">
-                    <input type="email" class="campo_susc_pie" placeholder="aquí tu e-mail"/>
+                <form class="form_susc" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=GrupoOikos', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+                    <input type="email" class="campo_susc_pie" placeholder="aquí tu e-mail" name="email"/>
+                    <input type="hidden" value="GrupoOikos" name="uri">
+                    <input type="hidden" name="loc" value="es_ES">
                     <input type="submit" class="bnt_susc">
                 </form>
             </div>
