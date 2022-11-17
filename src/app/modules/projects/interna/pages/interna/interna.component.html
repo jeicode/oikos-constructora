@@ -86,7 +86,10 @@
                         <div class="swiper-button-prev"></div>
                     </div>
 
-                    <a class="btn cta_maqueta_virt" href="{{data?.tourguiado}}" rel="noopener,nofollow" target="_blank" *ngIf="data.tourguiado!='' && data.tourguiado!=null">Maqueta virtual <img width="20" height="20" src="./assets/images/diseno/proyectos_vivienda/icon_360.svg" alt=""> </a>
+                    <a class="btn cta_maqueta_virt" href="{{data?.tourguiado}}" rel="noopener,nofollow" target="_blank" *ngIf="data.tourguiado!='' && data.tourguiado!=null" [ngStyle]="{'background-color': data?.color_secundario}">
+                        Maqueta virtual 
+                        <img width="20" height="20" src="./assets/images/diseno/proyectos_vivienda/icon_360.svg" alt="">
+                    </a>
                 </div>
                     
                 <div thumbsSlider="" class="swiper mySwiper">

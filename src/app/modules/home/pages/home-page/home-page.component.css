@@ -253,6 +253,11 @@
     width: 100%;
     height: 100%;
 }
+.card_p picture img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
 
 .card_p picture a{
     width: 100%;
