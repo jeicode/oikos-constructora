@@ -287,7 +287,8 @@ export class InternaComponent implements OnInit {
       proyecto: this.data.titulo_proyecto,
       valorProyecto: this.data.valor_proyecto,
       sendTo: this.data.email_contactos,
-      id_proyecto: this.data.id
+      id_proyecto: this.data.id,
+      gracias_a: "1"
     }
 
     if(this.contactForm.valid){
