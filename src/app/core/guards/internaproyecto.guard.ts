@@ -23,6 +23,7 @@ export class InternaProyectoGuard implements CanActivate {
           return true;
         }
 
+        this.router.navigateByUrl('404', { skipLocationChange: true });
         return false;
     }
 }

@@ -46,7 +46,7 @@ export class BlogGuard implements CanActivate {
             this.blogService.currentBlogs = blogs?.notas
             this.blogService.remainingPages = blogs?.restantes
 
-            const seo = await this.pageService.getSeoContentPage('noticias')
+            const seo = await this.pageService.getSeoContentPage('noticias-constructora')
             if (seo) this.seoService.setUpMetaTags(seo)
             return true
           }
@@ -59,7 +59,7 @@ export class BlogGuard implements CanActivate {
     async defaultRender(limit:number){
       const blogs = await this.blogService.getMostRecentNews(`?num_pagina=1&limite=${limit}`)
 
-      const seo = await this.pageService.getSeoContentPage('noticias')
+      const seo = await this.pageService.getSeoContentPage('noticias-constructora')
       if (blogs){
         this.blogService.currentBlogs = blogs?.notas
         this.blogService.remainingPages = blogs?.restantes
