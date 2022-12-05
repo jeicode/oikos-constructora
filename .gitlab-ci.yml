@@ -1,0 +1,21 @@
+stages:
+    - deploy
+    - main-push
+
+deploy-main:
+  stage: main-push
+  only:
+    - dev
+  tags:
+    - runner server
+  script:
+    - /home/gitlab-runner/shells/authorized.sh
+
+deploy-prod:
+    stage: deploy
+    only:
+        - production
+    tags:
+        - runner server
+    script:
+        - /home/gitlab-runner/shells/oikoscom/constructora.sh
