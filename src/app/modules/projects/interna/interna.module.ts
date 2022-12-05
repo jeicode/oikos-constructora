@@ -15,6 +15,8 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
 import { SwiperModule } from 'swiper/angular';
 import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-pr
   ],
   imports: [
     CommonModule,
+    ScrollingModule,
     InternaRoutingModule,
     ComponentSharedModule,
     HttpClientModule,

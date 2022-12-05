@@ -7,11 +7,10 @@ import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
-import SwiperCore,{ Navigation, Pagination, SwiperOptions, Lazy} from 'swiper';
+import SwiperCore,{ Navigation, Pagination, SwiperOptions} from 'swiper';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
-import { throws } from 'assert';
 
-SwiperCore.use([Navigation, Pagination, Lazy]);
+SwiperCore.use([Navigation, Pagination]);
 
 declare var $:any;
 @Component({
@@ -112,7 +111,6 @@ export class InternaComponent implements OnInit {
 
   async getData(){
     const [data] = await this.projService.getProyectoByUrl(this.slug);
-
     if (data){
       this.data = data;
 

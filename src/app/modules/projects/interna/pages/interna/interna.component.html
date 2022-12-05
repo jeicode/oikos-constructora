@@ -1,5 +1,5 @@
 <section class="s_proyecto_h">
-    
+
     <div class="cnt_central">
         <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
     </div>
@@ -8,7 +8,8 @@
         <div class="info_h_proyecto">
             <div class="h_logo_proyect">
                 <picture>
-                    <img width="140" height="140" src="{{imagenes_url+data?.logo_proyecto}}" alt="{{data?.alt_logo}}" title="{{data?.title_logo}}">
+                    <img width="140" height="140" src="{{imagenes_url+data?.logo_proyecto}}" alt="{{data?.alt_logo}}"
+                        title="{{data?.title_logo}}">
                 </picture>
                 <div class="title_ph" style="color:#fff">
                     <div class="tag" [ngStyle]="{'background-color': data?.color_secundario}">
@@ -18,37 +19,38 @@
                 </div>
             </div>
             <div class="info_heading_proy">
-                <div class="item_hp" *ngIf="data?.direccion_proyecto!='' && data?.direccion_proyecto!=null">
+                <div class="item_hp" *ngIf="data?.direccion_proyecto">
                     <span class="fas fa-map-marker-alt"></span>
                     <div>
-                        <b>  Dirección proyecto: </b> {{data?.direccion_proyecto}}
+                        <b> Dirección proyecto: </b> {{data?.direccion_proyecto}}
                     </div>
                 </div>
-                <div class="item_hp" *ngIf="data?.direccion_salaventas!='' && data?.direccion_salaventas!=null">
+                <div class="item_hp" *ngIf="data?.direccion_salaventas">
                     <span class="fas fa-map-marker-alt"></span>
                     <div>
-                        <b>  Dirección sala de ventas: </b> {{data?.direccion_salaventas}}
+                        <b> Dirección sala de ventas: </b> {{data?.direccion_salaventas}}
                     </div>
                 </div>
-                <div class="item_hp" *ngIf="data?.telefono_salaventas!='' && data?.telefono_salaventas!=null">
+                <div class="item_hp" *ngIf="data?.telefono_salaventas">
                     <span class="fas fa-phone-alt"></span>
-                    <div><b> Teléfono: </b> <a href="tel:{{data?.telefono_salaventas}}"> {{data?.telefono_salaventas}}</a></div>
+                    <div><b> Teléfono: </b> <a href="tel:{{data?.telefono_salaventas}}">
+                            {{data?.telefono_salaventas}}</a></div>
                 </div>
-                <div class="item_hp" *ngIf="data?.director_ventas!='' && data?.director_ventas!=null">
+                <div class="item_hp" *ngIf="data?.director_ventas">
                     <span class="fas fa-user-alt"></span>
                     <div><b> Director de ventas: </b> {{data?.director_ventas}}</div>
                 </div>
-                <div class="item_hp" *ngIf="data?.horario!='' && data?.horario!=null">
+                <div class="item_hp" *ngIf="data?.horario">
                     <span class="fas fa-clock"></span>
-                    <div><b> Horario:</b>  {{data?.horario}}</div>
+                    <div><b> Horario:</b> {{data?.horario}}</div>
                 </div>
-                <div class="item_hp" *ngIf="data?.email!='' && data?.email!=null">
+                <div class="item_hp" *ngIf="data?.email">
                     <span class="fas fa-envelope"></span>
                     <div><b> E-mail:</b> <a href="mailto:{{data?.email}}"> {{data?.email}}</a></div>
                 </div>
             </div>
             <div class="precio_hp">
-                <div class="price_project" *ngIf="data?.valor_proyecto!='' && data?.valor_proyecto!=null">
+                <div class="price_project" *ngIf="data?.valor_proyecto">
                     <h4>{{data?.tipo_proyecto}} DESDE</h4>
                     <div class="cont_price">
                         $ {{data?.valor_proyecto_formato}}
@@ -56,12 +58,12 @@
                     <span>{{data?.texto_adicional}}</span>
 
                 </div>
-                <a target="_blank" class="btn whatsapp whatsapp_init c-pointer"
-                    (click)="openModal()">
-                    Contactar 
-                    <span class="fab fa-whatsapp"></span> 
+                <a target="_blank" class="btn whatsapp whatsapp_init c-pointer" (click)="openModal()">
+                    Contactar
+                    <span class="fab fa-whatsapp"></span>
                 </a>
-                <a class="btn btn_calc_1" (click)="modalIsOpen=true" *ngIf="data?.calculadora=='1'">Calcule su cuota mensual</a>
+                <a class="btn btn_calc_1" (click)="modalIsOpen=true" *ngIf="data?.calculadora=='1'">Calcule su cuota
+                    mensual</a>
             </div>
 
         </div>
@@ -70,13 +72,14 @@
 
             <div class="col_slide_p">
 
-                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2" >
+                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" *ngFor="let i of galeria; let index=index">
-                            <img *ngIf="!i?.field_description" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}" title="{{i?.title}}"/>
+                            <img *ngIf="!i?.field_description" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}"
+                                title="{{i?.title}}" />
                             <div *ngIf="i?.field_description" class="embed-responsive">
-                                <iframe class="embed-responsive-item iframe_video_gallery" [src]="i?.field_description | safeResourceUrl" 
-                                        allowfullscreen>
+                                <iframe class="embed-responsive-item iframe_video_gallery"
+                                    [src]="i?.field_description | safeResourceUrl" allowfullscreen>
                                 </iframe>
                             </div>
                         </div>
@@ -86,16 +89,17 @@
                         <div class="swiper-button-prev"></div>
                     </div>
 
-                    <a class="btn cta_maqueta_virt" href="{{data?.tourguiado}}" rel="noopener,nofollow" target="_blank" *ngIf="data.tourguiado!='' && data.tourguiado!=null" [ngStyle]="{'background-color': data?.color_secundario}">
-                        Maqueta virtual 
+                    <a class="btn cta_maqueta_virt" href="{{data?.tourguiado}}" rel="noopener,nofollow" target="_blank"
+                        *ngIf="data?.tourguiado" [ngStyle]="{'background-color': data?.color_secundario}">
+                        Maqueta virtual
                         <img width="20" height="20" src="./assets/images/diseno/proyectos_vivienda/icon_360.svg" alt="">
                     </a>
                 </div>
-                    
+
                 <div thumbsSlider="" class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" *ngFor="let i of galeria">
-                            <img src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}" title="{{i?.title}}"/>
+                            <img src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}" title="{{i?.title}}" />
                         </div>
                     </div>
                 </div>
@@ -104,12 +108,17 @@
             <!-- BOTONES CTA -->
 
             <div class="grand_cont_ctas">
-                <div class="btn" (click)="activarFlotante()">Contacto<span class="material-icons">mail_outline</span></div>
-                <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank" *ngIf="data.vista360!='' && data.vista360!=null">Recorrido <img src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
-                <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank" *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt=""> </a>
+                <div class="btn" (click)="activarFlotante()">Contacto<span class="material-icons">mail_outline</span>
+                </div>
+                <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank"
+                    *ngIf="data.vista360">Recorrido <img
+                        src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
+                <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank"
+                    *ngIf="data.url_waze">Cómo llegar <img
+                    src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt=""> </a>
             </div>
-                
-            </div>
+
+        </div>
     </div>
 
 </section>
@@ -120,15 +129,18 @@
 
             <!-- aside progress current project -->
             <aside class="progress_state">
-                <a class="state active sect1" (click)="trasladar('sect1')" style="cursor:pointer" *ngIf="data?.descripcion_proyecto && data?.descripcion_proyecto!=null">
+                <a class="state active sect1" (click)="trasladar('sect1')" style="cursor:pointer"
+                    *ngIf="data?.descripcion_proyecto">
                     <span class="fas fa-circle"></span>
                     <h4>Sobre el proyecto</h4>
                 </a>
-                <a class="state sect2" (click)="trasladar('sect2')" style="cursor:pointer" *ngIf="planos.length>0 || tipologia.length>0">
+                <a class="state sect2" (click)="trasladar('sect2')" style="cursor:pointer"
+                    *ngIf="planos.length>0 || tipologia.length>0">
                     <span class="fas fa-circle-notch"></span>
                     <h4>Planos y Tipología</h4>
                 </a>
-                <a class="state sect3" (click)="trasladar('sect3')" style="cursor:pointer" *ngIf="sitiosInteres.length>0">
+                <a class="state sect3" (click)="trasladar('sect3')" style="cursor:pointer"
+                    *ngIf="sitiosInteres.length>0">
                     <span class="fas fa-circle-notch"></span>
                     <h4>Sitios de interés</h4>
                 </a>
@@ -140,27 +152,34 @@
                     <span class="fas fa-circle-notch"></span>
                     <h4>Avance obra</h4>
                 </a>
-                <a class="state sect6" (click)="trasladar('sect6')" style="cursor:pointer" *ngIf="data?.calculadora=='1'">
+                <a class="state sect6" (click)="trasladar('sect6')" style="cursor:pointer"
+                    *ngIf="data?.calculadora=='1'">
                     <span class="fas fa-circle-notch"></span>
                     <h4>Calcula</h4>
                 </a>
-                
+
             </aside>
 
 
             <div class="container_desc_project">
 
                 <!-- seccion descripcion proyecto -->
-                <div class="info_proj" id="sect1" *ngIf="data?.descripcion_proyecto && data?.descripcion_proyecto!=null">
+                <div class="info_proj" id="sect1"
+                    *ngIf="data?.descripcion_proyecto">
                     <h3 class="title_section"> <span> Descripción del</span> Proyecto</h3>
-                    <div class="descripcion_proyecto" [innerHTML]="data?.descripcion_proyecto" style="height:156px;overflow:hidden;"></div>
+                    <div class="descripcion_proyecto" [innerHTML]="data?.descripcion_proyecto"
+                        style="height:156px;overflow:hidden;"></div>
                     <br>
                     <div class="cont_btn_seguir">
                         <a style="cursor:pointer" class="btn read" (click)="seguirLeyendo()">Seguir Leyendo</a>
                     </div>
                     <picture>
-                        <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank" *ngIf="data.vista360!='' && data.vista360!=null">Recorrido <img src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
-                        <img width="838" height="350" src="{{imagenes_url+data?.imagen_banner_proyecto}}" alt="{{data?.alt_banner}}" title="{{data?.title_banner}}">
+                        <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank"
+                            *ngIf="data.vista360">Recorrido <img
+                                src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20"
+                                alt=""> </a>
+                        <img width="838" height="350" src="{{imagenes_url+data?.imagen_banner_proyecto}}"
+                            alt="{{data?.alt_banner}}" title="{{data?.title_banner}}">
                     </picture>
                 </div>
 
@@ -170,13 +189,14 @@
                     <div class="container_pp" *ngIf="planos.length>0">
                         <h3 class="" *ngIf="data?.id=='83'">Aliados</h3>
                         <h3 class="" *ngIf="data?.id!='83'">Planos</h3>
-                        
+
                         <div class="swiper swiperPlanos">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide" *ngFor="let i of data.planos">
                                     <div class="img_slider_tipo">
                                         <a href="{{imagenes_url+i?.field_content}}" data-lightbox="plano">
-                                            <img width="409" height="247" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                                            <img width="409" height="247" src="{{imagenes_url+i?.field_content}}"
+                                                alt="{{i?.alt}}">
                                         </a>
                                     </div>
                                     <div class="txt_img_plano">
@@ -184,7 +204,7 @@
                                         <div [innerHTML]="i?.title"></div>
                                     </div>
                                 </div>
-                            
+
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
@@ -200,7 +220,8 @@
                                 <div class="swiper-slide" *ngFor="let i of data.tipologia">
                                     <div class="img_slider_tipo">
                                         <a href="{{imagenes_url+i?.field_content}}" data-lightbox="tipologia">
-                                            <img width="409" height="247" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}" title="{{i?.title}}">
+                                            <img width="409" height="247" src="{{imagenes_url+i?.field_content}}"
+                                                alt="{{i?.alt}}" title="{{i?.title}}">
                                         </a>
                                     </div>
                                     <div class="txt_img_plano">
@@ -208,12 +229,12 @@
                                         <div [innerHTML]="i?.title"></div>
                                     </div>
                                 </div>
-                            
+
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -222,12 +243,18 @@
                 <div class="info_sitios_interes" id="sect3" *ngIf="sitiosInteres.length>0">
                     <h3 class="title_section"> <span> Sitios de </span>Interés</h3>
                     <div class="tags_s_interes">
-                        <span *ngFor="let i of sitiosInteres" (click)="cargarSitios(i?.id)" style="cursor:pointer">{{i?.field_content}}</span>
+                        <span *ngFor="let i of sitiosInteres" (click)="cargarSitios(i?.id)"
+                            style="cursor:pointer">{{i?.field_content}}</span>
                     </div>
                     <div class="map">
-                        <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank" *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt=""> </a>
+                        <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank"
+                            *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img
+                                src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt="">
+                        </a>
                         <google-map width="1050" height="350" [center]="center" [zoom]="zoom">
-                            <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" [title]="marker.title" [options]="marker.options" [icon]="marker.icon"></map-marker>
+                            <map-marker *ngFor="let marker of markers" [position]="marker.position"
+                                [label]="marker.label" [title]="marker.title" [options]="marker.options"
+                                [icon]="marker.icon"></map-marker>
                         </google-map>
                     </div>
                 </div>
@@ -244,14 +271,14 @@
                     </div>
                 </div>
 
-                
+
                 <!-- seccion avances Obra -->
                 <div class="info_avance_obra" id="sect5" *ngIf="avancesObra?.length>0">
                     <h3 class="title_section"><span> Avance de</span> obra</h3>
                     <div class="fechas_a_obra">
                         <div class="tabs_nav_obra">
                             <div class="wrap_nav_obra">
-                                <a class="botonpfc" [ngClass]="index==0 ? 'active' : ''"  
+                                <a class="botonpfc" [ngClass]="index==0 ? 'active' : ''"
                                     *ngFor="let i of fechasAvancesObra; index as index"
                                     (click)="actualizarAvanceObraActivo(index, i)">
                                     {{i}}
@@ -263,12 +290,15 @@
                             <swiper [config]="config">
                                 <ng-template swiperSlide *ngFor="let i of avancesObraActivos">
                                     <div class="swiper-slide">
-                                        <iframe width="514" height="300" [src]="i?.field_description | safeResourceUrl" class="js-modal-btn" 
-                                                *ngIf="i?.field_description!='' && i?.field_description!=null; else routerVideo">
-                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                                        <iframe width="514" height="300" [src]="i?.field_description | safeResourceUrl"
+                                            class="js-modal-btn"
+                                            *ngIf="i?.field_description; else routerVideo">
+                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}"
+                                                alt="{{i?.alt}}">
                                         </iframe>
                                         <ng-template #routerVideo>
-                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
+                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}"
+                                                alt="{{i?.alt}}">
                                         </ng-template>
                                     </div>
                                 </ng-template>
@@ -314,9 +344,7 @@
 
 
 <!-- modal wpp -->
-<app-wpp-modal-project  [modalEvent]="notifyChanges.asObservable()" 
-                        [project]="data" [showFloatingButton]="true">
-</app-wpp-modal-project>
+<app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" [project]="data" [showFloatingButton]="true"></app-wpp-modal-project>
 
 <!-- MODAL CALCULADORA -->
 <span class="bg_dark" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none'}"></span>
@@ -330,17 +358,17 @@
             <div class="swiper swiperCalcP">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" *ngFor="let i of galeria">
-                        <img *ngIf="!i?.field_description; else iframeYT" width="400" height="200" 
+                        <img *ngIf="!i?.field_description; else iframeYT" width="400" height="200"
                             src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
-                        
+
                         <ng-template #iframeYT>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item iframe_video_gallery_2" 
-                                        [src]="i?.field_description | safeResourceUrl" allowfullscreen>
+                                <iframe class="embed-responsive-item iframe_video_gallery_2"
+                                    [src]="i?.field_description | safeResourceUrl" allowfullscreen>
                                 </iframe>
                             </div>
                         </ng-template>
-                        
+
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -360,18 +388,21 @@
                     <input type="tel" placeholder="Teléfono" formControlName="telefono">
                 </div>
                 <div *ngIf="hasErrorsFieldForm('email')" class="error-text">Existen errores, por favor revisar*</div>
-                <div *ngIf="hasErrorsFieldForm('telefono')" class="error-text">Existen errores, por favor revisar* <br> Mínimo 7, Máximo 10 números</div>
+                <div *ngIf="hasErrorsFieldForm('telefono')" class="error-text">Existen errores, por favor revisar* <br>
+                    Mínimo 7, Máximo 10 números</div>
             </div>
             <div class="datos_cuota_inicial">
                 <div class="cont_input_x2">
                     <div class="info">
                         <label for="">Cuota inicial %</label>
-                        <input type="number" min="{{data?.porcentaje_minimo}}" (click)="calculoPorcentaje()" class="cambiarPorcentaje" max="100" value="{{data?.porcentaje_minimo}}">
+                        <input type="number" min="{{data?.porcentaje_minimo}}" (click)="calculoPorcentaje()"
+                            class="cambiarPorcentaje" max="100" value="{{data?.porcentaje_minimo}}">
                     </div>
                     <div class="info">
                         <label for="">Número de cuotas</label>
                         <select class="cuotasinicialfinanciar" (change)="diferenciadordecuotasmensuales()">
-                            <option value="{{i.nro}}" [selected]="j==0" *ngFor="let i of data.numero_cuotas; index as j">{{i.nro}}</option>
+                            <option value="{{i.nro}}" [selected]="j==0"
+                                *ngFor="let i of data.numero_cuotas; index as j">{{i.nro}}</option>
                         </select>
                     </div>
                 </div>
@@ -422,8 +453,8 @@
             </div>
             <div class="cont_chk">
                 <input type="checkbox" id="calc_form_chk" formControlName="terminos">
-                <label for="calc_form_chk"> Acepto y Autorizo la 
-                    <a [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank"> 
+                <label for="calc_form_chk"> Acepto y Autorizo la
+                    <a [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank">
                         Política de Tratamiento de Datos
                     </a>
                 </label>
@@ -448,28 +479,34 @@
             <div class="datos_persona">
                 <div class="cont_input_x1">
                     <input type="text" placeholder="Nombre" formControlName="nombre2">
-                    <div *ngIf="hasErrorsFieldForm2('nombre2')" class="error-text">Existen errores, por favor revisar*</div>
+                    <div *ngIf="hasErrorsFieldForm2('nombre2')" class="error-text">Existen errores, por favor revisar*
+                    </div>
                 </div>
                 <div class="cont_input_x1">
                     <input type="email" placeholder="Email" formControlName="email2">
-                    <div *ngIf="hasErrorsFieldForm2('email2')" class="error-text">Existen errores, por favor revisar*</div>
+                    <div *ngIf="hasErrorsFieldForm2('email2')" class="error-text">Existen errores, por favor revisar*
+                    </div>
                 </div>
                 <div class="cont_input_x1">
                     <input type="tel" placeholder="Teléfono" formControlName="telefono2">
-                    <div *ngIf="hasErrorsFieldForm2('telefono2')" class="error-text">Existen errores, por favor revisar* <br> Mínimo 7, Máximo 10 números</div>
+                    <div *ngIf="hasErrorsFieldForm2('telefono2')" class="error-text">Existen errores, por favor revisar*
+                        <br> Mínimo 7, Máximo 10 números</div>
                 </div>
                 <div class="cont_input_x1">
                     <textarea formControlName="mensaje2" rows="4" placeholder="Mensaje"></textarea>
-                    <div *ngIf="hasErrorsFieldForm2('mensaje2')" class="error-text">Existen errores, por favor revisar*</div>
+                    <div *ngIf="hasErrorsFieldForm2('mensaje2')" class="error-text">Existen errores, por favor revisar*
+                    </div>
                 </div>
             </div>
 
             <re-captcha (resolved)="resolved($event)" siteKey="6LfpwdYhAAAAABcTB3UDqML8fsyTJvDfj3IfOEIU"></re-captcha>
             <div *ngIf="captcha=='' && isSubmitted" class="error-text">Falta validar el catpcha*</div>
-            
+
             <div class="cont_chk">
                 <input type="checkbox" formControlName="terminos2" id="calc_form_chk">
-                <label for="calc_form_chk"> Acepto y Autorizo la <a [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank"> Política de Tratamiento de Datos</a></label>
+                <label for="calc_form_chk"> Acepto y Autorizo la <a
+                        [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank"> Política de Tratamiento
+                        de Datos</a></label>
             </div>
             <div *ngIf="hasErrorsFieldForm2('terminos2')" class="error-text">Existen errores, por favor revisar*</div>
             <div class="cont_submit">
@@ -480,4 +517,3 @@
         </div>
     </form>
 </div>
-
