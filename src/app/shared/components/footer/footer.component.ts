@@ -16,7 +16,7 @@ interface MenuFooter {
 })
 export class FooterComponent implements OnInit {
   
-  BASE_URL:string = environment.base_url;
+  BASE_URL:string = environment.imagenes_url;
 
   socialNetwork : any = [];
   configFooter  : ConfigFooter = new ConfigFooter()

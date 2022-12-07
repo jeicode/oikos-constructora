@@ -15,7 +15,7 @@ import { PageService } from 'src/app/shared/services/api/page.service';
 })
 export class BlogPageComponent implements OnInit {
 
-  BASE_URL = environment.base_url
+  BASE_URL = environment.imagenes_url
 
   oninitIsExecute:boolean = false;
 

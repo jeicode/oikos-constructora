@@ -18,7 +18,7 @@ import { ProjectService } from '../../services/api/project.service';
 })
 export class WppModalProjectComponent implements OnInit, OnDestroy {
 
-  BASE_URL:String = environment.base_url;
+  BASE_URL:String = environment.imagenes_url;
   @Input() project:Project = new Project()
   @Input() modalEvent!: Observable<boolean>;
   @Input() showFloatingButton: boolean = false;

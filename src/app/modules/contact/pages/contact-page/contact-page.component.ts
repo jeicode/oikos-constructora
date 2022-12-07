@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ContactPageComponent implements OnInit {
 
   data: any;
-  BASE_URL:string = environment.base_url
+  BASE_URL:string = environment.imagenes_url
 
   formIsShow:boolean = false;
   // collections

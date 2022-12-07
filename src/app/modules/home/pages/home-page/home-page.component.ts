@@ -26,7 +26,7 @@ export class HomePageComponent implements OnInit {
 
 
   data:any;
-  BASE_URL:string = environment.base_url
+  BASE_URL:string = environment.imagenes_url
 
   // collections
   bannersHome:BannerHome[] = []
