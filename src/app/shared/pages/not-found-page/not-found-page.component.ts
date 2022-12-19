@@ -23,7 +23,7 @@ export class NotFoundPageComponent implements OnInit {
 
   images:any[] = []
   data:any;
-  BASE_URL:string = environment.base_url
+  IMG_URL:string = environment.imagenes_url
 
   private response: Response
 
