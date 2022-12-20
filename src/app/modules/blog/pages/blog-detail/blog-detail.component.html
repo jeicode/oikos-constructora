@@ -70,7 +70,7 @@
                                         Conoce nuestro<br/>
                                         <span>proyecto ubicado en {{activeBlog.proyecto.ubicacion_proyecto}}</span>
                                     </div>
-                                    <a *ngIf="activeBlog.proyecto.url_amigable" [routerLink]="['/proyecto', activeBlog.proyecto.url_amigable]">
+                                    <a *ngIf="activeBlog.proyecto.url_amigable" href="/proyecto/{{activeBlog.proyecto.url_amigable}}">
                                         <div class="btn">
                                             Ir al proyecto
                                         </div>
@@ -91,7 +91,7 @@
                 <!-- PAGINATION -->
                 <div class="cnt_ant_sig_not_int">
 
-                    <a *ngIf="activeBlog.url_ant" [routerLink]="['/noticias-constructora', activeBlog.url_ant ]" 
+                    <a *ngIf="activeBlog.url_ant" href="/noticias-constructora/{{activeBlog.url_ant}}" 
                         class="bnt_ant_sig_nota nota_ant" [ngClass]="{'scrolled': scrollPaginationIsActive}">
                         <div class="img_btn_ant_sig">
                             <!-- ESTA SERÁ LA IMAGEN DE LA NOTICIA-->
@@ -106,7 +106,7 @@
                         </div>
                     </a>
                     
-                    <a *ngIf="activeBlog.url_sig" [routerLink]="['/noticias-constructora', activeBlog.url_sig ]" 
+                    <a *ngIf="activeBlog.url_sig" href="/noticias-constructora/{{activeBlog.url_sig}}" 
                         class="bnt_ant_sig_nota nota_sig" [ngClass]="{'scrolled': scrollPaginationIsActive}">
                         <div class="img_btn_ant_sig">
                             <!-- ESTA SERÁ LA IMAGEN DE LA NOTICIA -->
@@ -131,7 +131,7 @@
                     </div>
 
                     <div class="cnt_cards_not_interes_int">
-                        <a [routerLink]="['/noticias-constructora', i?.friendly_url]" *ngFor="let i of recentBlogs" class="card_not_list">
+                        <a href="/noticias-constructora/{{i?.friendly_url}}" *ngFor="let i of recentBlogs" class="card_not_list">
                             <div class="img_card_not_int">
                                 <img defaultImg [src]="BASE_URL+i?.imagen" [alt]="i?.imagen_alt"  [title]="i?.imagen_title">
                             </div>
@@ -150,7 +150,7 @@
                     </div>
 
                     <div class="row_cta">
-                        <a routerLink="/noticias-constructora" class="btn">
+                        <a href="/noticias-constructora" class="btn">
                             Ver más
                         </a>
                     </div>
