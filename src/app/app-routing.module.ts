@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LegalesGuard } from './core/guards/legales.guard';
-import { LegalesComponent } from './modules/legales/pages/legales/legales.component';
 import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-page.component';
 
 const routes: Routes = [
@@ -9,12 +7,6 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   }, 
-  {
-    path: 'legales/:slug',
-    component: LegalesComponent,
-    canActivate: [LegalesGuard]
-    //loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
-  },
   {
     path: 'contactanos',
     loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
@@ -38,6 +30,10 @@ const routes: Routes = [
   {
     path: 'proyecto/:slug',
     loadChildren: () => import('./modules/projects/interna/interna.module').then(m => m.InternaModule)
+  },
+  {
+    path: 'legales',
+    loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
   },{
     path: 'proyectos-ejecutados',
     loadChildren: () => import('./modules/projects/ejecutados/ejecutados.module').then( m => m.EjecutadosModule )
