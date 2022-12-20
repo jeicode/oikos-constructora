@@ -10,6 +10,12 @@ const routes: Routes = [
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   }, 
   {
+    path: 'legales/:slug',
+    component: LegalesComponent,
+    canActivate: [LegalesGuard]
+    //loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
+  },
+  {
     path: 'contactanos',
     loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
   }, 
@@ -32,12 +38,6 @@ const routes: Routes = [
   {
     path: 'proyecto/:slug',
     loadChildren: () => import('./modules/projects/interna/interna.module').then(m => m.InternaModule)
-  },
-  {
-    path: 'legales/:slug',
-    component: LegalesComponent,
-    canActivate: [LegalesGuard]
-    //loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
   },{
     path: 'proyectos-ejecutados',
     loadChildren: () => import('./modules/projects/ejecutados/ejecutados.module').then( m => m.EjecutadosModule )
