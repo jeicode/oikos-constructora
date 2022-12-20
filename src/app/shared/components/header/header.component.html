@@ -8,7 +8,7 @@
                     <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
                 </a>
                 <ng-template #routerLink>
-                    <a [routerLink]="i?.enlace" target="_blank" class="btn_oikos_logos">
+                    <a href="i?.enlace" target="_blank" class="btn_oikos_logos">
                         <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
                     </a>
                 </ng-template>
@@ -22,7 +22,7 @@
             <!--<a href="" class="btn_z_clientes">
                 Zona de Clientes
             </a>-->
-            <a routerLink="/pagos-constructora" class="btn_pse">
+            <a href="/pagos-constructora" class="btn_pse">
                 <div class="txt_pse">Pague aquí</div>
                 <span class="ic_pse"></span>
             </a>
@@ -31,7 +31,7 @@
     <div class="nav_bar_h">
 
     <h1 class="logo_pri">
-        <a href="">
+        <a href="/constructora">
         Grupo Oikos
         </a>
     </h1>
@@ -46,10 +46,10 @@
                 </a>
 
                 <ng-template #routerLink>
-                    <a [routerLink]="i?.enlace_menu">{{i?.field_content}}</a>
+                    <a href="/constructora/i?.enlace_menu">{{i?.field_content}}</a>
                 </ng-template>
             </li>
-            <a routerLink="contactanos" class="btn contacto_h" (click)="closeNav()">
+            <a href="/contactanos" class="btn contacto_h" (click)="closeNav()">
                 Contacto
             </a>                
         </ul>
