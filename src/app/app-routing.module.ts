@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
   }, 
   {
-    path: 'gracias/:slug',
+    path: 'gracias',
     loadChildren: () => import('./modules/thanks/thanks.module').then(m => m.ThanksModule)
   }, 
   {
@@ -28,11 +28,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/projects/comerciales/comerciales.module').then( m => m.ComercialesModule )
   },
   {
-    path: 'proyecto/:slug',
+    path: 'proyecto',
     loadChildren: () => import('./modules/projects/interna/interna.module').then(m => m.InternaModule)
   },
   {
-    path: 'legales/:slug',
+    path: 'legales',
     loadChildren: () => import('./modules/legales/legales.module').then( m => m.LegalesModule )
   },{
     path: 'proyectos-ejecutados',

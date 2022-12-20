@@ -5,7 +5,7 @@ import { InternaComponent } from './pages/interna/interna.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':slug',
     component: InternaComponent,
     canActivate: [InternaProyectoGuard]
   }
