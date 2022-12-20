@@ -5,7 +5,7 @@ import { LegalesComponent } from './pages/legales/legales.component';
 
 const routes: Routes = [
   {
-    path: ':slug',
+    path: '',
     component: LegalesComponent,
     canActivate: [LegalesGuard]
   }

@@ -5,10 +5,15 @@ import { DOCUMENT } from '@angular/common';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentSharedModule } from 'src/app/shared/components/components.module';
+import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-legales',
-  templateUrl: './legales.component.html'
+  templateUrl: './legales.component.html',
+  standalone: true,
+  imports: [HttpClientModule, ComponentSharedModule, BreadcrumbComponent]
 })
 export class LegalesComponent implements OnInit {
 

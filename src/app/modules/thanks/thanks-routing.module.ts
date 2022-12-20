@@ -5,7 +5,7 @@ import { ThanksComponent } from './pages/thanks/thanks.component';
 
 const routes: Routes = [
   {
-    path: ':slug',
+    path: '',
     component: ThanksComponent,
     canActivate: [ThanksGuard]
   }
