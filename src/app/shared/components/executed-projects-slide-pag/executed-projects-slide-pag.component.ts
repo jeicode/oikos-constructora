@@ -16,7 +16,7 @@ declare const $:any;
 export class ExecutedProjectsSlidePagComponent implements OnInit {
 
   ejecutados: Project[] = []
-  BASE_URL = environment.base_url;
+  IMG_URL = environment.imagenes_url;
   
   constructor(private projService: ProjectService) { }
 
