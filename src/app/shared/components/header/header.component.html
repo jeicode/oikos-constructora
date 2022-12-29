@@ -31,14 +31,14 @@
     <div class="nav_bar_h">
 
     <h1 class="logo_pri" *ngIf="homeIsActive; else noHome">
-        <a href="/">
+        <a routerLink="/">
         Grupo Oikos
         </a>
     </h1>
     
     <ng-template #noHome>
         <div class="logo_pri">
-            <a href="/">
+            <a routerLink="/">
             Grupo Oikos
             </a>
         </div>
