@@ -30,11 +30,19 @@
     </div>
     <div class="nav_bar_h">
 
-    <h1 class="logo_pri">
-        <a href="/constructora">
+    <h1 class="logo_pri" *ngIf="homeIsActive; else noHome">
+        <a href="/">
         Grupo Oikos
         </a>
     </h1>
+    
+    <ng-template #noHome>
+        <div class="logo_pri">
+            <a href="/">
+            Grupo Oikos
+            </a>
+        </div>
+    </ng-template>
 
     <nav class="nav" [ngClass]="{'active': menuMobileIsActive}">
         <ul>
@@ -46,7 +54,7 @@
                 </a>
 
                 <ng-template #routerLink>
-                    <a href="/constructora{{i?.enlace_menu}}">{{i?.field_content}}</a>
+                    <a routerLink="{{i?.enlace_menu}}">{{i?.field_content}}</a>
                 </ng-template>
             </li>
             <a href="/contactanos" class="btn contacto_h" (click)="closeNav()">

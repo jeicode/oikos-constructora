@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
 declare var $:any;
 @Component({
@@ -11,12 +13,21 @@ export class HeaderComponent implements OnInit {
 
   BASE_URL:string = environment.imagenes_url;
   menuMobileIsActive:boolean = false;
+
+  homeIsActive          : boolean = false;
+  suscribeListenRouter  : Subscription;
   
   // collections
   logos: any = [];
   linksHeader:any[] = []
 
-  constructor(private pageService: PageService) {
+  constructor(private pageService: PageService, private router: Router) {
+    this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
+      if (event instanceof NavigationEnd  ) {
+        if (router.url == '/') this.homeIsActive = true
+        else this.homeIsActive = false
+      }
+    });
   }
 
   ngOnInit(): void {
