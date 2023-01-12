@@ -219,6 +219,9 @@ export class InternaComponent implements OnInit {
     var plazoaniosa = $(".plazoaniosa").val();
     var financiar = $(".valorafinanciar").val();
 
+    if(porcentaje=='' || porcentaje==null)
+      porcentaje = this.data.porcentaje_minimo;
+
     this.porcFinanciar = (100-porcentaje);
     this.datosCalc = await this.projService.getCalculoPorcentaje(this.data.valor_proyecto, porcentaje, cuotasinicialfinanciar, plazoaniosa, financiar);
     this.datosCalc = this.datosCalc[0];
