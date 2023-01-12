@@ -395,7 +395,7 @@
                 <div class="cont_input_x2">
                     <div class="info">
                         <label for="">Cuota inicial %</label>
-                        <input type="number" min="{{data?.porcentaje_minimo}}" (click)="calculoPorcentaje()"
+                        <input type="number" min="{{data?.porcentaje_minimo}}" (change)="calculoPorcentaje()"
                             class="cambiarPorcentaje" max="100" value="{{data?.porcentaje_minimo}}">
                     </div>
                     <div class="info">

@@ -213,7 +213,8 @@ export class InternaComponent implements OnInit {
   }
 
   async calculoPorcentaje(){
-    var porcentaje = this.data.porcentaje_minimo;
+    //var porcentaje = this.data.porcentaje_minimo;
+    var porcentaje = $(".cambiarPorcentaje").val();
     var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
     var plazoaniosa = $(".plazoaniosa").val();
     var financiar = $(".valorafinanciar").val();
