@@ -53,7 +53,12 @@ export class ContactPageComponent implements OnInit {
   activeItemContact(index:number){
     this.itemActive = this.itemsContact[index]
     this.indexItemActive = index;
-    this.showForm()
+
+    if(index==1){
+      window.open("https://clientes.oikos.com.co/solicitudoikos/", "_blank");
+    }else{
+      this.showForm()
+    }
   }
 
   showForm(){
