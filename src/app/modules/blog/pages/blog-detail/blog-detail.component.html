@@ -56,7 +56,7 @@
                     <!-- CONTENT BLOG -->
                     <div class="col_nota_int">
                         
-                        <div class="txt_nota_int" [innerHtml]="activeBlog.dynamic"></div> 
+                        <div class="txt_nota_int" [innerHtml]="activeBlog.dynamic | safe:'html'"></div> 
 
                         <div class="row_banner_not_int">
                             <div class="cnt_banner_proy_not_int" *ngIf="activeBlog.proyecto">

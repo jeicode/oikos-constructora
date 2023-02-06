@@ -79,7 +79,7 @@
                                 title="{{i?.title}}" />
                             <div *ngIf="i?.field_description" class="embed-responsive">
                                 <iframe class="embed-responsive-item iframe_video_gallery"
-                                    [src]="i?.field_description | safeResourceUrl" allowfullscreen>
+                                    [src]="i?.field_description | safe:'url'" allowfullscreen>
                                 </iframe>
                             </div>
                         </div>
@@ -290,7 +290,7 @@
                             <swiper [config]="config">
                                 <ng-template swiperSlide *ngFor="let i of avancesObraActivos">
                                     <div class="swiper-slide">
-                                        <iframe width="514" height="300" [src]="i?.field_description | safeResourceUrl"
+                                        <iframe width="514" height="300" [src]="i?.field_description | safe:'url'"
                                             class="js-modal-btn"
                                             *ngIf="i?.field_description; else routerVideo">
                                             <img width="517" height="301" src="{{imagenes_url+i?.field_content}}"
@@ -364,7 +364,7 @@
                         <ng-template #iframeYT>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item iframe_video_gallery_2"
-                                    [src]="i?.field_description | safeResourceUrl" allowfullscreen>
+                                    [src]="i?.field_description | safe:'url'" allowfullscreen>
                                 </iframe>
                             </div>
                         </ng-template>
