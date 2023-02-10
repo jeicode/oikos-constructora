@@ -9,6 +9,7 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
 import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 
 import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe'
+import { AddComponent } from 'src/app/shared/directives/add-component.directive';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe'
     SafePipe,
 
     //pipes
-    DefaultImgDirective
+    DefaultImgDirective,
+    AddComponent
   ]
 })
 export class BlogModule { }

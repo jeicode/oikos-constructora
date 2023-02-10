@@ -41,7 +41,7 @@ export class ProjectService {
     const url = `${API_URL}v1/getProyectosDestacados`;
     return firstValueFrom(this._http.get(url)).then().catch(err => {
       console.warn(err)
-      return false
+      return []
     });
   }
 
@@ -204,6 +204,14 @@ export class ProjectService {
     })
   }
 
+
+  async getProjectsByIdList(data:any): Promise<any>{
+    const url = `${API_URL}v1/getProjectsByIdList?ids=${data}`;
+    return firstValueFrom(this._http.get(url)).then().catch(err => {
+      console.warn(err)
+      return []
+    })
+  }
 
 
 }

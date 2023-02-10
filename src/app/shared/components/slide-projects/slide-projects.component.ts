@@ -73,13 +73,8 @@ export class SlideProjectsComponent implements OnInit {
 
 
   async getFeaturedProjects(){
-    if (this.projects.length == 0) {
-      const projects = await this.projectService.getFeaturedProjects()
-      if(projects) {
-        this.projects = projects
-        await this.currencyConverter.convertCopToUsdProjects(this.projects)
-      }
-    }
+    if (this.projects.length == 0) this.projects = await this.projectService.getFeaturedProjects()
+    await this.currencyConverter.convertCopToUsdProjects(this.projects)
   }
 
 

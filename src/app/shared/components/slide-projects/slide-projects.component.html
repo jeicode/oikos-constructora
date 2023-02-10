@@ -4,7 +4,10 @@
             <ng-template swiperSlide *ngFor="let i of projects">
                 <div class="card_p">
                     <picture>
-                        <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
+                        <span class="tag_state" *ngIf="i?.estado_proyecto" 
+                        [ngStyle]="{'background-color': i?.color_secundario}">
+                            {{i?.estado_proyecto}}
+                        </span>
                         <div class="btns_icons" *ngIf="i?.vista360 && i?.url_waze">
                             <a [href]="i?.vista360" target="_blank" class="btn_icon" *ngIf="i?.vista360">
                                 <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
@@ -38,7 +41,9 @@
                         <div>{{i?.titulo_proyecto}}</div>
                     </h2>
                     <div class="datos_proyecto">
-                        <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                        <h3 *ngIf="i?.zona_proyecto && i?.ubicacion_proyecto">
+                            {{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}
+                        </h3>
                         <h4 *ngIf="i?.valor_proyecto_formato">
                             <span>Desde</span>
                             ${{i?.valor_proyecto_formato}} 
@@ -48,7 +53,7 @@
                             <b>USD {{i?.dollar_value | thousandNumber:'es'}}</b>
                         </div>
                     </div>
-                    <div class="franja_p">
+                    <div class="franja_p" *ngIf="i?.texto_adicional">
                         <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
                         <span>{{i?.texto_adicional}}</span>
                     </div>

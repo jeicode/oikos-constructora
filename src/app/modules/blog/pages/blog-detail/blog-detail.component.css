@@ -543,6 +543,11 @@
     padding: 16px 0;
 }
 
+
+.txt_nota_int .section a {
+    color: #1839b7;
+}
+
 /* RESPONISIVE */
 @media screen and (max-width: 1300px) {
 
