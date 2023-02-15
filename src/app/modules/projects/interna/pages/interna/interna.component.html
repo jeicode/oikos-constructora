@@ -247,15 +247,18 @@
                             style="cursor:pointer">{{i?.field_content}}</span>
                     </div>
                     <div class="map">
-                        <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank"
-                            *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img
-                                src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt="">
-                        </a>
+                        
                         <google-map width="1050" height="350" [center]="center" [zoom]="zoom">
                             <map-marker *ngFor="let marker of markers" [position]="marker.position"
                                 [label]="marker.label" [title]="marker.title" [options]="marker.options"
                                 [icon]="marker.icon"></map-marker>
                         </google-map>
+                    </div>
+                    <div class="row_btn_waze">
+                        <a class="btn btn_waze_p" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank"
+                            *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar <img
+                                src="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt="">
+                        </a>
                     </div>
                 </div>
 

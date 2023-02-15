@@ -1825,6 +1825,21 @@ input {
 .tabs_proyectos_eject {
   margin: 0 0 40px;
 }
+.row_btn_waze{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px 0 24px ;
+}
+.btn_waze_p{
+  animation: levitate 3s infinite;
+  cursor: pointer;
+}
+@keyframes levitate{
+  0%{transform: translateY(0);}
+  50%{transform: translateY(-12px);}
+  100%{transform: translateY(0);}
+}
 
 /* RESPONISIVE */
 @media screen and (max-width: 1200px) {
