@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Blog } from 'src/app/core/models/blog.model';
 import { Project } from 'src/app/core/models/project.model';
-import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
+import { CardProjectComponent } from 'src/app/shared/components/card-project/card-project.component';
 import { BlogService } from 'src/app/shared/services/api/blog.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
@@ -55,10 +55,9 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   }
 
 
-  addDynamicSlideProjectsComponent(containerElement:any, projects:Project[]) {
-    let factory = this.resolver.resolveComponentFactory(SlideProjectsComponent);
+  addDynamicCardProjectsComponent(containerElement:any, projects:Project[]) {
+    let factory = this.resolver.resolveComponentFactory(CardProjectComponent);
     const ref = factory.create(this.injector, [], containerElement);
-    console.log("ref ", ref)
     this.app.attachView(ref.hostView);
     ref.instance.projects = projects;
   }
@@ -78,7 +77,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
       const textids = txtcontent.split(':')[2] // get id1, id2, id3
       const projects = await this.projectService.getProjectsByIdList(textids)
       e.classList = e.className.replace('d_none', '')
-      this.addDynamicSlideProjectsComponent(e, projects);
+      this.addDynamicCardProjectsComponent(e, projects);
     })
     
   }
@@ -108,7 +107,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   configScrollPagination() {
-    if ($(window).width() > 1200) {
+    if ($ && $(window).width() > 1200) {
       var scroll = $(window).scrollTop();
       if (scroll >= 420) {
         this.scrollPaginationIsActive = true

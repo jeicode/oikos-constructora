@@ -56,6 +56,8 @@
                 <div class="col_nota_int">
                     <div class="txt_nota_int" [innerHtml]="activeBlog.dynamic | safe:'html'"></div>
 
+                    <app-card-project></app-card-project>
+
                     <div class="row_banner_not_int">
                         <div class="cnt_banner_proy_not_int" *ngIf="activeBlog.proyecto">
                             <div class="img_banner_proy_not_int">

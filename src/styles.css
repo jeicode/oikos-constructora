@@ -1344,3 +1344,7 @@ input[type=file]::-webkit-file-upload-button {
 .d_none {
     display: none;
 }
+
+.text-ligth {
+    color: #fff  !important;
+}

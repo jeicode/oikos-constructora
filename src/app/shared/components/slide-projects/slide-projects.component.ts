@@ -38,7 +38,7 @@ export class SlideProjectsComponent implements OnInit {
 
   BASE_URL:string = environment.imagenes_url
   projectSelectedToModal:Project = new Project()
-  notifyChanges: Subject<any> = new Subject<any>();
+  notifyModalChanges: Subject<any> = new Subject<any>();
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
   config: SwiperOptions = {
@@ -84,7 +84,7 @@ export class SlideProjectsComponent implements OnInit {
    */
   selectProjectToModal(project:Project){
     this.projectSelectedToModal = project
-    this.notifyChanges.next({openModal:true});
+    this.notifyModalChanges.next({openModal:true});
   }
 
   /**

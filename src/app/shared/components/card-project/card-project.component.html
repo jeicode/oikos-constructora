@@ -1,145 +1,84 @@
 <!-- PROYECTOS DENTRO DE LA NOTA-->
-<div class="cnt_proy_in_note">
-    <div class="card_p">
-        <picture>
-            <span class="tag_state" style="background-color: rgb(170, 30, 89);"> ÚLTIMA ETAPA </span>
-            <div class="btns_icons">
-                <a target="_blank" class="btn_icon" href="#">
-                    <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
-                </a>
-                <a target="_blank" class="btn_icon" href="https://waze.com/ul/hd2g0ekxzn">
-                    <span class="fas fa-map-marker-alt"></span>
-                </a>
-            </div>
-            <a href="#">
-                <img width="350" height="219" defaultimg=""
-                    src="https://www.oikos.com.co/constructora/images/website/proyectos/Proyectos-de-vivienda/San-Pablo/galeria/Imagen-fondo-proyecto-lirios.jpg"
-                    alt="Proyecto de vivienda Hacienda San Pablo | Fusagasugá"
-                    title="Proyecto de vivienda Hacienda San Pablo Fusagasugá">
-            </a>
-        </picture>
-        <h2 class="name_proyecto" style="background-color: rgb(29, 152, 152);">
+<div class="cnt_proy_in_note" *ngIf="projects.length > 0">
+    <div class="card_p" *ngFor="let i of projects | slice:0:3">
+        <div *ngIf="i">
             <picture>
-                <img width="87" height="87" defaultimg=""
-                    src="https://www.oikos.com.co/constructora/images/website/proyectos/logo_principal/logo_proy_int.jpg"
-                    alt="Hacienda San Pablo Fusagasugá" title="Hacienda San Pablo Fusagasugá">
+                <span class="tag_state" *ngIf="i?.estado_proyecto" [ngStyle]="{'background-color': i?.color_secundario}">
+                    {{i?.estado_proyecto}}
+                </span>
+                <div class="btns_icons" *ngIf="i?.vista360 && i?.url_waze">
+                    <a [href]="i?.vista360" target="_blank" class="btn_icon">
+                        <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
+                    </a>
+                    <a [href]="i?.url_waze" target="_blank" *ngIf="i?.url_waze" class="btn_icon">
+                        <span class="fas fa-map-marker-alt"></span>
+                    </a>
+                </div>
+                <a *ngIf="i?.interna === 'si'; else notRedirect" routerLink="/proyecto/{{i?.url_amigable}}">
+                    <img width="350" height="219" defaultImg [src]="BASE_URL+i?.imagen_principal_proyecto"
+                        [alt]="i?.alt_principal" [title]="i?.title_principal">
+                </a>
+                <ng-template #notRedirect>
+                    <img width="350" height="219" defaultImg [src]="BASE_URL+i?.imagen_principal_proyecto"
+                        [alt]="i?.alt_principal" [title]="i?.title_principal">
+                </ng-template>
             </picture>
-            <div>OIKOS San Pablo Club House</div>
-        </h2>
-        <div class="datos_proyecto">
-            <h3> Cundinamarca / Fusagasugá </h3>
-            <h4><span>Desde</span> $307.351.135 </h4>
-            <div class="precio_usd"> Precio de referencia <b>USD
-                    62.582</b>
+            <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
+                <picture *ngIf="i?.logo_proyecto">
+                    <img width="87" height="87" defaultImg [src]="BASE_URL+i?.logo_proyecto" [alt]="i?.alt_logo"
+                        [title]="i?.title_logo">
+                </picture>
+                <div>{{i?.titulo_proyecto}}</div>
+            </h2>
+            <div class="datos_proyecto">
+                <h3 *ngIf="i?.zona_proyecto && i?.ubicacion_proyecto">
+                    {{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}
+                </h3>
+                <h4 *ngIf="i?.valor_proyecto_formato">
+                    <span>Desde</span>
+                    ${{i?.valor_proyecto_formato}}
+                </h4>
+                <div class="precio_usd" *ngIf="i?.dollar_value">
+                    Precio de referencia
+                    <b>USD {{i?.dollar_value | thousandNumber:'es'}}</b>
+                </div>
             </div>
-        </div>
-        <div class="franja_p">
-            <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
-            <span>Apartamentos con beneficios EDGE</span>
-        </div>
-        <div class="ctas_proyectos">
-            <a class="btn_whatsapp c-pointer">
-                <span class="fab fa-whatsapp"></span>
-                Contactar
-            </a>
-            <a class="btn" href="#">
-                Ver proyecto
-            </a>
-        </div>
-    </div>
-    <div class="card_p">
-        <picture>
-            <span class="tag_state" style="background-color: rgb(170, 30, 89);"> ÚLTIMA ETAPA </span>
-            <div class="btns_icons">
-                <a target="_blank" class="btn_icon" href="#">
-                    <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
+            <div class="franja_p">
+                <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                <span>Apartamentos con beneficios EDGE</span>
+            </div>
+            <div class="ctas_proyectos" *ngIf="i?.interna === 'si'; else redirect">
+                <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
+                    <span class="fab fa-whatsapp"></span>
+                    Contactar
                 </a>
-                <a target="_blank" class="btn_icon" href="https://waze.com/ul/hd2g0ekxzn">
-                    <span class="fas fa-map-marker-alt"></span>
+    
+                <a routerLink="/proyecto/{{i?.url_amigable}}" class="text-ligth btn">
+                    Ver proyecto
                 </a>
+    
             </div>
-            <a href="#">
-                <img width="350" height="219" defaultimg=""
-                    src="https://www.oikos.com.co/constructora/images/website/proyectos/Proyectos-de-vivienda/San-Pablo/galeria/Imagen-fondo-proyecto-lirios.jpg"
-                    alt="Proyecto de vivienda Hacienda San Pablo | Fusagasugá"
-                    title="Proyecto de vivienda Hacienda San Pablo Fusagasugá">
-            </a>
-        </picture>
-        <h2 class="name_proyecto" style="background-color: rgb(29, 152, 152);">
-            <picture>
-                <img width="87" height="87" defaultimg=""
-                    src="https://www.oikos.com.co/constructora/images/website/proyectos/logo_principal/logo_proy_int.jpg"
-                    alt="Hacienda San Pablo Fusagasugá" title="Hacienda San Pablo Fusagasugá">
-            </picture>
-            <div>OIKOS San Pablo Club House</div>
-        </h2>
-        <div class="datos_proyecto">
-            <h3> Cundinamarca / Fusagasugá </h3>
-            <h4><span>Desde</span> $307.351.135 </h4>
-            <div class="precio_usd"> Precio de referencia <b>USD
-                    62.582</b>
-            </div>
-        </div>
-        <div class="franja_p">
-            <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
-            <span>Apartamentos con beneficios EDGE</span>
-        </div>
-        <div class="ctas_proyectos">
-            <a class="btn_whatsapp c-pointer">
-                <span class="fab fa-whatsapp"></span>
-                Contactar
-            </a>
-            <a class="btn" href="#">
-                Ver proyecto
-            </a>
-        </div>
-    </div>
-    <div class="card_p">
-        <picture>
-            <span class="tag_state" style="background-color: rgb(170, 30, 89);"> ÚLTIMA ETAPA </span>
-            <div class="btns_icons">
-                <a target="_blank" class="btn_icon" href="#">
-                    <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
-                </a>
-                <a target="_blank" class="btn_icon" href="https://waze.com/ul/hd2g0ekxzn">
-                    <span class="fas fa-map-marker-alt"></span>
-                </a>
-            </div>
-            <a href="#">
-                <img width="350" height="219" defaultimg=""
-                    src="https://www.oikos.com.co/constructora/images/website/proyectos/Proyectos-de-vivienda/San-Pablo/galeria/Imagen-fondo-proyecto-lirios.jpg"
-                    alt="Proyecto de vivienda Hacienda San Pablo | Fusagasugá"
-                    title="Proyecto de vivienda Hacienda San Pablo Fusagasugá">
-            </a>
-        </picture>
-        <h2 class="name_proyecto" style="background-color: rgb(29, 152, 152);">
-            <picture>
-                <img width="87" height="87" defaultimg=""
-                    src="https://www.oikos.com.co/constructora/images/website/proyectos/logo_principal/logo_proy_int.jpg"
-                    alt="Hacienda San Pablo Fusagasugá" title="Hacienda San Pablo Fusagasugá">
-            </picture>
-            <div>OIKOS San Pablo Club House</div>
-        </h2>
-        <div class="datos_proyecto">
-            <h3> Cundinamarca / Fusagasugá </h3>
-            <h4><span>Desde</span> $307.351.135 </h4>
-            <div class="precio_usd"> Precio de referencia <b>USD
-                    62.582</b>
-            </div>
-        </div>
-        <div class="franja_p">
-            <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
-            <span>Apartamentos con beneficios EDGE</span>
-        </div>
-        <div class="ctas_proyectos">
-            <a class="btn_whatsapp c-pointer">
-                <span class="fab fa-whatsapp"></span>
-                Contactar
-            </a>
-            <a class="btn" href="#">
-                Ver proyecto
-            </a>
+    
+            <ng-template #redirect>
+                <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': ' 1fr'}">
+                    <a class="text-ligth btn" (click)="selectProjectToPreLaunch(i)" [ngStyle]="{'justify-self': ' center'}">
+                        Inscribirse
+                    </a>
+                </div>
+    
+            </ng-template>
+
         </div>
     </div>
 </div>
 <!-- -->
+
+
+<app-modal-pre-launch-project   [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
+                                [project]="projectSelectedToModal">
+</app-modal-pre-launch-project>
+
+<!-- modal wpp -->
+<app-wpp-modal-project  [modalEvent]="notifyModalChanges.asObservable()" 
+                        [project]="projectSelectedToModal">
+</app-wpp-modal-project>
