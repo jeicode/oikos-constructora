@@ -6,10 +6,11 @@ import { BlogDetailComponent } from './pages/blog-detail/blog-detail.component';
 import { BlogPageComponent } from './pages/blog-page/blog-page.component';
 import { DefaultImgDirective } from 'src/app/shared/directives/default-img.directive';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
-import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 
 import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe'
 import { AddComponent } from 'src/app/shared/directives/add-component.directive';
+import { CardProjectComponent } from 'src/app/shared/components/card-project/card-project.component';
+import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AddComponent } from 'src/app/shared/directives/add-component.directive'
 
     // standalones comp
     BreadcrumbComponent,
+    CardProjectComponent,
     SlideProjectsComponent,
     SafePipe,
 
