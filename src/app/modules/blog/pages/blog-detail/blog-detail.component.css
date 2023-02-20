@@ -216,30 +216,30 @@
     text-align: left;
 }
 
-.txt_nota_int {
+:host ::ng-deep .txt_nota_int {
     width: 100%;
     text-align: left;
     font-size: 16px;
     line-height: 140%;
 }
 
-.txt_nota_int .section a {
+:host ::ng-deep .txt_nota_int .section a {
     color: var(--color-c2);
 }
 
-.txt_nota_int ul {
+:host ::ng-deep .txt_nota_int ul {
     padding-left: 24px;
     box-sizing: border-box;
 }
 
-.txt_nota_int h2 {
+:host ::ng-deep .txt_nota_int h2 {
     font-size: 32px;
     font-weight: 900;
     padding: 12px 0;
     color: var(--color-c2);
 }
 
-.txt_nota_int h3 {
+:host ::ng-deep .txt_nota_int h3 {
     font-size: 20px;
     color: var(--color-c2);
     font-weight: 900;
@@ -544,10 +544,6 @@
 }
 
 
-.txt_nota_int .section a {
-    color: #1839b7;
-}
-
 /* RESPONISIVE */
 @media screen and (max-width: 1300px) {
 
@@ -608,12 +604,12 @@
         font-size: 30px;
     }
 
-    .txt_nota_int h2 {
+    :host ::ng-deep .txt_nota_int h2 {
         font-size: 24px;
         line-height: 120%;
     }
 
-    .txt_nota_int h3 {
+    :host ::ng-deep .txt_nota_int h3 {
         font-size: 18px;
     }
 
@@ -676,7 +672,7 @@
         border: none;
     }
 
-    .txt_nota_int {
+    :host ::ng-deep .txt_nota_int {
         padding-top: 0;
     }
 
