@@ -832,6 +832,7 @@
     .h_not_int {
         font-size: 40px;
     }
+    /*** proyectos en noticia ***/
     .cnt_proy_in_note{
         flex-flow: row nowrap;
         overflow-x: auto;
