@@ -14,7 +14,8 @@
                         <span class="fas fa-map-marker-alt"></span>
                     </a>
                 </div>
-                <a *ngIf="i?.interna === 'si'; else notRedirect" routerLink="/proyecto/{{i?.url_amigable}}">
+                <a  *ngIf="i?.interna === 'si'; else notRedirect" [id]="'img_pro_nota_'+i?.titulo_proyecto?.split(' ')?.join('_')"
+                    routerLink="/proyecto/{{i?.url_amigable}}">
                     <img width="350" height="219" defaultImg [src]="BASE_URL+i?.imagen_principal_proyecto"
                         [alt]="i?.alt_principal" [title]="i?.title_principal">
                 </a>
@@ -53,7 +54,8 @@
                     Contactar
                 </a>
     
-                <a routerLink="/proyecto/{{i?.url_amigable}}" target="_blank" class="text-ligth btn">
+                <a  routerLink="/proyecto/{{i?.url_amigable}}" target="_blank" class="text-ligth btn"
+                    [id]="'btn_pro_nota_'+i?.titulo_proyecto?.split(' ')?.join('_')">
                     Ver proyecto
                 </a>
     
@@ -80,5 +82,5 @@
 
 <!-- modal wpp -->
 <app-wpp-modal-project  [modalEvent]="notifyModalChanges.asObservable()" 
-                        [project]="projectSelectedToModal">
+                        [project]="projectSelectedToModal" [idBtnWpp]="idBtnWpp">
 </app-wpp-modal-project>
