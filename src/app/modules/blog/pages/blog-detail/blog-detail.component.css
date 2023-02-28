@@ -238,6 +238,7 @@
     font-weight: 900;
     padding: 12px 0;
     color: var(--color-c2);
+    line-height: initial;
 }
 
 :host ::ng-deep .txt_nota_int h3 {
