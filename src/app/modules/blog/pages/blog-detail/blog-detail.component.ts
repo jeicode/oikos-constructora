@@ -1,4 +1,4 @@
-import { AfterViewInit, ApplicationRef, Component, ComponentFactoryResolver, ElementRef, HostBinding, HostListener, Injector, OnInit, QueryList, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ApplicationRef, Component, ComponentFactoryResolver, ElementRef, HostListener, Injector, OnInit, QueryList, ViewChildren, ViewContainerRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Blog } from 'src/app/core/models/blog.model';
@@ -60,6 +60,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
     const ref = factory.create(this.injector, [], containerElement);
     this.app.attachView(ref.hostView);
     ref.instance.projects = projects;
+    ref.instance.idBtnWpp = 'btn_wa_nota_'
   }
 
 

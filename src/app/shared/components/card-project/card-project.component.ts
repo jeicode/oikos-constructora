@@ -26,6 +26,7 @@ export class CardProjectComponent implements OnInit {
 
 
   @Input() projects:Project[] = []
+  idBtnWpp: string = ''
   BASE_URL:string = environment.imagenes_url
 
   projectSelectedToModal:Project = new Project()
@@ -46,6 +47,7 @@ export class CardProjectComponent implements OnInit {
    */
   selectProjectToModal(project:Project){
     this.projectSelectedToModal = project
+    if (this.idBtnWpp) this.idBtnWpp += project.titulo_proyecto.replace(/ /g, '_')
     this.notifyModalChanges.next({openModal:true});
   }
 

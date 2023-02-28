@@ -22,6 +22,7 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   @Input() project:Project = new Project()
   @Input() modalEvent!: Observable<boolean>;
   @Input() showFloatingButton: boolean = false;
+  @Input() idBtnWpp: string = ''
 
   eventsSubscription!: Subscription;
   modalIsOpen: boolean = false;
