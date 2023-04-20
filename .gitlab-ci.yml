@@ -9,7 +9,7 @@ deploy-main:
   tags:
     - runner server
   script:
-    - /home/gitlab-runner/shells/authorized.sh
+    - /home/gitlab-runner/shells/oikoscom/constructoratest.sh
 
 deploy-prod:
     stage: deploy
