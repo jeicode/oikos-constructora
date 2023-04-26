@@ -6,7 +6,7 @@
                     i?.enlace?.includes('http://'); else routerLink" 
                     [href]="i?.enlace" target="_blank" class="btn_oikos_logos">
                     <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
-                    <span class="txt_logos_h">Oikos nombre</span>
+                    <span class="txt_logos_h">{{i?.field_content}}</span>
                 </a>
                 <ng-template #routerLink>
                     <a href="i?.enlace" target="_blank" class="btn_oikos_logos">
