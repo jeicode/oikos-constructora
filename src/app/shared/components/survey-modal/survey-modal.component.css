@@ -1,0 +1,235 @@
+.layer{
+    width: 100%;
+    background: rgba(0,0,0,.6);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    overflow-y: auto;
+    opacity: 0;
+    display: none;
+    animation: fadeIn 1s forwards;
+}
+.layer.active{
+    display: block;
+}
+.cnt_gen_modal{
+    width: 95%;
+    max-width: 600px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+}
+.cnt_modal{
+    border-radius: 20px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 13px 30px -8px rgba(0,0,0,.25);
+}
+.top_azul_modal{
+    width: 100%;
+    display: flex;
+    background: var(--c_pri);
+    padding: 16px 48px 16px;
+    color: #fff;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 13px 30px -8px rgba(0,0,0,.25);
+    position: relative;
+    z-index: 1;
+}
+.h_modal{
+    width: 100%;
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    padding: 16px 0;
+}
+.txt_modal{
+    font-size: 16px;
+    text-align: center;
+    padding: 16px 0;
+    border-top: 1px solid #fff;
+}
+.cerrar_modal{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    z-index: 2;
+}
+.cerrar_modal:hover{
+    transform: scale(1.1);
+}
+.cerrar_modal .material-icons{
+    color: #fff;
+}
+.cnt_form_modal{
+    width: 100%;
+}
+.cnt_sec_modal{
+    width: 100%;
+    display: none;
+    opacity: 0;
+    animation: fadeIn .5s forwards;
+}
+
+@keyframes fadeIn{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+.cnt_sec_modal.active{
+    display: block;
+}
+.portada_modal{
+    width: 100%;
+    padding: 64px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    background: url(../../../../assets/images/diseno/bg_encuesta.png) no-repeat center ;
+    background-size: cover;
+}
+
+.logo_modal{
+    width: 130px;
+}
+.logo_modal img{
+    width: 100%;
+}
+.btn.btn_modal{
+    width: 260px;
+}
+.cnt_preg{
+    padding: 64px 64px;
+    background: #fff;
+}
+.list_dropdown{
+    width: 100%;
+}
+.cntpreg_dropdown{
+    padding: 24px 0;
+    border-bottom: 1px solid #ccc;
+}
+.cntpreg_dropdown:last-child{
+    border-bottom: none;
+}
+.txt_preg{
+    font-size: 16px;
+    color: #626262;
+    box-sizing: border-box;
+    padding: 0 16px;
+    padding-bottom: 4px;
+}
+.input.inp_modal{
+    height: 35px;
+    padding: 0 12px;
+}
+.row_preg_1{
+    display: flex;
+    justify-content: center;
+    padding: 32px 0 0px;
+}
+.preg_radio{
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #626262;
+    padding: 16px 0;
+    border-bottom: 1px solid #ccc;
+}
+.row_radios_modal{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+}
+.itm_radio_modal{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 19%;
+    flex-grow: 1;
+    align-items: center;
+}
+.radio_modal{
+    display: none;
+}
+.cnt_if_radio_modal{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+}
+.radio_modal:checked ~ .cnt_if_radio_modal .ic_radio_modal{
+    background: #BCCCF8;
+    box-shadow: none;
+    transform: scale(1);
+}
+.cnt_if_radio_modal:hover .ic_radio_modal{
+    transform: scale(1.1);
+}
+
+.ic_radio_modal{
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(104.32deg, #FFFFFF 0%, #E4E4E4 100%), #C2C2C2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 8px;
+    border-radius: 8px;
+    transition: all .3s;
+}
+.txt_radio_modal{
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--c_pri);
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    font-weight: bold;
+}
+@media screen and (max-width:1050px){
+
+    .top_azul_modal{
+        padding: 32px 24px 0;
+    }
+    .cnt_preg{
+        padding: 24px 32px;
+    }
+}
+@media screen and (max-width:480px){
+    .h_modal{
+        font-size: 20px;
+    }
+    .row_radios_modal{
+        flex-direction: column;
+        gap: 12px;
+    }
+    .itm_radio_modal{
+        width: 100%;
+    }
+    .cnt_if_radio_modal{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .ic_radio_modal{
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+    }
+    .txt_radio_modal{
+        font-size: 16px;
+        line-height: 18px;
+        text-align: left;
+    }
+}
