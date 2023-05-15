@@ -246,4 +246,12 @@
         line-height: 18px;
         text-align: left;
     }
+    .btn_flt_encuesta{
+        width: 45px;
+        height: 45px;
+        padding: 8px;
+      }
+      .btn_flt_encuesta img{
+        width: 100%;
+      }
 }
