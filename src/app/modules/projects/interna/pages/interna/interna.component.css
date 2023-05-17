@@ -323,8 +323,14 @@ input {
   letter-spacing: 0.62em;
   color: #2A3C7F;
 }
+.h_interna_proy{
+  font-size: 14px;
+  color: #2A3C7F;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+}
 
-.h_logo_proyect .title_ph h1 {
+.h_logo_proyect .title_ph .nombre_proy {
   text-transform: uppercase;
   color: #2A3C7F;
   font-weight: 900;
@@ -1108,7 +1114,7 @@ input {
     font-size: 14px;
   }
 
-  .h_logo_proyect .title_ph h1 {
+  .h_logo_proyect .title_ph .nombre_proy {
     font-size: 24px;
   }
 
@@ -1954,6 +1960,9 @@ input {
 
   .card_p .datos_proyecto h4 {
     font-size: 30px;
+  }
+  .h_interna_proy{
+    font-size: 12px;
   }
 
   .card_p .datos_proyecto {

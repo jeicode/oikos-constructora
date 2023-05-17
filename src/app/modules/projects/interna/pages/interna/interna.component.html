@@ -15,7 +15,8 @@
                     <div class="tag" [ngStyle]="{'background-color': data?.color_secundario}">
                         {{data?.estado_proyecto}}
                     </div>
-                    <h1>{{data?.titulo_proyecto}}</h1>
+                    <h1 class="h_interna_proy" *ngIf="data?.texto_h1!='' && data?.texto_h1!=null">{{data?.texto_h1}}</h1>
+                    <div class="nombre_proy">{{data?.titulo_proyecto}}</div>
                 </div>
             </div>
             <div class="info_heading_proy">
