@@ -1,19 +1,19 @@
 
-<div class="btn_flt_encuesta">
+<div class="btn_flt_encuesta" (click)="activarEncuesta()">
     <img src="assets/images/diseno/ic_encuesta.svg" alt="">
 </div>
-<div class="layer">
+<div class="layer" [ngClass]="{'active' : activarEncuestaS}">
     <div class="cnt_gen_modal">
 
         <div class="cnt_modal">
-            <div class="cerrar_modal">
+            <div class="cerrar_modal" (click)="activarEncuesta()">
                 <span class="material-icons">cancel</span>
             </div>
 
             <form action="" class="cnt_form_modal ">
 
                 <!-- portada -->
-                <div class="cnt_sec_modal active"><!-- clase active muestra la seccion-->
+                <div class="cnt_sec_modal portada active"><!-- clase active muestra la seccion-->
                     <div class="top_azul_modal">
                         <div class="h_modal">Queremos conocer tu opinión</div>
                         <div class="txt_modal">
@@ -24,12 +24,12 @@
                         <div class="logo_modal">
                             <img src="assets/images/diseno/logo_constructora.svg" alt="">
                         </div>
-                        <div class="btn btn_modal">Continuar</div>
+                        <div class="btn btn_modal" (click)="avanzar('paso1')">Continuar</div>
                     </div>
                 </div>
 
                 <!-- seccion 1 -->
-                <div class="cnt_sec_modal "><!-- clase active muestra la seccion-->
+                <div class="cnt_sec_modal paso1"><!-- clase active muestra la seccion-->
                     <div class="top_azul_modal">
                         <div class="h_modal">Queremos conocer tu opinión</div>
                     </div>
@@ -57,12 +57,12 @@
                             </div>
                         </div>
                         <div class="row_preg_1">
-                            <div class="btn btn_modal">Siguiente</div>
+                            <div class="btn btn_modal" (click)="avanzar('paso2')">Siguiente</div>
                         </div>
                     </div>
                 </div>
                 <!-- seccion 2 -->
-                <div class="cnt_sec_modal "><!-- clase active muestra la seccion-->
+                <div class="cnt_sec_modal paso2"><!-- clase active muestra la seccion-->
                     <div class="top_azul_modal">
                         <div class="h_modal">Queremos conocer tu opinión</div>
                     </div>
@@ -128,13 +128,13 @@
                             </div>
                         </div>
                         <div class="row_preg_1">
-                            <div class="btn btn_modal">Siguiente</div>
+                            <div class="btn btn_modal" (click)="avanzar('paso3')">Siguiente</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- seccion 3 -->
-                <div class="cnt_sec_modal"><!-- clase active muestra la seccion-->
+                <div class="cnt_sec_modal paso3"><!-- clase active muestra la seccion-->
                     <div class="top_azul_modal">
                         <div class="h_modal">Queremos conocer tu opinión</div>
                     </div>
@@ -200,7 +200,7 @@
                             </div>
                         </div>
                         <div class="row_preg_1">
-                            <div class="btn btn_modal">Siguiente</div>
+                            <div class="btn btn_modal" (click)="avanzar('final')">Siguiente</div>
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,7 @@
                 ********************** -->
 
                 <!-- SECCION GRACIAS -->
-                <div class="cnt_sec_modal"><!-- clase active muestra la seccion-->
+                <div class="cnt_sec_modal final"><!-- clase active muestra la seccion-->
                     <div class="top_azul_modal">
                         <div class="h_modal">
                             Muchas gracias por <br/>
@@ -222,7 +222,7 @@
                         <div class="logo_modal">
                             <img src="assets/images/diseno/logo_constructora.svg" alt="">
                         </div>
-                        <div class="btn btn_modal">Cerrar</div>
+                        <div class="btn btn_modal" (click)="activarEncuesta()">Cerrar</div>
                     </div>
                 </div>
 
