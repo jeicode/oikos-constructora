@@ -132,6 +132,38 @@ export class PageService {
       })
   }
 
+  /**
+   * 
+   * @param agrupar 
+   * @returns Promise<any>
+   */
+
+  async getEncuestaActiva(agrupar: any): Promise<any>{
+    const url = `${API_URL}v1/getEncuestaActiva?agrupar=${agrupar}`;
+
+    return this._http.get(url).toPromise().then()
+      .catch(err => {
+        console.warn(err)
+        return false
+      })
+  }
+
+  /**
+   * 
+   * @param data 
+   * @returns Promise<any>
+   */
+
+  async setRespuestaEncuesta(data: any): Promise<any>{
+    const url = `${API_URL}v1/setRespuestaEncuesta`;
+
+    return this._http.post(url, JSON.stringify(data)).toPromise().then()
+      .catch(err => {
+        console.warn(err)
+        return false
+      })
+  }
+
 
   /**
    * 

@@ -1,5 +1,5 @@
 
-<div class="btn_flt_encuesta" (click)="activarEncuesta()">
+<div class="btn_flt_encuesta" (click)="activarEncuesta()" style="cursor:pointer" *ngIf="mostrarEncuesta">
     <img src="assets/images/diseno/ic_encuesta.svg" alt="">
 </div>
 <div class="layer" [ngClass]="{'active' : activarEncuestaS}">
@@ -13,7 +13,7 @@
             <form action="" class="cnt_form_modal ">
 
                 <!-- portada -->
-                <div class="cnt_sec_modal portada active"><!-- clase active muestra la seccion-->
+                <div class="cnt_sec_modal portada"><!-- clase active muestra la seccion-->
                     <div class="top_azul_modal">
                         <div class="h_modal">Queremos conocer tu opinión</div>
                         <div class="txt_modal">
@@ -24,190 +24,98 @@
                         <div class="logo_modal">
                             <img src="assets/images/diseno/logo_constructora.svg" alt="">
                         </div>
-                        <div class="btn btn_modal" (click)="avanzar('paso1')">Continuar</div>
+                        <div class="btn btn_modal" (click)="avanzar('paso0')">Continuar</div>
                     </div>
                 </div>
 
                 <!-- seccion 1 -->
-                <div class="cnt_sec_modal paso1"><!-- clase active muestra la seccion-->
+                <div class="cnt_sec_modal paso0 active" *ngIf="agrupada==0; else encuestaAgrupada"><!-- clase active muestra la seccion-->
                     <div class="top_azul_modal">
                         <div class="h_modal">Queremos conocer tu opinión</div>
                     </div>
                     <div class="cnt_preg">
-                        <div class="list_dropdown">
-                            <div class="cntpreg_dropdown">
-                                <div class="txt_preg">
-                                    1. ¿Cuál es su sexo?
+                        <div *ngFor="let i of encuesta[0].preguntas">
+                            <div class="list_dropdown" *ngIf="i?.tipo_pregunta=='1'">
+                                <div class="cntpreg_dropdown">
+                                    <div class="txt_preg">
+                                        {{i?.contar}}. {{i?.titulo}}
+                                    </div>
+                                    <select class="input inp_modal" (change)="marcarPregunta($event)">
+                                        <option value="" [attr.id_encuesta]="i?.id">Seleccione</option>
+                                        <option [value]="j?.titulo" [attr.id_encuesta]="i?.id" *ngFor="let j of i?.opciones">{{j?.titulo}}</option>
+                                    </select>
                                 </div>
-                                <select name="" class="input inp_modal" id="">
-                                    <option value="">Seleccione</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
                             </div>
-                            <div class="cntpreg_dropdown">
-                                <div class="txt_preg">
-                                    ¿En qué rango de edad se encuentra?
+                            <div class="escala" *ngIf="i?.tipo_pregunta=='2'">
+                                <div class="preg_radio">
+                                    {{i?.contar}}. {{i?.titulo}}
                                 </div>
-                                <select name="" class="input inp_modal" id="">
-                                    <option value="">Seleccione</option>
-                                    <option value="">27 a 59 años</option>
-                                    <option value="">--</option>
-                                </select>
+                                <div class="row_radios_modal">
+                                    <div class="itm_radio_modal" *ngFor="let item of escala; index as k" (click)="marcarEscala(i?.id, item)">
+                                        <input type="radio" name="opc_{{i?.id}}" class="radio_modal" id="opc_{{i?.id}}_{{k}}"/>
+                                        <label for="" class="cnt_if_radio_modal" for="opc_{{i?.id}}_{{k}}">
+                                            <div class="ic_radio_modal">
+                                                <img src="assets/images/diseno/{{imagenes_escala[k]}}" alt="">
+                                            </div>
+                                            <div class="txt_radio_modal">
+                                                {{item}}
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row_preg_1">
-                            <div class="btn btn_modal" (click)="avanzar('paso2')">Siguiente</div>
+                            <div class="btn btn_modal" (click)="avanzarUnico()">Siguiente</div>
                         </div>
-                    </div>
-                </div>
-                <!-- seccion 2 -->
-                <div class="cnt_sec_modal paso2"><!-- clase active muestra la seccion-->
-                    <div class="top_azul_modal">
-                        <div class="h_modal">Queremos conocer tu opinión</div>
-                    </div>
-                    <div class="cnt_preg">
-                        <div class="preg_radio">
-                            3. El sitio web es visualmente atractivo
-                        </div>
-                        <div class="row_radios_modal">
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_1" id="nada_deacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="nada_deacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_1.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        Para nada de acuerdo
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_1" id="desacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="desacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_2.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        En desacuerdo
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_1" id="neutro"/>
-                                <label for="" class="cnt_if_radio_modal" for="neutro">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_3.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        Ni de acuerdo ni en desacuerdo
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_1" id="deacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="deacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_4.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        De acuerdo
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_1" id="completamente_deacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="completamente_deacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_5.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        Completamente de acuerdo
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row_preg_1">
-                            <div class="btn btn_modal" (click)="avanzar('paso3')">Siguiente</div>
-                        </div>
+                        <p class="error-text">{{showErrors}}</p>
                     </div>
                 </div>
 
-                <!-- seccion 3 -->
-                <div class="cnt_sec_modal paso3"><!-- clase active muestra la seccion-->
-                    <div class="top_azul_modal">
-                        <div class="h_modal">Queremos conocer tu opinión</div>
-                    </div>
-                    <div class="cnt_preg">
-                        <div class="preg_radio">
-                            4. La navegación por el sitio web fue intuitiva
+                <ng-template #encuestaAgrupada>
+                    <div class="cnt_sec_modal paso{{(j)}}" [ngClass]="{'active': j==0}" *ngFor="let i of encuesta[0].secciones; index as j">
+                        <div class="top_azul_modal">
+                            <div class="h_modal">Queremos conocer tu opinión</div>
                         </div>
-                        <div class="row_radios_modal">
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_2" id="r2_nada_deacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="r2_nada_deacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_1.svg" alt="">
+                        <div class="cnt_preg">
+                            <div *ngFor="let pregunta of i.preguntas">
+                                <div class="list_dropdown" *ngIf="pregunta?.tipo_pregunta=='1'">
+                                    <div class="cntpreg_dropdown">
+                                        <div class="txt_preg">
+                                            {{pregunta?.contar}}. {{pregunta?.titulo}}
+                                        </div>
+                                        <select class="input inp_modal" (change)="marcarPregunta($event)">
+                                            <option value="" [attr.id_encuesta]="pregunta?.id">Seleccione</option>
+                                            <option [value]="opc?.titulo" [attr.id_encuesta]="pregunta?.id" *ngFor="let opc of pregunta?.opciones">{{opc?.titulo}}</option>
+                                        </select>
                                     </div>
-                                    <div class="txt_radio_modal">
-                                        Para nada de acuerdo
+                                </div>
+                                <div class="escala" *ngIf="pregunta?.tipo_pregunta=='2'">
+                                    <div class="preg_radio">
+                                        {{pregunta?.contar}}. {{pregunta?.titulo}}
                                     </div>
-                                </label>
+                                    <div class="row_radios_modal">
+                                        <div class="itm_radio_modal" *ngFor="let item of escala; index as k" (click)="marcarEscala(pregunta?.id, item)">
+                                            <input type="radio" name="opc_{{pregunta?.id}}" class="radio_modal" id="opc_{{pregunta?.id}}_{{k}}"/>
+                                            <label for="" class="cnt_if_radio_modal" for="opc_{{pregunta?.id}}_{{k}}">
+                                                <div class="ic_radio_modal">
+                                                    <img src="assets/images/diseno/{{imagenes_escala[k]}}" alt="">
+                                                </div>
+                                                <div class="txt_radio_modal">
+                                                    {{item}}
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_2" id="r2_desacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="r2_desacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_2.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        En desacuerdo
-                                    </div>
-                                </label>
+                            <div class="row_preg_1">
+                                <div class="btn btn_modal" (click)="avanzarMultiple(j+1, i.preguntas.length)">Siguiente</div>
                             </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_2" id="r2_neutro"/>
-                                <label for="" class="cnt_if_radio_modal" for="r2_neutro">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_3.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        Ni de acuerdo ni en desacuerdo
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_2" id="r2_deacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="r2_deacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_4.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        De acuerdo
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="itm_radio_modal">
-                                <input type="radio" class="radio_modal" name="radio_preg_2" id="r2_completamente_deacuerdo"/>
-                                <label for="" class="cnt_if_radio_modal" for="r2_completamente_deacuerdo">
-                                    <div class="ic_radio_modal">
-                                        <img src="assets/images/diseno/ic_encuesta_5.svg" alt="">
-                                    </div>
-                                    <div class="txt_radio_modal">
-                                        Completamente de acuerdo
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row_preg_1">
-                            <div class="btn btn_modal" (click)="avanzar('final')">Siguiente</div>
+                            <p class="error-text">{{showErrors}}</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- ********************* 
-                    HAY 4 PREGUNTAS MÁS
-                ********************** -->
+                </ng-template>
 
                 <!-- SECCION GRACIAS -->
                 <div class="cnt_sec_modal final"><!-- clase active muestra la seccion-->

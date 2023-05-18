@@ -199,7 +199,7 @@
 }
 .btn_flt_encuesta{
     position: fixed;
-    top: 45%;
+    top: 84%;
     right: 8px;
     width: 70px;
     height: 70px;
@@ -254,4 +254,11 @@
       .btn_flt_encuesta img{
         width: 100%;
       }
+}
+
+.error-text {
+    color: #f00;
+    font-size: 13px;
+    text-align: center;
+    width: 100%;
 }
