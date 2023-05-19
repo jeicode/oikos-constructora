@@ -154,10 +154,14 @@ export class PageService {
    * @returns Promise<any>
    */
 
-  async setRespuestaEncuesta(data: any): Promise<any>{
+  async setRespuestaEncuesta(data: any, token: any): Promise<any>{
     const url = `${API_URL}v1/setRespuestaEncuesta`;
+    const values = {
+      data,
+      token
+    }
 
-    return this._http.post(url, JSON.stringify(data)).toPromise().then()
+    return this._http.post(url, JSON.stringify(values)).toPromise().then()
       .catch(err => {
         console.warn(err)
         return false

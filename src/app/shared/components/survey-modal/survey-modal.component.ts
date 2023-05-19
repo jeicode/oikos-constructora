@@ -20,11 +20,12 @@ export class surveyModalComponent implements OnInit{
     opciones_marcadas       : any = [];
     agrupada                : number = 1;
     showErrors              : string = "";
+    token                   : string = "";
 
     constructor(private pageService: PageService){
         setTimeout(() =>{
             this.mostrarEncuesta = true;
-        },100)
+        },30000)
     }
 
     ngOnInit(): void {
@@ -42,6 +43,8 @@ export class surveyModalComponent implements OnInit{
     activarEncuesta(){
         this.activarEncuestaS = !this.activarEncuestaS;
         this.avanzar('portada');
+
+        this.token = "";
     }
 
     avanzar(paso: any){
@@ -52,13 +55,15 @@ export class surveyModalComponent implements OnInit{
     async avanzarUnico(){
         if(this.opciones_marcadas.length==this.encuesta[0].preguntas.length){
 
-            await this.pageService.setRespuestaEncuesta(this.opciones_marcadas);
+            const result = await this.pageService.setRespuestaEncuesta(this.opciones_marcadas, this.token);
+            this.token = result[0]['token'];
 
             $(".cnt_sec_modal").removeClass('active');
             $(".final").addClass('active');
 
             setTimeout(()=>{
                 this.mostrarEncuesta = false;
+                this.token = "";
             },1500)
         }else{
             this.showErrors = 'Debes marcar todas las preguntas';
@@ -110,15 +115,16 @@ export class surveyModalComponent implements OnInit{
 
     async avanzarMultiple(paso: any, total_preguntas: any){
         if(total_preguntas==this.opciones_marcadas.length){
-            await this.pageService.setRespuestaEncuesta(this.opciones_marcadas);
+            const result = await this.pageService.setRespuestaEncuesta(this.opciones_marcadas, this.token);
+            this.token = result[0]['token'];
 
-            console.log(this.encuesta[0].secciones.length)
             if(this.encuesta[0].secciones.length==paso){
                 $(".cnt_sec_modal").removeClass('active');
                 $(".final").addClass('active');
 
                 setTimeout(()=>{
                     this.mostrarEncuesta = false;
+                    this.token = "";
                 },1500)
             }else{
                 $(".cnt_sec_modal").removeClass('active');
