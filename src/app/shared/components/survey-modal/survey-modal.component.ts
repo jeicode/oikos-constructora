@@ -40,11 +40,15 @@ export class surveyModalComponent implements OnInit{
         this.encuesta = await this.pageService.getEncuestaActiva(this.agrupada);
     }
 
-    activarEncuesta(){
+    activarEncuesta(cerrar?: any){
         this.activarEncuestaS = !this.activarEncuestaS;
         this.avanzar('portada');
 
         this.token = "";
+        this.opciones_marcadas = [];
+        this.respuestas = [];
+        $(".inp_modal").val(0);
+        $(".radio_modal").prop('checked',false)
     }
 
     avanzar(paso: any){
