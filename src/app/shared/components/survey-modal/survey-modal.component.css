@@ -262,3 +262,42 @@
     text-align: center;
     width: 100%;
 }
+
+.btn_flt_encuesta::after{
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 5px #182360 solid;
+    position: absolute;
+    z-index: -1;
+    animation: ring 1.5s infinite;
+}
+
+@-webkit-keyframes ring {
+    0% {
+        width: 50px;
+        height: 50px;
+        opacity: 1
+    }
+
+    to {
+        width: 150px;
+        height: 150px;
+        opacity: 0
+    }
+}
+
+@keyframes ring {
+    0% {
+        width: 50px;
+        height: 50px;
+        opacity: 1
+    }
+
+    to {
+        width: 150px;
+        height: 150px;
+        opacity: 0
+    }
+}
