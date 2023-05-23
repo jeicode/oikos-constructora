@@ -484,6 +484,10 @@
 .s_home_hero .swiper-slide {
     min-height: 650px;
     padding: 80px;
+    height: 100%;
+}
+:host ::ng-deep.swiperHomeHero .swiper-wrapper > .swiper-slide {
+    height: auto;
 }
 
 :host ::ng-deep .swiper-pagination-horizontal {
@@ -521,6 +525,16 @@
     z-index: 1;
 }
 
+.bg_img_h_hero_2{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    z-index: 1;
+    object-fit: cover;
+}
+
+
 .bg_img_h_hero::before {
     content: "";
     position: absolute;
@@ -542,6 +556,26 @@
     height: 100%;
     background: linear-gradient(to right, rgba(255, 255, 255, 0.8509803922), #ffffff);
     z-index: 2;
+    opacity: 1;
+}
+
+.bg_img_h_hero_2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: color;
+}
+
+.bg_img_h_hero_2::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
     opacity: 1;
 }
 
@@ -739,7 +773,7 @@
 
     .s_home_hero .swiper-slide {
         padding: 50px 30px 50px 60px;
-        min-height: 620px;
+        min-height: 550px;
     }
 }
 

@@ -199,7 +199,7 @@
 }
 .btn_flt_encuesta{
     position: fixed;
-    top: 45%;
+    top: 84%;
     right: 8px;
     width: 70px;
     height: 70px;
@@ -254,4 +254,56 @@
       .btn_flt_encuesta img{
         width: 100%;
       }
+}
+
+.error-text {
+    color: #f00;
+    font-size: 13px;
+    text-align: center;
+    width: 100%;
+}
+
+.btn_flt_encuesta::after{
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 5px #182360 solid;
+    position: absolute;
+    z-index: -1;
+    animation: ring 1.5s infinite;
+}
+
+.btn_flt_encuesta:hover:after {
+    display: none;
+    -webkit-animation: none;
+    animation: none
+}
+
+@-webkit-keyframes ring {
+    0% {
+        width: 60px;
+        height: 60px;
+        opacity: 1
+    }
+
+    to {
+        width: 150px;
+        height: 150px;
+        opacity: 0
+    }
+}
+
+@keyframes ring {
+    0% {
+        width: 60px;
+        height: 60px;
+        opacity: 1
+    }
+
+    to {
+        width: 150px;
+        height: 150px;
+        opacity: 0
+    }
 }

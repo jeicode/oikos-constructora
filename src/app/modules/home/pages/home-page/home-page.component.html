@@ -3,7 +3,7 @@
         <div class="swiper swiperHomeHero">
             <swiper [config]="config">
                 <ng-template swiperSlide *ngFor="let i of bannersHome">
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" *ngIf="i?.titulo_proyecto!='' && i?.titulo_proyecto!=null; else bannerEa">
                         <!-- IMAGEN DE FONDO BLANCA -->
                         <div class="bg_img_h_hero" data-swiper-parallax-opacity="0.6">
                             <img class="bg_img_h_hero" width="1920" height="700" 
@@ -31,7 +31,7 @@
                                         data-swiper-parallax="-100" data-swiper-parallax-duration="800">
                                         {{ i?.estado_proyecto }}
                                     </div>
-                                    <h2 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-300" data-swiper-parallax-duration="800" style="font-size: 43px;">{{i?.field_content}}</h2>
+                                    <h2 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-300" data-swiper-parallax-duration="800">{{i?.field_content}}</h2>
                                     <h3 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-500" data-swiper-parallax-duration="800">{{i?.descripcion_banner_home}}</h3>
                                     <h2 *ngIf="i?.valor_proyecto" data-swiper-parallax-opacity="0.6" data-swiper-parallax="-700" data-swiper-parallax-duration="800"> 
                                         <span> Desde</span> 
@@ -73,6 +73,20 @@
                             
                         </div>
                     </div>
+
+                    <ng-template #bannerEa>
+                        <div class="swiper-slide">
+                            <div class="bg_img_h_hero_2" data-swiper-parallax-opacity="0.6">
+                                <a href="{{i?.link_cta_banner}}" *ngIf="i?.link_cta_banner!='' && i?.link_cta_banner!=null; else imgBannerWithoutLink">
+                                    <img class="bg_img_h_hero_2" width="1920" height="700" [src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
+                                </a>
+
+                                <ng-template #imgBannerWithoutLink>
+                                    <img class="bg_img_h_hero_2" width="1920" height="700" [src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
+                                </ng-template>
+                            </div>
+                        </div>
+                    </ng-template>
                     
                 </ng-template>
             </swiper>
@@ -139,7 +153,7 @@
                             </div>
                         </div>
                         <div class="franja_p">
-                            <img width="20" height="20" src="https://paxzupruebas.com/maquetas/oikos_constructora/nueva/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                            <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
                             <span>{{i?.texto_adicional}}</span>
                         </div>
                         <div class="ctas_proyectos" 
