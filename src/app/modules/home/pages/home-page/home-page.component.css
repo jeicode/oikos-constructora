@@ -484,6 +484,10 @@
 .s_home_hero .swiper-slide {
     min-height: 650px;
     padding: 80px;
+    height: 100%;
+}
+:host ::ng-deep.swiperHomeHero .swiper-wrapper > .swiper-slide {
+    height: auto;
 }
 
 :host ::ng-deep .swiper-pagination-horizontal {
@@ -524,10 +528,12 @@
 .bg_img_h_hero_2{
     position: absolute;
     width: 100%;
-    height: auto;
+    height: 100%;
     inset: 0;
     z-index: 1;
+    object-fit: cover;
 }
+
 
 .bg_img_h_hero::before {
     content: "";
@@ -767,7 +773,7 @@
 
     .s_home_hero .swiper-slide {
         padding: 50px 30px 50px 60px;
-        min-height: 620px;
+        min-height: 550px;
     }
 }
 
