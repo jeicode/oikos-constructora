@@ -24,7 +24,9 @@ export class surveyModalComponent implements OnInit{
 
     constructor(private pageService: PageService){
         setTimeout(() =>{
-            //this.mostrarEncuesta = true;
+            if(this.encuesta[0].id_encuesta!=null && this.encuesta[0].id_encuesta!=''){
+                this.mostrarEncuesta = true;
+            }
         },30000)
     }
 
