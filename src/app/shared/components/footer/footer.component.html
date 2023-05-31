@@ -85,7 +85,11 @@
     <div class="cnt_bot_pie">
         <div class="cnt_redes_pie">
             <a [href]="i?.url" target="_blank" rel="nofollow" *ngFor="let i of socialNetwork">
-                <div [class]="i?.class_footer" ></div>
+                <i [class]="i?.class_footer" *ngIf="i?.class.includes('i_tag');else div_tag"></i>
+                <ng-template #div_tag>
+                    <div [class]="i?.class_footer" ></div>
+                </ng-template>
+                
             </a>
         </div>
         <div class="copyr_pie">
