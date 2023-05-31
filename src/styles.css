@@ -719,8 +719,17 @@ h1 {
     color: #fff;
     cursor: pointer;
 }
+.red_pie_n{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
 
-.red_pie:hover {
+.red_pie:hover, .red_pie_n:hover {
     background: #fff;
     color: #233862;
 }
@@ -800,6 +809,32 @@ h1 {
     height: 40px;
     background-size: 100% auto;
     border-color: #13203E;
+}
+.cnt_esp_eng{
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    color: #3f3f3f;
+    border-left: 1px solid #ccc;
+    margin-left: 12px;
+}
+.btn_idioma{
+    font-size: 14px;
+    padding: 2px 6px;
+    padding-top: 4px;
+    color: #3f3f3f;
+    border-radius: 3px;
+    transition: all .3s;
+}
+.btn_idioma:hover{
+    background-color: #1A41E5;
+    color: #fff;
+}
+.btn_idioma.active{
+    background: var(--color-c2);
+    color: #fff;
+    
 }
 
 /*********************/

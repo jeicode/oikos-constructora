@@ -6,10 +6,6 @@ import { GlobalService } from '../../services/api/global.service';
 import { ResponsiveService } from '../../services/functions/responsive.service';
 
 declare const $:any;
-interface MenuFooter {
-  title: any,
-  children: any[]
-}
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html'
