@@ -1,5 +1,5 @@
 
-<div class="btn_flt_encuesta" (click)="activarEncuesta()" style="cursor:pointer" *ngIf="mostrarEncuesta">
+<div class="btn_flt_encuesta {{moveFlotante}}" (click)="activarEncuesta()" style="cursor:pointer" *ngIf="mostrarEncuesta">
     <img src="assets/images/diseno/ic_encuesta.svg" alt="">
 </div>
 <div class="layer" [ngClass]="{'active' : activarEncuestaS}">

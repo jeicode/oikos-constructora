@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PageService } from "../../services/api/page.service";
+import { Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
 declare var $:any;
 @Component({
@@ -12,7 +14,7 @@ declare var $:any;
 export class surveyModalComponent implements OnInit{
     
     activarEncuestaS        : boolean = false;
-    mostrarEncuesta         : boolean = false;
+    mostrarEncuesta         : boolean = true;
     encuesta                : any = [];
     escala                  : any = ['Para nada de acuerdo', 'En desacuerdo', 'Ni de acuerdo ni en desacuerdo', 'De acuerdo', 'Completamente de acuerdo'];
     imagenes_escala         : any = ['ic_encuesta_1.svg', 'ic_encuesta_2.svg', 'ic_encuesta_3.svg', 'ic_encuesta_4.svg', 'ic_encuesta_5.svg'];
@@ -22,7 +24,21 @@ export class surveyModalComponent implements OnInit{
     showErrors              : string = "";
     token                   : string = "";
 
-    constructor(private pageService: PageService){
+    moveFlotante            : string = "";
+    suscribeListenRouter    : Subscription;
+
+    constructor(private pageService: PageService, private router: Router){
+        this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
+            if (event instanceof NavigationEnd  ) {
+                var d = router.url.split("/");
+                if(d[1]=='proyecto'){
+                    this.moveFlotante = "moveToLeft";
+                }else{
+                    this.moveFlotante = "";
+                }
+            }
+        });
+        
         setTimeout(() =>{
             if(this.encuesta[0].id_encuesta!=null && this.encuesta[0].id_encuesta!=''){
                 this.mostrarEncuesta = true;
