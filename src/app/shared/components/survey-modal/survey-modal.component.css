@@ -199,8 +199,8 @@
 }
 .btn_flt_encuesta{
     position: fixed;
-    top: 84%;
-    right: 8px;
+    bottom: 18%;
+    right: 23px;
     width: 70px;
     height: 70px;
     display: flex;
