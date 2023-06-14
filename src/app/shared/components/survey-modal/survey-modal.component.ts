@@ -14,7 +14,7 @@ declare var $:any;
 export class surveyModalComponent implements OnInit{
     
     activarEncuestaS        : boolean = false;
-    mostrarEncuesta         : boolean = true;
+    mostrarEncuesta         : boolean = false;
     encuesta                : any = [];
     escala                  : any = ['Para nada de acuerdo', 'En desacuerdo', 'Ni de acuerdo ni en desacuerdo', 'De acuerdo', 'Completamente de acuerdo'];
     imagenes_escala         : any = ['ic_encuesta_1.svg', 'ic_encuesta_2.svg', 'ic_encuesta_3.svg', 'ic_encuesta_4.svg', 'ic_encuesta_5.svg'];
