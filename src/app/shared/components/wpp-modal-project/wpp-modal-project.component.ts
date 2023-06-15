@@ -74,7 +74,10 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
 
 
   redirectToWppLink(){
-    window.open(this.project.api_wsp, '_blank')
+    if(this.project.origin=='home')
+      window.open(this.project.api_wsp, '_blank')
+    else
+      window.open(this.project.api_wsp_flotante, '_blank')
   }
 
 

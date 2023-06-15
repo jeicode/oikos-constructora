@@ -120,6 +120,7 @@ export class HomePageComponent implements OnInit {
    * @param project selected project to modal
    */
   selectProjectToModal(project:Project){
+    project.origin = 'home';
     this.projectSelectedToModal = project
     this.notifyChanges.next({openModal:true});
   }
