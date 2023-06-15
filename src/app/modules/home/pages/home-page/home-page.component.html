@@ -78,11 +78,32 @@
                         <div class="swiper-slide">
                             <div class="bg_img_h_hero_2" data-swiper-parallax-opacity="0.6">
                                 <a href="{{i?.link_cta_banner}}" *ngIf="i?.link_cta_banner!='' && i?.link_cta_banner!=null; else imgBannerWithoutLink">
-                                    <img class="bg_img_h_hero_2" width="1920" height="700" [src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
+                                <picture>
+                                    <source media="(max-width: 425px)" srcset="assets/images/diseno/home/BANNER-WEB-MOVIL2.png">
+
+                                    <source media="(max-width: 1024px)" srcset="assets/images/diseno/home/BANNER-WEB-MOVIL.png">
+
+                                    <source 
+                                    media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
+
+                                    <img src="assets/images/diseno/home/BANNER-WEB-MOVIL2.png" alt="Imagen" class="bg_img_h_hero_2" width="1920" height="700">
+
+                                </picture>
                                 </a>
 
                                 <ng-template #imgBannerWithoutLink>
-                                    <img class="bg_img_h_hero_2" width="1920" height="700" [src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
+                                  
+                                    <picture>
+                                        <source media="(max-width: 425px)" srcset="assets/images/diseno/home/BANNER-WEB-MOVIL2.png">
+
+                                        <source media="(max-width: 1024px)" srcset="assets/images/diseno/home/BANNER-WEB-MOVIL.png">
+
+                                        <source 
+                                        media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
+
+                                        <img src="assets/images/diseno/home/BANNER-WEB-MOVIL2.png" alt="Imagen" class="bg_img_h_hero_2" width="1920" height="700">
+
+                                    </picture>
                                 </ng-template>
                             </div>
                         </div>

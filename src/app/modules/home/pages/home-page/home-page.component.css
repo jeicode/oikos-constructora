@@ -476,7 +476,7 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    background: url("/assets/images/diseno/home/curva_azul_hero.svg") no-repeat center bottom;
+   /* background: url("/src/assets/images/diseno/home/curva_azul_hero.svg") no-repeat center bottom;*/
     background-size: contain;
     z-index: 10;
 }
@@ -751,6 +751,14 @@
     font-size: 23px;
 }
 
+
+@media screen and (min-width: 2540px) {
+    .s_home_hero::before {
+        background-size: cover;
+        background-position: top;
+        max-height: 169px;
+    }
+}
 @media screen and (max-width: 1440px) {
     .datos_info_prjct h1 {
         font-size: 43px;
