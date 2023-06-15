@@ -8,6 +8,7 @@ export class Project {
         public alt_logo:string = "", 
         public alt_principal:string = "", 
         public api_wsp:string = "", 
+        public api_wsp_flotante:string = "",
         public area:string = "", 
         public bandera:string = "", 
         public bodegas:string = "", 
@@ -95,7 +96,8 @@ export class Project {
         public saldo_cuota: string = "",
         public numero_cuotas: any[] = [],
         public financiar: string = "",
-        public dollar_value:number = 0
+        public dollar_value:number = 0,
+        public origin: string = ""
         ){}
 
     }
