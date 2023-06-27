@@ -112,7 +112,10 @@
                 <div class="btn" (click)="activarFlotante()">Contacto<span class="material-icons">mail_outline</span>
                 </div>
                 <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank"
-                    *ngIf="data.vista360">Recorrido <img
+                    *ngIf="data.vista360">Etapa 1<img
+                        src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
+                <a class="btn" href="https://www.oikos.com.co/constructora/maquetas-360/san_pablo_lirios/" rel="noopener,nofollow" target="_blank"
+                    *ngIf="data.id=='1'">Recorrido ET2<img
                         src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
                 <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank"
                     *ngIf="data.url_waze">Cómo llegar <img
