@@ -8,13 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule } from "ng-recaptcha";
 
-import { GoogleMapsModule } from '@angular/google-maps';
 import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
 import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 import { SwiperModule } from 'swiper/angular';
 import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
-
+import { HTMLPipe } from 'src/app/shared/pipes/html-data.pipe';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
@@ -30,12 +29,11 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     HttpClientModule,
     ReactiveFormsModule,
     RecaptchaModule,
-    GoogleMapsModule,
     SafePipe,
+    HTMLPipe,
     //standalones
     SlideProjectsComponent,
     BreadcrumbComponent,
-    SafePipe,
     SwiperModule,
     WppModalProjectComponent
   ]

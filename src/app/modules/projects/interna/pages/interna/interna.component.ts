@@ -49,6 +49,7 @@ export class InternaComponent implements OnInit {
   slug                  : string | null;
   imagenes_url          : string = "";
   captcha               : string = '';
+  url_mapa              : string = '';
   suscribeListenRouter  : Subscription;
   porcFinanciar         : number = 100;
   isSubmitted           : boolean = false;
@@ -106,6 +107,8 @@ export class InternaComponent implements OnInit {
     this.calculoPorcentaje();
     this.configServ.loadHeroProyectos(1000);
     this.configServ.loadChangeTab(1000);
+
+    
   }
 
 
@@ -138,25 +141,7 @@ export class InternaComponent implements OnInit {
 
       this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
 
-      this.center = {
-        lat: this.data.latitude,
-        lng: this.data.longitude
-      }
-
-      this.markers = [];
-      this.markers.push({
-        position: {
-          lat: this.data.latitude,
-          lng: this.data.longitude
-        },
-        icon: {
-          url: this.imagenes_url+this.data?.logo_proyecto,
-          scaledSize: new google.maps.Size(30, 30), // scaled size
-        },
-        options: {
-          animation: google.maps.Animation.BOUNCE
-        }
-      })
+      this.cargarSitios(this.sitiosInteres[0].id);
 
     }
   }
@@ -307,39 +292,7 @@ export class InternaComponent implements OnInit {
     this.seccionesInteres = await this.projService.getSitiosInteres(id_categoria, this.data.id);
 
     if(this.seccionesInteres.length>0){
-      this.markers = [];
-      this.zoom = 14;
-
-      //se adiciona primero el pin principal
-      this.markers.push({
-        position: {
-          lat: this.data.latitude,
-          lng: this.data.longitude
-        },
-        icon: {
-          url: this.imagenes_url+this.data?.logo_proyecto,
-          scaledSize: new google.maps.Size(30, 30), // scaled size
-        },
-        options: {
-          animation: google.maps.Animation.BOUNCE
-        }
-      })
-
-      for(var i in this.seccionesInteres){
-        this.markers.push({
-          position: {
-            lat: this.seccionesInteres[i].latitude_interes_proyecto,
-            lng: this.seccionesInteres[i].longitude_interes_proyecto
-          },
-          icon: {
-            url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4"
-          },
-          title: this.seccionesInteres[i].field_content,
-          options: {
-            //animation: google.maps.Animation.BOUNCE
-          }
-        })
-      }
+      this.url_mapa = this.seccionesInteres[0].mapa_interes_proyecto;
     }
   }
 
