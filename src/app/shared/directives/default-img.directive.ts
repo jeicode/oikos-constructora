@@ -6,7 +6,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class DefaultImgDirective{
 
-  @Input() defaultLink:string = 'http://adminpaxzu-devcons.oikos.com.co/images/website/Image_not_available.png';
+  @Input() defaultLink:string = 'https://www.oikos.com.co/constructora/images/website/Image_not_available.png';
 
   constructor(private elementRef: ElementRef) { }
 
