@@ -25,7 +25,9 @@
                     <div class="etq_compartir_h_not_int">Compartir</div>
                     <div class="cnt_redes_h_not_int">
                         <div class="red_h ic_fb" (click)="shareBy('fb')"></div>
-                        <div class="red_h ic_tw" (click)="shareBy('twitter')"></div>
+                        <div class="red_h" (click)="shareBy('twitter')">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </div>
                         <div class="red_h ic_in" (click)="shareBy('linkedln')"></div>
                     </div>
                 </div>
@@ -47,7 +49,9 @@
                 <div class="col_compartir_nota">
                     <div class="cnt_redes_nota">
                         <div class="red_nota ic_fb" (click)="shareBy('fb')"></div>
-                        <div class="red_nota ic_tw" (click)="shareBy('twitter')"></div>
+                        <div class="red_nota" (click)="shareBy('twitter')">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </div>
                         <div class="red_nota ic_in" (click)="shareBy('linkedln')"></div>
                     </div>
                 </div>

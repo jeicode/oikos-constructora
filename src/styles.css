@@ -221,15 +221,17 @@ h1 {
     border-left: 1px solid #ccc;
     padding-left: 16px;
 }
+
 .btn_oikos_logos img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     max-width: 20px;
 }
+
 .txt_logos_h {
     font-size: 13px;
-    color:#000;
+    color: #000;
 }
 
 .btn_pse {
@@ -716,16 +718,6 @@ h1 {
 }
 
 .red_pie {
-    font-family: "icomoon";
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
-}
-.red_pie_n{
     width: 30px;
     height: 30px;
     text-align: center;
@@ -735,7 +727,18 @@ h1 {
     cursor: pointer;
 }
 
-.red_pie:hover, .red_pie_n:hover {
+.red_pie_n {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.red_pie:hover,
+.red_pie_n:hover {
     background: #fff;
     color: #233862;
 }
@@ -816,7 +819,8 @@ h1 {
     background-size: 100% auto;
     border-color: #13203E;
 }
-.cnt_esp_eng{
+
+.cnt_esp_eng {
     padding-left: 12px;
     display: flex;
     align-items: center;
@@ -825,7 +829,8 @@ h1 {
     border-left: 1px solid #ccc;
     margin-left: 12px;
 }
-.btn_idioma{
+
+.btn_idioma {
     font-size: 14px;
     padding: 2px 6px;
     padding-top: 4px;
@@ -836,16 +841,19 @@ h1 {
     vertical-align: middle;
     gap: 4px;
 }
-.btn_idioma:hover{
+
+.btn_idioma:hover {
     background-color: #1A41E5;
     color: #fff;
 }
-.btn_idioma.active{
+
+.btn_idioma.active {
     background: var(--color-c2);
     color: #fff;
-    
+
 }
-.ic_bandera{
+
+.ic_bandera {
     width: 14px;
     min-width: 14px;
 }
@@ -1306,15 +1314,18 @@ input[type=file]::-webkit-file-upload-button {
         justify-content: center;
         text-align: center;
     }
-    .btn_oikos_logos{
+
+    .btn_oikos_logos {
         height: 24px;
         border: none;
         padding-left: 0;
     }
-        .btn_oikos_logos img{
+
+    .btn_oikos_logos img {
         max-width: 24px;
     }
-        .txt_logos_h{
+
+    .txt_logos_h {
         display: none;
     }
 }
@@ -1413,5 +1424,5 @@ input[type=file]::-webkit-file-upload-button {
 }
 
 .text-ligth {
-    color: #fff  !important;
+    color: #fff !important;
 }
