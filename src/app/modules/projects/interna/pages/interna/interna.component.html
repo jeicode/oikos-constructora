@@ -12,7 +12,7 @@
                         title="{{data?.title_logo}}">
                 </picture>
                 <div class="title_ph" style="color:#fff">
-                    <div class="tag" [ngStyle]="{'background-color': data?.color_secundario}">
+                    <div class="tag" [ngStyle]="{'background-color': data?.color_secundario}" *ngIf="data?.estado_proyecto!='' && data?.estado_proyecto!=null">
                         {{data?.estado_proyecto}}
                     </div>
                     <h1 class="h_interna_proy" *ngIf="data?.texto_h1!='' && data?.texto_h1!=null">{{data?.texto_h1}}</h1>
@@ -59,7 +59,7 @@
                     <span>{{data?.descripcion_precio}}</span>
 
                 </div>
-                <a target="_blank" class="btn whatsapp whatsapp_init c-pointer" (click)="openModal()">
+                <a target="_blank" class="btn whatsapp whatsapp_init c-pointer" (click)="openModal()" *ngIf="data?.categoria_proyecto!='4'">
                     Contactar
                     <span class="fab fa-whatsapp"></span>
                 </a>
@@ -109,8 +109,9 @@
             <!-- BOTONES CTA -->
 
             <div class="grand_cont_ctas">
-                <div class="btn" (click)="activarFlotante()">Contacto<span class="material-icons">mail_outline</span>
+                <div class="btn" (click)="activarFlotante()" *ngIf="data?.categoria_proyecto=='1'">Contacto<span class="material-icons">mail_outline</span>
                 </div>
+                <div class="btn" (click)="goToVentas()" *ngIf="data?.categoria_proyecto=='4'">Conozca nuestros proyectos en venta</div>
                 <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank"
                     *ngIf="data.vista360 && data.id!='1'">Recorrido<img
                         src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
@@ -186,7 +187,7 @@
                                 src="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20"
                                 alt=""> </a>
                         <img width="838" height="350" src="{{imagenes_url+data?.imagen_banner_proyecto}}"
-                            alt="{{data?.alt_banner}}" title="{{data?.title_banner}}">
+                            alt="{{data?.alt_banner}}" title="{{data?.title_banner}}" *ngIf="imagenes_url+data?.imagen_banner_proyecto!='https://www.oikos.com.co/constructora/'">
                     </picture>
                 </div>
 
