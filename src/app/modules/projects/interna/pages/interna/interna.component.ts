@@ -323,6 +323,10 @@ export class InternaComponent implements OnInit {
     }
   }
 
+  goToVentas(){
+    window.location.href = 'proyectos-construccion-vivienda';
+  }
+
   activarFlotante(){
     if($(".contacto_flotante").hasClass('active')){
       $(".contacto_flotante").removeClass('active');
