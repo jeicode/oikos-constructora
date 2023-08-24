@@ -50,11 +50,11 @@
                 <div class="card_p proy_dest" *ngFor="let i of proyectos">
                     <picture>
                         <!-- <span class="tag_state" style="background-color: Yellow;">Lanzamiento</span> -->
-                        <div class="btns_icons" *ngIf="i?.url_waze!='' || i?.url_waze!=null || i?.url_waze!=''">
+                        <!--<div class="btns_icons" *ngIf="i?.url_waze!='' || i?.url_waze!=null">
                             <a href="{{i?.url_waze}}" target="_blank" rel="nofollow,noopener" class="btn_icon">
                                 <span class="fas fa-map-marker-alt"></span>
                             </a>
-                        </div>
+                        </div>-->
                         <img width="350" height="219" src="{{imagenes_url+i?.imagen_principal_proyecto}}" alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
                     </picture>
                     <h2 class="name_proyecto">
