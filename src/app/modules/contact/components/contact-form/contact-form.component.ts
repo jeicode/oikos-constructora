@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { regexEmail, regexNumber } from 'src/app/shared/data/regex';
 import { ContactService } from 'src/app/shared/services/api/contact.service';
 import { PageService } from 'src/app/shared/services/api/page.service';
+import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
 @Component({
@@ -23,15 +24,17 @@ export class ContactFormComponent implements OnInit {
   contactForm!: FormGroup;
   showErrors: boolean = false;
   affairList:any[] = []
+  housingProjects:any[] = []
 
   @Input() typeForm:'general'  | 'postventas'  = 'general';
   @Input() recipient_mail:string = '';
 
   constructor(private fb: FormBuilder, public formService: FormService, private router: Router,
-              private contactService: ContactService, private pageService: PageService) { }
+              private contactService: ContactService, private pageService: PageService, private projectService: ProjectService) { }
 
   ngOnInit(): void {
     this.initForm()
+    this.getProjectsHome();
   }
 
 
@@ -44,6 +47,7 @@ export class ContactFormComponent implements OnInit {
         phone:['', Validators.compose([Validators.required, Validators.pattern(regexNumber)])],
         affair:['', this.formService.noWhitespaceValidator],
         message:['', this.formService.noWhitespaceValidator],
+        project: ['', this.formService.noWhitespaceValidator],
         terms: ['', Validators.requiredTrue]
       })
 
@@ -63,6 +67,11 @@ export class ContactFormComponent implements OnInit {
 
   }
 
+  async getProjectsHome(){
+    const housingProjects = await this.projectService.getProyectosByTipo('1');
+    if (housingProjects) this.housingProjects = housingProjects;
+  }
+
   /**
    * Traer lista de asuntos
    */
@@ -78,7 +87,7 @@ export class ContactFormComponent implements OnInit {
 
     if(this.contactForm.valid){
 
-      const {email, message, phone, full_name, affair} = this.contactForm.getRawValue();
+      const {email, message, phone, full_name, affair, project} = this.contactForm.getRawValue();
 
       const data = {
         nombre: full_name,
@@ -87,7 +96,8 @@ export class ContactFormComponent implements OnInit {
         page_section: this.typeForm,
         comentario: message,
         asunto: affair,
-        correo_destinatario: this.recipient_mail
+        correo_destinatario: this.recipient_mail,
+        proyecto: project
       }
       const response = await this.contactService.postContactForm(data)
       if (response?.resp){
