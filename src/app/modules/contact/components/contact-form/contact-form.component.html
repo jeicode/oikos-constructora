@@ -24,6 +24,12 @@
                 <option [value]="i?.field_content" *ngFor="let i of affairList">{{i?.field_content}}</option>
             </select>
         </div>
+        <div class="cnt_campo_form w_100">
+            <select formControlName="project">
+                <option value="" selected disabled>Selecciona el proyecto</option>
+                <option [value]="i?.id" *ngFor="let i of housingProjects">{{i?.titulo_proyecto}}</option>
+            </select>
+        </div>
         <div class="text-danger" style="height: 7px;">
             <small *ngIf="hasErrorsFieldForm('affair')">campo inválido*</small>
         </div>
