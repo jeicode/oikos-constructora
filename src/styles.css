@@ -860,6 +860,10 @@ h1 {
 
 /*********************/
 
+.h_cl_pie.proy_footer{
+    color: var(--color-c2);
+}
+
 @media screen and (max-width: 1400px) {
     .nav ul li {
         margin: 0 1%;
