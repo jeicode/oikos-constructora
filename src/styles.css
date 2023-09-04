@@ -1332,7 +1332,7 @@ input[type=file]::-webkit-file-upload-button {
 
 @media screen and (max-width: 480px) {
     .cuerpo {
-        padding-top: 84px;
+        padding-top: 76px;
     }
 
     .miga {
