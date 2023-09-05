@@ -12,15 +12,14 @@ export class InternaProyectoGuard implements CanActivate {
 
     async canActivate(
         _route: ActivatedRouteSnapshot,
-        _state: RouterStateSnapshot):Promise<boolean> {
+        _state: RouterStateSnapshot): Promise<boolean> {
         const slug = _route.params['slug']
-
         const page = await this.projService.getSeoContentProject(slug);
 
-        if(page?.friendly_url!=null){
-          this.pageService.currentPage = page
-          this.seoService.setUpMetaTags(page)
-          return true;
+        if (page?.friendly_url) {
+            this.pageService.currentPage = page
+            this.seoService.setUpMetaTags(page)
+            return true;
         }
 
         this.router.navigateByUrl('404', { skipLocationChange: true });

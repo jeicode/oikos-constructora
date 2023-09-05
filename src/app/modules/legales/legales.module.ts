@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { LegalesRoutingModule } from './legales-routing.module';
 import { LegalesComponent } from './pages/legales/legales.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentSharedModule } from 'src/app/shared/components/components.module';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 
@@ -16,7 +15,6 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
     CommonModule,
     LegalesRoutingModule,
     HttpClientModule,
-    ComponentSharedModule,
     // components
     BreadcrumbComponent
   ]

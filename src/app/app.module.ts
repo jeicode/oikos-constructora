@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { ComponentSharedModule } from './shared/components/components.module';
+import { LayoutModule } from './shared/components/layout.module';
 import { HttpInterceptorService } from './core/interceptors/http-interceptor.service';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -16,7 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
-    ComponentSharedModule
+    LayoutModule
   ],
   providers: [
     {
