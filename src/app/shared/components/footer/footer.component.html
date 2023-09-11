@@ -41,7 +41,7 @@
                     </a>
 
                     <ng-template #routerLink>
-                        <a href="/constructora{{j?.url_enlace_footer}}">
+                        <a routerLink="{{j?.url_enlace_footer}}">
                             {{ j?.field_content }}
                         </a>
                     </ng-template>
@@ -50,17 +50,21 @@
         </div>
 
         <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)" *ngFor="let i of menuFooterProyectos">
-            <div class="h_cl_pie proy_footer">{{i?.field_content}}</div>
+            <div class="h_cl_pie proy_footer">
+                {{i?.field_content}}
+            </div>
             <ul class="menu_pie">
-                <li >
-                    <a href="" class="">
-                        Proyecto de casa en Girardot - Cabo Verde Antao
+                <li *ngFor="let j of i.hijos">
+                    <a [href]="j?.url_enlace_footer" target="_blank" rel="noopener"
+                        *ngIf="j?.url_enlace_footer?.includes('https://');else routerLink">
+                        {{ j?.field_content }}
                     </a>
-                </li>
-                <li>
-                    <a href="" class="">
-                        Proyecto de casa en La Sabana
-                    </a>
+
+                    <ng-template #routerLink>
+                        <a routerLink="{{j?.url_enlace_footer}}">
+                            {{ j?.field_content }}
+                        </a>
+                    </ng-template>
                 </li>
             </ul>
         </div>

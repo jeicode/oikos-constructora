@@ -92,7 +92,6 @@ export class HomePageComponent implements OnInit {
   async getBannersHome(){
     const bannersHome = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
     if (bannersHome) this.bannersHome = bannersHome
-    console.log(this.bannersHome)
   }
 
   

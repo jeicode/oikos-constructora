@@ -87,7 +87,7 @@
 
                 <ng-template #encuestaAgrupada>
                     <div class="cnt_sec_modal paso{{(j)}}" [ngClass]="{'active': j==0}"
-                        *ngFor="let i of encuesta[0].secciones; index as j">
+                        *ngFor="let i of encuesta[0]?.secciones; index as j">
                         <div class="top_azul_modal">
                             <div class="h_modal">Queremos conocer tu opinión</div>
                         </div>

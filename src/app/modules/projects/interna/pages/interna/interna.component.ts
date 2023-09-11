@@ -283,8 +283,6 @@ export class InternaComponent implements OnInit {
       if(resp.resp!='no'){
         window.location.href = resp.resp;
       }
-    }else{
-      console.log('Por favor completa todos los datos');
     }
   }
 
@@ -318,8 +316,6 @@ export class InternaComponent implements OnInit {
       if(resp.resp!='no'){
         window.location.href = resp.resp;
       }
-    }else{
-      console.log('Por favor completa todos los datos');
     }
   }
 

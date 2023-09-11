@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ConfigFooter } from 'src/app/core/models/config-footer.model';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
@@ -10,7 +11,7 @@ import { SurveyModalComponent } from '../survey-modal/survey-modal.component';
 declare const $:any;
 @Component({
   standalone: true,
-  imports:[SurveyModalComponent, CommonModule],
+  imports:[SurveyModalComponent, CommonModule, RouterModule],
   selector: 'app-footer',
   templateUrl: './footer.component.html'
 })
