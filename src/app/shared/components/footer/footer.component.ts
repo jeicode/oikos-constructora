@@ -25,6 +25,8 @@ export class FooterComponent implements OnInit {
   companies     : any[] = [];
   logos         : any[] = [];
   menuFooter    : any = [];
+  menuFooterProyectos :any = [];
+  
   constructor(private globalService: GlobalService, 
               private responsive: ResponsiveService,
               private pageService: PageService) {
@@ -35,16 +37,10 @@ export class FooterComponent implements OnInit {
   }
 
   async init(){
-    const tasks = [
-      () => this.getSocialNetwork(),
-      () => this.getConfigFooter(),
-      () => this.getMenuFooter(),
-      () => this.getCollectionsPage(),
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+    await this.getSocialNetwork()
+    await this.getConfigFooter()
+    await this.getMenuFooter()
+    await this.getCollectionsPage()
   }
 
 
@@ -71,19 +67,9 @@ export class FooterComponent implements OnInit {
 
 
   async getMenuFooter(){
-    this.menuFooter = await this.globalService.getMenuFooter();
-    /*const linksFooter = await this.pageService.getElementsContent('titulo enlace footer', 'enlaces_footer');
-
-    if (sectionsFooter && linksFooter) {
-      sectionsFooter.forEach( (i:any)  => {
-        const children = linksFooter.filter( (a:any) => a?.static === i?.id)
-        this.menuFooter.push({
-          title:i?.field_content,
-          children
-        })
-      });
-
-    }*/
+    const menuFooter = await this.globalService.getMenuFooter();
+    this.menuFooter = menuFooter.splice(0,2)
+    this.menuFooterProyectos = menuFooter;
   }
 
 

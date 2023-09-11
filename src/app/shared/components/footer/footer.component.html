@@ -49,10 +49,10 @@
             </ul>
         </div>
 
-        <div class="col_mid_men_pie" #menuEle3 (click)="dropdownToogleMenu(menuEle3)">
-            <div class="h_cl_pie proy_footer">Proyectos de casas</div>
+        <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)" *ngFor="let i of menuFooterProyectos">
+            <div class="h_cl_pie proy_footer">{{i?.field_content}}</div>
             <ul class="menu_pie">
-                <li>
+                <li >
                     <a href="" class="">
                         Proyecto de casa en Girardot - Cabo Verde Antao
                     </a>
@@ -64,54 +64,6 @@
                 </li>
             </ul>
         </div>
-        <div class="col_mid_men_pie" #menuEle4 (click)="dropdownToogleMenu(menuEle4)">
-            <div class="h_cl_pie proy_footer">Proyectos de apartamentos</div>
-            <ul class="menu_pie">
-                <li>
-                    <a href="" class="">
-                        Proyecto de casa en Girardot - Cabo Verde Antao
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="">
-                        Proyecto de casa en La Sabana
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- FORM SUSCRIBE -->
-        <!-- <div class="col_susc_pie">
-            <div class="h_cl_pie" style="display:none">
-                Suscribirse
-            </div>
-
-            <div class="cnt_gen_susc_pie" style="display:none">
-                <div class="txt_susc_pie">
-                    Escribe tu e-mail para mantenerte al tanto de nuestra información
-                </div>
-                <form class="form_susc" action="https://feedburner.google.com/fb/a/mailverify" method="post"
-                    target="popupwindow"
-                    onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=GrupoOikos', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
-                    <input type="email" class="campo_susc_pie" placeholder="aquí tu e-mail" name="email" />
-                    <input type="hidden" value="GrupoOikos" name="uri">
-                    <input type="hidden" name="loc" value="es_ES">
-                    <input type="submit" class="bnt_susc">
-                </form>
-            </div>
-            <div class="datos_pie">
-                <div>
-                    {{ configFooter.address }}
-                </div>
-                <div>
-                    {{ configFooter.pbx }}
-                </div>
-                <div>
-                    {{configFooter.contactemails }}
-                </div>
-            </div>
-        </div> -->
-
 
     </div>
     <div class="cnt_bot_pie">
