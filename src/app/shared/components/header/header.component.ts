@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 declare var $:any;
 @Component({
+  standalone: true,
+  imports:[NgFor, NgClass, NgIf, ReactiveFormsModule, RouterModule],
   selector: 'app-header',
   templateUrl: './header.component.html'
 })

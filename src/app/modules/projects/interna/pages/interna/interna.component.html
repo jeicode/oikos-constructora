@@ -203,7 +203,7 @@
                                 <div class="swiper-slide" *ngFor="let i of data.planos">
                                     <div class="img_slider_tipo">
                                         <a href="{{imagenes_url+i?.field_content}}" data-lightbox="plano">
-                                            <img width="409" height="247" src="{{imagenes_url+i?.field_content}}"
+                                            <img loading="lazy" width="409" height="247" src="{{imagenes_url+i?.field_content}}"
                                                 alt="{{i?.alt}}">
                                         </a>
                                     </div>
@@ -228,7 +228,7 @@
                                 <div class="swiper-slide" *ngFor="let i of data.tipologia">
                                     <div class="img_slider_tipo">
                                         <a href="{{imagenes_url+i?.field_content}}" data-lightbox="tipologia">
-                                            <img width="409" height="247" src="{{imagenes_url+i?.field_content}}"
+                                            <img loading="lazy" width="409" height="247" src="{{imagenes_url+i?.field_content}}"
                                                 alt="{{i?.alt}}" title="{{i?.title}}">
                                         </a>
                                     </div>
@@ -272,7 +272,7 @@
                     <h3 class="title_section"><span> Zonas</span> Comunes</h3>
                     <div class="c_zonas_c">
                         <div class="item_zc" *ngFor="let i of zonas">
-                            <img width="44" height="44" src="{{imagenes_url+i?.imagen}}" alt="{{i?.alt}}">
+                            <img loading="lazy" width="44" height="44" src="{{imagenes_url+i?.imagen}}" alt="{{i?.alt}}">
                             <label for="">{{i?.nombre}}</label>
                         </div>
                     </div>
@@ -300,11 +300,11 @@
                                         <iframe width="514" height="300" [src]="i?.field_description | safe:'url'"
                                             class="js-modal-btn"
                                             *ngIf="i?.field_description; else routerVideo">
-                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}"
+                                            <img loading="lazy" width="517" height="301" src="{{imagenes_url+i?.field_content}}"
                                                 alt="{{i?.alt}}">
                                         </iframe>
                                         <ng-template #routerVideo>
-                                            <img width="517" height="301" src="{{imagenes_url+i?.field_content}}"
+                                            <img loading="lazy" width="517" height="301" src="{{imagenes_url+i?.field_content}}"
                                                 alt="{{i?.alt}}">
                                         </ng-template>
                                     </div>
@@ -320,7 +320,7 @@
                 <!-- seccion Calcula -->
                 <div class="info_banner_calcula" id="sect6" *ngIf="data?.calculadora=='1'">
                     <picture>
-                        <img width="571" height="110" src="assets/images/diseno/int_proyecto/img_calcula.jpg" alt="">
+                        <img loading="lazy" width="571" height="110" src="assets/images/diseno/int_proyecto/img_calcula.webp" alt="">
                     </picture>
                     <div class="cnt_btn_calc" (click)="modalIsOpen = true">
                         <a class="btn contacto_h btn_calc_1">Calcula <span class="fas fa-calculator"></span> </a>
@@ -365,7 +365,7 @@
             <div class="swiper swiperCalcP">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" *ngFor="let i of galeria">
-                        <img *ngIf="!i?.field_description; else iframeYT" width="400" height="200"
+                        <img loading="lazy" *ngIf="!i?.field_description; else iframeYT" width="400" height="200"
                             src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}">
 
                         <ng-template #iframeYT>

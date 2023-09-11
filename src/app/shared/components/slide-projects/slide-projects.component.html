@@ -10,7 +10,7 @@
                         </span>
                         <div class="btns_icons" *ngIf="i?.vista360 && i?.url_waze">
                             <a [href]="i?.vista360" target="_blank" class="btn_icon" *ngIf="i?.vista360">
-                                <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
+                                <img loading="lazy" src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
                             </a>
                             <a [href]="i?.url_waze" target="_blank" *ngIf="i?.url_waze" class="btn_icon">
                                 <span class="fas fa-map-marker-alt"></span>
@@ -18,13 +18,13 @@
                         </div>
                         <a *ngIf="i?.interna === 'si'; else notRedirect" 
                             routerLink="/proyecto/{{i?.url_amigable}}">
-                            <img width="350" height="219" 
+                            <img loading="lazy" width="350" height="219" 
                             defaultImg [src]="BASE_URL+i?.imagen_principal_proyecto" 
                             [alt]="i?.alt_principal" 
                             [title]="i?.title_principal">
                         </a>
                         <ng-template #notRedirect>
-                            <img width="350" height="219" 
+                            <img loading="lazy" width="350" height="219" 
                             defaultImg
                             [src]="BASE_URL+i?.imagen_principal_proyecto" 
                             [alt]="i?.alt_principal" 
@@ -33,7 +33,7 @@
                     </picture>
                     <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
                         <picture>
-                            <img width="87" height="87" defaultImg
+                            <img loading="lazy" width="87" height="87" defaultImg
                                 [src]="BASE_URL+i?.logo_proyecto" 
                                 [alt]="i?.alt_logo" 
                                 [title]="i?.title_logo">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="franja_p" *ngIf="i?.texto_adicional">
-                        <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                        <img loading="lazy" width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
                         <span>{{i?.texto_adicional}}</span>
                     </div>
                     <div class="ctas_proyectos" 

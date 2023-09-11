@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PagosRoutingModule } from './pagos-routing.module';
 import { PagosComponent } from './pages/pagos/pagos.component';
-import { ComponentSharedModule } from 'src/app/shared/components/components.module';
-import { HttpClientModule } from '@angular/common/http';
+import { LayoutModule } from 'src/app/shared/components/layout.module';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 import { InternaPagosComponent } from './interna-pagos/pages/interna-pagos/interna-pagos.component';
 
@@ -17,8 +16,7 @@ import { InternaPagosComponent } from './interna-pagos/pages/interna-pagos/inter
   imports: [
     CommonModule,
     PagosRoutingModule,
-    ComponentSharedModule,
-    HttpClientModule,
+    LayoutModule,
     BreadcrumbComponent
   ]
 })

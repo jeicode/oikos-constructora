@@ -786,7 +786,7 @@ input {
 }
 
 .info_avance_obra {
-  background: linear-gradient(0deg, rgba(24, 35, 96, 0.9), rgba(24, 35, 96, 0.9)), linear-gradient(0deg, #182360, #182360), url("../../../../../../assets/images/diseno/int_proyecto/bg_proyecto.jpg") no-repeat center;
+  background: linear-gradient(0deg, rgba(24, 35, 96, 0.9), rgba(24, 35, 96, 0.9)), linear-gradient(0deg, #182360, #182360), url("../../../../../../assets/images/diseno/int_proyecto/bg_proyecto.webp") no-repeat center;
   background-size: cover;
   background-blend-mode: normal, color, normal;
   border-radius: 46px;

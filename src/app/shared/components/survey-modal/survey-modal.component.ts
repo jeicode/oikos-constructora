@@ -2,16 +2,18 @@ import { Component, OnInit } from "@angular/core";
 import { PageService } from "../../services/api/page.service";
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
+import { CommonModule } from "@angular/common";
 
 declare var $: any;
 @Component({
-
+    standalone: true,
+    imports: [CommonModule],
     selector: 'survey-modal',
     templateUrl: './survey-modal.component.html',
     styleUrls: ['./survey-modal.component.css']
 })
 
-export class surveyModalComponent implements OnInit {
+export class SurveyModalComponent implements OnInit {
 
     activarEncuestaS: boolean = false;
     mostrarEncuesta: boolean = false;

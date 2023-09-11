@@ -3,7 +3,7 @@
         <div class="cnt_gen_inf_lat_pie">
             <div class="cnt_logos_pie">
                 <a [href]="i?.enlace" target="_blank" rel="noopener" *ngFor="let i of companies" class="logo_pie">
-                    <img [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
                 </a>
             </div>
             <div class="txt_pie">
@@ -21,7 +21,7 @@
             </div>
             <div class="cnt_gen_cert_pie">
                 <div class="logo_cert_pie" *ngFor="let i of logos">
-                    <img [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
                 </div>
             </div>
         </div>
@@ -49,39 +49,21 @@
             </ul>
         </div>
 
-
-        <!-- FORM SUSCRIBE -->
-        <div class="col_susc_pie">
-            <div class="h_cl_pie" style="display:none">
-                Suscribirse
-            </div>
-
-            <div class="cnt_gen_susc_pie" style="display:none">
-                <div class="txt_susc_pie">
-                    Escribe tu e-mail para mantenerte al tanto de nuestra información
-                </div>
-                <form class="form_susc" action="https://feedburner.google.com/fb/a/mailverify" method="post"
-                    target="popupwindow"
-                    onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=GrupoOikos', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
-                    <input type="email" class="campo_susc_pie" placeholder="aquí tu e-mail" name="email" />
-                    <input type="hidden" value="GrupoOikos" name="uri">
-                    <input type="hidden" name="loc" value="es_ES">
-                    <input type="submit" class="bnt_susc">
-                </form>
-            </div>
-            <div class="datos_pie">
-                <div>
-                    {{ configFooter.address }}
-                </div>
-                <div>
-                    {{ configFooter.pbx }}
-                </div>
-                <div>
-                    {{configFooter.contactemails }}
-                </div>
-            </div>
+        <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)" *ngFor="let i of menuFooterProyectos">
+            <div class="h_cl_pie proy_footer">{{i?.field_content}}</div>
+            <ul class="menu_pie">
+                <li >
+                    <a href="" class="">
+                        Proyecto de casa en Girardot - Cabo Verde Antao
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="">
+                        Proyecto de casa en La Sabana
+                    </a>
+                </li>
+            </ul>
         </div>
-
 
     </div>
     <div class="cnt_bot_pie">
