@@ -27,6 +27,27 @@ export class SeoService {
     this.doc.head.appendChild(element);
   }
 
+  createTagsLink(){
+    let element = this.doc.createElement('link');
+    element.setAttribute('rel','alternate');
+    element.setAttribute('href','https://www.oikos.com.co/constructora/proyectos-construccion-vivienda');
+    element.setAttribute('hreflang', 'es-co');
+
+    let element2 = this.doc.createElement('link');
+    element2.setAttribute('rel','alternate');
+    element2.setAttribute('href','https://www.oikos.com.co/constructora/proyectos-construccion-vivienda');
+    element2.setAttribute('hreflang', 'x-default');
+
+    let element3 = this.doc.createElement('link');
+    element3.setAttribute('rel','alternate');
+    element3.setAttribute('href','https://www.oikosconstructora.us/housing-projects');
+    element3.setAttribute('hreflang', 'en-us');
+
+    this.doc.head.appendChild(element);
+    this.doc.head.appendChild(element2);
+    this.doc.head.appendChild(element3);
+  }
+
   setUpMetaTags(seoPage:SeoPage) {
     if (seoPage){
       var canonical = '';
@@ -34,6 +55,7 @@ export class SeoService {
         canonical = seoPage.canonical;
       }
       this.updateCanonicalUrl(canonical);
+      this.createTagsLink();
       this.titlePage.setTitle(seoPage.title)
       this.meta.updateTag({ name: 'description', content: seoPage.metadescription });
       //this.meta.updateTag({ name: 'robots', content: seoPage.metarobots });
