@@ -28,20 +28,24 @@ export class SeoService {
   }
 
   createTagsLink(){
-    let element = this.doc.createElement('link');
-    element.setAttribute('rel','alternate');
+
+    let element: HTMLLinkElement | null = this.doc.querySelector(`link[hreflang='es-co']`) || null
+    if (!element) { // create canonical element
+      element = this.doc.createElement('link');
+    }
     element.setAttribute('href','https://www.oikos.com.co/constructora/proyectos-construccion-vivienda');
-    element.setAttribute('hreflang', 'es-co');
 
-    let element2 = this.doc.createElement('link');
-    element2.setAttribute('rel','alternate');
+    let element2: HTMLLinkElement | null = this.doc.querySelector(`link[hreflang='x-default']`) || null
+    if (!element2) { // create canonical element
+      element2 = this.doc.createElement('link');
+    }
     element2.setAttribute('href','https://www.oikos.com.co/constructora/proyectos-construccion-vivienda');
-    element2.setAttribute('hreflang', 'x-default');
 
-    let element3 = this.doc.createElement('link');
-    element3.setAttribute('rel','alternate');
+    let element3: HTMLLinkElement | null = this.doc.querySelector(`link[hreflang='en-us']`) || null
+    if (!element3) { // create canonical element
+      element3 = this.doc.createElement('link');
+    }
     element3.setAttribute('href','https://www.oikosconstructora.us/housing-projects');
-    element3.setAttribute('hreflang', 'en-us');
 
     this.doc.head.appendChild(element);
     this.doc.head.appendChild(element2);
