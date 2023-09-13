@@ -109,7 +109,7 @@ export class HomePageComponent implements OnInit {
   } 
 
   async getProjectsHome(){
-    const housingProjects = await this.projectService.getProyectosByTipo('1');
+    const housingProjects = await this.projectService.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
     if (housingProjects) this.housingProjects = housingProjects;
   }
 
