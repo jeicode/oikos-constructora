@@ -59,7 +59,7 @@ export class SeoService {
         canonical = seoPage.canonical;
       }
       this.updateCanonicalUrl(canonical);
-      //this.createTagsLink();
+      this.createTagsLink();
       this.titlePage.setTitle(seoPage.title)
       this.meta.updateTag({ name: 'description', content: seoPage.metadescription });
       //this.meta.updateTag({ name: 'robots', content: seoPage.metarobots });

@@ -55,8 +55,8 @@ export class ProjectService {
    * @param limite
    * @returns Promise<any>
    */
-  async getProyectosByTipo(tipo: string, ciudad?: string, tipo_proyecto?: string, precio?: string, limite?: any):Promise<any>{
-    const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}&ciudad=${ciudad}&tipo_proyecto=${tipo_proyecto}&precio=${precio}&limite=${limite}`;
+  async getProyectosByTipo(tipo: string, ciudad?: string, tipo_proyecto?: string, precio?: string, limite?: any, section?: any):Promise<any>{
+    const url = `${API_URL}v1/getProyectosByTipo?tipo=${tipo}&ciudad=${ciudad}&tipo_proyecto=${tipo_proyecto}&precio=${precio}&limite=${limite}&section=${section}`;
     return this._http.get(url).toPromise().then().catch(err => {
       console.warn(err)
       return false
