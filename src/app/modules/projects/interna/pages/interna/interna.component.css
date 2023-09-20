@@ -1003,6 +1003,14 @@ input {
   padding: 8px 12px;
   text-align: center;
   height: auto;
+  background: #FDB718;
+  box-shadow: 0 12px 12px rgba(253,183,24,.4);
+  animation: zooms 2s infinite;
+}
+@keyframes zooms{
+  0%{transform: scale(1);}
+  50%{transform: scale(1.1);}
+  100%{transform: scale(1);}
 }
 
 .slide_h_proyecto {
