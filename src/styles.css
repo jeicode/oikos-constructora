@@ -1335,6 +1335,19 @@ input[type=file]::-webkit-file-upload-button {
 }
 
 @media screen and (max-width: 480px) {
+    .btn_z_clientes,
+    .txt_pse {
+        margin-left: 8px;
+    }
+    .txt_pse{
+        margin-left: 0;
+        padding: 2px;
+    }
+    .btn_oikos_logos{
+        margin: 0;
+        padding: 0 4px;
+        min-width: 20px;
+    }
     .cuerpo {
         padding-top: 76px;
     }
