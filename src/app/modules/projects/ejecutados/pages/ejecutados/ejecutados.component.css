@@ -42,6 +42,10 @@
   .proy_dest .ctas_proyectos {
     justify-content: center;
   }
+  .campo_anno{
+    width: 100%;
+    font-size: 16px;
+  }
   
   /* RESPONISIVE */
   @media screen and (max-width: 1050px) {
@@ -307,7 +311,7 @@
     font-weight: 700;
   }
   .card_p .datos_proyecto {
-    padding: 30px 20px 20px;
+    padding: 24px 20px 8px;
     text-align: center;
     color: var(--color-c2);
   }

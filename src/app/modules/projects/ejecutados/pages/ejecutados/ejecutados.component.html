@@ -64,7 +64,9 @@
                         <div>{{i?.titulo_proyecto}}</div>
                     </h2>
                     <div class="datos_proyecto">
-                        <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                        <h3 *ngIf="i?.zona_proyecto!='' && i?.zona_proyecto!=undefined && i?.zona_proyecto!=null">{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                        <h3 *ngIf="i?.zona_proyecto=='' || i?.zona_proyecto==undefined || i?.zona_proyecto==null">{{i?.ubicacion_proyecto}}</h3>
+                        <div class="campo_anno">{{i?.descripcion_precio}}</div>
                     </div>
                     <div class="ctas_proyectos">
                         <a routerLink="/proyecto/{{i?.url_amigable}}" class="btn">Ver proyecto</a>
