@@ -634,7 +634,7 @@
     min-height: 134px;
 }
 .grand_img_h_hero picture.grand_img_hero_mini img{
-    height: 100%;
+    min-height: 100%;
 }
 
 .grand_img_h_hero picture.grand_img_hero1 {
