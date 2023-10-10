@@ -28,6 +28,7 @@ export class EjecutadosComponent implements OnInit {
   typesProject          : any = []; //data page
   tipo_search           : any = []; //data page
   precio_search         : any = []; //data page
+  anios                 : any = [];
   proyectos_ver         : boolean = false;
   constructor(private pageService: PageService, 
               private router: Router, 
@@ -64,8 +65,14 @@ export class EjecutadosComponent implements OnInit {
   }
 
   async getProyectos(){
-    this.proyectos = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', this.limt);
+    this.proyectos = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', this.limt, '', 'descripcion_precio DESC');
     this.total = await this.projService.getProyectosByTipo('4');
+
+    for(var i in this.proyectos){
+      if(this.proyectos[i]?.descripcion_precio!='' && this.proyectos[i]?.descripcion_precio!=null){
+        this.anios.push(this.proyectos[i]?.descripcion_precio)
+      }
+    }
   }
 
   cargarMas(){
@@ -101,7 +108,7 @@ export class EjecutadosComponent implements OnInit {
   }
   async buscarProyectos(){
     this.toogleContainerSearch();
-    this.proyectos = await this.projService.getProyectosByTipo('4', this.ciudad, this.tipo_search);
+    this.proyectos = await this.projService.getProyectosByTipo('4', this.ciudad, this.tipo_search, this.precio_search, '', '', 'descripcion_precio DESC');
 
     if(this.proyectos.length==0){
       this.proyectos_ver = false;
