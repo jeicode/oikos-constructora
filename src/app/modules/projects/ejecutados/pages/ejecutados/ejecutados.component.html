@@ -25,10 +25,10 @@
                         <option value="NA" selected>Tipo de vivienda</option>
                         <option value="{{i?.id}}" *ngFor="let i of typesProject">{{i?.field_content}}</option>
                     </select>
-                    <!-- <select #nomPrecio class="precio filtroPrecio" (change)="getPrecio(nomPrecio.value)">
-                        <option value="NA" selected>Precio</option>
-                        <option value="{{i?.rango}}" *ngFor="let i of precios">{{i?.mostrar}}</option>
-                    </select> -->
+                    <select #nomPrecio class="precio filtroPrecio" (change)="getPrecio(nomPrecio.value)">
+                        <option value="NA" selected>Año</option>
+                        <option value="{{i}}" *ngFor="let i of anios">{{i}}</option>
+                    </select>
                     <div class="cont_filtr_btns">
                         <button type="button" class="btn_link_reset" (click)="limpiarFiltros()">Limpiar 
                             <span class="fas fa-times"></span> 

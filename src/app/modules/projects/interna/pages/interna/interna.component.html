@@ -136,7 +136,7 @@
         <div class="c_desc_proyecto">
 
             <!-- aside progress current project -->
-            <aside class="progress_state">
+            <aside class="progress_state" *ngIf="data?.descripcion_proyecto!='' && data?.descripcion_proyecto!=undefined && data?.descripcion_proyecto!=null">
                 <a class="state active sect1" (click)="trasladar('sect1')" style="cursor:pointer"
                     *ngIf="data?.descripcion_proyecto">
                     <span class="fas fa-circle"></span>
