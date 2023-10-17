@@ -26,7 +26,7 @@ export class ExecutedProjectsSlidePagComponent implements OnInit {
 
 
   async getEjecutados(){
-    this.ejecutados = await this.projService.getProyectosByTipo('4', '', '' ,'' ,'' ,'', 'descripcion_precio ASC');
+    this.ejecutados = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', '', '', 'descripcion_precio DESC');
     this.initSlide()
   }
 
