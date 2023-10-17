@@ -112,7 +112,7 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getEjecutados(){
-    this.ejecutados = await this.projService.getProyectosByTipo('4');
+    this.ejecutados = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', '', '', 'descripcion_precio DESC');
     this.configServ.loadbannerEjecutados(1000);
   }
 
