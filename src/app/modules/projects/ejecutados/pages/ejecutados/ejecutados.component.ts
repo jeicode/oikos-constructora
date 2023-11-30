@@ -23,11 +23,11 @@ export class EjecutadosComponent implements OnInit {
   imagenes_url          : string = "";
   limt                  : number = 12;
 
-  ciudad                : any = []; //data page
+  ciudad                : any = "NA"; //data page
   ciudades              : any = []; //data page
   typesProject          : any = []; //data page
-  tipo_search           : any = []; //data page
-  precio_search         : any = []; //data page
+  tipo_search           : any = "NA"; //data page
+  precio_search         : any = "NA"; //data page
   anios                 : any = [];
   proyectos_ver         : boolean = false;
   constructor(private pageService: PageService, 
@@ -68,6 +68,7 @@ export class EjecutadosComponent implements OnInit {
     this.proyectos = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', this.limt, '', 'descripcion_precio DESC');
     this.total = await this.projService.getProyectosByTipo('4');
 
+    this.anios = [];
     for(var i in this.proyectos){
       if(this.proyectos[i]?.descripcion_precio!='' && this.proyectos[i]?.descripcion_precio!=null){
         this.anios.push(this.proyectos[i]?.descripcion_precio)
@@ -105,6 +106,9 @@ export class EjecutadosComponent implements OnInit {
     $(".filtroCiudad").val("NA");
     $(".filtroTipo").val("NA");
     $(".filtroPrecio").val("NA");
+    this.ciudad = 'NA';
+    this.tipo_search = 'NA';
+    this.precio_search = 'NA';
   }
   async buscarProyectos(){
     this.toogleContainerSearch();
