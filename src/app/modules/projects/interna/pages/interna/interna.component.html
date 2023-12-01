@@ -39,7 +39,12 @@
                 </div>
                 <div class="item_hp" *ngIf="data?.director_ventas">
                     <span class="fas fa-user-alt"></span>
-                    <div><b> Director de ventas: </b> {{data?.director_ventas}}</div>
+                    <div *ngIf="data?.id!='104'">
+                        <b> Director de ventas: </b> {{data?.director_ventas}}
+                    </div>
+                    <div *ngIf="data?.id=='104'">
+                        <b> Asesor comercial: </b> {{data?.director_ventas}}
+                    </div>
                 </div>
                 <div class="item_hp" *ngIf="data?.horario">
                     <span class="fas fa-clock"></span>
