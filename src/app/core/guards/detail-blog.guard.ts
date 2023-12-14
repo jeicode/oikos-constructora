@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { BlogService } from "src/app/shared/services/api/blog.service";
 import { ConfigService } from "src/app/shared/services/functions/config.service";
+import { JsonLDService } from "src/app/shared/services/functions/json-ld.service";
 import { SeoService } from "src/app/shared/services/functions/seo.service";
 
 
@@ -10,6 +11,7 @@ import { SeoService } from "src/app/shared/services/functions/seo.service";
 })
 export class DeatilBlogGuard implements CanActivate {
     constructor(  private blogService: BlogService, 
+                  private jsonLD: JsonLDService,
                   private seoService: SeoService,
                   private configServ: ConfigService) { }
 
@@ -25,6 +27,8 @@ export class DeatilBlogGuard implements CanActivate {
           if (blog) {
             this.seoService.setUpMetaTags(blog)
             this.blogService.activeBlog = blog
+            const schema = this.jsonLD.getBlogSchema(blog);
+            this.jsonLD.insertSchema(schema, {id:blog.id, className:'new_schema'});
             return true
           }  
         } 
