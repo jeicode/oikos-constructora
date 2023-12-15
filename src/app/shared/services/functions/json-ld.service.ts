@@ -47,7 +47,7 @@ export class JsonLDService {
       "headline": blog.title_new || blog.title,
       "image": environment.imagenes_url + blog.imagen,  
       "author": {
-        "@type": "",
+        "@type": "organization",
         "name": "OIKOS Constructora"
       },  
       "publisher": {
