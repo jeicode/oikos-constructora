@@ -7,12 +7,12 @@ import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
-import SwiperCore,{ Navigation, Pagination, SwiperOptions} from 'swiper';
+import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
 
 SwiperCore.use([Navigation, Pagination]);
 
-declare var $:any;
+declare var $: any;
 @Component({
   selector: 'app-interna',
   templateUrl: './interna.component.html',
@@ -20,10 +20,10 @@ declare var $:any;
 })
 export class InternaComponent implements OnInit {
 
-  breadcrumbs:Breadcrumb[] = [];
+  breadcrumbs: Breadcrumb[] = [];
 
   // swiper
-  config:SwiperOptions = {
+  config: SwiperOptions = {
     slidesPerView: 1,
     pagination: { clickable: true },
     navigation: {
@@ -32,33 +32,33 @@ export class InternaComponent implements OnInit {
     },
   }
 
-  data                  : any = [];
-  datosCalc             : any = [];
-  datosCuota            : any = [];
-  datosAnio             : any = [];
-  galeria               : any = [];
-  avancesObra           : any = [];
-  avancesObraActivos    : any = [];
-  fechasAvancesObra     : any = [];
-  indiceFechaActiva     : number = 0;
-  tipologia             : any = [];
-  planos                : any = [];
-  zonas                 : any = [];
-  sitiosInteres         : any = [];
-  seccionesInteres      : any = [];
-  slug                  : string | null;
-  imagenes_url          : string = "";
-  captcha               : string = '';
-  url_mapa              : string = '';
-  suscribeListenRouter  : Subscription;
-  porcFinanciar         : number = 100;
-  isSubmitted           : boolean = false;
-  showErrors            : boolean = false
+  data: any = [];
+  datosCalc: any = [];
+  datosCuota: any = [];
+  datosAnio: any = [];
+  galeria: any = [];
+  avancesObra: any = [];
+  avancesObraActivos: any = [];
+  fechasAvancesObra: any = [];
+  indiceFechaActiva: number = 0;
+  tipologia: any = [];
+  planos: any = [];
+  zonas: any = [];
+  sitiosInteres: any = [];
+  seccionesInteres: any = [];
+  slug: string | null;
+  imagenes_url: string = "";
+  captcha: string = '';
+  url_mapa: string = '';
+  suscribeListenRouter: Subscription;
+  porcFinanciar: number = 100;
+  showErrors: boolean = false
+  sendingContact = false;
 
   modalIsOpen: boolean = false;
 
   zoom = 14;
-  center = {lat: 0, lng: 0};
+  center = { lat: 0, lng: 0 };
   markers: any = [];
   notifyChanges: Subject<any> = new Subject<any>();
 
@@ -77,16 +77,16 @@ export class InternaComponent implements OnInit {
     terminos2: new FormControl(false, Validators.requiredTrue)
   })
 
-  constructor(  private configServ: ConfigService,
-                private projService: ProjectService,
-                private router: Router,
-                private activateRoute: ActivatedRoute,
-                private fb: FormBuilder,
-                private formServ: FormService) {
+  constructor(private configServ: ConfigService,
+    private projService: ProjectService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private formServ: FormService) {
     this.slug = this.activateRoute.snapshot.paramMap.get('slug');
     this.imagenes_url = environment.imagenes_url;
-    this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
-      if (event instanceof NavigationEnd  ) {
+    this.suscribeListenRouter = this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
         this.slug = this.activateRoute.snapshot.paramMap.get('slug');
         this.configServ.goUpPage()
         this.getData();
@@ -95,8 +95,8 @@ export class InternaComponent implements OnInit {
   }
 
 
-  openModal(){
-    this.notifyChanges.next({openModal:true});
+  openModal() {
+    this.notifyChanges.next({ openModal: true });
   }
 
   resolved(captchaResponse: string) {
@@ -108,20 +108,20 @@ export class InternaComponent implements OnInit {
     this.configServ.loadHeroProyectos(1000);
     this.configServ.loadChangeTab(1000);
 
-    
+
   }
 
 
-  async getData(){
+  async getData() {
     const [data] = await this.projService.getProyectoByUrl(this.slug);
-    if (data){
+    if (data) {
       this.data = data;
 
-      const {seccion} = this.data
+      const { seccion } = this.data
 
       this.breadcrumbs = this.getBreadcrumbList(seccion);
 
-      this.porcFinanciar = (100-this.data?.porcentaje_minimo);
+      this.porcFinanciar = (100 - this.data?.porcentaje_minimo);
 
       this.zonas = this.data?.zonas;
       this.galeria = this.data?.galeria;
@@ -130,7 +130,7 @@ export class InternaComponent implements OnInit {
       this.avancesObra = this.data?.avances;
 
       if (this.avancesObra) {
-        let listDates = this.avancesObra.map( (a:any) => a?.title)
+        let listDates = this.avancesObra.map((a: any) => a?.title)
         this.fechasAvancesObra = this.configServ.removeRepeatElementsArray(listDates);
         this.actualizarAvanceObraActivo(0, this.fechasAvancesObra[0])
       }
@@ -147,7 +147,7 @@ export class InternaComponent implements OnInit {
   }
 
 
-  getBreadcrumbList(seccion:string):any[]{
+  getBreadcrumbList(seccion: string): any[] {
     let breads = [new Breadcrumb('Oikos Constructora', '/'),]
 
     switch (seccion) {
@@ -157,23 +157,23 @@ export class InternaComponent implements OnInit {
           new Breadcrumb(this.data?.titulo_proyecto),
         )
         break;
-      
+
       case '2':
         breads.push(
           new Breadcrumb('Proyectos contrucción comerciales', '/proyectos-construccion-comerciales-industriales'),
           new Breadcrumb(this.data?.titulo_proyecto),
         )
         break;
-      
+
       case '4':
-          breads.push(
-            new Breadcrumb('Proyectos ejecutados', '/proyectos-ejecutados'),
-            new Breadcrumb(this.data?.titulo_proyecto),
+        breads.push(
+          new Breadcrumb('Proyectos ejecutados', '/proyectos-ejecutados'),
+          new Breadcrumb(this.data?.titulo_proyecto),
         )
-          break;
+        break;
     }
     return breads;
-    
+
   }
 
   /**
@@ -181,152 +181,162 @@ export class InternaComponent implements OnInit {
    * @param index indice de la fecha activa
    * @param fecha parametro de fecha para hacer el filtro
    */
-  actualizarAvanceObraActivo(index:number, fecha:string){
+  actualizarAvanceObraActivo(index: number, fecha: string) {
     this.indiceFechaActiva = index
-    this.avancesObraActivos = this.avancesObra?.filter( (a:any) => a?.title === fecha);
+    this.avancesObraActivos = this.avancesObra?.filter((a: any) => a?.title === fecha);
   }
 
 
 
 
-  trasladar(el: any){
-    var pos = Number($("#"+el).offset().top)-100;
-    window.scrollTo({top: pos, behavior: 'smooth'});
+  trasladar(el: any) {
+    var pos = Number($("#" + el).offset().top) - 100;
+    window.scrollTo({ top: pos, behavior: 'smooth' });
 
     $(".state").removeClass('active');
-    $("."+el).addClass('active');
+    $("." + el).addClass('active');
   }
 
-  async calculoPorcentaje(){
+  async calculoPorcentaje() {
     //var porcentaje = this.data.porcentaje_minimo;
     var porcentaje = $(".cambiarPorcentaje").val();
     var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
     var plazoaniosa = $(".plazoaniosa").val();
     var financiar = $(".valorafinanciar").val();
 
-    if(porcentaje=='' || porcentaje==null)
+    if (porcentaje == '' || porcentaje == null)
       porcentaje = this.data.porcentaje_minimo;
 
-    this.porcFinanciar = (100-porcentaje);
+    this.porcFinanciar = (100 - porcentaje);
     this.datosCalc = await this.projService.getCalculoPorcentaje(this.data.valor_proyecto, porcentaje, cuotasinicialfinanciar, plazoaniosa, financiar);
     this.datosCalc = this.datosCalc[0];
 
-    $(".valorCuotaInicial").val('$ '+this.datosCalc['cuotaInicial']);
-    $(".diferencia").val('$ '+this.datosCalc['diferencia']);
-    if(this.datosCalc['cuotasinicialfinanciar']!='inf'){
-      $(".cuotamensual").val('$ '+this.datosCalc['cuotasinicialfinanciar']);
+    $(".valorCuotaInicial").val('$ ' + this.datosCalc['cuotaInicial']);
+    $(".diferencia").val('$ ' + this.datosCalc['diferencia']);
+    if (this.datosCalc['cuotasinicialfinanciar'] != 'inf') {
+      $(".cuotamensual").val('$ ' + this.datosCalc['cuotasinicialfinanciar']);
     }
-    $(".valorafinanciar").val('$ '+this.datosCalc['valorafinanciar']);
+    $(".valorafinanciar").val('$ ' + this.datosCalc['valorafinanciar']);
 
     this.plazoanios();
   }
 
-  async diferenciadordecuotasmensuales(){
+  async diferenciadordecuotasmensuales() {
     var saldocuotainicial = $(".diferencia").val();
     var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
 
     this.datosCuota = await this.projService.getCalculoCuota(saldocuotainicial, cuotasinicialfinanciar);
     this.datosCuota = this.datosCuota[0];
 
-    if(this.datosCuota['valorcuotas']!='inf'){
-      $(".cuotamensual").val('$ '+this.datosCuota['valorcuotas']);
+    if (this.datosCuota['valorcuotas'] != 'inf') {
+      $(".cuotamensual").val('$ ' + this.datosCuota['valorcuotas']);
     }
   }
 
-  async plazoanios(){
+  async plazoanios() {
     var cuota = $(".plazoaniosa").val();
     var valorafinanciar = $(".valorafinanciar").val();
 
     this.datosAnio = await this.projService.getPlazoanios(cuota, valorafinanciar);
     this.datosAnio = this.datosAnio[0];
 
-    $(".cuotahipoteca").val('$ '+this.datosAnio['total']);
+    $(".cuotahipoteca").val('$ ' + this.datosAnio['total']);
   }
 
-  hasErrorsFieldForm(field:string): Boolean {
+  hasErrorsFieldForm(field: string): Boolean {
     const form = this.contactForm
     return this.formServ.hasErrorsFieldForm(form, field, this.showErrors)
   }
 
-  hasErrorsFieldForm2(field:string): Boolean {
+  hasErrorsFieldForm2(field: string): Boolean {
     const form = this.contactForm2
     return this.formServ.hasErrorsFieldForm(form, field, this.showErrors)
   }
 
-  async insertContact(){
-    this.isSubmitted = true;
-    const values = {
-      nombre: this.contactForm.controls['nombre'].value,
-      email: this.contactForm.controls['email'].value,
-      telefono: this.contactForm.controls['telefono'].value,
-      cuotaInicial: $(".cambiarPorcentaje").val(),
-      numeroCuotas: $(".cuotasinicialfinanciar").val(),
-      valorCuotaInicial: $(".valorCuotaInicial").val(),
-      separacion: $(".separacion").val(),
-      saldoCuotaInicial: $(".diferencia").val(),
-      cuotamensual: $(".cuotamensual").val(),
-      porcentajeFinanciar: $(".porcentajeFinanciar").val(),
-      valorafinanciar: $(".valorafinanciar").val(),
-      plazoaniosa: $(".plazoaniosa").val(),
-      cuotahipoteca: $(".cuotahipoteca").val(),
-      porcentajeseparacion: this.data.porcentaje_separacion,
-      url_proyecto: window.location.href,
-      proyecto: this.data.titulo_proyecto,
-      valorProyecto: this.data.valor_proyecto,
-      sendTo: this.data.email_contactos,
-      id_proyecto: this.data.id,
-      gracias_a: "1"
-    }
-
-    if(this.contactForm.valid){
+  async insertContact() {
+    if (this.contactForm.valid && !this.sendingContact) {
+      this.sendingContact = true
+      this.showErrors = false
+      const values = {
+        nombre: this.contactForm.controls['nombre'].value,
+        email: this.contactForm.controls['email'].value,
+        telefono: this.contactForm.controls['telefono'].value,
+        cuotaInicial: $(".cambiarPorcentaje").val(),
+        numeroCuotas: $(".cuotasinicialfinanciar").val(),
+        valorCuotaInicial: $(".valorCuotaInicial").val(),
+        separacion: $(".separacion").val(),
+        saldoCuotaInicial: $(".diferencia").val(),
+        cuotamensual: $(".cuotamensual").val(),
+        porcentajeFinanciar: $(".porcentajeFinanciar").val(),
+        valorafinanciar: $(".valorafinanciar").val(),
+        plazoaniosa: $(".plazoaniosa").val(),
+        cuotahipoteca: $(".cuotahipoteca").val(),
+        porcentajeseparacion: this.data.porcentaje_separacion,
+        url_proyecto: window.location.href,
+        proyecto: this.data.titulo_proyecto,
+        valorProyecto: this.data.valor_proyecto,
+        sendTo: this.data.email_contactos,
+        id_proyecto: this.data.id,
+        gracias_a: "1"
+      }
       const resp = await this.projService.setCalculadoraForm(values);
-      if(resp.resp!='no'){
+      if (resp.resp != 'no') {
         window.location.href = resp.resp;
       }
+      this.sendingContact = false
+    }
+    else {
+      this.showErrors = true
     }
   }
 
-  async cargarSitios(id_categoria: any){
+  async cargarSitios(id_categoria: any) {
     this.seccionesInteres = await this.projService.getSitiosInteres(id_categoria, this.data.id);
 
-    if(this.seccionesInteres.length>0){
+    if (this.seccionesInteres.length > 0) {
       this.url_mapa = this.seccionesInteres[0].mapa_interes_proyecto;
     }
   }
 
-  seguirLeyendo(){
+  seguirLeyendo() {
     $(".read").remove();
-    $(".descripcion_proyecto").css('height','max-content');
+    $(".descripcion_proyecto").css('height', 'max-content');
   }
 
-  async insertContactForm(){
-    this.isSubmitted = true;
-    const values = {
-      nombre: this.contactForm2.controls['nombre2'].value,
-      email: this.contactForm2.controls['email2'].value,
-      telefono: this.contactForm2.controls['telefono2'].value,
-      mensaje: this.contactForm2.controls['mensaje2'].value,
-      id_proyecto: this.data.id,
-      nombre_proyecto: this.data.titulo_proyecto,
-      sendTo: this.data.email_contactos
-    }
-
-    if(this.contactForm2.valid && this.captcha!=''){
+  async insertContactForm() {
+    if (this.contactForm2.valid && this.captcha && !this.sendingContact) {
+      this.sendingContact = true
+      this.showErrors = false
+      const values = {
+        nombre: this.contactForm2.controls['nombre2'].value,
+        email: this.contactForm2.controls['email2'].value,
+        telefono: this.contactForm2.controls['telefono2'].value,
+        mensaje: this.contactForm2.controls['mensaje2'].value,
+        id_proyecto: this.data.id,
+        nombre_proyecto: this.data.titulo_proyecto,
+        sendTo: this.data.email_contactos
+      }
       const resp = await this.projService.setContactFormProyecto(values);
-      if(resp.resp!='no'){
+      if (resp.resp != 'no') {
         window.location.href = resp.resp;
       }
+
+      this.sendingContact = false
+    }
+
+    else {
+      this.showErrors = true
     }
   }
 
-  goToVentas(){
+  goToVentas() {
     window.location.href = 'proyectos-construccion-vivienda';
   }
 
-  activarFlotante(){
-    if($(".contacto_flotante").hasClass('active')){
+  activarFlotante() {
+    if ($(".contacto_flotante").hasClass('active')) {
       $(".contacto_flotante").removeClass('active');
-    }else{
+    } else {
       $(".contacto_flotante").addClass('active');
     }
   }

@@ -364,7 +364,7 @@
     <a class="close_calc" (click)="modalIsOpen=false">
         <span class="fas fa-arrow-right"></span>
     </a>
-    <form class="f_calculadora" [formGroup]="contactForm" (ngSubmit)="insertContact()" novalidate>
+    <form class="f_calculadora" [formGroup]="contactForm" (ngSubmit)="insertContact()">
         <div class="csp_calc">
             <!-- Swiper -->
             <div class="swiper swiperCalcP">
@@ -396,12 +396,16 @@
                 </div><br>
                 <div *ngIf="hasErrorsFieldForm('nombre')" class="error-text">Existen errores, por favor revisar*</div>
                 <div class="cont_input_x2">
-                    <input type="email" placeholder="Email" formControlName="email">
-                    <input type="tel" placeholder="Teléfono" formControlName="telefono">
-                </div>
-                <div *ngIf="hasErrorsFieldForm('email')" class="error-text">Existen errores, por favor revisar*</div>
-                <div *ngIf="hasErrorsFieldForm('telefono')" class="error-text">Existen errores, por favor revisar* <br>
-                    Mínimo 7, Máximo 10 números</div>
+                    <div>
+                        <input type="email" placeholder="Email" formControlName="email">
+                        <div *ngIf="hasErrorsFieldForm('email')" class="error-text">Existen errores, por favor revisar*</div>
+                    </div>
+                    <div>
+                        <input type="tel" placeholder="Teléfono" formControlName="telefono">
+                        <div *ngIf="hasErrorsFieldForm('telefono')" class="error-text">Existen errores, por favor revisar* <br>
+                            Mínimo 7, Máximo 10 números</div>
+                    </div>
+                </div>                
             </div>
             <div class="datos_cuota_inicial">
                 <div class="cont_input_x2">
@@ -473,7 +477,13 @@
             </div>
             <div *ngIf="hasErrorsFieldForm('terminos')" class="error-text">Existen errores, por favor revisar*</div>
             <div class="cont_submit">
-                <button type="submit" class="btn" [disabled]="contactForm.invalid">Enviar</button>
+                <button 
+                    type="submit" 
+                    class="btn" 
+                    [ngClass]="{'btn-disabled': sendingContact}" 
+                    [disabled]="sendingContact">Enviar
+                    <span *ngIf="sendingContact" class="loader"></span>
+                </button>
             </div>
         </div>
     </form>
@@ -485,8 +495,8 @@
     <a class="close_calc" (click)="activarFlotante()">
         <span class="fas fa-arrow-right"></span>
     </a>
-    <form class="f_calculadora" [formGroup]="contactForm2" (ngSubmit)="insertContactForm()" novalidate>
-        <div class="h_form_proy_esp"> Contáctanos</div>
+    <form class="f_calculadora" [formGroup]="contactForm2" (ngSubmit)="insertContactForm()">
+        <div class="h_form_proy_esp">Contáctanos</div>
         <div class="grand_c_inputs">
             <div class="datos_persona">
                 <div class="cont_input_x1">
@@ -512,17 +522,23 @@
             </div>
 
             <re-captcha (resolved)="resolved($event)" siteKey="6LfpwdYhAAAAABcTB3UDqML8fsyTJvDfj3IfOEIU"></re-captcha>
-            <div *ngIf="captcha=='' && isSubmitted" class="error-text">Falta validar el catpcha*</div>
+            <div *ngIf="!captcha && showErrors" class="error-text">Falta validar el catpcha*</div>
 
             <div class="cont_chk">
                 <input type="checkbox" formControlName="terminos2" id="calc_form_chk">
-                <label for="calc_form_chk"> Acepto y Autorizo la <a
+                <label for="calc_form_chk">Acepto y Autorizo la <a
                         [routerLink]="['/legales', 'politicas-de-privacidad']" target="_blank"> Política de Tratamiento
                         de Datos</a></label>
             </div>
             <div *ngIf="hasErrorsFieldForm2('terminos2')" class="error-text">Existen errores, por favor revisar*</div>
             <div class="cont_submit">
-                <button type="submit" class="btn" [disabled]="contactForm2.invalid">Enviar</button>
+                <button 
+                type="submit" 
+                class="btn" 
+                [ngClass]="{'btn-disabled': sendingContact}" 
+                [disabled]="sendingContact">Enviar
+                <span *ngIf="sendingContact" class="loader"></span>
+            </button>
             </div>
 
 
