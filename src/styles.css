@@ -935,7 +935,7 @@ h1 {
 
 .img_pr_wa_form {
     min-width: 35px;
-    height: 80px;
+    height: 35px;
 }
 .titulo_calculadora{
     text-align: center;
@@ -1479,6 +1479,10 @@ input[type=file]::-webkit-file-upload-button {
     }
     .cont_input_x2 {
         gap: 15px;
+    }
+    .img_pr_wa_form {
+        min-width: 35px;
+        height: 35px;
     }
 }
 
