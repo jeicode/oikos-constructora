@@ -901,6 +901,11 @@ h1 {
     background: grey;
     min-width: 86px;
     min-height: 56px;
+    transition: all 150ms ease-in;
+}
+.bnt_flot_form:hover{
+   transform: scale(1.1); 
+   transition: all 150ms ease-in;
 }
 .bnt_flot_form img{
     height: 24px;
