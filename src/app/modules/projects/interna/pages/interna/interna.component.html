@@ -81,11 +81,11 @@
 
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2" >
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let i of galeria; let index=index"  width="584" height="360">
-                            <img width="584" height="360" *ngIf="!i?.field_description" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}"
+                        <div class="swiper-slide" *ngFor="let i of galeria; let index=index"  >
+                            <img width="590" height="360" *ngIf="!i?.field_description" src="{{imagenes_url+i?.field_content}}" alt="{{i?.alt}}"
                                 title="{{i?.title}}" />
                             <div *ngIf="i?.field_description" class="embed-responsive">
-                                <iframe class="embed-responsive-item iframe_video_gallery" width="584" height="360"
+                                <iframe class="embed-responsive-item iframe_video_gallery" width="590" height="360"
                                     [src]="i?.field_description | safe:'url'" allowfullscreen>
                                 </iframe>
                             </div>

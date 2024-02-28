@@ -372,6 +372,7 @@ input {
   display: flex;
   align-items: stretch;
   justify-content: center;
+  height: 360px;
   max-height: 360px;
   gap: 10px;
   width: 100%;
@@ -398,6 +399,7 @@ input {
 
 .mySwiper {
   margin: 0;
+  max-width: 78px;
 }
 
 .mySwiper .swiper-slide {
@@ -1034,11 +1036,10 @@ input {
 }
 /*CLS ajustes*/
 .s_proyecto_h{
+  width: 100%;
   min-height: 100vh;
-  min-width: 100vw;
 }
 .mySwiper2 .swiper-slide{
-  min-width: 584px;
   min-height: 360px;
 }
 
@@ -1069,7 +1070,9 @@ input {
     display: flex;
     flex-direction: column;
   }
-
+  .col_slide_p{
+    height: auto;
+  }
   .progress_state {
     display: none;
   }
@@ -1989,8 +1992,7 @@ input {
   }
   /* CLS ajustes*/
   .mySwiper2 .swiper-slide{
-    min-width: 877px;
-    min-height: 360px;
+    min-height: 280px;
   }
 }
 
