@@ -1023,6 +1023,8 @@ input {
   height: auto;
   top: 10%;
   overflow-y: auto;
+  /* offset-x | offset-y | blur-radius | color */
+  box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.25);
 }
 
 .contacto_flotante .datos_persona {
@@ -1039,6 +1041,13 @@ input {
   min-width: 584px;
   min-height: 360px;
 }
+
+
+
+.input-div{
+  position: relative;
+}
+
 
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {

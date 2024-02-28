@@ -362,9 +362,11 @@
 <!-- MODAL CALCULADORA -->
 <span class="bg_dark" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none'}"></span>
 <div class="s_modal_calculadora" [ngClass]="{'active': modalIsOpen}">
+  
     <a class="close_calc" (click)="modalIsOpen=false">
         <span class="fas fa-arrow-right"></span>
     </a>
+    <h2 class="titulo_calculadora"> Calcule su cuota mensual </h2>
     <form class="f_calculadora" [formGroup]="contactForm" (ngSubmit)="insertContact()">
         <div class="csp_calc">
             <!-- Swiper -->
@@ -393,15 +395,19 @@
         <div class="grand_c_inputs">
             <div class="datos_persona">
                 <div class="cont_input_x1">
+                    <label for="email"> Nombre</label>
                     <input type="text" placeholder="Nombre" formControlName="nombre">
                 </div><br>
                 <div *ngIf="hasErrorsFieldForm('nombre')" class="error-text">Existen errores, por favor revisar*</div>
                 <div class="cont_input_x2">
                     <div>
+                        <label for="email"> Email</label>
                         <input type="email" placeholder="Email" formControlName="email">
+                     
                         <div *ngIf="hasErrorsFieldForm('email')" class="error-text">Existen errores, por favor revisar*</div>
                     </div>
                     <div>
+                        <label for="email"> Telefono</label>
                         <input type="tel" placeholder="Teléfono" formControlName="telefono">
                         <div *ngIf="hasErrorsFieldForm('telefono')" class="error-text">Existen errores, por favor revisar* <br>
                             Mínimo 7, Máximo 10 números</div>
@@ -545,4 +551,31 @@
 
         </div>
     </form>
+</div>
+
+
+<!--BNT FLotante-->
+<div class="cnt_btns_forms_flotantes">
+    <div class="btns_forms_flotantes">
+        <a class="bnt_flot_form btn_flot_calculadora" (click)="modalIsOpen=true" *ngIf="data?.calculadora=='1'">
+            <img src="assets/images/diseno/calculadora-1.svg" alt="" width="24" height="24">
+            <strong>
+                Calcular
+            </strong>
+        </a>
+        <a class="bnt_flot_form btn_flot_wp" (click)="openModal()" *ngIf="data?.seccion!='4'">
+            <img src="assets/images/diseno/wp-btn-1.svg" alt="" width="24" height="24">
+            <strong>
+                Contactar
+            </strong>
+        </a>
+        <a class="bnt_flot_form btn_flot_correo" (click)="activarFlotante()" *ngIf="data?.seccion=='1'">
+            <img src="assets/images/diseno/mail-btn.svg" alt="" width="24" height="24">
+            <strong>
+                Contacto
+            </strong>
+        </a>
+
+    </div>
+
 </div>

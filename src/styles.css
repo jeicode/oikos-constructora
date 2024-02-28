@@ -876,6 +876,7 @@ h1 {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px 20px 0 0;
     position: fixed;
+    z-index: 10;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -902,6 +903,8 @@ h1 {
     min-width: 86px;
     min-height: 56px;
     transition: all 150ms ease-in;
+    /* offset-x | offset-y | blur-radius | color */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 .bnt_flot_form:hover{
    transform: scale(1.1); 
@@ -922,12 +925,22 @@ h1 {
 }
 .btn_flot_wp{
     background: rgb(72,226,99);
-    background: linear-gradient(90deg, rgba(72,226,99,1) 0%, rgba(53,194,77,1) 60%);
+    background: linear-gradient(154deg, rgba(72,226,99,1) 0%, rgba(53,194,77,1) 60%);
 }
 .btn_flot_correo{
 
     background: rgb(253,183,24);
-    background: linear-gradient(90deg, rgba(253,183,24,1) 0%, rgba(189,135,12,1) 100%);
+    background: linear-gradient(154deg, rgba(253,183,24,1) 0%, rgba(189,135,12,1) 100%);
+}
+
+.img_pr_wa_form {
+    min-width: 35px;
+    height: 80px;
+}
+.titulo_calculadora{
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--color-c2);
 }
 
 
@@ -1463,6 +1476,9 @@ input[type=file]::-webkit-file-upload-button {
     }
     .cnt_btns_forms_flotantes{
         display: flex;
+    }
+    .cont_input_x2 {
+        gap: 15px;
     }
 }
 
