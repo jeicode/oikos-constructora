@@ -353,7 +353,7 @@ input {
   gap: 10px;
   color: #182360;
   margin: 0 0 10px;
-  height: 20px;
+  min-height: 20px;
 }
 
 .item_hp a {
