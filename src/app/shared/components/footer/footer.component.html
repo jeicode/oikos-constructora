@@ -3,7 +3,7 @@
         <div class="cnt_gen_inf_lat_pie">
             <div class="cnt_logos_pie">
                 <a [href]="i?.enlace" target="_blank" rel="noopener" *ngFor="let i of companies" class="logo_pie">
-                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" width="80" height="60">
                 </a>
             </div>
             <div class="txt_pie">
@@ -21,7 +21,7 @@
             </div>
             <div class="cnt_gen_cert_pie">
                 <div class="logo_cert_pie" *ngFor="let i of logos">
-                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" height="66" width="140">
                 </div>
             </div>
         </div>

@@ -481,7 +481,7 @@ h1 {
     background: #f4f4f4;
     border-top: 1px solid #ccc;
     position: relative;
-    min-height: 370px;
+    min-height: 560px;
 }
 
 .cnt_lat_pie {
@@ -529,6 +529,7 @@ h1 {
 .logo_pie {
     width: 25%;
     max-width: 80px;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -537,6 +538,7 @@ h1 {
 .logo_pie img {
     width: 100%;
     max-width: 80px;
+    height: 100%;
 }
 
 .txt_pie {
@@ -559,6 +561,7 @@ h1 {
 
 .direccion_pie {
     width: auto;
+    min-height: 32px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -573,9 +576,10 @@ h1 {
 }
 
 .logo_cert_pie img {
+    width: auto;
     height: auto;
     max-height: 66px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .cnt_mid_pie {
@@ -691,6 +695,7 @@ h1 {
 
 .cnt_bot_pie {
     width: 100%;
+    min-height: 54px;
     padding: 12px 0;
     padding-left: 40%;
     padding-right: 56px;

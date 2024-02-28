@@ -267,15 +267,17 @@ input {
 }
 
 .hero_proyecto {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: center;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
 }
-
+.info_h_proyecto{
+  flex-grow: 1;
+}
 .h_logo_proyect {
   display: flex;
   align-items: center;
@@ -287,7 +289,7 @@ input {
 
 .h_logo_proyect picture {
   display: inline-flex;
-  max-width: 140px;
+  min-width: 140px;
   background-color: #FFFFFF;
   box-shadow: 0px 10px 26px -5px rgba(49, 60, 103, 0.4);
   border-radius: 9px;
@@ -299,12 +301,13 @@ input {
 }
 
 .h_logo_proyect picture img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
 }
 
 .h_logo_proyect .title_ph {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -559,6 +562,7 @@ input {
   z-index: 3;
   margin: 0 0 14px;
   transition: 300ms ease;
+  min-height: 18px;
 }
 
 .state span {
@@ -607,8 +611,7 @@ input {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  max-height: 351px;
+  height: 351px;
   overflow: hidden;
   border-radius: 22px;
   position: relative;
@@ -619,6 +622,7 @@ input {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .info_proj picture a {
@@ -961,6 +965,18 @@ input {
   position: relative;
   z-index: 1;
   border-radius: 20px;
+  height: 197px;
+}
+.img_slider_tipo a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.img_slider_tipo a img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .swiper-button-prev,
@@ -1016,7 +1032,10 @@ input {
 }
 
 .slide_h_proyecto {
-  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contacto_flotante {
@@ -1099,6 +1118,10 @@ input {
 
   .precio_hp {
     grid-template-columns: repeat(3, auto);
+    
+  }
+  .img_slider_tipo{
+    height: 250px;
   }
 }
 
@@ -1106,7 +1129,11 @@ input {
   .info_banner_calcula {
     grid-template-columns: 1fr;
   }
-
+  .h_logo_proyect picture{
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+  }
   .info_banner_calcula {
     max-height: initial;
     position: relative;
@@ -1128,6 +1155,7 @@ input {
 
   .precio_hp {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .grand_cont_ctas {
@@ -2042,7 +2070,15 @@ input {
     min-width: 303px;
     min-height: 214px;
   }
-
+  .info_proj picture {
+    height: 210px;
+  }
+}
+@media screen and (max-width: 480px) {
+  
+  .img_slider_tipo{
+    height: 220px;
+  }
 }
 
 /*# sourceMappingURL=proyectos_vivienda.css.map */
