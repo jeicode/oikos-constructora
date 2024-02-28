@@ -196,6 +196,7 @@ h1 {
 .cnt_inf_topbar_h {
     display: flex;
     align-items: center;
+    min-height: 23px;
 }
 
 .btn_z_clientes {
@@ -794,6 +795,7 @@ h1 {
     box-sizing: border-box;
     position: relative;
     padding: 0;
+    min-height: 510px;
 }
 
 .cnt_car_proy_dest .card_p {
