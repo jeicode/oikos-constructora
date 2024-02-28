@@ -1479,15 +1479,12 @@ input[type=file]::-webkit-file-upload-button {
     .s_carr_proy {
         padding-top: 1px;
     }
+    
     .cnt_btns_forms_flotantes{
         display: flex;
     }
     .cont_input_x2 {
         gap: 15px;
-    }
-    .img_pr_wa_form {
-        min-width: 35px;
-        height: 35px;
     }
 }
 
