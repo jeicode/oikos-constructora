@@ -68,7 +68,6 @@
 .ic_gp:before {
     content: "\e909";
 }
-
 @font-face {
     font-family: "icomoon";
     src: url("/assets/fonts/icomoon.eot?c7s859");
@@ -411,6 +410,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     background-color: #FAFAFA;
+    min-height: 100vh;
 }
 
 .cnt_central {
@@ -428,7 +428,6 @@ h1 {
     text-align: right;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 8px;
     position: relative;
     font-weight: 400;
@@ -443,7 +442,7 @@ h1 {
 }
 
 .miga a {
-    color: #000;
+    color: #666;
 }
 
 .miga a:hover {
@@ -548,10 +547,12 @@ h1 {
     font-size: 13px;
     color: #1B1B1A;
     padding: 32px 40px 32px 0;
+    min-height: 108px;
 }
 
 .cnt_dir_pie {
     width: 100%;
+    min-height: 58px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     margin-bottom: 24px;
@@ -876,7 +877,7 @@ h1 {
 
 .cnt_btns_forms_flotantes{
     display: none;
-    padding: 20px;
+    padding: 16px;
     align-items: center;
     justify-content: center;
     background: #f5f5f5;
@@ -888,10 +889,9 @@ h1 {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
     height: auto;
-    min-height: 96px;
-    max-width: 90%;
+    min-height: 89px;
+    width: 90%;
     margin: 0 auto;
 }
 .btns_forms_flotantes{
@@ -908,7 +908,7 @@ h1 {
     padding: 8px 5px;
     border-radius: 10px;
     background: grey;
-    min-width: 86px;
+    width: 33%;
     min-height: 56px;
     transition: all 150ms ease-in;
     /* offset-x | offset-y | blur-radius | color */
@@ -919,8 +919,8 @@ h1 {
    transition: all 150ms ease-in;
 }
 .bnt_flot_form img{
-    height: 24px;
-    width: 24px;
+    height: 16px;
+    width: 16px;
 }
 .bnt_flot_form strong{
     font-size: 14px;
@@ -985,12 +985,14 @@ h1 {
     }
 
     .nav_bar_h {
+        height: 40px;
         padding: 0 24px;
     }
 
     .logo_pri {
         width: 136px;
         height: 78px;
+        top: 30px;
     }
 
     .nav {
@@ -1341,7 +1343,6 @@ input[type=file]::-webkit-file-upload-button {
     .logo_pri {
         width: 104px;
         height: 60px;
-        top: 45px;
     }
 
     /*   ESTILOS FOOTER */
@@ -1458,7 +1459,7 @@ input[type=file]::-webkit-file-upload-button {
     .logo_pri {
         width: 84px;
         height: 50px;
-        top: 45px;
+        top: 40px;
     }
 
     .logo_pri a {

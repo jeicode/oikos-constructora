@@ -209,6 +209,14 @@ input {
   position: relative;
   padding: 30px 0 100px;
 }
+:host::ng-deep.s_proyecto_h .cnt_central{
+  
+  max-width: 1440px;
+}
+:host::ng-deep.s_proyecto_h .cnt_central .miga{
+  margin-top: 0;
+  justify-content: flex-start;
+}
 
 .s_proyecto_h:before {
   content: "";
@@ -1073,10 +1081,6 @@ input {
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
     font-size: 14px;
-  }
-
-  .col_slide_p {
-    max-width: initial;
   }
 
   .precio_hp {
