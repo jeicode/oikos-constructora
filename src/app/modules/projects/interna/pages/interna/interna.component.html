@@ -115,7 +115,7 @@
             <!-- BOTONES CTA -->
 
             <div class="grand_cont_ctas">
-                <div class="btn" (click)="activarFlotante()" *ngIf="data?.seccion=='1'">Contacto<span class="material-icons">mail_outline</span>
+                <div class="btn" (click)="toogleFlotante()" *ngIf="data?.seccion=='1'">Contacto<span class="material-icons">mail_outline</span>
                 </div>
                 <div class="btn" (click)="goToVentas()" *ngIf="data?.seccion=='4'">Conozca nuestros proyectos en venta</div>
                 <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank"
@@ -360,11 +360,10 @@
 <app-wpp-modal-project *ngIf="data?.msg_wsp_interna!='' && data?.msg_wsp_interna!=null" [modalEvent]="notifyChanges.asObservable()" [project]="data" [showFloatingButton]="true"></app-wpp-modal-project>
 
 <!-- MODAL CALCULADORA -->
-<span class="bg_dark" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none'}"></span>
+<span  (click)="modalIsOpen=false" class="bg_dark" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none'}"></span>
 <div class="s_modal_calculadora" [ngClass]="{'active': modalIsOpen}">
-  
-    <a class="close_calc" (click)="modalIsOpen=false">
-        <span class="fas fa-arrow-right"></span>
+    <a class="close_calc">
+        <span (click)="modalIsOpen=false" class="fas fa-arrow-right"></span>
     </a>
     <h2 class="titulo_calculadora"> Calcule su cuota mensual </h2>
     <form class="f_calculadora" [formGroup]="contactForm" (ngSubmit)="insertContact()">
@@ -499,8 +498,8 @@
 <!-- MODAL CONTACTO -->
 <!-- RECORDAR USAR EL LAYER NEGRO DEL MODAL DE ARRIBA  -->
 <div class="s_modal_calculadora contacto_flotante">
-    <a class="close_calc" (click)="activarFlotante()">
-        <span class="fas fa-arrow-right"></span>
+    <a class="close_calc">
+        <span (click)="toogleFlotante()" class="fas fa-arrow-right"></span>
     </a>
     <form class="f_calculadora" [formGroup]="contactForm2" (ngSubmit)="insertContactForm()">
         <div class="h_form_proy_esp">Contáctanos</div>
@@ -557,19 +556,19 @@
 <!--BNT FLotante-->
 <div class="cnt_btns_forms_flotantes">
     <div class="btns_forms_flotantes">
-        <a class="bnt_flot_form btn_flot_calculadora" (click)="modalIsOpen=true" *ngIf="data?.calculadora=='1'">
+        <a class="bnt_flot_form btn_flot_calculadora" (click)="toogleFlotante();modalIsOpen=true" *ngIf="data?.calculadora=='1'">
             <img src="assets/images/diseno/calculadora-1.svg" alt="" width="24" height="24">
             <strong>
                 Calcular
             </strong>
         </a>
-        <a class="bnt_flot_form btn_flot_wp" (click)="openModal()" *ngIf="data?.seccion!='4'">
+        <a class="bnt_flot_form btn_flot_wp" (click)="toogleFlotante();openModal()" *ngIf="data?.seccion!='4'">
             <img src="assets/images/diseno/wp-btn-1.svg" alt="" width="24" height="24">
             <strong>
                 Contactar
             </strong>
         </a>
-        <a class="bnt_flot_form btn_flot_correo" (click)="activarFlotante()" *ngIf="data?.seccion=='1'">
+        <a class="bnt_flot_form btn_flot_correo" (click)="toogleFlotante()" *ngIf="data?.seccion=='1'">
             <img src="assets/images/diseno/mail-btn.svg" alt="" width="24" height="24">
             <strong>
                 Contacto

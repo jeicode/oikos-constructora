@@ -333,7 +333,7 @@ export class InternaComponent implements OnInit {
     window.location.href = 'proyectos-construccion-vivienda';
   }
 
-  activarFlotante() {
+  toogleFlotante() {
     if ($(".contacto_flotante").hasClass('active')) {
       $(".contacto_flotante").removeClass('active');
     } else {
