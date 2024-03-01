@@ -1498,6 +1498,15 @@ input[type=file]::-webkit-file-upload-button {
     
 }
 
+@media screen and (max-width: 350px) {
+    .btns_forms_flotantes{
+        gap: 10px;
+    }
+}
+
+
+
+
 /*# sourceMappingURL=estilos.css.map */
 
 .error-text {
