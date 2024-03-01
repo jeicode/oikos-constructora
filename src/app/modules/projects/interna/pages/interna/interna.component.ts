@@ -341,4 +341,8 @@ export class InternaComponent implements OnInit {
     }
   }
 
+  closeContactModal(){
+    $(".contacto_flotante").removeClass('active');
+  }
+
 }

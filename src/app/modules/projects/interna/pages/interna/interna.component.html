@@ -556,13 +556,13 @@
 <!--BNT FLotante-->
 <div class="cnt_btns_forms_flotantes">
     <div class="btns_forms_flotantes">
-        <a class="bnt_flot_form btn_flot_calculadora" (click)="toogleFlotante();modalIsOpen=true" *ngIf="data?.calculadora=='1'">
+        <a class="bnt_flot_form btn_flot_calculadora" (click)="closeContactModal();modalIsOpen=true" *ngIf="data?.calculadora=='1'">
             <img src="assets/images/diseno/calculadora-1.svg" alt="" width="24" height="24">
             <strong>
                 Calcular
             </strong>
         </a>
-        <a class="bnt_flot_form btn_flot_wp" (click)="toogleFlotante();openModal()" *ngIf="data?.seccion!='4'">
+        <a class="bnt_flot_form btn_flot_wp" (click)="closeContactModal();openModal()" *ngIf="data?.seccion!='4'">
             <img src="assets/images/diseno/wp-btn-1.svg" alt="" width="24" height="24">
             <strong>
                 Contactar
