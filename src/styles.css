@@ -68,7 +68,6 @@
 .ic_gp:before {
     content: "\e909";
 }
-
 @font-face {
     font-family: "icomoon";
     src: url("/assets/fonts/icomoon.eot?c7s859");
@@ -196,6 +195,7 @@ h1 {
 .cnt_inf_topbar_h {
     display: flex;
     align-items: center;
+    min-height: 23px;
 }
 
 .btn_z_clientes {
@@ -410,6 +410,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     background-color: #FAFAFA;
+    min-height: 100vh;
 }
 
 .cnt_central {
@@ -427,7 +428,6 @@ h1 {
     text-align: right;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 8px;
     position: relative;
     font-weight: 400;
@@ -442,7 +442,7 @@ h1 {
 }
 
 .miga a {
-    color: #000;
+    color: #666;
 }
 
 .miga a:hover {
@@ -481,7 +481,7 @@ h1 {
     background: #f4f4f4;
     border-top: 1px solid #ccc;
     position: relative;
-    min-height: 370px;
+    min-height: 560px;
 }
 
 .cnt_lat_pie {
@@ -524,11 +524,13 @@ h1 {
     width: 100%;
     display: flex;
     column-gap: 8%;
+    min-height: 70px;
 }
 
 .logo_pie {
     width: 25%;
     max-width: 80px;
+    min-height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -537,6 +539,7 @@ h1 {
 .logo_pie img {
     width: 100%;
     max-width: 80px;
+    height: 100%;
 }
 
 .txt_pie {
@@ -544,10 +547,12 @@ h1 {
     font-size: 13px;
     color: #1B1B1A;
     padding: 32px 40px 32px 0;
+    min-height: 108px;
 }
 
 .cnt_dir_pie {
     width: 100%;
+    min-height: 58px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     margin-bottom: 24px;
@@ -559,6 +564,7 @@ h1 {
 
 .direccion_pie {
     width: auto;
+    min-height: 32px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -573,9 +579,10 @@ h1 {
 }
 
 .logo_cert_pie img {
+    width: auto;
     height: auto;
     max-height: 66px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .cnt_mid_pie {
@@ -691,6 +698,7 @@ h1 {
 
 .cnt_bot_pie {
     width: 100%;
+    min-height: 54px;
     padding: 12px 0;
     padding-left: 40%;
     padding-right: 56px;
@@ -789,6 +797,7 @@ h1 {
     box-sizing: border-box;
     position: relative;
     padding: 0;
+    min-height: 510px;
 }
 
 .cnt_car_proy_dest .card_p {
@@ -864,6 +873,85 @@ h1 {
     color: var(--color-c2);
 }
 
+/*Botones Flotantes header*/
+
+.cnt_btns_forms_flotantes{
+    display: none;
+    padding: 16px;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    /* offset-x | offset-y | blur-radius | color */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px 20px 0 0;
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+    min-height: 89px;
+    width: 90%;
+    margin: 0 auto;
+}
+.btns_forms_flotantes{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.bnt_flot_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 5px;
+    border-radius: 10px;
+    background: grey;
+    width: 33%;
+    min-height: 56px;
+    transition: all 150ms ease-in;
+    /* offset-x | offset-y | blur-radius | color */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+.bnt_flot_form:hover{
+   transform: scale(1.1); 
+   transition: all 150ms ease-in;
+}
+.bnt_flot_form img{
+    height: 16px;
+    width: 16px;
+}
+.bnt_flot_form strong{
+    font-size: 14px;
+    color: white;
+}
+
+.btn_flot_calculadora{
+    background: rgb(69,101,178);
+    background: linear-gradient(154deg, rgba(69,101,178,1) -50%, rgba(69,101,178,1) 60%, rgba(19,32,62,1) 150%);
+}
+.btn_flot_wp{
+    background: rgb(72,226,99);
+    background: linear-gradient(154deg, rgba(72,226,99,1) 0%, rgba(53,194,77,1) 60%);
+}
+.btn_flot_correo{
+
+    background: rgb(253,183,24);
+    background: linear-gradient(154deg, rgba(253,183,24,1) 0%, rgba(189,135,12,1) 100%);
+}
+
+.img_pr_wa_form {
+    min-width: 35px;
+    height: 35px;
+}
+.titulo_calculadora{
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--color-c2);
+}
+
+
 @media screen and (max-width: 1400px) {
     .nav ul li {
         margin: 0 1%;
@@ -897,12 +985,14 @@ h1 {
     }
 
     .nav_bar_h {
+        height: 40px;
         padding: 0 24px;
     }
 
     .logo_pri {
         width: 136px;
         height: 78px;
+        top: 30px;
     }
 
     .nav {
@@ -1245,7 +1335,7 @@ input[type=file]::-webkit-file-upload-button {
     justify-content: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .title_section {
         font-size: 32px;
     }
@@ -1253,7 +1343,6 @@ input[type=file]::-webkit-file-upload-button {
     .logo_pri {
         width: 104px;
         height: 60px;
-        top: 45px;
     }
 
     /*   ESTILOS FOOTER */
@@ -1334,7 +1423,7 @@ input[type=file]::-webkit-file-upload-button {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .btn_z_clientes,
     .txt_pse {
         margin-left: 8px;
@@ -1370,7 +1459,7 @@ input[type=file]::-webkit-file-upload-button {
     .logo_pri {
         width: 84px;
         height: 50px;
-        top: 45px;
+        top: 40px;
     }
 
     .logo_pri a {
@@ -1393,6 +1482,13 @@ input[type=file]::-webkit-file-upload-button {
 
     .s_carr_proy {
         padding-top: 1px;
+    }
+    
+    .cnt_btns_forms_flotantes{
+        display: flex;
+    }
+    .cont_input_x2 {
+        gap: 15px;
     }
 }
 

@@ -209,6 +209,14 @@ input {
   position: relative;
   padding: 30px 0 100px;
 }
+:host::ng-deep.s_proyecto_h .cnt_central{
+  
+  max-width: 1440px;
+}
+:host::ng-deep.s_proyecto_h .cnt_central .miga{
+  margin-top: 0;
+  justify-content: flex-start;
+}
 
 .s_proyecto_h:before {
   content: "";
@@ -267,15 +275,17 @@ input {
 }
 
 .hero_proyecto {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: center;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
 }
-
+.info_h_proyecto{
+  flex-grow: 1;
+}
 .h_logo_proyect {
   display: flex;
   align-items: center;
@@ -287,7 +297,7 @@ input {
 
 .h_logo_proyect picture {
   display: inline-flex;
-  max-width: 140px;
+  min-width: 140px;
   background-color: #FFFFFF;
   box-shadow: 0px 10px 26px -5px rgba(49, 60, 103, 0.4);
   border-radius: 9px;
@@ -299,12 +309,13 @@ input {
 }
 
 .h_logo_proyect picture img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
 }
 
 .h_logo_proyect .title_ph {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -350,6 +361,7 @@ input {
   gap: 10px;
   color: #182360;
   margin: 0 0 10px;
+  min-height: 20px;
 }
 
 .item_hp a {
@@ -372,6 +384,7 @@ input {
   display: flex;
   align-items: stretch;
   justify-content: center;
+  height: 360px;
   max-height: 360px;
   gap: 10px;
   width: 100%;
@@ -398,6 +411,7 @@ input {
 
 .mySwiper {
   margin: 0;
+  max-width: 78px;
 }
 
 .mySwiper .swiper-slide {
@@ -557,6 +571,7 @@ input {
   z-index: 3;
   margin: 0 0 14px;
   transition: 300ms ease;
+  min-height: 18px;
 }
 
 .state span {
@@ -605,8 +620,7 @@ input {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  max-height: 351px;
+  height: 351px;
   overflow: hidden;
   border-radius: 22px;
   position: relative;
@@ -617,6 +631,7 @@ input {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .info_proj picture a {
@@ -959,6 +974,18 @@ input {
   position: relative;
   z-index: 1;
   border-radius: 20px;
+  height: 197px;
+}
+.img_slider_tipo a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.img_slider_tipo a img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .swiper-button-prev,
@@ -1014,7 +1041,10 @@ input {
 }
 
 .slide_h_proyecto {
-  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contacto_flotante {
@@ -1023,6 +1053,8 @@ input {
   height: auto;
   top: 10%;
   overflow-y: auto;
+  /* offset-x | offset-y | blur-radius | color */
+  box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.25);
 }
 
 .contacto_flotante .datos_persona {
@@ -1030,14 +1062,25 @@ input {
   flex-direction: column;
   gap: 12px;
 }
+/*CLS ajustes*/
+.s_proyecto_h{
+  width: 100%;
+  min-height: 100vh;
+}
+.mySwiper2 .swiper-slide{
+  min-height: 360px;
+}
+
+
+
+.input-div{
+  position: relative;
+}
+
 
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
     font-size: 14px;
-  }
-
-  .col_slide_p {
-    max-width: initial;
   }
 
   .precio_hp {
@@ -1051,7 +1094,9 @@ input {
     display: flex;
     flex-direction: column;
   }
-
+  .col_slide_p{
+    height: auto;
+  }
   .progress_state {
     display: none;
   }
@@ -1078,6 +1123,10 @@ input {
 
   .precio_hp {
     grid-template-columns: repeat(3, auto);
+    
+  }
+  .img_slider_tipo{
+    height: 250px;
   }
 }
 
@@ -1085,7 +1134,11 @@ input {
   .info_banner_calcula {
     grid-template-columns: 1fr;
   }
-
+  .h_logo_proyect picture{
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+  }
   .info_banner_calcula {
     max-height: initial;
     position: relative;
@@ -1107,6 +1160,7 @@ input {
 
   .precio_hp {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .grand_cont_ctas {
@@ -1941,7 +1995,7 @@ input {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .cont_proyecto_eject .info_pe {
     padding: 20px;
     min-height: 340px;
@@ -1969,9 +2023,13 @@ input {
   .cont_proyecto_eject:before {
     display: none;
   }
+  /* CLS ajustes*/
+  .mySwiper2 .swiper-slide{
+    min-height: 280px;
+  }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .s_proyecto_h {
     padding: 30px 0 100px;
   }
@@ -2008,7 +2066,24 @@ input {
     justify-content: center;
     justify-items: center;
   }
-
+  /*CLS ajustes*/
+  .mySwiper2 .swiper-slide{
+    min-width: 303px;
+    min-height: 214px;
+  }
+  .mySwiper2 .swiper-slide img{
+    min-width: 303px;
+    min-height: 214px;
+  }
+  .info_proj picture {
+    height: 210px;
+  }
+}
+@media screen and (max-width: 480px) {
+  
+  .img_slider_tipo{
+    height: 220px;
+  }
 }
 
 /*# sourceMappingURL=proyectos_vivienda.css.map */
