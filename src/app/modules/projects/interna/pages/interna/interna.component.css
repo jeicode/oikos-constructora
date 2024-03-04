@@ -208,6 +208,8 @@ input {
   background: linear-gradient(180deg, rgba(198, 198, 198, 0) 0%, #E3E3E3 100%), #FFFFFF;
   position: relative;
   padding: 30px 0 100px;
+  width: 100%;
+  min-height: 520px;
 }
 :host::ng-deep.s_proyecto_h .cnt_central{
   
@@ -1063,10 +1065,7 @@ input {
   gap: 12px;
 }
 /*CLS ajustes*/
-.s_proyecto_h{
-  width: 100%;
-  min-height: 100vh;
-}
+
 .mySwiper2 .swiper-slide{
   min-height: 360px;
 }
