@@ -8,10 +8,10 @@ import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { environment } from 'src/environments/environment.prod';
-import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
+import SwiperCore,{ Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
 
 
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, Lazy]);
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -34,6 +34,9 @@ export class HomePageComponent implements OnInit {
   itemsPlanet:any[] = []
 
   config: SwiperOptions = {
+    lazy: {
+      loadPrevNext: true
+    },
     autoplay: {
         delay: 10000,
     },
@@ -55,22 +58,15 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.init()
-    this.getProjectsHome()
   }
 
 
   async init(){
-    const tasks = [
-      () => this.getBannersHome(),
-      () => this.getProjectsHome(),
-      () => this.convertCopToUsdProjects(),
-      () => this.getData(),
-      () => this.getCollections()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+    await this.getBannersHome()
+    await this.getProjectsHome()
+    await this.convertCopToUsdProjects()
+    await this.getData()
+    await this.getCollections()
   }
 
 
@@ -85,13 +81,11 @@ export class HomePageComponent implements OnInit {
         return zonas.find( z => z.nombre == b)
       })
     }
-
     return []
   }
 
   async getBannersHome(){
-    const bannersHome = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
-    if (bannersHome) this.bannersHome = bannersHome
+    this.bannersHome = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
   }
 
   

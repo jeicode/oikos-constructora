@@ -81,8 +81,8 @@ export class PageService {
     const url = `${API_URL}v1/getBannersHome?name=${name}&content=${content}`;
     return firstValueFrom(this._http.get(url)).then()
       .catch(err => {
-        console.warn(err)
-        return false
+        console.error(err)
+        return []
       })
   }
 

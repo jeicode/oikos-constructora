@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { JsonLDService } from "src/app/shared/services/functions/json-ld.service";
 import { SeoService } from "src/app/shared/services/functions/seo.service";

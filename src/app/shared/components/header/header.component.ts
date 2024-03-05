@@ -35,18 +35,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.init();
+    this.getCollectionsPage();
   }
 
-  async init(){
-    const tasks = [
-      () => this.getCollectionsPage()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
-  }
 
   closeNav(){
     if($(".btn_menu_movil").hasClass('active')){
