@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,11 @@ declare var $:any;
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+
+  // injects
+  pageService = inject(PageService)
+  router = inject(Router)
 
   BASE_URL:string = environment.imagenes_url;
   menuMobileIsActive:boolean = false;
@@ -25,10 +29,10 @@ export class HeaderComponent implements OnInit {
   logos: any = [];
   linksHeader:any[] = []
 
-  constructor(private pageService: PageService, private router: Router) {
+  constructor( ) {
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
-        if (router.url == '/') this.homeIsActive = true
+        if (this.router.url == '/') this.homeIsActive = true
         else this.homeIsActive = false
       }
     });
@@ -36,6 +40,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCollectionsPage();
+  }
+
+  ngOnDestroy(): void {
+    this.suscribeListenRouter.unsubscribe()
   }
 
 
