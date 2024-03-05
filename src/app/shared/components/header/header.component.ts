@@ -54,13 +54,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   async getCollectionsPage(){
-
-    const linksHeader = await this.pageService.getElementsContent('titulo menu', 'menu');
-    if (linksHeader && linksHeader?.length > 0) {
-      this.linksHeader = linksHeader
-    }
-    const logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
-    if (logos && logos?.length > 0) this.logos = logos
+    this.linksHeader = await this.pageService.getElementsContent('titulo menu', 'menu');
+    this.logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
   }
 
 

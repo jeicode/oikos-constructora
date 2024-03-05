@@ -1,45 +1,61 @@
 <section class="s_home_hero">
-    <div class="swiper swiperHomeHero">
+    <div class="swiper swiperHomeHero" *ngIf="bannersHome.length > 0">
         <swiper [config]="config">
             <ng-template swiperSlide *ngFor="let i of bannersHome">
-                <div class="swiper-slide" *ngIf="i?.titulo_proyecto!='' && i?.titulo_proyecto!=null; else bannerEa">
+                <div class="swiper-slide" *ngIf="i.titulo_proyecto; else bannerEa">
                     <!-- IMAGEN DE FONDO BLANCA -->
                     <div class="bg_img_h_hero" data-swiper-parallax-opacity="0.6">
-                        <img class="bg_img_h_hero" width="1920" height="700" 
-                            [src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
+                        <img 
+                            class="bg_img_h_hero" width="1920" height="700" 
+                            class="swiper-lazy"
+                            [attr.data-src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
+
                     </div>
 
                     <div class="cnt_h_hero">
                         <div class="desc_txt_hero">
                             <aside class="aside_prjct" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
                                 <picture>
-                                    <img defaultImg width="200" height="200" [src]="BASE_URL+i?.logo_proyecto">
+                                    <img 
+                                        class="swiper-lazy"
+                                        defaultImg width="200" height="200" 
+                                        [attr.data-src]="BASE_URL+i?.logo_proyecto">
                                 </picture>
                                 <div class="dt_prjct" [ngStyle]="{'background-color': i?.color_primario }">
                                     <div class="place_prjct">
                                         {{i?.titulo_proyecto}}
                                     </div>
-                                    <div class="item_prjct" *ngFor='let z of i?.zonas | sortArraySplitStr:i?.beneficios_proyecto '>
-                                        <img defaultImg  width="28" height="28" [src]="BASE_URL+z?.imagen" [title]="z?.title" [alt]="z?.alt">
-                                        <span>{{z?.nombre}}</span>
+                                    <div class="item_prjct" *ngFor='let z of i?.zonas | sortArraySplitStr:i.beneficios_proyecto '>
+                                        <img 
+                                            defaultImg  
+                                            class="swiper-lazy"
+                                            width="28" 
+                                            height="28" 
+                                            [attr.data-src]="BASE_URL+z.imagen" 
+                                            [title]="z.title" 
+                                            [alt]="z.alt">
+                                        <span>{{z.nombre}}</span>
                                     </div>
                                 </div>
                             </aside>
                             <div class="datos_info_prjct" data-swiper-parallax="-600" data-swiper-parallax-duration="800" >
-                                <div class="tag" [ngStyle]="{'background-color': i?.color_secundario }" data-swiper-parallax-opacity="0.6" 
-                                    data-swiper-parallax="-100" data-swiper-parallax-duration="800">
-                                    {{ i?.estado_proyecto }}
+                                <div 
+                                    class="tag" [ngStyle]="{'background-color': i?.color_secundario }" 
+                                    data-swiper-parallax-opacity="0.6" 
+                                    data-swiper-parallax="-100" 
+                                    data-swiper-parallax-duration="800">
+                                    {{ i.estado_proyecto }}
                                 </div>
-                                <h2 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-300" data-swiper-parallax-duration="800">{{i?.field_content}}</h2>
-                                <h3 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-500" data-swiper-parallax-duration="800">{{i?.descripcion_banner_home}}</h3>
-                                <h2 *ngIf="i?.valor_proyecto" data-swiper-parallax-opacity="0.6" data-swiper-parallax="-700" data-swiper-parallax-duration="800"> 
+                                <h2 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-300" data-swiper-parallax-duration="800">{{i.field_content}}</h2>
+                                <h3 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-500" data-swiper-parallax-duration="800">{{i.descripcion_banner_home}}</h3>
+                                <h2 *ngIf="i.valor_proyecto" data-swiper-parallax-opacity="0.6" data-swiper-parallax="-700" data-swiper-parallax-duration="800"> 
                                     <span> Desde</span> 
                                     <br>  
                                     {{ i?.valor_proyecto }}
                                 </h2>
                                 <a data-swiper-parallax-opacity="0.6" data-swiper-parallax="-900" 
-                                    data-swiper-parallax-duration="800" href="" class="btn" [routerLink]="i?.link_cta_banner">
-                                    {{i?.texto_cta_banner}}
+                                    data-swiper-parallax-duration="800" href="" class="btn" [routerLink]="i.link_cta_banner">
+                                    {{i.texto_cta_banner}}
                                 </a>
                             </div>
                         </div>
@@ -49,7 +65,10 @@
                             <picture class="grand_img_hero1" data-swiper-parallax-duration="600" 
                                     *ngIf="i.imagen[0]; else mainImage"
                                     data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
-                                <img width="516" height="454" [src]="BASE_URL+i.imagen[0]" 
+                                <img 
+                                    width="516" height="454" 
+                                    class="swiper-lazy"
+                                    [attr.data-src]="BASE_URL+i.imagen[0]" 
                                     [alt]="i.imagen_alt[0]" 
                                     [title]="i.imagen_title[0]">
                             </picture>
@@ -58,7 +77,10 @@
                                 <picture class="grand_img_hero1" data-swiper-parallax-duration="600" 
                                         *ngIf="i.galeria && (i.galeria.length > 0)"
                                         data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
-                                    <img width="516" height="454" [src]="BASE_URL+i.galeria[0].field_content" 
+                                    <img 
+                                        class="swiper-lazy"
+                                        width="516" height="454" 
+                                        [attr.data-src]="BASE_URL+i.galeria[0].field_content" 
                                         [alt]="i.galeria[0].alt" [title]="i.galeria[0].title">
                                 </picture>
                             </ng-template>
@@ -66,7 +88,12 @@
                             <picture class="grand_img_hero_mini" data-swiper-parallax-duration="700" 
                                     *ngIf="i.galeria && (i.galeria.length > 1)"
                                     data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
-                                <img width="204" height="137" [src]="BASE_URL+i.galeria[1].field_content" [alt]="i.galeria[1].alt" [title]="i.galeria[1].title">
+                                <img 
+                                    width="204" height="137" 
+                                    class="swiper-lazy"
+                                    [attr.data-src]="BASE_URL+i.galeria[1].field_content" 
+                                    [alt]="i.galeria[1].alt" 
+                                    [title]="i.galeria[1].title">
                             </picture>
                         </div>
                         
@@ -76,16 +103,21 @@
                 <ng-template #bannerEa>
                     <div class="swiper-slide">
                         <div class="bg_img_h_hero_2" data-swiper-parallax-opacity="0.6">
-                            <a href="{{i?.link_cta_banner}}" *ngIf="i?.link_cta_banner!='' && i?.link_cta_banner!=null; else imgBannerWithoutLink">
+                            <a 
+                                href="{{i.link_cta_banner}}" 
+                                *ngIf="i?.link_cta_banner; else imgBannerWithoutLink">
                             <picture>
                                 <source media="(max-width: 425px)" srcset="{{BASE_URL+i.imagen[1]}}">
-
                                 <source media="(max-width: 1024px)" srcset="{{BASE_URL+i.imagen[2]}}">
 
                                 <source 
                                 media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
 
-                                <img src="{{BASE_URL+i.imagen[1]}}" alt="Imagen" class="bg_img_h_hero_2" width="1920" height="700">
+                                <img 
+                                    class="swiper-lazy"
+                                    [attr.data-src]="BASE_URL+i.imagen[1]" 
+                                    alt="Imagen" class="bg_img_h_hero_2" 
+                                    width="1920" height="700">
 
                             </picture>
                             </a>
@@ -94,13 +126,17 @@
                                 
                                 <picture>
                                     <source media="(max-width: 425px)" srcset="{{BASE_URL+i.imagen[1]}}">
-
                                     <source media="(max-width: 1024px)" srcset="{{BASE_URL+i.imagen[2]}}">
 
                                     <source 
                                     media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
 
-                                    <img src="{{BASE_URL+i.imagen[1]}}" alt="Imagen" class="bg_img_h_hero_2" width="1920" height="700">
+                                    <img 
+                                        class="swiper-lazy"
+                                        [attr.data-src]="BASE_URL+i.imagen[1]" 
+                                        alt="Imagen" class="bg_img_h_hero_2" 
+                                        width="1920" height="700"
+                                    >
 
                                 </picture>
                             </ng-template>
@@ -115,7 +151,7 @@
     <div class="swiper-pagination"></div>
 </section>
 
-<div class="bg_grad">
+<!-- <div class="bg_grad">
 
     <section class="s_cards_proyectos">
 
@@ -253,7 +289,7 @@
             </picture>
         </div>
     </div>
-</section>
+</section> -->
 
 
 

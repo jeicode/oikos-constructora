@@ -107,7 +107,7 @@ export class PageService {
     return firstValueFrom(this._http.post(url, values))
       .catch(err => {
         console.warn(err)
-        return false
+        return []
       })
   }
 
