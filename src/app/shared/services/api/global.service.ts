@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { firstValueFrom } from 'rxjs';
 
 const { api_url: API_URL} = environment
 
@@ -19,8 +20,8 @@ export class GlobalService {
 
     return this._http.get(url).toPromise().then()
       .catch(err => {
-        console.warn(err)
-        return false
+        console.error(err)
+        return []
       })
   }
 
@@ -95,7 +96,10 @@ export class GlobalService {
 
   async getMenuFooter(): Promise<any> {
     const url = `${API_URL}v1/getMenuFooter`;
-    return this._http.get(url).toPromise().then();
+    return firstValueFrom(this._http.get(url)).catch(err => {
+      console.error(err)
+      return []
+    });
   }
 
 }

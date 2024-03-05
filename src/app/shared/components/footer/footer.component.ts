@@ -16,7 +16,8 @@ declare const $:any;
   templateUrl: './footer.component.html'
 })
 export class FooterComponent implements OnInit {
-  
+
+  loadingData = false
   BASE_URL:string = environment.imagenes_url;
 
   socialNetwork : any = [];
@@ -34,20 +35,22 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.init();
+    setTimeout(() => {
+      this.init();
+    }, 1500);
   }
 
   async init(){
-    await this.getSocialNetwork()
+    await this.getCollectionsPage()
     await this.getConfigFooter()
     await this.getMenuFooter()
-    await this.getCollectionsPage()
+    await this.getSocialNetwork()
+    this.loadingData = true
   }
 
 
   async getSocialNetwork(){
-    const socialNetwork = await this.globalService.getSocialNetwork()
-    if(socialNetwork) this.socialNetwork = socialNetwork
+    this.socialNetwork = await this.globalService.getSocialNetwork()
   }
 
   async getConfigFooter(){
@@ -57,15 +60,9 @@ export class FooterComponent implements OnInit {
 
 
   async getCollectionsPage(){
-    
-    const companies = await this.pageService.getElementsContent("titulo empresa", "logos_empresas")
-    if (companies) this.companies = companies
-
-    const logos = await this.pageService.getElementsContent("titulo logo footer", "logos")
-    if (logos && logos?.length > 0) this.logos = logos
+    this.companies = await this.pageService.getElementsContent("titulo empresa", "logos_empresas")
+    this.logos = await this.pageService.getElementsContent("titulo logo footer", "logos")
   }
-
-
 
   async getMenuFooter(){
     const menuFooter = await this.globalService.getMenuFooter();

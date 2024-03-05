@@ -1,34 +1,36 @@
-<footer class="footer">
+<footer *ngIf="loadingData" class="footer">
     <div class="cnt_lat_pie">
         <div class="cnt_gen_inf_lat_pie">
-            <div class="cnt_logos_pie">
+            <div class="cnt_logos_pie" *ngIf="companies.length>0">
                 <a [href]="i?.enlace" target="_blank" rel="noopener" *ngFor="let i of companies" class="logo_pie">
                     <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" width="80" height="60">
                 </a>
             </div>
-            <div class="txt_pie">
-                {{ configFooter.texto_footer }}
-            </div>
-            <div class="cnt_dir_pie">
-                <div class="direccion_pie">
-                    <span class="material-icons">place</span>
-                    {{ configFooter.address }}
+            <div *ngIf="configFooter">
+                <div class="txt_pie">
+                    {{ configFooter.texto_footer }}
                 </div>
-                <div class="direccion_pie">
-                    <span class="material-icons">mail</span>
-                    {{configFooter.contactemails }}
+                <div class="cnt_dir_pie">
+                    <div class="direccion_pie">
+                        <span class="material-icons">place</span>
+                        {{ configFooter.address }}
+                    </div>
+                    <div class="direccion_pie">
+                        <span class="material-icons">mail</span>
+                        {{configFooter.contactemails }}
+                    </div>
                 </div>
             </div>
-            <div class="cnt_gen_cert_pie">
+            <div class="cnt_gen_cert_pie" *ngIf="logos.length > 0">
                 <div class="logo_cert_pie" *ngFor="let i of logos">
                     <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" height="66" width="140">
                 </div>
             </div>
         </div>
     </div>
-    <div class="cnt_mid_pie">
 
-        <!-- MENU FOOTER -->
+    <div class="cnt_mid_pie" *ngIf="menuFooter.length > 0">
+
         <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)" *ngFor="let i of menuFooter">
             <div class="h_cl_pie">
                 {{i?.field_content}}
@@ -51,7 +53,7 @@
 
         <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)" *ngFor="let i of menuFooterProyectos">
             <div class="h_cl_pie proy_footer">
-                {{i?.field_content}}
+                {{i.field_content}}
             </div>
             <ul class="menu_pie">
                 <li *ngFor="let j of i.hijos">
@@ -69,7 +71,7 @@
             </ul>
         </div>
     </div>
-    <div class="cnt_bot_pie">
+    <div class="cnt_bot_pie" *ngIf="socialNetwork.length > 0">
         <div class="cnt_redes_pie">
             <a [href]="i?.url" target="_blank" rel="nofollow" *ngFor="let i of socialNetwork">
                 <i [class]="i?.class_footer"></i>
@@ -80,5 +82,4 @@
         </div>
     </div>
 </footer>
-
-<survey-modal></survey-modal>
+<survey-modal *ngIf="loadingData"></survey-modal>
