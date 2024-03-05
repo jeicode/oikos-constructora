@@ -63,16 +63,12 @@ export class HomePageComponent implements OnInit {
 
   async init(){
     await this.getBannersHome()
-    await this.getProjectsHome()
-    await this.convertCopToUsdProjects()
-    await this.getData()
-    await this.getCollections()
+    this.getProjectsHome()
+    this.getData()
+    this.getCollections()
   }
 
 
-  async convertCopToUsdProjects(){
-    await this.currencyConverter.convertCopToUsdProjects(this.housingProjects)
-  }
 
   getCustomBenefitsProject(benefits:string, zonas:Zona[]): (Zona | undefined)[]{
     const arrBenefits = benefits.split(',')
@@ -95,16 +91,14 @@ export class HomePageComponent implements OnInit {
   } 
 
   async getCollections(){
-    const itemsWhyChooseUs = await this.pageService.getElementsContent('titulo item por que elegirnos home','item_elegirnos_home');
-    if (itemsWhyChooseUs) this.itemsWhyChooseUs = itemsWhyChooseUs
-    
-    const itemsPlanet = await this.pageService.getElementsContent('titulo seccion planeta home','item_seccion_planeta_home');
-    if (itemsPlanet) this.itemsPlanet = itemsPlanet
+    this.itemsWhyChooseUs = await this.pageService.getElementsContent('titulo item por que elegirnos home','item_elegirnos_home');    
+    this.itemsPlanet = await this.pageService.getElementsContent('titulo seccion planeta home','item_seccion_planeta_home');
   } 
 
+
   async getProjectsHome(){
-    const housingProjects = await this.projectService.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
-    if (housingProjects) this.housingProjects = housingProjects;
+    this.housingProjects = await this.projectService.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
+    await this.currencyConverter.convertCopToUsdProjects(this.housingProjects)
   }
 
 
@@ -127,6 +121,7 @@ export class HomePageComponent implements OnInit {
     this.projectSelectedToModal = project
     this.notifyChangesPreLaunchProject.next({openModal:true});
   }
+
 
 
 }
