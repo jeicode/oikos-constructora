@@ -10,6 +10,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --base-href /constructora/",
+    "build:test": "ng build --base-href /constructora/test",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run oikos-constructora:serve-ssr",

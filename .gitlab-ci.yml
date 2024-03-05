@@ -1,9 +1,9 @@
 stages:
     - deploy
-    - main-push
+    - dev-push
 
-deploy-main:
-  stage: main-push
+deploy-dev:
+  stage: dev-push
   only:
     - dev
   tags:
