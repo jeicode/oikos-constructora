@@ -1,24 +1,34 @@
 <section class="s_home_hero">
     <div class="swiper swiperHomeHero" *ngIf="bannersHome.length > 0">
         <swiper [config]="config">
-            <ng-template swiperSlide *ngFor="let i of bannersHome">
+            <ng-template swiperSlide *ngFor="let i of bannersHome; let idxBanner=index">
                 <div class="swiper-slide" *ngIf="i.titulo_proyecto; else bannerEa">
-                    <!-- IMAGEN DE FONDO BLANCA -->
+
+                    <!-- IMAGEN DE FONDO -->
                     <div class="bg_img_h_hero" data-swiper-parallax-opacity="0.6">
                         <img 
-                            class="bg_img_h_hero" width="1920" height="700" 
-                            class="swiper-lazy"
-                            [attr.data-src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
+                            [fill]="true"
+                            sizes="100vw"
+                            [priority]="idxBanner==0"
+                            [ngSrc]="i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content" 
+                        >
                     </div>
+                    <!-- IMAGEN DE FONDO -->
 
+
+                    <!-- CONTENIDO PROYECTO -->
                     <div class="cnt_h_hero">
+
+                        <!-- LOGO, ZONAS DESCRIPCION -->
                         <div class="desc_txt_hero">
                             <aside class="aside_prjct" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
                                 <picture>
                                     <img 
-                                        class="swiper-lazy"
-                                        defaultImg width="200" height="200" 
-                                        [attr.data-src]="BASE_URL+i?.logo_proyecto">
+                                        [priority]="idxBanner==0"
+                                        defaultImg 
+                                        width="200" 
+                                        height="200" 
+                                        [ngSrc]="i.logo_proyecto || ''">
                                 </picture>
                                 <div class="dt_prjct" [ngStyle]="{'background-color': i?.color_primario }">
                                     <div class="place_prjct">
@@ -27,10 +37,10 @@
                                     <div class="item_prjct" *ngFor='let z of i?.zonas | sortArraySplitStr:i.beneficios_proyecto '>
                                         <img 
                                             defaultImg  
-                                            class="swiper-lazy"
+                                            [priority]="idxBanner==0"
                                             width="28" 
                                             height="28" 
-                                            [attr.data-src]="BASE_URL+z.imagen" 
+                                            [ngSrc]="z.imagen" 
                                             [title]="z.title" 
                                             [alt]="z.alt">
                                         <span>{{z.nombre}}</span>
@@ -58,39 +68,31 @@
                                 </a>
                             </div>
                         </div>
+                        <!-- LOGO, ZONAS DESCRIPCION -->
+
 
                         <!-- CONTENEDOR DE IMAGENES PRINCIPALES DEL PROYECTO -->
                         <div class="grand_img_h_hero">
-                            <picture class="grand_img_hero1" data-swiper-parallax-duration="600" 
-                                    *ngIf="i.imagen[0]; else mainImage"
-                                    data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
+                            <picture class="grand_img_hero1" >
                                 <img 
-                                    width="516" height="454" 
-                                    class="swiper-lazy"
-                                    [attr.data-src]="BASE_URL+i.imagen[0]" 
-                                    [alt]="i.imagen_alt[0]" 
-                                    [title]="i.imagen_title[0]">
+                                    width="516" 
+                                    height="454" 
+                                    [priority]="idxBanner==0"
+                                    [ngSrc]="(i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)" 
+                                    [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt" 
+                                    [title]="i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title"
+                                >
                             </picture>
 
-                            <ng-template #mainImage>
-                                <picture class="grand_img_hero1" data-swiper-parallax-duration="600" 
-                                        *ngIf="i.galeria && (i.galeria.length > 0)"
-                                        data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
-                                    <img 
-                                        class="swiper-lazy"
-                                        width="516" height="454" 
-                                        [attr.data-src]="BASE_URL+i.galeria[0].field_content" 
-                                        [alt]="i.galeria[0].alt" [title]="i.galeria[0].title">
-                                </picture>
-                            </ng-template>
 
-                            <picture class="grand_img_hero_mini" data-swiper-parallax-duration="700" 
-                                    *ngIf="i.galeria && (i.galeria.length > 1)"
-                                    data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
+                            <picture 
+                                    class="grand_img_hero_mini"
+                                    *ngIf="i.galeria?.[1]">
                                 <img 
-                                    width="204" height="137" 
-                                    class="swiper-lazy"
-                                    [attr.data-src]="BASE_URL+i.galeria[1].field_content" 
+                                    width="204" 
+                                    height="137" 
+                                    [priority]="idxBanner==0"
+                                    [ngSrc]="i.galeria[1].field_content" 
                                     [alt]="i.galeria[1].alt" 
                                     [title]="i.galeria[1].title">
                             </picture>

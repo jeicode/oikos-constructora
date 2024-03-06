@@ -8,10 +8,10 @@ import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { environment } from 'src/environments/environment.prod';
-import SwiperCore,{ Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
+import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
 
 
-SwiperCore.use([Navigation, Pagination, Lazy]);
+SwiperCore.use([Navigation, Pagination]);
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -34,9 +34,6 @@ export class HomePageComponent implements OnInit {
   itemsPlanet:any[] = []
 
   config: SwiperOptions = {
-    lazy: {
-      loadPrevNext: true
-    },
     autoplay: {
         delay: 10000,
     },
