@@ -467,6 +467,7 @@
 }
 
 .s_home_hero::before {
+    display: none;
     content: "";
     position: absolute;
     bottom: -2px;
