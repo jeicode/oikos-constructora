@@ -3,7 +3,7 @@
         <div class="cnt_gen_inf_lat_pie">
             <div class="cnt_logos_pie" *ngIf="companies.length>0">
                 <a [href]="i?.enlace" target="_blank" rel="noopener" *ngFor="let i of companies" class="logo_pie">
-                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" width="80" height="60">
+                    <img [ngSrc]="i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" width="80" height="60">
                 </a>
             </div>
             <div *ngIf="configFooter">
@@ -23,7 +23,7 @@
             </div>
             <div class="cnt_gen_cert_pie" *ngIf="logos.length > 0">
                 <div class="logo_cert_pie" *ngFor="let i of logos">
-                    <img loading="lazy" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" height="66" width="140">
+                    <img [ngSrc]="i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]" height="143" width="140">
                 </div>
             </div>
         </div>

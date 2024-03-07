@@ -183,8 +183,16 @@ h1 {
     z-index: 30;
 }
 
+.ctn_logos {
+    min-height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
 .topbar_h {
     width: 100%;
+    min-height: 39.57px;
     background: #f4f4f4;
     box-sizing: border-box;
     padding: 4px 2.5%;

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ConfigFooter } from 'src/app/core/models/config-footer.model';
@@ -11,7 +11,7 @@ import { SurveyModalComponent } from '../survey-modal/survey-modal.component';
 declare const $:any;
 @Component({
   standalone: true,
-  imports:[SurveyModalComponent, CommonModule, RouterModule],
+  imports:[SurveyModalComponent, CommonModule, RouterModule, NgOptimizedImage],
   selector: 'app-footer',
   templateUrl: './footer.component.html'
 })

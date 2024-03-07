@@ -5,7 +5,7 @@
                 <div class="swiper-slide" *ngIf="i.titulo_proyecto; else bannerEa">
 
                     <!-- IMAGEN DE FONDO -->
-                    <div class="bg_img_h_hero" data-swiper-parallax-opacity="0.6">
+                    <div class="bg_img_h_hero">
                         <img 
                             [fill]="true"
                             sizes="100vw"
@@ -22,14 +22,11 @@
                         <!-- LOGO, ZONAS DESCRIPCION -->
                         <div class="desc_txt_hero">
                             <aside class="aside_prjct" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
-                                <picture>
                                     <img 
-                                        [priority]="idxBanner==0"
                                         defaultImg 
-                                        width="200" 
-                                        height="200" 
-                                        [ngSrc]="i.logo_proyecto || ''">
-                                </picture>
+                                        width="100" 
+                                        height="100" 
+                                        [ngSrc]="i.logo_proyecto">
                                 <div class="dt_prjct" [ngStyle]="{'background-color': i?.color_primario }">
                                     <div class="place_prjct">
                                         {{i?.titulo_proyecto}}
@@ -37,7 +34,6 @@
                                     <div class="item_prjct" *ngFor='let z of i?.zonas | sortArraySplitStr:i.beneficios_proyecto '>
                                         <img 
                                             defaultImg  
-                                            [priority]="idxBanner==0"
                                             width="28" 
                                             height="28" 
                                             [ngSrc]="z.imagen" 
@@ -47,23 +43,19 @@
                                     </div>
                                 </div>
                             </aside>
-                            <div class="datos_info_prjct" data-swiper-parallax="-600" data-swiper-parallax-duration="800" >
+                            <div class="datos_info_prjct">
                                 <div 
-                                    class="tag" [ngStyle]="{'background-color': i?.color_secundario }" 
-                                    data-swiper-parallax-opacity="0.6" 
-                                    data-swiper-parallax="-100" 
-                                    data-swiper-parallax-duration="800">
+                                    class="tag" [ngStyle]="{'background-color': i?.color_secundario }">
                                     {{ i.estado_proyecto }}
                                 </div>
-                                <h2 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-300" data-swiper-parallax-duration="800">{{i.field_content}}</h2>
-                                <h3 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-500" data-swiper-parallax-duration="800">{{i.descripcion_banner_home}}</h3>
-                                <h2 *ngIf="i.valor_proyecto" data-swiper-parallax-opacity="0.6" data-swiper-parallax="-700" data-swiper-parallax-duration="800"> 
+                                <h2>{{i.field_content}}</h2>
+                                <h3>{{i.descripcion_banner_home}}</h3>
+                                <h2 *ngIf="i.valor_proyecto"> 
                                     <span> Desde</span> 
                                     <br>  
                                     {{ i?.valor_proyecto }}
                                 </h2>
-                                <a data-swiper-parallax-opacity="0.6" data-swiper-parallax="-900" 
-                                    data-swiper-parallax-duration="800" href="" class="btn" [routerLink]="i.link_cta_banner">
+                                <a class="btn" [routerLink]="i.link_cta_banner">
                                     {{i.texto_cta_banner}}
                                 </a>
                             </div>
@@ -91,7 +83,6 @@
                                 <img 
                                     width="204" 
                                     height="137" 
-                                    [priority]="idxBanner==0"
                                     [ngSrc]="i.galeria[1].field_content" 
                                     [alt]="i.galeria[1].alt" 
                                     [title]="i.galeria[1].title">
@@ -115,11 +106,9 @@
                                 media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
 
                                 <img 
-                                    class="swiper-lazy"
-                                    [attr.data-src]="BASE_URL+i.imagen[1]" 
+                                    [ngSrc]="i.imagen[1]" 
                                     alt="Imagen" class="bg_img_h_hero_2" 
                                     width="1920" height="700">
-
                             </picture>
                             </a>
 
@@ -133,8 +122,7 @@
                                     media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
 
                                     <img 
-                                        class="swiper-lazy"
-                                        [attr.data-src]="BASE_URL+i.imagen[1]" 
+                                        [ngSrc]="BASE_URL+i.imagen[1]" 
                                         alt="Imagen" class="bg_img_h_hero_2" 
                                         width="1920" height="700"
                                     >
@@ -171,25 +159,24 @@
                         </span>
                         <div class="btns_icons" *ngIf="i.vista360 || i.url_waze">
                             <a [href]="i.vista360" target="_blank" class="btn_icon" *ngIf="i?.vista360">
-                                <img loading="lazy" src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
+                                <img ngSrc="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
                             </a>
                             <a [href]="i.url_waze" target="_blank" *ngIf="i?.url_waze" class="btn_icon">
                                 <span class="fas fa-map-marker-alt"></span>
                             </a>
                         </div>
                         <a *ngIf="i.interna === 'si'; else notRedirect" routerLink="/proyecto/{{i.url_amigable}}">
-                            <img width="350" height="219" 
+                            <img 
+                            width="350" height="168" 
                             defaultImg
-                            loading="lazy"
-                            [src]="BASE_URL+i.imagen_principal_proyecto" 
+                            [ngSrc]="i.imagen_principal_proyecto" 
                             [alt]="i.alt_principal" 
                             [title]="i.title_principal">
                         </a>
                         <ng-template #notRedirect>
-                            <img width="350" height="219" 
+                            <img width="350" height="168" 
                             defaultImg
-                            loading="lazy"
-                            [src]="BASE_URL+i.imagen_principal_proyecto" 
+                            [ngSrc]="i.imagen_principal_proyecto" 
                             [alt]="i.alt_principal" 
                             [title]="i.title_principal">
                         </ng-template>
@@ -199,8 +186,7 @@
                         <picture>
                             <img 
                                 width="87" height="87" defaultImg
-                                loading="lazy"
-                                [src]="BASE_URL+i.logo_proyecto" 
+                                [ngSrc]="i.logo_proyecto" 
                                 [alt]="i.alt_logo" 
                                 [title]="i.title_logo">
                         </picture>
@@ -218,7 +204,7 @@
                         </div>
                     </div>
                     <div class="franja_p">
-                        <img loading="lazy" width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                        <img width="20" height="20" ngSrc="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
                         <span>{{i.texto_adicional}}</span>
                     </div>
                     <div class="ctas_proyectos" 
@@ -255,9 +241,8 @@
                     <div class="item_elegir" *ngFor="let i of itemsWhyChooseUs">
                         <picture>
                             <img 
-                                loading="lazy" 
                                 width="75" height="75" 
-                                [src]="BASE_URL+i.imagen?.[0]" 
+                                [ngSrc]="i.imagen?.[0]" 
                                 [alt]="i.imagen_alt" 
                                 [title]="i.imagen_title">
                         </picture>
@@ -290,8 +275,9 @@
                         <picture>
                             <img 
                                 loading="lazy"
-                                width="50" height="50" 
-                                [src]="BASE_URL+i.imagen?.[0]" 
+                                width="50" 
+                                height="50" 
+                                [ngSrc]="i.imagen?.[0]" 
                                 [alt]="i.imagen_alt?.[0]">
                         </picture>
                         <label for="">
@@ -302,14 +288,13 @@
             </div>
             <picture>
                 <img 
-                    loading="lazy"
-                    width="107" height="46" class="logo_edge" 
-                    [src]="BASE_URL+data.logo_seccion_para_el_planeta" 
+                    width="107" 
+                    height="46" class="logo_edge" 
+                    [ngSrc]="data.logo_seccion_para_el_planeta" 
                     [alt]="data.logo_seccion_para_el_planeta_alt">
                 <img 
-                    loading="lazy"
                     width="414" height="284" class="img_pri_edge" 
-                    [src]="BASE_URL+data.imagen_seccion_para_el_planeta" 
+                    [ngSrc]="data.imagen_seccion_para_el_planeta" 
                     [alt]="data.imagen_seccion_para_el_planeta_alt">
                 <span class="hashtag">{{data.hashtag_seccion_para_el_planeta}}</span>
             </picture>
