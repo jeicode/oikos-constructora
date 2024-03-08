@@ -40,12 +40,6 @@ export class SurveyModalComponent implements OnInit {
                 }
             }
         });
-
-        setTimeout(() => {
-            if (this.encuesta[0].id_encuesta != null && this.encuesta[0].id_encuesta != '') {
-                this.mostrarEncuesta = true;
-            }
-        }, 30000)
     }
 
     ngOnInit(): void {
@@ -58,6 +52,9 @@ export class SurveyModalComponent implements OnInit {
 
     async getEncuestaActiva() {
         this.encuesta = await this.pageService.getEncuestaActiva(this.agrupada);
+        if (this.encuesta?.[0]?.id_encuesta) {
+            this.mostrarEncuesta = true;
+        }
     }
 
     activarEncuesta(cerrar?: any) {
