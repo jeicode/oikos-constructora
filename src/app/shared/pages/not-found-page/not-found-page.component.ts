@@ -32,14 +32,8 @@ export class NotFoundPageComponent implements OnInit {
 
 
   async init(){
-    const tasks = [
-      () => this.getData(),
-      () => this.getImages()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+    await this.getData()
+    await this.getImages()
   }
 
   async getData(){
