@@ -9,6 +9,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dl": "ng build && cd dist/ && npx http-server -o -b --cors --proxy http://localhost:8080",
     "build": "ng build --base-href /constructora/",
     "build:test": "ng build --base-href /constructora/test/",
     "watch": "ng build --watch --configuration development",
