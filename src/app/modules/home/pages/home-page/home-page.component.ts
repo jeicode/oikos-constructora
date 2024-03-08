@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
 import { Subject } from 'rxjs';
 import { BannerHome, Zona } from 'src/app/core/models/banner-home.model';
 import { Project } from 'src/app/core/models/project.model';
@@ -9,11 +11,35 @@ import { ConfigService } from 'src/app/shared/services/functions/config.service'
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { environment } from 'src/environments/environment.prod';
 import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
+import { NgFor, NgIf, NgOptimizedImage, NgStyle } from '@angular/common';
 
 
+import { SwiperModule } from 'swiper/angular';
+import { DefaultImgDirective } from 'src/app/shared/directives/default-img.directive';
+import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
+import { ModalPreLaunchProjectComponent } from 'src/app/shared/components/modal-pre-launch-project/modal-pre-launch-project.component';
+import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
+import { ThousandNumber } from 'src/app/shared/pipes/thousand-number.pipe';
+
+
+const CommonModules = [NgIf, NgFor, NgStyle]
 SwiperCore.use([Navigation, Pagination]);
 @Component({
   selector: 'app-home-page',
+  standalone: true,
+  imports: [
+    ...CommonModules,
+    RouterLink,
+    DefaultImgDirective,
+    NgOptimizedImage,
+
+    SwiperModule,
+    ThousandNumber,
+    SortArrayStringSplitPipe,
+
+    ModalPreLaunchProjectComponent,
+    WppModalProjectComponent,
+  ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
@@ -49,7 +75,8 @@ export class HomePageComponent implements OnInit {
     },
 }
 
-  constructor(private projectService: ProjectService, private pageService: PageService,
+  constructor(private projectService: ProjectService, 
+              private pageService: PageService,
               public responsiveService: ResponsiveService, public configServ:ConfigService,
               private currencyConverter:CurrencyConverterService) { }
 

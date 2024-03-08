@@ -5,7 +5,7 @@ import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-p
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    loadComponent: () => import('./modules/home/pages/home-page/home-page.component').then( m => m.HomePageComponent)
   }, 
   {
     path: 'contactanos',
