@@ -18,7 +18,7 @@ import { provideImgixLoader } from '@angular/common';
     LayoutModule
   ],
   providers: [
-    provideImgixLoader("https://oikos-constructora.imgix.net/"),
+    provideImgixLoader("https://www.oikos.com.co/constructora/"),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { SeoService } from "src/app/shared/services/functions/seo.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class MapaGuard implements CanActivate {
+export class MapaGuard  {
     constructor(  private pageService: PageService, 
                   private seoService: SeoService) { }
 

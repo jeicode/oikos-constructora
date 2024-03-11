@@ -35,9 +35,7 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
       this.init();
-    }, 1500);
   }
 
   async init(){
