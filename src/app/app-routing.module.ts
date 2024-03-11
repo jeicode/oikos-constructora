@@ -6,7 +6,7 @@ import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-p
 const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./modules/home/pages/home-page/home-page.component').then( m => m.HomePageComponent),
+    loadComponent: () => import('./modules/home/home-page.component').then( m => m.HomePageComponent),
     canActivate: [homeGuard]
   }, 
   {

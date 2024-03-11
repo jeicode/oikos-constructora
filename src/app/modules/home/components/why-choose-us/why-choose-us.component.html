@@ -1,0 +1,24 @@
+@if (data && itemsWhyChooseUs().length > 0) {
+    <div class="bg_grad">
+        <section class="s_porque_elegir">
+            <div class="cnt_central">
+                <div class="c_porque_elegir">
+                    <h2 class="title_section al-center" [innerHtml]="data.titulo_por_que_elegir"></h2>
+                    <div class="cnt_items_elegir">
+                        @for (i of itemsWhyChooseUs(); track $index) {
+                        <div class="item_elegir">
+                            <picture>
+                                <img width="75" height="75" [ngSrc]="i.imagen?.[0]" [alt]="i.imagen_alt"
+                                    [title]="i.imagen_title">
+                            </picture>
+                            <div class="txt_elegir" [innerHtml]="i.descripcion_item_por_que_elegirnos_home">
+                            </div>
+                        </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+}
