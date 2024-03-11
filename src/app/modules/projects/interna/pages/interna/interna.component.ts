@@ -99,7 +99,7 @@ export class InternaComponent implements OnInit {
     this.notifyChanges.next({ openModal: true });
   }
 
-  resolved(captchaResponse: string) {
+  resolved(captchaResponse: any) {
     this.captcha = captchaResponse;
   }
 
