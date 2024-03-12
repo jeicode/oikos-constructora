@@ -2,7 +2,7 @@
     <section class="s_home_hero">
             <div class="swiper swiperHomeHero">
                 <swiper [config]="config">
-                    @for (i of [bannersHome()[0]]; track $index) {
+                    @for (i of bannersHome(); track $index) {
                         <ng-template swiperSlide>
                             @if (i.titulo_proyecto) {
                                 <div class="swiper-slide">
