@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, inject, Input, OnInit, signal, WritableSignal } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-why-choose-us',
@@ -10,6 +11,8 @@ import { PageService } from 'src/app/shared/services/api/page.service';
   styleUrl: '../../home-page.component.css'
 })
 export class WhyChooseUsComponent implements OnInit {
+
+  IMG_URL = signal(environment.imagenes_url)
 
   @Input() data:any;
   itemsWhyChooseUs:WritableSignal<any> = signal([])

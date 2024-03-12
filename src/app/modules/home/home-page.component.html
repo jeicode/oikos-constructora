@@ -2,28 +2,16 @@
     <app-projects-banner></app-projects-banner>
 }
 
-@defer (on viewport) {
+@defer (){
     <app-projects-list></app-projects-list>
 }
-@placeholder(minimum 800ms){
-    <div></div>
-}
 
-
-
-@defer (on viewport){
-    <app-why-choose-us [data]="data"></app-why-choose-us>
-}
-@placeholder(minimum 800ms){
-    <div></div>
-}
-
-
-
-@defer (on viewport) {
-    <app-items-planet [data]="data" ></app-items-planet>
-}
-
-@placeholder(minimum 800ms){
-    <div></div>
+@defer (on timer(800ms)) {
+    @defer (on viewport) {
+        <app-why-choose-us [data]="data"></app-why-choose-us>
+        <app-items-planet [data]="data" ></app-items-planet>
+    }
+    @placeholder {
+        <div class=""></div>
+    }
 }

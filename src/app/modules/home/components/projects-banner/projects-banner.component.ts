@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { BannerHome } from 'src/app/core/models/banner-home.model';
 import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
 import { PageService } from 'src/app/shared/services/api/page.service';
+import { environment } from 'src/environments/environment';
 import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
 
@@ -29,6 +30,7 @@ SwiperCore.use([Navigation, Pagination]);
 })
 export class ProjectsBannerComponent implements OnInit {
 
+  IMG_URL = signal(environment.imagenes_url)
   pageService = inject(PageService);
   bannersHome:WritableSignal<BannerHome[] > = signal([])
 

@@ -1,32 +1,33 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 
 declare var $:any;
 @Component({
   standalone: true,
-  imports:[NgFor, NgClass, NgIf, ReactiveFormsModule, RouterModule,NgOptimizedImage],
+  imports:[NgClass, RouterModule, NgOptimizedImage],
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
+  IMG_URL = signal(environment.imagenes_url)
+
+
   // injects
   pageService = inject(PageService)
   router = inject(Router)
 
-  BASE_URL:string = environment.imagenes_url;
   menuMobileIsActive:boolean = false;
 
   homeIsActive          : boolean = false;
   suscribeListenRouter  : Subscription;
   
   // collections
-  logos: any = [];
+  logos:WritableSignal<any> = signal([]);
   linksHeader:any[] = []
 
   constructor( ) {
@@ -55,9 +56,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   async getCollectionsPage(){
     this.linksHeader = await this.pageService.getElementsContent('titulo menu', 'menu');
-    this.logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
+    const logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
+    this.logos.set(logos);
   }
-
 
 
   toogleActiveMenuMobile(){

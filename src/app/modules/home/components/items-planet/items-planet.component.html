@@ -19,7 +19,7 @@
                                         loading="lazy"
                                         width="50" 
                                         height="50" 
-                                        [ngSrc]="i.imagen?.[0]" 
+                                        [ngSrc]="IMG_URL()+i.imagen?.[0]" 
                                         [alt]="i.imagen_alt?.[0]">
                                 </picture>
                                 <label for="">
@@ -33,11 +33,11 @@
                     <img 
                         width="107" 
                         height="46" class="logo_edge" 
-                        [ngSrc]="data.logo_seccion_para_el_planeta" 
+                        [ngSrc]="IMG_URL()+data.logo_seccion_para_el_planeta" 
                         [alt]="data.logo_seccion_para_el_planeta_alt">
                     <img 
                         width="414" height="284" class="img_pri_edge" 
-                        [ngSrc]="data.imagen_seccion_para_el_planeta" 
+                        [ngSrc]="IMG_URL()+data.imagen_seccion_para_el_planeta" 
                         [alt]="data.imagen_seccion_para_el_planeta_alt">
                     <span class="hashtag">{{data.hashtag_seccion_para_el_planeta}}</span>
                 </picture>

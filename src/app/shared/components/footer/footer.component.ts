@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ConfigFooter } from 'src/app/core/models/config-footer.model';
 import { PageService } from 'src/app/shared/services/api/page.service';
@@ -16,6 +16,8 @@ declare const $:any;
   templateUrl: './footer.component.html'
 })
 export class FooterComponent implements OnInit {
+
+  IMG_URL = signal(environment.imagenes_url)
 
   loadingData = false
   BASE_URL:string = environment.imagenes_url;

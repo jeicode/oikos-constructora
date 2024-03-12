@@ -5,20 +5,18 @@ import { LayoutModule } from './shared/components/layout.module';
 import { HttpInterceptorService } from './core/interceptors/http-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideImgixLoader } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     LayoutModule
   ],
   providers: [
-    provideImgixLoader("https://www.oikos.com.co/constructora/"),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

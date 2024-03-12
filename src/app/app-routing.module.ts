@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { homeGuard } from './core/guards/home.guard';
-import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {
@@ -47,11 +46,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/mapa/mapa.module').then( m => m.MapaModule )
   },{
     path: '**',
-    component: NotFoundPageComponent
+    loadComponent: () => import('../app/shared/pages/not-found-page/not-found-page.component').then( m => m.NotFoundPageComponent),
   }, 
   {
     path: '404',
-    component: NotFoundPageComponent
+    loadComponent: () => import('../app/shared/pages/not-found-page/not-found-page.component').then( m => m.NotFoundPageComponent),
   }
 ];
 

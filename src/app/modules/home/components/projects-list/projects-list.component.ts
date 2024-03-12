@@ -8,6 +8,7 @@ import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-pr
 import { ThousandNumber } from 'src/app/shared/pipes/thousand-number.pipe';
 import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
+import { environment } from 'src/environments/environment';
 
 const CommonModules = [NgStyle]
 @Component({
@@ -26,17 +27,19 @@ const CommonModules = [NgStyle]
 })
 export class ProjectsListComponent implements OnInit {
 
+  IMG_URL = signal(environment.imagenes_url)
+
+
   housingProjects:WritableSignal<Project[]> = signal([])
   projectService = inject(ProjectService);
   currencyConverter = inject(CurrencyConverterService)
 
-  projectSelectedToModal:Project = new Project()
+  projectSelectedToModal:Project = new Project;
 
   notifyChanges: Subject<any> = new Subject<any>();
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
   ngOnInit(): void {
-    console.log('%csrc/app/modules/home/components/projects-list/projects-list.component.ts:39 "object"', 'color: #007acc;', "object");
     this.getProjectsHome()
   }
 
