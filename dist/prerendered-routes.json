@@ -1,0 +1,14 @@
+{
+  "routes": [
+    "/",
+    "/404",
+    "/contactanos",
+    "/legales",
+    "/mapa-del-sitio",
+    "/noticias-constructora",
+    "/pagos-constructora",
+    "/proyectos-construccion-comerciales-industriales",
+    "/proyectos-construccion-vivienda",
+    "/proyectos-ejecutados"
+  ]
+}

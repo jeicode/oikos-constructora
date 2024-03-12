@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
 import { PageService } from '../../services/api/page.service';
+import { ConfigService } from '../../services/functions/config.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -14,7 +15,7 @@ import { PageService } from '../../services/api/page.service';
     RouterModule
   ]
 })
-export class BreadcrumbComponent implements OnInit {
+export class BreadcrumbComponent implements OnInit, OnDestroy {
 
   @Input() cssClass:string = "";
   @Input() colorTxt:string = "" || "black"
@@ -24,7 +25,9 @@ export class BreadcrumbComponent implements OnInit {
 
   private paths:string[] = [];
   private ngOnInitFirstCalled:boolean = false;
-  private suscribeListenRouter:Subscription;
+  suscribeListenRouter:Subscription;
+
+  configService = inject(ConfigService)
 
   rutas       : any = [];
 
@@ -44,6 +47,10 @@ export class BreadcrumbComponent implements OnInit {
     this.init();
   }
 
+  ngOnDestroy(): void {
+    this.suscribeListenRouter.unsubscribe()
+  }
+
   async init(){
     const tasks = [
       () => this.getBreadCrumb()
@@ -55,7 +62,9 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   async getBreadCrumb(){
-    this.rutas = await this.pageService.getBreadCrumb(window.location.href);
+    if (this.configService.isBrowser()){
+      this.rutas = await this.pageService.getBreadCrumb(window.location.href);
+    }
   }
 
 

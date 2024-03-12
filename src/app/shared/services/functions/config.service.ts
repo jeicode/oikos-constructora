@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare function heroProyectos() : any;
@@ -12,15 +12,13 @@ declare function bannerEjecutados() : any;
 })
 export class ConfigService {
 
-  infoIsLoaded: boolean = false
-  isBrowser:boolean  = false;
+  plataformId = inject(PLATFORM_ID)
+  isBrowser:WritableSignal<boolean>  = signal( isPlatformBrowser(this.plataformId));
+  router = inject(Router)
 
-  constructor(@Inject(PLATFORM_ID) private plataformId : any, private router: Router) {
-    this.isBrowser = isPlatformBrowser(this.plataformId)
-  }
 
   goUpPage(top:number = 0){
-    if (this.isBrowser) {
+    if (this.isBrowser()) {
       window.scroll({
               top,
               left: 0,
@@ -30,16 +28,18 @@ export class ConfigService {
   }
 
   redirectUrl(url: string = ""){
-    if(url.includes('https://')){
-      window.location.href = url
-    } else if (url) {
-      this.router.navigateByUrl(url)
+    if (this.isBrowser()){
+      if(url.includes('https://')){
+        window.location.href = url
+      } else if (url) {
+        this.router.navigateByUrl(url)
+      }
     }
   }
 
 
   loadHeroProyectos(time = 0){
-    if (this.isBrowser) {
+    if (this.isBrowser()) {
       setTimeout(() => {
         heroProyectos()
       }, time);
@@ -47,7 +47,7 @@ export class ConfigService {
   }
 
   loadChangeTab(time = 0){
-    if (this.isBrowser) {
+    if (this.isBrowser()) {
       setTimeout(() => {
         changeTab()
       }, time);
@@ -55,7 +55,7 @@ export class ConfigService {
   }
 
   loadBannerProyectos(time = 0){
-    if (this.isBrowser) {
+    if (this.isBrowser()) {
       setTimeout(() => {
         bannerProyectos()
       }, time);
@@ -63,7 +63,7 @@ export class ConfigService {
   }
 
   loadbannerEjecutados(time = 0){
-    if (this.isBrowser) {
+    if (this.isBrowser()) {
       setTimeout(() => {
         bannerEjecutados()
       }, time);

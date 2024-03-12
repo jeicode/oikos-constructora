@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { FormService } from '../../services/functions/form.service';
 import { regexEmail, regexNumber } from '../../data/regex';
 import { ProjectService } from '../../services/api/project.service';
+import { ConfigService } from '../../services/functions/config.service';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   })
 
   constructor(private fb:FormBuilder, private formService:FormService,
+              private configService: ConfigService,
               private projectService: ProjectService) { }
 
 
@@ -75,10 +77,12 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
 
 
   redirectToWppLink(){
-    if(this.project.origin=='home')
-      window.open(this.project.api_wsp, '_blank')
-    else
-      window.open(this.project.api_wsp_flotante, '_blank')
+    if (this.configService.isBrowser()){
+      if(this.project.origin=='home')
+        window.open(this.project.api_wsp, '_blank')
+      else
+        window.open(this.project.api_wsp_flotante, '_blank')
+    }
   }
 
 

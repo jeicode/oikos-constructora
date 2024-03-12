@@ -187,14 +187,14 @@ export class InternaComponent implements OnInit {
   }
 
 
-
-
   trasladar(el: any) {
-    var pos = Number($("#" + el).offset().top) - 100;
-    window.scrollTo({ top: pos, behavior: 'smooth' });
-
-    $(".state").removeClass('active');
-    $("." + el).addClass('active');
+    if (this.configServ.isBrowser()){
+      var pos = Number($("#" + el).offset().top) - 100;
+      window.scrollTo({ top: pos, behavior: 'smooth' });
+  
+      $(".state").removeClass('active');
+      $("." + el).addClass('active');
+    }
   }
 
   async calculoPorcentaje() {
@@ -254,7 +254,7 @@ export class InternaComponent implements OnInit {
   }
 
   async insertContact() {
-    if (this.contactForm.valid && !this.sendingContact) {
+    if (this.contactForm.valid && !this.sendingContact && this.configServ.isBrowser()) {
       this.sendingContact = true
       this.showErrors = false
       const values = {
@@ -304,7 +304,7 @@ export class InternaComponent implements OnInit {
   }
 
   async insertContactForm() {
-    if (this.contactForm2.valid && this.captcha && !this.sendingContact) {
+    if (this.contactForm2.valid && this.captcha && !this.sendingContact && this.configServ.isBrowser()) {
       this.sendingContact = true
       this.showErrors = false
       const values = {
@@ -330,7 +330,9 @@ export class InternaComponent implements OnInit {
   }
 
   goToVentas() {
-    window.location.href = 'proyectos-construccion-vivienda';
+    if (this.configServ.isBrowser()){
+      window.location.href = 'proyectos-construccion-vivienda';
+    }
   }
 
   toogleFlotante() {

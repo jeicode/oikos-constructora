@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { firstValueFrom } from 'rxjs';
+import { ConfigService } from '../functions/config.service';
 
 const { api_url: API_URL} = environment
 declare var $:any;
@@ -13,6 +14,8 @@ export class PageService {
 
   private _http = inject(HttpClient)
   currentPage : any;
+
+  configService = inject(ConfigService)
   
 
   /**
@@ -175,8 +178,10 @@ export class PageService {
 
 
   closeNav(){
-    if($(".btn_menu_movil").hasClass('active')){
-      $(".btn_menu_movil").click();
+    if (this.configService.isBrowser()){
+      if($(".btn_menu_movil").hasClass('active')){
+        $(".btn_menu_movil").click();
+      }
     }
   }
 
