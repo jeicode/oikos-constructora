@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { homeGuard } from './core/guards/home.guard';
 import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    loadComponent: () => import('./modules/home/pages/home-page/home-page.component').then( m => m.HomePageComponent),
+    canActivate: [homeGuard]
   }, 
   {
     path: 'contactanos',

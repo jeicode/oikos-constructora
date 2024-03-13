@@ -1,24 +1,31 @@
 <header class="header">
     <div class="topbar_h">
         <div class="cnt_inf_topbar_h">
-            <div *ngFor="let i of logos">
-                <a  *ngIf="i?.enlace?.includes('https://') ||
-                    i?.enlace?.includes('http://'); else routerLink" 
-                    [href]="i?.enlace" target="_blank" class="btn_oikos_logos">
-                    <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
-                    <span class="txt_logos_h">{{i?.field_content}}</span>
-                </a>
-                <ng-template #routerLink>
-                    <a href="i?.enlace" target="_blank" class="btn_oikos_logos">
-                        <img width="38" height="24" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
+            <div class="ctn_logos">
+                <div *ngFor="let i of logos">
+                    <a *ngIf="i.enlace.includes('https://'); else routerLink" [href]="i.enlace" target="_blank"
+                        class="btn_oikos_logos">
+                        <img 
+                            width="38" 
+                            height="24" 
+                            [ngSrc]="i.imagen?.[0]" 
+                            [alt]="i.imagen_alt?.[0]"
+                            [title]="i.imagen_title?.[0]"
+                        >
+                        <span class="txt_logos_h">{{i?.field_content}}</span>
                     </a>
-                </ng-template>
-
-                
+                    <ng-template #routerLink>
+                        <a [href]="i.enlace" target="_blank" class="btn_oikos_logos">
+                            <img 
+                                width="38" 
+                                height="24" 
+                                [ngSrc]="i.imagen?.[0]" 
+                                [alt]="i.imagen_alt?.[0]"
+                                [title]="i.imagen_title?.[0]">
+                        </a>
+                    </ng-template>
+                </div>
             </div>
-
-
-
 
             <a href="https://clientes.oikos.com.co/zonaclientesoikos/" target="_blank" class="btn_z_clientes">
                 Zona de Clientes
@@ -27,66 +34,63 @@
                 <div class="txt_pse">Pague aquí</div>
                 <span class="ic_pse"></span>
             </a>
-        </div> 
+        </div>
         <div class="cnt_esp_eng">
             <a class="btn_idioma active">
                 <span class="ic_bandera ">
-                    <img src="assets/images/diseno/ic_col.svg" width="14" height="12" alt="">
+                    <img ngSrc="assets/images/diseno/ic_col.svg" width="14" height="12" alt="">
                 </span>
                 Es
             </a>
             <a href="https://www.oikosconstructora.us/" class="btn_idioma ">
                 <span class="ic_bandera">
-                    <img src="assets/images/diseno/ic_usa.svg" width="14" height="12" alt="">
-                </span> 
+                    <img ngSrc="assets/images/diseno/ic_usa.svg" width="14" height="12" alt="">
+                </span>
                 En
             </a>
         </div>
     </div>
     <div class="nav_bar_h">
 
-    <h1 class="logo_pri" *ngIf="homeIsActive; else noHome">
-        <a routerLink="/">
-        Grupo Oikos
-        </a>
-    </h1>
-    
-    <ng-template #noHome>
-        <div class="logo_pri">
+        <h1 
+            class="logo_pri" 
+            *ngIf="homeIsActive; else noHome">
             <a routerLink="/">
-            Grupo Oikos
+                Grupo Oikos
             </a>
-        </div>
-    </ng-template>
+        </h1>
 
-    <nav class="nav" [ngClass]="{'active': menuMobileIsActive}">
-        <ul>
-            <li *ngFor="let i of linksHeader" (click)="closeNav()">                
-                <a  *ngIf="i?.enlace_menu?.includes('https://') ||
-                    i?.enlace_menu?.includes('http://'); else routerLink" 
-                    [href]="i?.enlace_menu" target="_blank">
-                    {{i?.field_content}}
+        <ng-template #noHome>
+            <div class="logo_pri">
+                <a routerLink="/">
+                    Grupo Oikos
                 </a>
+            </div>
+        </ng-template>
 
-                <ng-template #routerLink>
-                    <a routerLink="{{i?.enlace_menu}}">{{i?.field_content}}</a>
-                </ng-template>
-            </li>
-            <a routerLink="/contactanos" class="btn contacto_h" (click)="closeNav()">
-                Contacto
-            </a>                
-        </ul>
-    </nav>
-    <div class="btn_menu_movil" [ngClass]="{'active': menuMobileIsActive}" 
-        (click)="toogleActiveMenuMobile()">
-        <span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
+        <nav *ngIf="linksHeader.length > 0" class="nav" [ngClass]="{'active': menuMobileIsActive}">
+            <ul>
+                <li *ngFor="let i of linksHeader" (click)="closeNav()">
+                    <a *ngIf="i.enlace_menu.includes('https://'); else routerLink" [href]="i.enlace_menu"
+                        target="_blank">
+                        {{i.field_content}}
+                    </a>
+
+                    <ng-template #routerLink>
+                        <a routerLink="{{i.enlace_menu}}">{{i.field_content}}</a>
+                    </ng-template>
+                </li>
+                <a routerLink="/contactanos" class="btn contacto_h" (click)="closeNav()">
+                    Contacto
+                </a>
+            </ul>
+        </nav>
+        <div class="btn_menu_movil" [ngClass]="{'active': menuMobileIsActive}" (click)="toogleActiveMenuMobile()">
+            <span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </div>
     </div>
-    </div>
-
-
-    
 </header>

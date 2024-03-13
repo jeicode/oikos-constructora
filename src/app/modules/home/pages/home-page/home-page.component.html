@@ -1,270 +1,317 @@
-<body>
-    <section class="s_home_hero">
-        <div class="swiper swiperHomeHero">
-            <swiper [config]="config">
-                <ng-template swiperSlide *ngFor="let i of bannersHome">
-                    <div class="swiper-slide" *ngIf="i?.titulo_proyecto!='' && i?.titulo_proyecto!=null; else bannerEa">
-                        <!-- IMAGEN DE FONDO BLANCA -->
-                        <div class="bg_img_h_hero" data-swiper-parallax-opacity="0.6">
-                            <img class="bg_img_h_hero" width="1920" height="700" 
-                                [src]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)" >
-                        </div>
-    
-                        <div class="cnt_h_hero">
-                            <div class="desc_txt_hero">
-                                <aside class="aside_prjct" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
-                                    <picture>
-                                        <img defaultImg width="200" height="200" [src]="BASE_URL+i?.logo_proyecto">
-                                    </picture>
-                                    <div class="dt_prjct" [ngStyle]="{'background-color': i?.color_primario }">
-                                        <div class="place_prjct">
-                                            {{i?.titulo_proyecto}}
-                                        </div>
-                                        <div class="item_prjct" *ngFor='let z of i?.zonas | sortArraySplitStr:i?.beneficios_proyecto '>
-                                            <img defaultImg  width="28" height="28" [src]="BASE_URL+z?.imagen" [title]="z?.title" [alt]="z?.alt">
-                                            <span>{{z?.nombre}}</span>
-                                        </div>
-                                    </div>
-                                </aside>
-                                <div class="datos_info_prjct" data-swiper-parallax="-600" data-swiper-parallax-duration="800" >
-                                    <div class="tag" [ngStyle]="{'background-color': i?.color_secundario }" data-swiper-parallax-opacity="0.6" 
-                                        data-swiper-parallax="-100" data-swiper-parallax-duration="800">
-                                        {{ i?.estado_proyecto }}
-                                    </div>
-                                    <h2 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-300" data-swiper-parallax-duration="800">{{i?.field_content}}</h2>
-                                    <h3 data-swiper-parallax-opacity="0.6" data-swiper-parallax="-500" data-swiper-parallax-duration="800">{{i?.descripcion_banner_home}}</h3>
-                                    <h2 *ngIf="i?.valor_proyecto" data-swiper-parallax-opacity="0.6" data-swiper-parallax="-700" data-swiper-parallax-duration="800"> 
-                                        <span> Desde</span> 
-                                        <br>  
-                                        {{ i?.valor_proyecto }}
-                                    </h2>
-                                    <a data-swiper-parallax-opacity="0.6" data-swiper-parallax="-900" 
-                                        data-swiper-parallax-duration="800" href="" class="btn" [routerLink]="i?.link_cta_banner">
-                                        {{i?.texto_cta_banner}}
-                                    </a>
-                                </div>
-                            </div>
-    
-                            <!-- CONTENEDOR DE IMAGENES PRINCIPALES DEL PROYECTO -->
-                            <div class="grand_img_h_hero">
-                                <picture class="grand_img_hero1" data-swiper-parallax-duration="600" 
-                                        *ngIf="i.imagen[0]; else mainImage"
-                                        data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
-                                    <img width="516" height="454" [src]="BASE_URL+i.imagen[0]" 
-                                        [alt]="i.imagen_alt[0]" 
-                                        [title]="i.imagen_title[0]">
-                                </picture>
+<section class="s_home_hero">
+    <div class="swiper swiperHomeHero" *ngIf="bannersHome.length > 0">
+        <swiper [config]="config">
+            <ng-template swiperSlide *ngFor="let i of bannersHome; let idxBanner=index">
+                <div class="swiper-slide" *ngIf="i.titulo_proyecto; else bannerEa">
 
-                                <ng-template #mainImage>
-                                    <picture class="grand_img_hero1" data-swiper-parallax-duration="600" 
-                                            *ngIf="i.galeria && (i.galeria.length > 0)"
-                                            data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
-                                        <img width="516" height="454" [src]="BASE_URL+i.galeria[0].field_content" 
-                                            [alt]="i.galeria[0].alt" [title]="i.galeria[0].title">
-                                    </picture>
-                                </ng-template>
-
-                                <picture class="grand_img_hero_mini" data-swiper-parallax-duration="700" 
-                                        *ngIf="i.galeria && (i.galeria.length > 1)"
-                                        data-swiper-parallax-scale="0.15" data-swiper-parallax-opacity="0.5">
-                                    <img width="204" height="137" [src]="BASE_URL+i.galeria[1].field_content" [alt]="i.galeria[1].alt" [title]="i.galeria[1].title">
-                                </picture>
-                            </div>
-                            
-                        </div>
+                    <!-- IMAGEN DE FONDO -->
+                    <div class="bg_img_h_hero">
+                        <img 
+                            width="1920" 
+                            height="700" 
+                            [priority]="idxBanner==0"
+                            [ngSrc]="i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content" 
+                        >
                     </div>
+                    <!-- IMAGEN DE FONDO -->
 
-                    <ng-template #bannerEa>
-                        <div class="swiper-slide">
-                            <div class="bg_img_h_hero_2" data-swiper-parallax-opacity="0.6">
-                                <a href="{{i?.link_cta_banner}}" *ngIf="i?.link_cta_banner!='' && i?.link_cta_banner!=null; else imgBannerWithoutLink">
+
+                    <!-- CONTENIDO PROYECTO -->
+                    <div class="cnt_h_hero">
+
+                        <!-- LOGO, ZONAS DESCRIPCION -->
+                        <div class="desc_txt_hero">
+                            <aside class="aside_prjct" data-swiper-parallax="-300" data-swiper-parallax-duration="800">
+                                    <img 
+                                        defaultImg 
+                                        width="100" 
+                                        height="100" 
+                                        [ngSrc]="i.logo_proyecto">
+                                <div class="dt_prjct" [ngStyle]="{'background-color': i?.color_primario }">
+                                    <div class="place_prjct">
+                                        {{i?.titulo_proyecto}}
+                                    </div>
+                                    <div class="item_prjct" *ngFor='let z of i?.zonas | sortArraySplitStr:i.beneficios_proyecto '>
+                                        <img 
+                                            defaultImg  
+                                            width="28" 
+                                            height="28" 
+                                            [ngSrc]="z.imagen" 
+                                            [title]="z.title" 
+                                            [alt]="z.alt">
+                                        <span>{{z.nombre}}</span>
+                                    </div>
+                                </div>
+                            </aside>
+                            <div class="datos_info_prjct">
+                                <div 
+                                    class="tag" [ngStyle]="{'background-color': i?.color_secundario }">
+                                    {{ i.estado_proyecto }}
+                                </div>
+                                <h2>{{i.field_content}}</h2>
+                                <h3>{{i.descripcion_banner_home}}</h3>
+                                <h2 *ngIf="i.valor_proyecto"> 
+                                    <span> Desde</span> 
+                                    <br>  
+                                    {{ i?.valor_proyecto }}
+                                </h2>
+                                <a class="btn" [routerLink]="i.link_cta_banner">
+                                    {{i.texto_cta_banner}}
+                                </a>
+                            </div>
+                        </div>
+                        <!-- LOGO, ZONAS DESCRIPCION -->
+
+
+                        <!-- CONTENEDOR DE IMAGENES PRINCIPALES DEL PROYECTO -->
+                        <div class="grand_img_h_hero">
+                            <picture class="grand_img_hero1" >
+                                <img 
+                                    width="516" 
+                                    height="454" 
+                                    [priority]="idxBanner==0"
+                                    [ngSrc]="(i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)" 
+                                    [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt" 
+                                    [title]="i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title"
+                                >
+                            </picture>
+
+
+                            <picture 
+                                    class="grand_img_hero_mini"
+                                    *ngIf="i.galeria?.[1]">
+                                <img 
+                                    width="204" 
+                                    height="137" 
+                                    [ngSrc]="i.galeria[1].field_content" 
+                                    [alt]="i.galeria[1].alt" 
+                                    [title]="i.galeria[1].title">
+                            </picture>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <ng-template #bannerEa>
+                    <div class="swiper-slide">
+                        <div class="bg_img_h_hero_2" data-swiper-parallax-opacity="0.6">
+                            <a 
+                                href="{{i.link_cta_banner}}" 
+                                *ngIf="i?.link_cta_banner; else imgBannerWithoutLink">
+                            <picture>
+                                <source media="(max-width: 425px)" srcset="{{BASE_URL+i.imagen[1]}}">
+                                <source media="(max-width: 1024px)" srcset="{{BASE_URL+i.imagen[2]}}">
+
+                                <source 
+                                media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
+
+                                <img 
+                                    [ngSrc]="i.imagen[1]" 
+                                    alt="Imagen" class="bg_img_h_hero_2" 
+                                    width="1920" height="700">
+                            </picture>
+                            </a>
+
+                            <ng-template #imgBannerWithoutLink>
+                                
                                 <picture>
                                     <source media="(max-width: 425px)" srcset="{{BASE_URL+i.imagen[1]}}">
-
                                     <source media="(max-width: 1024px)" srcset="{{BASE_URL+i.imagen[2]}}">
 
                                     <source 
                                     media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
 
-                                    <img src="{{BASE_URL+i.imagen[1]}}" alt="Imagen" class="bg_img_h_hero_2" width="1920" height="700">
- 
+                                    <img 
+                                        [ngSrc]="BASE_URL+i.imagen[1]" 
+                                        alt="Imagen" class="bg_img_h_hero_2" 
+                                        width="1920" height="700"
+                                    >
+
                                 </picture>
-                                </a>
+                            </ng-template>
+                        </div>
+                    </div>
+                </ng-template>
+                
+            </ng-template>
+        </swiper>
+        
+    </div>
+    <div class="swiper-pagination"></div>
+</section>
 
-                                <ng-template #imgBannerWithoutLink>
-                                  
-                                    <picture>
-                                        <source media="(max-width: 425px)" srcset="{{BASE_URL+i.imagen[1]}}">
+<div class="bg_grad">
 
-                                        <source media="(max-width: 1024px)" srcset="{{BASE_URL+i.imagen[2]}}">
+    <section class="s_cards_proyectos" *ngIf="housingProjects.length>0">
 
-                                        <source 
-                                        media="(min-width: 1025px)" [srcset]="BASE_URL+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
+        <h2 class="title_section al-center">
+            <span>Proyectos</span> <br> Destacados
+        </h2>
 
-                                        <img src="{{BASE_URL+i.imagen[1]}}" alt="Imagen" class="bg_img_h_hero_2" width="1920" height="700">
+        <div class="cnt_central">
+            <div class="c_cards_proyectos">
+                <div class="card_p" *ngFor="let i of housingProjects">
+                    <picture>
+                        <span 
+                            class="tag_state" 
+                            [ngStyle]="{'background-color': i.color_secundario}">
+                            {{i.estado_proyecto}}
+                        </span>
+                        <div class="btns_icons" *ngIf="i.vista360 || i.url_waze">
+                            <a [href]="i.vista360" target="_blank" class="btn_icon" *ngIf="i?.vista360">
+                                <img ngSrc="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
+                            </a>
+                            <a [href]="i.url_waze" target="_blank" *ngIf="i?.url_waze" class="btn_icon">
+                                <span class="fas fa-map-marker-alt"></span>
+                            </a>
+                        </div>
+                        <a *ngIf="i.interna === 'si'; else notRedirect" routerLink="/proyecto/{{i.url_amigable}}">
+                            <img 
+                            width="350" height="168" 
+                            defaultImg
+                            [ngSrc]="i.imagen_principal_proyecto" 
+                            [alt]="i.alt_principal" 
+                            [title]="i.title_principal">
+                        </a>
+                        <ng-template #notRedirect>
+                            <img width="350" height="168" 
+                            defaultImg
+                            [ngSrc]="i.imagen_principal_proyecto" 
+                            [alt]="i.alt_principal" 
+                            [title]="i.title_principal">
+                        </ng-template>
+                        
+                    </picture>
+                    <h2 class="name_proyecto" [ngStyle]="{'background-color': i.color_primario}">
+                        <picture>
+                            <img 
+                                width="87" height="87" defaultImg
+                                [ngSrc]="i.logo_proyecto" 
+                                [alt]="i.alt_logo" 
+                                [title]="i.title_logo">
+                        </picture>
+                        <div>{{i.titulo_proyecto}}</div>
+                    </h2>
+                    <div class="datos_proyecto">
+                        <h3>{{i.zona_proyecto}} / {{i.ubicacion_proyecto}}</h3>
+                        <h4 *ngIf="i.valor_proyecto_formato">
+                            <span>Desde</span>
+                            ${{i.valor_proyecto_formato}} 
+                        </h4>
+                        <div class="precio_usd" *ngIf="i?.dollar_value">
+                            Precio de referencia 
+                            <b>USD {{i.dollar_value | thousandNumber:'es'}}</b>
+                        </div>
+                    </div>
+                    <div class="franja_p">
+                        <img width="20" height="20" ngSrc="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                        <span>{{i.texto_adicional}}</span>
+                    </div>
+                    <div class="ctas_proyectos" 
+                    *ngIf="i.interna === 'si'; else redirect">
+                        <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
+                            <span class="fab fa-whatsapp"></span> 
+                            Contactar
+                        </a>
 
-                                    </picture>
-                                </ng-template>
-                            </div>
+                        <a routerLink="/proyecto/{{i.url_amigable}}" 
+                            class="btn">
+                            Ver proyecto
+                        </a>
+
+                    </div>
+
+                    <ng-template #redirect>
+                        <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
+                            <a  class="btn" (click)="selectProjectToPreLaunch(i)">
+                                Inscribirse
+                            </a>
                         </div>
                     </ng-template>
-                    
-                </ng-template>
-            </swiper>
-            
+                </div>
+            </div>
         </div>
-        <div class="swiper-pagination"></div>
     </section>
 
-    <div class="bg_grad">
-
-        <section class="s_cards_proyectos">
-
-            <h2 class="title_section al-center">
-                <span>Proyectos</span> <br> Destacados
-            </h2>
-
-            <div class="cnt_central">
-                <div class="c_cards_proyectos">
-                    <div class="card_p" *ngFor="let i of housingProjects">
-                        <picture>
-                            <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
-                            <div class="btns_icons" *ngIf="i?.vista360 || i?.url_waze">
-                                <a [href]="i?.vista360" target="_blank" class="btn_icon" *ngIf="i?.vista360">
-                                    <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
-                                </a>
-                                <a [href]="i?.url_waze" target="_blank" *ngIf="i?.url_waze" class="btn_icon">
-                                    <span class="fas fa-map-marker-alt"></span>
-                                </a>
-                            </div>
-                            <a *ngIf="i?.interna === 'si'; else notRedirect" routerLink="/proyecto/{{i?.url_amigable}}">
-                                <img width="350" height="219" 
-                                defaultImg
-                                [src]="BASE_URL+i?.imagen_principal_proyecto" 
-                                [alt]="i?.alt_principal" 
-                                [title]="i?.title_principal">
-                            </a>
-                            <ng-template #notRedirect>
-                                <img width="350" height="219" 
-                                defaultImg
-                                [src]="BASE_URL+i?.imagen_principal_proyecto" 
-                                [alt]="i?.alt_principal" 
-                                [title]="i?.title_principal">
-                            </ng-template>
-                            
-                        </picture>
-                        <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
-                            <picture>
-                                <img width="87" height="87" defaultImg
-                                    [src]="BASE_URL+i?.logo_proyecto" 
-                                    [alt]="i?.alt_logo" 
-                                    [title]="i?.title_logo">
-                            </picture>
-                            <div>{{i?.titulo_proyecto}}</div>
-                        </h2>
-                        <div class="datos_proyecto">
-                            <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
-                            <h4 *ngIf="i?.valor_proyecto_formato">
-                                <span>Desde</span>
-                                ${{i?.valor_proyecto_formato}} 
-                            </h4>
-                            <div class="precio_usd" *ngIf="i?.dollar_value">
-                                Precio de referencia 
-                                <b>USD {{i?.dollar_value | thousandNumber:'es'}}</b>
-                            </div>
-                        </div>
-                        <div class="franja_p">
-                            <img width="20" height="20" src="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
-                            <span>{{i?.texto_adicional}}</span>
-                        </div>
-                        <div class="ctas_proyectos" 
-                        *ngIf="i?.interna === 'si'; else redirect">
-                            <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
-                                <span class="fab fa-whatsapp"></span> 
-                                Contactar
-                            </a>
-
-                            <a routerLink="/proyecto/{{i?.url_amigable}}" 
-                                class="btn">
-                                Ver proyecto
-                            </a>
-
-                        </div>
-
-                        <ng-template #redirect>
-                            <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
-                                <a  class="btn" (click)="selectProjectToPreLaunch(i)">
-                                    Inscribirse
-                                </a>
-                            </div>
-                        </ng-template>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="s_porque_elegir">
-            <div class="cnt_central">
-                <div class="c_porque_elegir">
-                    <h2 class="title_section al-center" [innerHtml]="data?.titulo_por_que_elegir"></h2>
-                    <div class="cnt_items_elegir">
-                        <div class="item_elegir" *ngFor="let i of itemsWhyChooseUs">
-                            <picture>
-                                <img width="75" height="75" [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt" [title]="i?.imagen_title">
-                            </picture>
-                            <div class="txt_elegir" [innerHtml]="i?.descripcion_item_por_que_elegirnos_home"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-
-    <section class="s_edge">
+    <section class="s_porque_elegir" *ngIf="data && itemsWhyChooseUs.length > 0">
         <div class="cnt_central">
-            <div class="c_edge">
-                <div class="cnt_edge">
-                    <h2 [innerHtml]="data?.titulo_seccion_para_el_planeta"></h2>
-                    <div class="txt_edge_cnt">
-                        <a [routerLink]="data?.link_boton_seccion_para_el_planeta" 
-                            class="btn">{{data?.texto_boton_seccion_para_el_planeta}} 
-                            <span class="fas fa-chevron-right"></span> 
-                        </a> 
-                        {{data?.subtitulo_seccion_para_el_planeta}}
-                    </div>
-                    <div class="cnt_icons_edge">
-                        <div class="icon_edge" *ngFor="let i of itemsPlanet">
-                            <picture>
-                                <img width="50" height="50" [src]="BASE_URL+i?.imagen[0]" 
-                                    [alt]="i?.imagen_alt[0]">
-                            </picture>
-                            <label for="">
-                                {{ i?.field_content}}
-                            </label>
+            <div class="c_porque_elegir">
+                <h2 class="title_section al-center" [innerHtml]="data.titulo_por_que_elegir"></h2>
+                <div class="cnt_items_elegir">
+                    <div class="item_elegir" *ngFor="let i of itemsWhyChooseUs">
+                        <picture>
+                            <img 
+                                width="75" height="75" 
+                                [ngSrc]="i.imagen?.[0]" 
+                                [alt]="i.imagen_alt" 
+                                [title]="i.imagen_title">
+                        </picture>
+                        <div 
+                            class="txt_elegir" 
+                            [innerHtml]="i.descripcion_item_por_que_elegirnos_home">
                         </div>
                     </div>
                 </div>
-                <picture>
-                    <img width="107" height="46" class="logo_edge" 
-                        [src]="BASE_URL+data?.logo_seccion_para_el_planeta" [alt]="data?.logo_seccion_para_el_planeta_alt">
-                    <img width="414" height="284" class="img_pri_edge" 
-                        [src]="BASE_URL+data?.imagen_seccion_para_el_planeta" [alt]="data?.imagen_seccion_para_el_planeta_alt">
-                    <span class="hashtag">{{data?.hashtag_seccion_para_el_planeta}}</span>
-                </picture>
             </div>
         </div>
     </section>
 
-</body>
+</div>
+
+<section class="s_edge" *ngIf="data && itemsPlanet.length > 0">
+    <div class="cnt_central">
+        <div class="c_edge">
+            <div class="cnt_edge">
+                <h2 [innerHtml]="data.titulo_seccion_para_el_planeta"></h2>
+                <div class="txt_edge_cnt">
+                    <a [routerLink]="data.link_boton_seccion_para_el_planeta" 
+                        class="btn">{{data.texto_boton_seccion_para_el_planeta}} 
+                        <span class="fas fa-chevron-right"></span> 
+                    </a> 
+                        {{data.subtitulo_seccion_para_el_planeta}}
+                </div>
+                <div class="cnt_icons_edge">
+                    <div class="icon_edge" *ngFor="let i of itemsPlanet">
+                        <picture>
+                            <img 
+                                loading="lazy"
+                                width="50" 
+                                height="50" 
+                                [ngSrc]="i.imagen?.[0]" 
+                                [alt]="i.imagen_alt?.[0]">
+                        </picture>
+                        <label for="">
+                            {{ i.field_content}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <picture>
+                <img 
+                    width="107" 
+                    height="46" class="logo_edge" 
+                    [ngSrc]="data.logo_seccion_para_el_planeta" 
+                    [alt]="data.logo_seccion_para_el_planeta_alt">
+                <img 
+                    width="414" height="284" class="img_pri_edge" 
+                    [ngSrc]="data.imagen_seccion_para_el_planeta" 
+                    [alt]="data.imagen_seccion_para_el_planeta_alt">
+                <span class="hashtag">{{data.hashtag_seccion_para_el_planeta}}</span>
+            </picture>
+        </div>
+    </div>
+</section>
 
 
 <!-- MODALS -->
-<app-modal-pre-launch-project   [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
-                                [project]="projectSelectedToModal">
+<app-modal-pre-launch-project   
+    *ngIf="projectSelectedToModal"
+    [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
+    [project]="projectSelectedToModal">
 </app-modal-pre-launch-project>
 
-<app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" 
-                        [project]="projectSelectedToModal">
+<app-wpp-modal-project 
+    *ngIf="projectSelectedToModal"
+    [modalEvent]="notifyChanges.asObservable()"                     
+    [project]="projectSelectedToModal">
 </app-wpp-modal-project>

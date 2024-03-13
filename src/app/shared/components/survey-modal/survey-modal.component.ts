@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { PageService } from "../../services/api/page.service";
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
@@ -13,7 +13,7 @@ declare var $: any;
     styleUrls: ['./survey-modal.component.css']
 })
 
-export class SurveyModalComponent implements OnInit {
+export class SurveyModalComponent implements OnInit, OnDestroy {
 
     activarEncuestaS: boolean = false;
     mostrarEncuesta: boolean = false;
@@ -40,16 +40,14 @@ export class SurveyModalComponent implements OnInit {
                 }
             }
         });
-
-        setTimeout(() => {
-            if (this.encuesta[0].id_encuesta != null && this.encuesta[0].id_encuesta != '') {
-                this.mostrarEncuesta = true;
-            }
-        }, 30000)
     }
 
     ngOnInit(): void {
         this.init();
+    }
+
+    ngOnDestroy(): void {
+        this.suscribeListenRouter.unsubscribe()
     }
 
     async init() {
@@ -58,6 +56,9 @@ export class SurveyModalComponent implements OnInit {
 
     async getEncuestaActiva() {
         this.encuesta = await this.pageService.getEncuestaActiva(this.agrupada);
+        if (this.encuesta?.[0]?.id_encuesta) {
+            this.mostrarEncuesta = true;
+        }
     }
 
     activarEncuesta(cerrar?: any) {
@@ -183,9 +184,7 @@ export class SurveyModalComponent implements OnInit {
 
         } else {
             this.showErrors = 'Debes marcar todas las preguntas';
-            setTimeout(() => {
-                this.showErrors = '';
-            }, 3000)
+            this.showErrors = '';
         }
     }
 }

@@ -1,20 +1,18 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { SeoPage } from 'src/app/core/models/seo-page.model';
 import { firstValueFrom } from 'rxjs';
 
 const { api_url: API_URL} = environment
-
 declare var $:any;
+
 @Injectable({
   providedIn: 'root'
 })
 export class PageService {
 
+  private _http = inject(HttpClient)
   currentPage : any;
-
-  constructor(private _http: HttpClient) {}
   
 
   /**
@@ -25,10 +23,9 @@ export class PageService {
   async getSeoContentPage(friendlyUrl: string): Promise<any> {
     const url = `${API_URL}v1/getSeoContent`;
     const values = { friendlyUrl }
-    return this._http.post(url, JSON.stringify(values)).toPromise().then()
-      .catch(err => {
+    return firstValueFrom( this._http.post(url, values)).catch(err => {
         console.warn(err)
-        return false
+        return null
       })
   }
 
@@ -44,8 +41,7 @@ export class PageService {
       friendlyUrl
     }
 
-    return this._http.post(url, JSON.stringify(values)).toPromise().then()
-      .catch(err => {
+    return firstValueFrom(this._http.post(url, values)).catch(err => {
         console.warn(err)
         return false
       })
@@ -63,8 +59,7 @@ export class PageService {
       friendlyUrl
     }
 
-    return this._http.post(url, JSON.stringify(values)).toPromise().then()
-      .catch(err => {
+    return firstValueFrom(this._http.post(url, JSON.stringify(values))).catch(err => {
         console.warn(err)
         return false
       })
@@ -81,8 +76,8 @@ export class PageService {
     const url = `${API_URL}v1/getBannersHome?name=${name}&content=${content}`;
     return firstValueFrom(this._http.get(url)).then()
       .catch(err => {
-        console.warn(err)
-        return false
+        console.error(err)
+        return []
       })
   }
 
@@ -109,10 +104,10 @@ export class PageService {
       destacado
     }
 
-    return this._http.post(url, JSON.stringify(values)).toPromise().then()
+    return firstValueFrom(this._http.post(url, values))
       .catch(err => {
         console.warn(err)
-        return false
+        return []
       })
   }
 
@@ -125,7 +120,7 @@ export class PageService {
   async getPageContent(slug: any): Promise<any> {
     const url = `${API_URL}v1/getPageContent?friendly_url=${slug}`;
 
-    return this._http.get(url).toPromise().then()
+    return firstValueFrom(this._http.get(url))
       .catch(err => {
         console.warn(err)
         return false
@@ -141,7 +136,7 @@ export class PageService {
   async getEncuestaActiva(agrupar: any): Promise<any>{
     const url = `${API_URL}v1/getEncuestaActiva?agrupar=${agrupar}`;
 
-    return this._http.get(url).toPromise().then()
+    return firstValueFrom(this._http.get(url))
       .catch(err => {
         console.warn(err)
         return false
@@ -161,8 +156,7 @@ export class PageService {
       token
     }
 
-    return this._http.post(url, JSON.stringify(values)).toPromise().then()
-      .catch(err => {
+    return firstValueFrom(this._http.post(url, JSON.stringify(values))).catch(err => {
         console.warn(err)
         return false
       })
@@ -176,8 +170,9 @@ export class PageService {
    */
   async getBreadCrumb(slug: string){
     const url = `${API_URL}v1/getBreadCrumb?url=${slug}`;
-    return this._http.get(url).toPromise().then();
+    return firstValueFrom(this._http.get(url));
   }
+
 
   closeNav(){
     if($(".btn_menu_movil").hasClass('active')){

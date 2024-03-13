@@ -1,7 +1,5 @@
-import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { RESPONSE } from '@nguniversal/express-engine/tokens'
-import { Response } from 'express';
 import { environment } from 'src/environments/environment';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { DefaultImgDirective } from '../../directives/default-img.directive';
@@ -25,30 +23,17 @@ export class NotFoundPageComponent implements OnInit {
   data:any;
   IMG_URL:string = environment.imagenes_url
 
-  private response: Response
-
-  constructor(@Optional()
-              @Inject(RESPONSE)
-              response: any,
-              private pageService: PageService) {
-    this.response = response
+  constructor(private pageService: PageService) {
   }
 
   ngOnInit(): void {
-    if (this.response) this.response.statusCode = 404;
     this.init()
   }
 
 
   async init(){
-    const tasks = [
-      () => this.getData(),
-      () => this.getImages()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+    await this.getData()
+    await this.getImages()
   }
 
   async getData(){

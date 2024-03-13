@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 declare var $:any;
 @Component({
   standalone: true,
-  imports:[NgFor, NgClass, NgIf, ReactiveFormsModule, RouterModule],
+  imports:[NgFor, NgClass, NgIf, ReactiveFormsModule, RouterModule,NgOptimizedImage],
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+
+  // injects
+  pageService = inject(PageService)
+  router = inject(Router)
 
   BASE_URL:string = environment.imagenes_url;
   menuMobileIsActive:boolean = false;
@@ -25,28 +29,23 @@ export class HeaderComponent implements OnInit {
   logos: any = [];
   linksHeader:any[] = []
 
-  constructor(private pageService: PageService, private router: Router) {
+  constructor( ) {
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
-        if (router.url == '/') this.homeIsActive = true
+        if (this.router.url == '/') this.homeIsActive = true
         else this.homeIsActive = false
       }
     });
   }
 
   ngOnInit(): void {
-    this.init();
+    this.getCollectionsPage();
   }
 
-  async init(){
-    const tasks = [
-      () => this.getCollectionsPage()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+  ngOnDestroy(): void {
+    this.suscribeListenRouter.unsubscribe()
   }
+
 
   closeNav(){
     if($(".btn_menu_movil").hasClass('active')){
@@ -55,13 +54,8 @@ export class HeaderComponent implements OnInit {
   }
 
   async getCollectionsPage(){
-
-    const linksHeader = await this.pageService.getElementsContent('titulo menu', 'menu');
-    if (linksHeader && linksHeader?.length > 0) {
-      this.linksHeader = linksHeader
-    }
-    const logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
-    if (logos && logos?.length > 0) this.logos = logos
+    this.linksHeader = await this.pageService.getElementsContent('titulo menu', 'menu');
+    this.logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
   }
 
 

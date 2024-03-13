@@ -88,8 +88,6 @@ const heroProyectos = () => {
         'positionFromTop': 250
     });
 
-    $(".js-modal-btn").modalVideo();
-
     const btnAside = document.querySelectorAll('.progress_state .state');
 
     $(btnAside).click(function(){

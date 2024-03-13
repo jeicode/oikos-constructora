@@ -28,7 +28,7 @@ export class BannerHome {
         public link_cta_banner: string = "",
         public titulo_proyecto: string | undefined = "",
         public valor_proyecto: string | undefined = "",
-        public logo_proyecto: string | undefined = "",
+        public logo_proyecto: string = "",
         public color_primario: string | undefined = "",
         public color_secundario: string | undefined = "",
         public estado_proyecto: string | undefined = "",

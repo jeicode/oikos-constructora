@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
 import { Subject } from 'rxjs';
 import { BannerHome, Zona } from 'src/app/core/models/banner-home.model';
 import { Project } from 'src/app/core/models/project.model';
@@ -9,11 +11,35 @@ import { ConfigService } from 'src/app/shared/services/functions/config.service'
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { environment } from 'src/environments/environment.prod';
 import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
+import { NgFor, NgIf, NgOptimizedImage, NgStyle } from '@angular/common';
 
 
+import { SwiperModule } from 'swiper/angular';
+import { DefaultImgDirective } from 'src/app/shared/directives/default-img.directive';
+import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
+import { ModalPreLaunchProjectComponent } from 'src/app/shared/components/modal-pre-launch-project/modal-pre-launch-project.component';
+import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
+import { ThousandNumber } from 'src/app/shared/pipes/thousand-number.pipe';
+
+
+const CommonModules = [NgIf, NgFor, NgStyle]
 SwiperCore.use([Navigation, Pagination]);
 @Component({
   selector: 'app-home-page',
+  standalone: true,
+  imports: [
+    ...CommonModules,
+    RouterLink,
+    DefaultImgDirective,
+    NgOptimizedImage,
+
+    SwiperModule,
+    ThousandNumber,
+    SortArrayStringSplitPipe,
+
+    ModalPreLaunchProjectComponent,
+    WppModalProjectComponent,
+  ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
@@ -49,34 +75,24 @@ export class HomePageComponent implements OnInit {
     },
 }
 
-  constructor(private projectService: ProjectService, private pageService: PageService,
+  constructor(private projectService: ProjectService, 
+              private pageService: PageService,
               public responsiveService: ResponsiveService, public configServ:ConfigService,
               private currencyConverter:CurrencyConverterService) { }
 
   ngOnInit(): void {
     this.init()
-    this.getProjectsHome()
   }
 
 
   async init(){
-    const tasks = [
-      () => this.getBannersHome(),
-      () => this.getProjectsHome(),
-      () => this.convertCopToUsdProjects(),
-      () => this.getData(),
-      () => this.getCollections()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+    await this.getBannersHome()
+    this.getProjectsHome()
+    this.getData()
+    this.getCollections()
   }
 
 
-  async convertCopToUsdProjects(){
-    await this.currencyConverter.convertCopToUsdProjects(this.housingProjects)
-  }
 
   getCustomBenefitsProject(benefits:string, zonas:Zona[]): (Zona | undefined)[]{
     const arrBenefits = benefits.split(',')
@@ -85,13 +101,11 @@ export class HomePageComponent implements OnInit {
         return zonas.find( z => z.nombre == b)
       })
     }
-
     return []
   }
 
   async getBannersHome(){
-    const bannersHome = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
-    if (bannersHome) this.bannersHome = bannersHome
+    this.bannersHome = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
   }
 
   
@@ -101,16 +115,14 @@ export class HomePageComponent implements OnInit {
   } 
 
   async getCollections(){
-    const itemsWhyChooseUs = await this.pageService.getElementsContent('titulo item por que elegirnos home','item_elegirnos_home');
-    if (itemsWhyChooseUs) this.itemsWhyChooseUs = itemsWhyChooseUs
-    
-    const itemsPlanet = await this.pageService.getElementsContent('titulo seccion planeta home','item_seccion_planeta_home');
-    if (itemsPlanet) this.itemsPlanet = itemsPlanet
+    this.itemsWhyChooseUs = await this.pageService.getElementsContent('titulo item por que elegirnos home','item_elegirnos_home');    
+    this.itemsPlanet = await this.pageService.getElementsContent('titulo seccion planeta home','item_seccion_planeta_home');
   } 
 
+
   async getProjectsHome(){
-    const housingProjects = await this.projectService.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
-    if (housingProjects) this.housingProjects = housingProjects;
+    this.housingProjects = await this.projectService.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
+    await this.currencyConverter.convertCopToUsdProjects(this.housingProjects)
   }
 
 
@@ -133,6 +145,7 @@ export class HomePageComponent implements OnInit {
     this.projectSelectedToModal = project
     this.notifyChangesPreLaunchProject.next({openModal:true});
   }
+
 
 
 }
