@@ -1,14 +1,13 @@
 <div class="cuerpo">
     <app-header></app-header>
-    
-    <router-outlet></router-outlet>
-    
-    @defer (on timer(1.5s)) {
-        @defer (on viewport) {
-            <app-footer></app-footer>
-        }
-        @placeholder {
-            <div></div>
-        }
+    <div style="min-height: 140vh;">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!-- @defer (on viewport) {
+        <app-footer></app-footer>
     }
+    @placeholder {
+        <div class=""></div>
+    } -->
 </div>

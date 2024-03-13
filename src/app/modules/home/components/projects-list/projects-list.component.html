@@ -1,12 +1,11 @@
 
-@defer (on timer(1.4s); when housingProjects().length>0) {
+@defer (when housingProjects().length>0) {
     <div class="bg_grad">
         <section class="s_cards_proyectos">
-            @defer (on viewport) {
                 <h2 class="title_section al-center">
                     <span>Proyectos</span> <br> Destacados
                 </h2>
-
+            @defer (on viewport) {
                 <div class="cnt_central">
                     <div class="c_cards_proyectos">
                         @for (i of housingProjects(); track $index) {
@@ -120,7 +119,6 @@
         </section>
     </div>
 }
-
 
 
 @defer (when projectSelectedToModal.id) {

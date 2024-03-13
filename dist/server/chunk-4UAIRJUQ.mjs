@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import{W as s}from"./chunk-6MVF4B2C.mjs";var o=(()=>{let r=class r{transform(t,e="es"){if(typeof t=="string"){if(t=t.replace(/[.,\s]/g,""),/^\d+$/.test(t)){let i=BigInt(t);return this.getFormatEnNumber(i,e)}}else if(typeof t=="number")return this.getFormatEnNumber(t,e);return""}getFormatEnNumber(t,e){return new Intl.NumberFormat(e).format(t)}};r.\u0275fac=function(e){return new(e||r)},r.\u0275pipe=s({name:"thousandNumber",type:r,pure:!0,standalone:!0});let n=r;return n})();export{o as a};

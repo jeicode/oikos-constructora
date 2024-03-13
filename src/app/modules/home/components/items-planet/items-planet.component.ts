@@ -26,6 +26,7 @@ export class ItemsPlanetComponent implements OnInit{
   
 
   async ngOnInit() {
+    console.log('%csrc/app/modules/home/components/items-planet/items-planet.component.ts:29 "object"', 'color: #007acc;', "object");
     const data = await this.pageService.getElementsContent('titulo seccion planeta home','item_seccion_planeta_home');
     this.itemsPlanet.set(data)
   }

@@ -37,6 +37,7 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('%csrc/app/shared/components/footer/footer.component.ts:40 "Wxzadad"', 'color: #007acc;', "Wxzadad");
       this.init();
   }
 
