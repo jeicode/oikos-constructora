@@ -71,12 +71,12 @@
                         [title]="i?.title_principal">
                     </ng-template>
                 </picture>
-                <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
+                <div class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
                     <picture>
                         <img width="87" height="87" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" title="{{i?.title_logo}}">
                     </picture>
                     <div>{{i?.titulo_proyecto}}</div>
-                </h2>
+                </div>
                 <div class="datos_proyecto">
                     <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
                     <h4 *ngIf="i?.valor_proyecto">
