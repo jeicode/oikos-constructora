@@ -57,12 +57,12 @@
                         </div>-->
                         <img width="350" height="219" src="{{imagenes_url+i?.imagen_principal_proyecto}}" alt="{{i?.alt_fondo}}" title="{{i?.title_fondo}}">
                     </picture>
-                    <div class="name_proyecto">
+                    <h2 class="name_proyecto">
                         <picture>
                             <img width="87" height="87" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" title="{{i?.title_logo}}">
                         </picture>
                         <div>{{i?.titulo_proyecto}}</div>
-                    </div>
+                    </h2>
                     <div class="datos_proyecto">
                         <h3 *ngIf="i?.zona_proyecto!='' && i?.zona_proyecto!=undefined && i?.zona_proyecto!=null">{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
                         <h3 *ngIf="i?.zona_proyecto=='' || i?.zona_proyecto==undefined || i?.zona_proyecto==null">{{i?.ubicacion_proyecto}}</h3>
