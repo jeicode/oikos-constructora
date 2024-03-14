@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 
 import { PageService } from 'src/app/shared/services/api/page.service';
 
@@ -6,6 +6,7 @@ import { ProjectsBannerComponent } from './components/projects-banner/projects-b
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 import { WhyChooseUsComponent } from './components/why-choose-us/why-choose-us.component';
 import { ItemsPlanetComponent } from './components/items-planet/items-planet.component';
+import { CsService } from 'src/app/shared/services/functions/cs.service';
 
 @Component({
   selector: 'app-home-page',
@@ -21,19 +22,24 @@ import { ItemsPlanetComponent } from './components/items-planet/items-planet.com
 })
 export class HomePageComponent implements OnInit {
 
+  cs = inject(CsService);
+
   pageService = inject(PageService)
-  data:any;
+  data = signal(undefined);
 
   // collections
   itemsPlanet:any[] = []
 
   ngOnInit(): void {
+    this.cs.$loadCEvent.subscribe(i => {
+      console.log('%csrc/app/modules/home/home-page.component.ts:35 i', 'color: #007acc;', i);
+    })
     this.getData()
   }
   
   async getData(){
     const data = await this.pageService.getPageContent('/');
-    if (data) this.data = data
+    if (data) this.data.set(data)
   } 
 
 }

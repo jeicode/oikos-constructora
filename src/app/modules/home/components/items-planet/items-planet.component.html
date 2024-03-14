@@ -1,15 +1,15 @@
-@if (data && itemsPlanet().length > 0) {
+@if (data() && itemsPlanet().length > 0) {
     <section class="s_edge" >
         <div class="cnt_central">
             <div class="c_edge">
                 <div class="cnt_edge">
-                    <h2 [innerHtml]="data.titulo_seccion_para_el_planeta"></h2>
+                    <h2 [innerHtml]="data().titulo_seccion_para_el_planeta"></h2>
                     <div class="txt_edge_cnt">
-                        <a [routerLink]="data.link_boton_seccion_para_el_planeta" 
-                            class="btn">{{data.texto_boton_seccion_para_el_planeta}} 
+                        <a [routerLink]="data().link_boton_seccion_para_el_planeta" 
+                            class="btn">{{data().texto_boton_seccion_para_el_planeta}} 
                             <span class="fas fa-chevron-right"></span> 
                         </a> 
-                            {{data.subtitulo_seccion_para_el_planeta}}
+                            {{data().subtitulo_seccion_para_el_planeta}}
                     </div>
                     <div class="cnt_icons_edge">
                         @for (i of itemsPlanet(); track $index) {
@@ -33,13 +33,13 @@
                     <img 
                         width="107" 
                         height="46" class="logo_edge" 
-                        [ngSrc]="IMG_URL()+data.logo_seccion_para_el_planeta" 
-                        [alt]="data.logo_seccion_para_el_planeta_alt">
+                        [ngSrc]="IMG_URL()+data().logo_seccion_para_el_planeta" 
+                        [alt]="data().logo_seccion_para_el_planeta_alt">
                     <img 
                         width="414" height="284" class="img_pri_edge" 
-                        [ngSrc]="IMG_URL()+data.imagen_seccion_para_el_planeta" 
-                        [alt]="data.imagen_seccion_para_el_planeta_alt">
-                    <span class="hashtag">{{data.hashtag_seccion_para_el_planeta}}</span>
+                        [ngSrc]="IMG_URL()+data().imagen_seccion_para_el_planeta" 
+                        [alt]="data().imagen_seccion_para_el_planeta_alt">
+                    <span class="hashtag">{{data().hashtag_seccion_para_el_planeta}}</span>
                 </picture>
             </div>
         </div>

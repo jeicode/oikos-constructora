@@ -480,12 +480,11 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-   /* background: url("/src/assets/images/diseno/home/curva_azul_hero.svg") no-repeat center bottom;*/
     background-size: contain;
     z-index: 10;
 }
 
-.s_home_hero .swiper-slide {
+:host ::ng-deep .s_home_hero .swiper-slide {
     min-height: 650px;
     padding: 80px;
     height: 100%;
@@ -771,7 +770,7 @@
         font-size: 43px;
     }
 
-    .s_home_hero .swiper-slide {
+    :host ::ng-deep .s_home_hero .swiper-slide {
         padding: 80px 60px;
     }
 }
@@ -786,7 +785,7 @@
         font-size: 33px;
     }
 
-    .s_home_hero .swiper-slide {
+    :host ::ng-deep .s_home_hero .swiper-slide {
         padding: 50px 30px 50px 60px;
         min-height: 550px;
     }
@@ -822,7 +821,7 @@
     .s_home_hero {
         margin-top: 10px;
     }
-    .s_home_hero .swiper-slide {
+    :host ::ng-deep .s_home_hero .swiper-slide {
         padding: 32px 20px;
         min-height: initial;
     }
@@ -868,7 +867,8 @@
 
 @media screen and (max-width: 480px) {
     .cnt_h_hero {
-       gap: 0px;
+        min-height: 630px;
+        gap: 0px;
     }
     .cnt_items_elegir {
         grid-template-columns: 1fr;

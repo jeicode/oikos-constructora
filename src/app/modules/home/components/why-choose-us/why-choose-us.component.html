@@ -1,9 +1,9 @@
-@if (data && itemsWhyChooseUs().length > 0) {
+@if (data() && itemsWhyChooseUs().length > 0) {
     <div class="bg_grad">
         <section class="s_porque_elegir">
             <div class="cnt_central">
                 <div class="c_porque_elegir">
-                    <h2 class="title_section al-center" [innerHtml]="data.titulo_por_que_elegir"></h2>
+                    <h2 class="title_section al-center" [innerHtml]="data()?.titulo_por_que_elegir"></h2>
                     <div class="cnt_items_elegir">
                         @for (i of itemsWhyChooseUs(); track $index) {
                         <div class="item_elegir">

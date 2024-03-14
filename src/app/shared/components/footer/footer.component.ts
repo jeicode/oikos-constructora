@@ -5,6 +5,7 @@ import { ConfigFooter } from 'src/app/core/models/config-footer.model';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
 import { GlobalService } from '../../services/api/global.service';
+import { CsService } from '../../services/functions/cs.service';
 import { ResponsiveService } from '../../services/functions/responsive.service';
 import { SurveyModalComponent } from '../survey-modal/survey-modal.component';
 
@@ -13,9 +14,11 @@ declare const $:any;
   standalone: true,
   imports:[SurveyModalComponent, CommonModule, RouterModule, NgOptimizedImage],
   selector: 'app-footer',
-  templateUrl: './footer.component.html'
+  templateUrl: './footer.component.html',
 })
 export class FooterComponent implements OnInit {
+
+  cs = inject(CsService)
 
   globalService = inject(GlobalService);
   responsive = inject(ResponsiveService)
@@ -37,6 +40,7 @@ export class FooterComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log('%csrc/app/shared/components/footer/footer.component.ts:43 "object"', 'color: #007acc;', "object");
     this.init();
   }
 

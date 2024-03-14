@@ -4,14 +4,15 @@ import { RouterLink } from '@angular/router';
 import { BannerHome } from 'src/app/core/models/banner-home.model';
 import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
 import { PageService } from 'src/app/shared/services/api/page.service';
+import { CsService } from 'src/app/shared/services/functions/cs.service';
 import { environment } from 'src/environments/environment';
-import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
+import SwiperCore,{ Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
 
 
 const CommonModules = [NgStyle]
 
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, Lazy]);
 
 @Component({
   selector: 'app-projects-banner',
@@ -30,11 +31,14 @@ SwiperCore.use([Navigation, Pagination]);
 })
 export class ProjectsBannerComponent implements OnInit {
 
+  cs = inject(CsService);
+
   IMG_URL = signal(environment.imagenes_url)
   pageService = inject(PageService);
   bannersHome:WritableSignal<BannerHome[] > = signal([])
 
-  config: SwiperOptions = {
+  config:WritableSignal<SwiperOptions>  = signal({
+    lazy:true,
     autoplay: {
         delay: 10000,
     },
@@ -48,7 +52,7 @@ export class ProjectsBannerComponent implements OnInit {
         el: ".swiper-pagination",
         clickable:true,
     }
-  }
+  })
 
   ngOnInit(): void {
     this.getBannersHome()
@@ -57,5 +61,6 @@ export class ProjectsBannerComponent implements OnInit {
   async getBannersHome(){
     const banners = await this.pageService.getBannersHome('titulo banner home', 'banner_home');
     this.bannersHome.set(banners)
+    this.cs.loadCEvent.update(i => i.concat('app-projects-banner'))
   }
 }
