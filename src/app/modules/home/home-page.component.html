@@ -1,21 +1,26 @@
 @defer (on immediate){
-    <app-projects-banner></app-projects-banner>
-}
-
-@defer (on viewport) {
-    <app-projects-list></app-projects-list>
-    <app-why-choose-us [data]="data"></app-why-choose-us>
-    <app-items-planet [data]="data" ></app-items-planet>
+    <app-projects-banner #banner></app-projects-banner>
 }
 @placeholder {
-    <div class=""></div>
+    <div class="s_home_hero"></div>
 }
 
 
 @defer (on viewport) {
-    <app-items-planet [data]="data" ></app-items-planet>
+    <app-projects-list></app-projects-list>
+}
+@placeholder {
+    <div class="bg_grad"></div>
 }
 
-@placeholder {
-    <div class=""></div>
+<div #reference style="height: 1px; background: linear-gradient(to top, #F0F2F7, #ffffff, #EEF1F9);"></div>
+@defer (on timer(380ms);) {
+    @defer (on viewport(reference)) {
+        <app-why-choose-us [data]="data"></app-why-choose-us>
+        <app-items-planet [data]="data" ></app-items-planet>
+    }
+    @placeholder {
+        <div></div>
+    }
 }
+

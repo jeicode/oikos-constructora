@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ConfigFooter } from 'src/app/core/models/config-footer.model';
 import { PageService } from 'src/app/shared/services/api/page.service';
@@ -17,6 +17,10 @@ declare const $:any;
 })
 export class FooterComponent implements OnInit {
 
+  globalService = inject(GlobalService);
+  responsive = inject(ResponsiveService)
+  pageService = inject(PageService);
+
   IMG_URL = signal(environment.imagenes_url)
 
   loadingData = false
@@ -30,15 +34,10 @@ export class FooterComponent implements OnInit {
   logos         : any[] = [];
   menuFooter    : any = [];
   menuFooterProyectos :any = [];
-  
-  constructor(private globalService: GlobalService, 
-              private responsive: ResponsiveService,
-              private pageService: PageService) {
-  }
+
 
   ngOnInit(): void {
-    console.log('%csrc/app/shared/components/footer/footer.component.ts:40 "Wxzadad"', 'color: #007acc;', "Wxzadad");
-      this.init();
+    this.init();
   }
 
   async init(){
