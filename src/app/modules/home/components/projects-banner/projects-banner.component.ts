@@ -38,7 +38,9 @@ export class ProjectsBannerComponent implements OnInit {
   bannersHome:WritableSignal<BannerHome[] > = signal([])
 
   config:WritableSignal<SwiperOptions>  = signal({
-    lazy:true,
+    lazy:{
+      loadPrevNext:true
+    },
     autoplay: {
         delay: 10000,
     },

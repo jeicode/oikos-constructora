@@ -7,11 +7,21 @@
                             @if (i.titulo_proyecto) {
                                 <!-- IMAGEN DE FONDO -->
                                 <div class="bg_img_h_hero">
-                                    <img 
-                                        width="1920" 
-                                        height="700" 
-                                        [priority]="$index==0"
-                                        [ngSrc]="IMG_URL()+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
+                                    @if ($index==0) {
+                                        <img 
+                                            width="1920" 
+                                            height="700" 
+                                            priority
+                                            [ngSrc]="IMG_URL()+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
+                                    }
+
+                                    @else {
+                                        <img 
+                                            width="1920" 
+                                            height="700" 
+                                            class="swiper-lazy"
+                                            [attr.data-src]="IMG_URL()+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
+                                    }
                                 </div>
                                 <!-- IMAGEN DE FONDO -->
     
@@ -32,7 +42,8 @@
                                                         <img 
                                                             defaultImg width="28" 
                                                             height="28" 
-                                                            [ngSrc]="IMG_URL()+z.imagen" [title]="z.title"
+                                                            class="swiper-lazy"
+                                                            [attr.data-src]="IMG_URL()+z.imagen" [title]="z.title"
                                                             [alt]="z.alt">
                                                         <span>{{z.nombre}}</span>
                                                     </div>
@@ -65,18 +76,35 @@
                                     <!-- CONTENEDOR DE IMAGENES PRINCIPALES DEL PROYECTO -->
                                     <div class="grand_img_h_hero">
                                         <picture class="grand_img_hero1">
-                                            <img 
-                                                [priority]="$index==0"
-                                                width="516" 
-                                                height="454" 
-                                                [ngSrc]="IMG_URL()+(i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)"
-                                                [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt"
-                                                [title]="i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title">
+
+                                            @if ($index==0) {
+                                                <img 
+                                                    [priority]="$index==0"
+                                                    width="516" 
+                                                    height="454" 
+                                                    [ngSrc]="IMG_URL()+(i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)"
+                                                    [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt"
+                                                    [title]="i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title">
+                                            }
+                                            @else {
+                                                <img 
+                                                    width="516" 
+                                                    height="454" 
+                                                    class="swiper-lazy"
+                                                    [attr.data-src]="IMG_URL()+(i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)"
+                                                    [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt"
+                                                    [title]="i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title">
+                                                
+                                            }
                                         </picture>
     
                                         @if (i?.galeria?.[1]) {
-                                            <picture class="grand_img_hero_mini">
-                                                <img width="204" height="137" [ngSrc]="IMG_URL()+i.galeria[1].field_content"
+                                            <picture 
+                                                class="grand_img_hero_mini">
+                                                <img 
+                                                    width="204" height="137" 
+                                                    class="swiper-lazy"
+                                                    [attr.data-src]="IMG_URL()+i.galeria[1].field_content"
                                                     [alt]="i.galeria[1].alt" [title]="i.galeria[1].title">
                                             </picture>
                                         }
