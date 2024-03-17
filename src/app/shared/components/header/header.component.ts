@@ -3,12 +3,12 @@ import { PageService } from 'src/app/shared/services/api/page.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 declare var $:any;
 @Component({
   standalone: true,
-  imports:[NgClass, RouterModule, NgOptimizedImage],
+  imports:[NgClass, RouterModule],
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
