@@ -9,7 +9,7 @@
     "build:test": "ng build --base-href /constructora/test/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr": "node dist/server/server.mjs"
+    "serve:ssr": "ng build && node dist/server/server.mjs"
   },
   "private": true,
   "dependencies": {

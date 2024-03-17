@@ -1,5 +1,5 @@
 
-@defer (when housingProjects().length>0) {
+@if (housingProjects().length>0) {
     <div class="bg_grad">
         <section class="s_cards_proyectos">
         <h2 class="title_section al-center">
@@ -71,13 +71,13 @@
                                 </h4>
                             }
 
-                            @if (i?.dollar_value) {
-                                <div class="precio_usd">
+                            <div class="precio_usd">
+                                @if (i.dollar_value) {
                                     Precio de referencia 
                                     <b>USD {{i.dollar_value | thousandNumber:'es'}}</b>
-                                </div>
-
-                            }
+                                }
+                            </div>
+                            
                         </div>
                         <div class="franja_p">
                             <img width="20" height="20" ngSrc="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
@@ -114,7 +114,7 @@
     </div>
 }
 
-@defer (when projectSelectedToModal.id) {
+@if (projectSelectedToModal.id) {
     <app-modal-pre-launch-project   
         [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
         [project]="projectSelectedToModal">
@@ -125,6 +125,4 @@
         [project]="projectSelectedToModal">
     </app-wpp-modal-project>
 }
-@placeholder {
-    <div></div>
-}
+
