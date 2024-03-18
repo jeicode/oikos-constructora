@@ -66,7 +66,7 @@ export class EjecutadosComponent implements OnInit {
 
   async getProyectos(){
     this.proyectos = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', this.limt, '', 'descripcion_precio DESC');
-    this.total = await this.projService.getProyectosByTipo('4');
+    this.total = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', '', '', 'descripcion_precio DESC');
 
     this.anios = [];
     for(var i in this.proyectos){
