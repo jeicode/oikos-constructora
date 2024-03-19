@@ -6,6 +6,8 @@ import { regexEmail, regexNumber } from 'src/app/shared/data/regex';
 import { ContactService } from 'src/app/shared/services/api/contact.service';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
+import { GlobalService } from 'src/app/shared/services/api/global.service';
+
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
 @Component({
@@ -29,7 +31,8 @@ export class ContactFormComponent implements OnInit {
   @Input() typeForm:'general'  | 'postventas'  = 'general';
   @Input() recipient_mail:string = '';
 
-  constructor(private fb: FormBuilder, public formService: FormService, private router: Router,
+  constructor(private fb: FormBuilder, public formService: FormService, 
+              private router: Router, private globalService:GlobalService,
               private contactService: ContactService, private pageService: PageService, private projectService: ProjectService) { }
 
   ngOnInit(): void {
@@ -48,7 +51,7 @@ export class ContactFormComponent implements OnInit {
         affair:['', this.formService.noWhitespaceValidator],
         message:['', this.formService.noWhitespaceValidator],
         project: ['', this.formService.noWhitespaceValidator],
-        terms: ['', Validators.requiredTrue]
+        terms: [false, Validators.requiredTrue]
       })
 
       this.getAffairList()
@@ -100,9 +103,18 @@ export class ContactFormComponent implements OnInit {
         proyecto: project
       }
       const response = await this.contactService.postContactForm(data)
-      if (response?.resp){
+
+      if (response?.resp !== 'no'){
         this.router.navigateByUrl(response?.resp, { state: { nameContact: full_name } })
       } else {
+        await this.globalService.sendMailApiError({
+          api: 'api/v1/setContactForm',
+          errors: {
+            url: this.router.url,
+            request: data,
+            response
+          }
+        });
         alert('Opps ocurrió un error enviando el formulario')
       }
       this.contactForm.reset()

@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { FormService } from '../../services/functions/form.service';
 import { regexEmail, regexNumber } from '../../data/regex';
 import { ProjectService } from '../../services/api/project.service';
+import { GlobalService } from '../../services/api/global.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -36,6 +38,7 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   })
 
   constructor(private fb:FormBuilder, private formService:FormService,
+              private globalService: GlobalService, private router: Router,
               private projectService: ProjectService) { }
 
 
@@ -51,14 +54,31 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
     if (openModal !== undefined) this.modalIsOpen = openModal
   }
     
-  sendContactUserWpp(){
+  async sendContactUserWpp(){
 
     if (this.contactWppForm.valid){
       this.contactWppForm.patchValue({
         project_id: this.project.id
       })
-      this.projectService.createContactWppProject(this.contactWppForm.getRawValue());
-      this.redirectToWppLink();
+      const data = this.contactWppForm.getRawValue()
+      const res = await this.projectService.createContactWppProject(data);
+      if (res) {
+        this.redirectToWppLink();
+      } 
+
+      else {
+
+        await this.globalService.sendMailApiError({
+          api: 'v1/createContactWppProject',
+          errors: {
+            url: this.router.url,
+            request: data,
+            response:res
+          }
+        });
+        alert('Opps ocurrió un error enviando el formulario')
+
+      }
       this.contactWppForm.reset()
 
     } else {
