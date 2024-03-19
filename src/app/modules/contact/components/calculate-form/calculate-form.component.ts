@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { Project } from 'src/app/core/models/project.model';
 import { regexEmail, regexNumber } from 'src/app/shared/data/regex';
+import { GlobalService } from 'src/app/shared/services/api/global.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
@@ -42,7 +43,7 @@ export class CalculateFormComponent implements OnInit {
     terms: ['', Validators.requiredTrue]
   })
 
-  constructor(private fb:FormBuilder, private formService: FormService,
+  constructor(private fb:FormBuilder, private formService: FormService, private globalService:GlobalService,
               private projectService: ProjectService, private router: Router) { }
 
   ngOnInit(): void {
@@ -149,6 +150,18 @@ export class CalculateFormComponent implements OnInit {
       const {resp} = await this.projectService.setCalculadoraForm(data);
       if(resp!='no') {
         this.router.navigateByUrl(resp, { state: { nameContact: this.calculateForm.controls['full_name']?.value } })
+      }
+
+      else {
+        await this.globalService.sendMailApiError({
+          api: 'v1/setCalculadoraForm',
+          errors: {
+            url: this.router.url,
+            request: data,
+            response:resp
+          }
+        });
+        alert('Opps ocurrió un error enviando el formulario')
       }
     }else{
       this.showErrors = true
