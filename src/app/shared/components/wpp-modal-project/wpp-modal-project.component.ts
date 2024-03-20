@@ -46,7 +46,6 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('%csrc/app/shared/components/wpp-modal-project/wpp-modal-project.component.ts:47 "object"', 'color: #007acc;', "object");
     this.eventsSubscription = this.modalEvent.subscribe((event:any) => this.setOpenModalValue(event?.openModal));
   }
   

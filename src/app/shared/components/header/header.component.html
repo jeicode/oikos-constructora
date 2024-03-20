@@ -56,7 +56,7 @@
     </div>
     <div class="nav_bar_h">
 
-        @if (homeIsActive) {
+        @if (homeIsActive()) {
             <h1 
                 class="logo_pri">
                 <a routerLink="/">
@@ -74,10 +74,10 @@
         }
 
 
-        @if (linksHeader.length > 0) {
-            <nav  class="nav" [ngClass]="{'active': menuMobileIsActive}">
+        @if (linksHeader().length > 0) {
+            <nav  class="nav" [ngClass]="{'active': menuMobileIsActive()}">
                 <ul>
-                    @for (i of linksHeader; track $index) {
+                    @for (i of linksHeader(); track $index) {
                         <li (click)="closeNav()">
                             @if (i.enlace_menu.includes('https://')) {
                                 <a  [href]="i.enlace_menu"
@@ -98,7 +98,10 @@
                 </ul>
             </nav>
         }
-        <div class="btn_menu_movil" [ngClass]="{'active': menuMobileIsActive}" (click)="toogleActiveMenuMobile()">
+        <div 
+            class="btn_menu_movil" 
+            [ngClass]="{'active': menuMobileIsActive()}" 
+            (click)="this.menuMobileIsActive.set(!this.menuMobileIsActive())">
             <span>
                 <span></span>
                 <span></span>

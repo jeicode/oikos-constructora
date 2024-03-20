@@ -44,7 +44,6 @@ export class ProjectsListComponent implements OnInit {
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
   ngOnInit(): void {
-    console.log('%csrc/app/modules/home/components/projects-list/projects-list.component.ts:47 "object"', 'color: #007acc;', "object");
     this.getProjectsHome()
   }
 
