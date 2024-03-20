@@ -49,3 +49,22 @@ export async function getElementsContent({
     }
 }
 
+
+interface BannerParams {
+    name: string;
+    content: string;
+}
+export async function getBannersHome({ name, content }: BannerParams): Promise<any> {
+    const url = `${API_URL}v1/getBannersHome?name=${name}&content=${content}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
