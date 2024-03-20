@@ -6,11 +6,9 @@ import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
 import { PageService } from 'src/app/shared/services/api/page.service';
 import { CsService } from 'src/app/shared/services/functions/cs.service';
 import { environment } from 'src/environments/environment';
-import SwiperCore,{ Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
+import SwiperCore,{ Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
 
-
-const CommonModules = [NgStyle]
 
 SwiperCore.use([Navigation, Pagination, Lazy]);
 
@@ -18,7 +16,7 @@ SwiperCore.use([Navigation, Pagination, Lazy]);
   selector: 'app-projects-banner',
   standalone: true,
   imports: [ 
-    ...CommonModules,
+    NgStyle,
     SwiperModule,
     NgOptimizedImage,
     RouterLink,

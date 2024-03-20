@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   menuMobileIsActive = signal(false);
 
-  homeIsActive = signal(false);
+  homeIsActive = signal(true);
   suscribeListenRouter:WritableSignal<Subscription | undefined> = signal(undefined);
   
   // collections
