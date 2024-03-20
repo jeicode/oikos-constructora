@@ -26,9 +26,6 @@ export class FooterComponent implements OnInit {
 
   IMG_URL = signal(environment.imagenes_url)
 
-  loadingData = false
-  BASE_URL:string = environment.imagenes_url;
-
   socialNetwork : any = [];
   configFooter  : ConfigFooter = new ConfigFooter()
   
@@ -40,7 +37,6 @@ export class FooterComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('%csrc/app/shared/components/footer/footer.component.ts:43 "object"', 'color: #007acc;', "object");
     this.init();
   }
 
@@ -49,7 +45,6 @@ export class FooterComponent implements OnInit {
     await this.getConfigFooter()
     await this.getMenuFooter()
     await this.getSocialNetwork()
-    this.loadingData = true
   }
 
 

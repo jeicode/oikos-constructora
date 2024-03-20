@@ -31,9 +31,6 @@ export class HomePageComponent implements OnInit {
   itemsPlanet:any[] = []
 
   ngOnInit(): void {
-    this.cs.$loadCEvent.subscribe(i => {
-      console.log('%csrc/app/modules/home/home-page.component.ts:35 i', 'color: #007acc;', i);
-    })
     this.getData()
   }
   

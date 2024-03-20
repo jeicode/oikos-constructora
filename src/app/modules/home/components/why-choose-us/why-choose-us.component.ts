@@ -23,7 +23,6 @@ export class WhyChooseUsComponent implements OnInit {
   pageService = inject(PageService)
 
   async ngOnInit() {
-    console.log('%csrc/app/modules/home/components/why-choose-us/why-choose-us.component.ts:26 "object"', 'color: #007acc;', "object");
     const data = await this.pageService.getElementsContent('titulo item por que elegirnos home','item_elegirnos_home');    
     this.itemsWhyChooseUs.set(data);
     this.cs.loadCEvent.update(i => i.concat('app-why-choose-us'));

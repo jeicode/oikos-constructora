@@ -12,9 +12,8 @@ declare var $:any;
 })
 export class PageService {
 
-  private _http = inject(HttpClient)
   currentPage : any;
-
+  private _http = inject(HttpClient)
   configService = inject(ConfigService)
   
 

@@ -16,7 +16,7 @@
 }
 
 
-@defer (when cs.loadCEvent().includes('app-projects-list')) {
+@defer (when cs.loadCEvent().includes('app-projects-list') && data) {
     <app-why-choose-us [data]="data"></app-why-choose-us>
 }
 

@@ -25,7 +25,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/plugins/swiperjs/swiper-bundle.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
