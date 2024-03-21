@@ -1,16 +1,11 @@
 <app-projects-banner></app-projects-banner>
 
 <!-- @defer (when cs.loadCEvent().includes('app-projects-banner')) {
-    @defer (on viewport) {
-        <app-projects-list></app-projects-list>
-    }
-    @placeholder {
-        <div class="bg_grad"></div>
-    }
-}
+    <app-projects-list></app-projects-list>
+} -->
 
 
-@defer (when cs.loadCEvent().includes('app-projects-list') && data) {
+<!-- @defer (when cs.loadCEvent().includes('app-projects-list') && data) {
     <app-why-choose-us [data]="data"></app-why-choose-us>
 }
 

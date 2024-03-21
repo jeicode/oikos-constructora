@@ -1,6 +1,9 @@
+import { HttpClient } from "@angular/common/http";
+import { inject } from "@angular/core";
+import { firstValueFrom } from "rxjs";
+import { BannerHome } from "src/app/core/models/banner-home.model";
 import { environment } from "src/environments/environment"
 const { api_url: API_URL } = environment
-
 
 
 interface ElementContent {
@@ -54,17 +57,14 @@ interface BannerParams {
     name: string;
     content: string;
 }
-export async function getBannersHome({ name, content }: BannerParams): Promise<any> {
-    const url = `${API_URL}v1/getBannersHome?name=${name}&content=${content}`;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return await response.json();
-    } catch (error) {
-        console.error(error);
-        return [];
+export const getBannersHome = (): Function => {
+    const _http = inject(HttpClient)
+    return async ({ name, content }: BannerParams): Promise<BannerHome[] | []> => {
+        const url = `${API_URL}v1/getBannersHome?name=${name}&content=${content}`;
+        return firstValueFrom(_http.get<any>(url))
+            .catch(err => {
+                console.error(err)
+                return []
+        })
     }
 }

@@ -5,60 +5,66 @@ import { BannerHome } from 'src/app/core/models/banner-home.model';
 import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
 import { CsService } from 'src/app/shared/services/functions/cs.service';
 import { environment } from 'src/environments/environment';
-import { SwiperModule } from 'swiper/angular';
-import SwiperCore,{ Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
 import { getBannersHome } from 'src/app/shared/services/api/common.service';
+import SwiperCore, { Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
+import { SwiperModule } from 'swiper/angular';
+
 
 SwiperCore.use([Navigation, Pagination, Lazy]);
+
 
 @Component({
   selector: 'app-projects-banner',
   standalone: true,
-  imports: [ 
-    NgStyle,
+  imports: [
     SwiperModule,
+
+    NgStyle,
     NgOptimizedImage,
     RouterLink,
 
     SortArrayStringSplitPipe
   ],
   templateUrl: './projects-banner.component.html',
-  styleUrls: ['../../home-page.component.css']
+  styleUrls: ['../../home-page.component.css'],
 
 })
 export class ProjectsBannerComponent implements OnInit {
-
+  
   cs = inject(CsService);
+  getBannersHome = getBannersHome();
 
   IMG_URL = signal(environment.imagenes_url)
-  bannersHome:WritableSignal<BannerHome[] > = signal([])
+  bannerHome: any = []
+  bannersHome: WritableSignal<BannerHome[]> = signal([])
 
-  config:WritableSignal<SwiperOptions>  = signal({
-    lazy:{
-      loadPrevNext:true
+  config: WritableSignal<SwiperOptions> = signal({
+    lazy: {
+      loadPrevNext: true
     },
     autoplay: {
-        delay: 10000,
+      delay: 10000,
     },
-    parallax:true,
-    slidesPerView:1,
+    parallax: true,
+    slidesPerView: 1,
     effect: 'fade',
     fadeEffect: {
-        crossFade: true
+      crossFade: true
     },
     pagination: {
-        el: ".swiper-pagination",
-        clickable:true,
+      el: ".swiper-pagination",
+      clickable: true,
     }
   })
 
+
+
   ngOnInit(): void {
-    this.getBannersHome()
+    this.getBannersHome({name: 'titulo banner home', content: 'banner_home'}).then((res:any) => {
+      this.bannersHome.set(res)
+      this.cs.loadCEvent.update(i => i.concat('app-projects-banner'))
+    })
+
   }
 
-  async getBannersHome(){
-    const banners = await getBannersHome({name:'titulo banner home', content: 'banner_home'});
-    this.bannersHome.set(banners)
-    this.cs.loadCEvent.update(i => i.concat('app-projects-banner'))
-  }
 }
