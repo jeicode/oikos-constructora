@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IConfigFooter } from 'src/app/core/interfaces/footer.interface';
 import { environment } from 'src/environments/environment';
 import { getElementsContent } from '../../services/apis/common.service';
@@ -17,7 +18,9 @@ declare const $:any
   selector: 'app-footer',
   templateUrl: './footer.component.html',
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
+
+  homeIsActive:WritableSignal<boolean | undefined> = signal(undefined)
 
   cs = inject(CsService)
 
@@ -27,6 +30,7 @@ export class FooterComponent implements OnInit {
   getMenuFooter = getMenuFooter()
 
   responsive = inject(ResponsiveService)
+  router = inject(Router)
 
   IMG_URL = signal(environment.imagenes_url)
 
@@ -39,9 +43,24 @@ export class FooterComponent implements OnInit {
   menuFooter:WritableSignal<any[]> = signal([])
   menuFooterProyectos:WritableSignal<any[]> = signal([])
 
+  suscribeListenRouter:WritableSignal<Subscription | undefined> = signal(undefined)
+
+  constructor(){
+    this.suscribeListenRouter.set(this.router.events.subscribe((event:any) => {
+      if (event instanceof NavigationEnd  ) {
+        if (this.router.url == '/') this.homeIsActive.set(true)
+        else this.homeIsActive.set(false)
+      }
+    }))
+  }
+
 
   ngOnInit(): void {
     this.init();
+  }
+
+  ngOnDestroy(): void {
+    this.suscribeListenRouter()?.unsubscribe()
   }
 
   async init(){
