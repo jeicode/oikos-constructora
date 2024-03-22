@@ -69,7 +69,7 @@ export class FooterComponent implements OnInit, OnDestroy {
 
     const menuFooter = await this.getMenuFooter();
     this.menuFooter.set(menuFooter.splice(0,2))
-    this.menuFooterProyectos.set(this.menuFooter())
+    this.menuFooterProyectos.set(menuFooter)
 
     this.socialNetwork.set( await this.getSocialNetwork())
 
