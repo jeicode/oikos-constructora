@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     
     HeaderComponent,
-    // FooterComponent
+    FooterComponent
   ],
   providers: [
     provideHttpClient(withFetch()),

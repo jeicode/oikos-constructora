@@ -7,16 +7,17 @@ import { ModalPreLaunchProjectComponent } from 'src/app/shared/components/modal-
 import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 import { ThousandNumber } from 'src/app/shared/pipes/thousand-number.pipe';
 import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
-import { ProjectService } from 'src/app/shared/services/api/project.service';
+import { getProyectosByTipo } from 'src/app/shared/services/apis/project.service';
 import { CsService } from 'src/app/shared/services/functions/cs.service';
 import { environment } from 'src/environments/environment';
 
-const CommonModules = [NgStyle]
+
+
 @Component({
   selector: 'app-projects-list',
   standalone: true,
   imports: [
-    ...CommonModules,
+    NgStyle,
     RouterLink,
     NgOptimizedImage,
     ThousandNumber,
@@ -28,16 +29,14 @@ const CommonModules = [NgStyle]
 })
 export class ProjectsListComponent implements OnInit {
 
+  getProyectosByTipo = getProyectosByTipo()
 
   cs = inject(CsService);
 
   IMG_URL = signal(environment.imagenes_url)
-
-
-  housingProjects:WritableSignal<Project[]> = signal([])
-  projectService = inject(ProjectService);
   currencyConverter = inject(CurrencyConverterService)
 
+  housingProjects:WritableSignal<Project[]> = signal([])
   projectSelectedToModal:Project = new Project;
 
   notifyChanges: Subject<any> = new Subject<any>();
@@ -48,10 +47,10 @@ export class ProjectsListComponent implements OnInit {
   }
 
   async getProjectsHome(){
-    const data = await this.projectService.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
+    const data = await this.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
     this.housingProjects.set(data)
     this.cs.loadCEvent.update(i => i.concat('app-projects-list'));
-    await this.currencyConverter.convertCopToUsdProjects(this.housingProjects())
+    this.currencyConverter.convertCopToUsdProjects(this.housingProjects())
   }
   /**
    * 

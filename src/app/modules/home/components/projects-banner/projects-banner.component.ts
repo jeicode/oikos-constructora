@@ -5,7 +5,7 @@ import { BannerHome } from 'src/app/core/models/banner-home.model';
 import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
 import { CsService } from 'src/app/shared/services/functions/cs.service';
 import { environment } from 'src/environments/environment';
-import { getBannersHome } from 'src/app/shared/services/api/common.service';
+import { getBannersHome } from 'src/app/shared/services/apis/common.service';
 import SwiperCore, { Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
 

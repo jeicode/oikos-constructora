@@ -465,7 +465,7 @@
 
 /* ESTILOS HOME HERO SECTION */
 .s_home_hero {
-    min-height: 717px;
+    min-height: 694px;
     position: relative;
 }
 
@@ -867,7 +867,7 @@
 
 @media screen and (max-width: 480px) {
     .cnt_h_hero {
-        min-height: 630px;
+        min-height: 694px;
         gap: 0px;
     }
     .cnt_items_elegir {

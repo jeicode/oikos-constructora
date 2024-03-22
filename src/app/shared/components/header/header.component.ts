@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
-import { getElementsContent } from '../../services/api/common.service';
+import { getElementsContent } from '../../services/apis/common.service';
 
 @Component({
   standalone: true,
@@ -12,6 +12,7 @@ import { getElementsContent } from '../../services/api/common.service';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  getElementsContent = getElementsContent()
 
   IMG_URL = signal(environment.imagenes_url)
 
@@ -49,10 +50,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   async getCollectionsPage(){
-    const linksHeader = await getElementsContent( {name: 'titulo menu', content:'menu' });
+    const linksHeader = await this.getElementsContent( {name: 'titulo menu', content:'menu' });
     this.linksHeader.set(linksHeader);
 
-    const logos = await getElementsContent( {name:"titulo empresa", content: "logos_empresas", condicional: "field_name='ver en header' AND field_content='2'"})
+    const logos = await this.getElementsContent( {name:"titulo empresa", content: "logos_empresas", condicional: "field_name='ver en header' AND field_content='2'"})
     this.logos.set(logos);
   }
 
