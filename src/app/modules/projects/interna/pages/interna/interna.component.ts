@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { Subject, Subscription } from 'rxjs';
@@ -19,7 +19,7 @@ declare var $: any;
   templateUrl: './interna.component.html',
   styleUrls: ['./interna.component.css']
 })
-export class InternaComponent implements OnInit {
+export class InternaComponent implements OnInit, OnDestroy {
 
   breadcrumbs: Breadcrumb[] = [];
 
@@ -47,7 +47,7 @@ export class InternaComponent implements OnInit {
   zonas: any = [];
   sitiosInteres: any = [];
   seccionesInteres: any = [];
-  slug: string | null;
+  slug: string | null = "";
   imagenes_url: string = "";
   captcha: string = '';
   url_mapa: string = '';
@@ -78,20 +78,20 @@ export class InternaComponent implements OnInit {
     terminos2: new FormControl(false, Validators.requiredTrue)
   })
 
-  constructor(private configServ: ConfigService,
+  constructor(
+    private configServ: ConfigService,
     private projService: ProjectService,
     private router: Router,
     private activateRoute: ActivatedRoute,
     private globalService: GlobalService,
     private fb: FormBuilder,
     private formServ: FormService) {
-    this.slug = this.activateRoute.snapshot.paramMap.get('slug');
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.slug = this.activateRoute.snapshot.paramMap.get('slug');
-        this.configServ.goUpPage()
         this.getData();
+        this.configServ.goUpPage()
       }
     });
   }
@@ -107,10 +107,13 @@ export class InternaComponent implements OnInit {
 
   ngOnInit(): void {
     this.calculoPorcentaje();
-    this.configServ.loadHeroProyectos(500);
-    this.configServ.loadChangeTab(500);
+    this.configServ.loadHeroProyectos(200);
+    this.configServ.loadChangeTab(300);
+  }
 
 
+  ngOnDestroy(): void {
+    this.suscribeListenRouter.unsubscribe()
   }
 
 
@@ -118,11 +121,8 @@ export class InternaComponent implements OnInit {
     const [data] = await this.projService.getProyectoByUrl(this.slug);
     if (data) {
       this.data = data;
-
       const { seccion } = this.data
-
       this.breadcrumbs = this.getBreadcrumbList(seccion);
-
       this.porcFinanciar = (100 - this.data?.porcentaje_minimo);
 
       this.zonas = this.data?.zonas;
@@ -137,10 +137,8 @@ export class InternaComponent implements OnInit {
         this.actualizarAvanceObraActivo(0, this.fechasAvancesObra[0])
       }
 
-
       await this.calculoPorcentaje();
       await this.diferenciadordecuotasmensuales();
-
       this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
 
       this.cargarSitios(this.sitiosInteres[0].id);
@@ -190,7 +188,6 @@ export class InternaComponent implements OnInit {
 
 
 
-
   trasladar(el: any) {
     var pos = Number($("#" + el).offset().top) - 100;
     window.scrollTo({ top: pos, behavior: 'smooth' });
@@ -200,7 +197,6 @@ export class InternaComponent implements OnInit {
   }
 
   async calculoPorcentaje() {
-    //var porcentaje = this.data.porcentaje_minimo;
     var porcentaje = $(".cambiarPorcentaje").val();
     var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
     var plazoaniosa = $(".plazoaniosa").val();

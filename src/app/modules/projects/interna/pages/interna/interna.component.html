@@ -69,7 +69,9 @@
             </div>
             <div class="precio_hp">
                 <div class="price_project">
-                    <h4>{{data?.tipo_proyecto}} DESDE</h4>
+                    @if (data?.tipo_proyecto) {
+                        <h4>{{data?.tipo_proyecto}} DESDE</h4>
+                    }
                     <div class="cont_price">
                         $ {{data?.valor_proyecto_formato}}
                     </div>
