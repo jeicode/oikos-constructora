@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { Project } from 'src/app/core/models/project.model';
 import { regexEmail, regexNumber } from 'src/app/shared/data/regex';
+import { GlobalService } from 'src/app/shared/services/api/global.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
-import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
 declare const $:any;
@@ -43,7 +43,7 @@ export class CalculateFormComponent implements OnInit {
     terms: ['', Validators.requiredTrue]
   })
 
-  constructor(private fb:FormBuilder, private formService: FormService, private configServ: ConfigService,
+  constructor(private fb:FormBuilder, private formService: FormService, private globalService:GlobalService,
               private projectService: ProjectService, private router: Router) { }
 
   ngOnInit(): void {
@@ -124,37 +124,47 @@ export class CalculateFormComponent implements OnInit {
   }
 
   async insertContact(){
-    if (this.configServ.isBrowser()){
-      const data = {
-        nombre: this.calculateForm.controls['full_name']?.value,
-        email: this.calculateForm.controls['email']?.value,
-        telefono: this.calculateForm.controls['phone']?.value,
-        cuotaInicial: this.calculateForm.controls['initial_fee']?.value,
-        numeroCuotas: this.calculateForm.controls['total_fees']?.value,
-        valorCuotaInicial: $(".valorCuotaInicial").val(),
-        separacion: $(".separacion").val(),
-        saldoCuotaInicial: $(".diferencia").val(),
-        cuotamensual: $(".cuotamensual").val(),
-        porcentajeFinanciar: $(".porcentajeFinanciar").val(),
-        valorafinanciar: $(".valorafinanciar").val(),
-        plazoaniosa: this.calculateForm.controls['termInYears']?.value,
-        cuotahipoteca: $(".cuotahipoteca").val(),
-        porcentajeseparacion: this.selectedProject.porcentaje_separacion,
-        url_proyecto: window.location.href,
-        proyecto: this.selectedProject.titulo_proyecto,
-        valorProyecto: this.selectedProject.valor_proyecto,
-        sendTo: this.selectedProject.email_contactos,
-        id_proyecto: this.selectedProject.id
+    const data = {
+      nombre: this.calculateForm.controls['full_name']?.value,
+      email: this.calculateForm.controls['email']?.value,
+      telefono: this.calculateForm.controls['phone']?.value,
+      cuotaInicial: this.calculateForm.controls['initial_fee']?.value,
+      numeroCuotas: this.calculateForm.controls['total_fees']?.value,
+      valorCuotaInicial: $(".valorCuotaInicial").val(),
+      separacion: $(".separacion").val(),
+      saldoCuotaInicial: $(".diferencia").val(),
+      cuotamensual: $(".cuotamensual").val(),
+      porcentajeFinanciar: $(".porcentajeFinanciar").val(),
+      valorafinanciar: $(".valorafinanciar").val(),
+      plazoaniosa: this.calculateForm.controls['termInYears']?.value,
+      cuotahipoteca: $(".cuotahipoteca").val(),
+      porcentajeseparacion: this.selectedProject.porcentaje_separacion,
+      url_proyecto: window.location.href,
+      proyecto: this.selectedProject.titulo_proyecto,
+      valorProyecto: this.selectedProject.valor_proyecto,
+      sendTo: this.selectedProject.email_contactos,
+      id_proyecto: this.selectedProject.id
+    }
+
+    if(this.calculateForm.valid){
+      const {resp} = await this.projectService.setCalculadoraForm(data);
+      if(resp!='no') {
+        this.router.navigateByUrl(resp, { state: { nameContact: this.calculateForm.controls['full_name']?.value } })
       }
-  
-      if(this.calculateForm.valid){
-        const {resp} = await this.projectService.setCalculadoraForm(data);
-        if(resp!='no') {
-          this.router.navigateByUrl(resp, { state: { nameContact: this.calculateForm.controls['full_name']?.value } })
-        }
-      }else{
-        this.showErrors = true
+
+      else {
+        await this.globalService.sendMailApiError({
+          api: 'v1/setCalculadoraForm',
+          errors: {
+            url: this.router.url,
+            request: data,
+            response:resp
+          }
+        });
+        alert('Opps ocurrió un error enviando el formulario')
       }
+    }else{
+      this.showErrors = true
     }
   }
 

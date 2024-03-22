@@ -9,6 +9,7 @@ import { FormService } from 'src/app/shared/services/functions/form.service';
 
 import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
+import { GlobalService } from 'src/app/shared/services/api/global.service';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -81,6 +82,7 @@ export class InternaComponent implements OnInit {
     private projService: ProjectService,
     private router: Router,
     private activateRoute: ActivatedRoute,
+    private globalService: GlobalService,
     private fb: FormBuilder,
     private formServ: FormService) {
     this.slug = this.activateRoute.snapshot.paramMap.get('slug');
@@ -99,8 +101,8 @@ export class InternaComponent implements OnInit {
     this.notifyChanges.next({ openModal: true });
   }
 
-  resolved(captchaResponse: any) {
-    this.captcha = captchaResponse;
+  resolved(captchaResponse: string | null) {
+    captchaResponse && (this.captcha = captchaResponse)
   }
 
   ngOnInit(): void {
@@ -187,14 +189,14 @@ export class InternaComponent implements OnInit {
   }
 
 
+
+
   trasladar(el: any) {
-    if (this.configServ.isBrowser()){
-      var pos = Number($("#" + el).offset().top) - 100;
-      window.scrollTo({ top: pos, behavior: 'smooth' });
-  
-      $(".state").removeClass('active');
-      $("." + el).addClass('active');
-    }
+    var pos = Number($("#" + el).offset().top) - 100;
+    window.scrollTo({ top: pos, behavior: 'smooth' });
+
+    $(".state").removeClass('active');
+    $("." + el).addClass('active');
   }
 
   async calculoPorcentaje() {
@@ -254,7 +256,7 @@ export class InternaComponent implements OnInit {
   }
 
   async insertContact() {
-    if (this.contactForm.valid && !this.sendingContact && this.configServ.isBrowser()) {
+    if (this.contactForm.valid && !this.sendingContact) {
       this.sendingContact = true
       this.showErrors = false
       const values = {
@@ -283,6 +285,17 @@ export class InternaComponent implements OnInit {
       if (resp.resp != 'no') {
         window.location.href = resp.resp;
       }
+      else {
+        await this.globalService.sendMailApiError({
+          api: 'v1/setCalculadoraForm',
+          errors: {
+            url: this.router.url,
+            request: values,
+            response:resp
+          }
+        });
+        alert('Opps ocurrió un error enviando el formulario')
+      }
       this.sendingContact = false
     }
     else {
@@ -304,7 +317,7 @@ export class InternaComponent implements OnInit {
   }
 
   async insertContactForm() {
-    if (this.contactForm2.valid && this.captcha && !this.sendingContact && this.configServ.isBrowser()) {
+    if (this.contactForm2.valid && this.captcha && !this.sendingContact) {
       this.sendingContact = true
       this.showErrors = false
       const values = {
@@ -320,6 +333,17 @@ export class InternaComponent implements OnInit {
       if (resp.resp != 'no') {
         window.location.href = resp.resp;
       }
+      else {
+        await this.globalService.sendMailApiError({
+          api: 'v1/setContactFormProyecto',
+          errors: {
+            url: this.router.url,
+            request: values,
+            response:resp.resp
+          }
+        });
+        alert('Opps ocurrió un error enviando el formulario')
+      }
 
       this.sendingContact = false
     }
@@ -330,9 +354,7 @@ export class InternaComponent implements OnInit {
   }
 
   goToVentas() {
-    if (this.configServ.isBrowser()){
-      window.location.href = 'proyectos-construccion-vivienda';
-    }
+    window.location.href = 'proyectos-construccion-vivienda';
   }
 
   toogleFlotante() {

@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageService } from 'src/app/shared/services/api/page.service';
-import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -18,8 +17,6 @@ export class ContactPageComponent implements OnInit {
   itemsContact: any[] = []
   itemActive: any;
   indexItemActive!:number;
-
-  configService = inject(ConfigService)
 
   constructor(private pageService: PageService) { }
 
@@ -54,15 +51,13 @@ export class ContactPageComponent implements OnInit {
 
 
   activeItemContact(index:number){
-    if(this.configService.isBrowser()){
-      this.itemActive = this.itemsContact[index]
-      this.indexItemActive = index;
-  
-      if(index==1){
-        window.open("https://clientes.oikos.com.co/solicitudoikos/", "_blank");
-      }else{
-        this.showForm()
-      }
+    this.itemActive = this.itemsContact[index]
+    this.indexItemActive = index;
+
+    if(index==1){
+      window.open("https://clientes.oikos.com.co/solicitudoikos/", "_blank");
+    }else{
+      this.showForm()
     }
   }
 

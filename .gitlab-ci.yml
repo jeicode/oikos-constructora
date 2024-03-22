@@ -5,7 +5,7 @@ stages:
 deploy-dev:
   stage: dev-push
   only:
-    - dev
+    - merge
   tags:
     - runner server
   script:
