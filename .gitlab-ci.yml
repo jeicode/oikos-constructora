@@ -1,11 +1,11 @@
 stages:
     - deploy
-    - dev-push
+    - test-push
 
-deploy-dev:
-  stage: dev-push
+deploy-test:
+  stage: test-push
   only:
-    - merge
+    - test
   tags:
     - runner server
   script:
