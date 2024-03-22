@@ -205,6 +205,7 @@ input {
 }
 
 .s_proyecto_h {
+  min-height: 1203px;
   background: linear-gradient(180deg, rgba(198, 198, 198, 0) 0%, #E3E3E3 100%), #FFFFFF;
   position: relative;
   padding: 30px 0 100px;
@@ -237,6 +238,7 @@ input {
 }
 
 .precio_hp {
+  min-height: 196px;
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 30px;
@@ -246,6 +248,7 @@ input {
 }
 
 .price_project {
+  min-height: 95px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -289,6 +292,7 @@ input {
   flex-grow: 1;
 }
 .h_logo_proyect {
+  min-height: 166px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -352,6 +356,7 @@ input {
 }
 
 .info_heading_proy {
+  min-height: 244.59px;
   padding: 30px 0;
   border-bottom: 1px solid #DADADA;
   margin: 0 0 20px;
@@ -1180,6 +1185,11 @@ input {
 }
 
 @media screen and (max-width: 480px) {
+  
+  .info_h_proyecto{
+    min-height: 627px;
+  }
+
   .col_slide_p {
     max-height: 214px;
   }

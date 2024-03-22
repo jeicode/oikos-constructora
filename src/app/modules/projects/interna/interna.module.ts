@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { InternaRoutingModule } from './interna-routing.module';
 import { InternaComponent } from './pages/interna/interna.component';
@@ -24,6 +24,7 @@ import { HTMLPipe } from 'src/app/shared/pipes/html-data.pipe';
     RecaptchaModule,
     SafePipe,
     HTMLPipe,
+    NgOptimizedImage,
 
     //standalones
     SlideProjectsComponent,

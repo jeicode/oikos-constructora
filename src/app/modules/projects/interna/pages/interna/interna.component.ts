@@ -33,7 +33,7 @@ export class InternaComponent implements OnInit {
     },
   }
 
-  data: any = [];
+  data: any = undefined;
   datosCalc: any = [];
   datosCuota: any = [];
   datosAnio: any = [];
@@ -107,8 +107,8 @@ export class InternaComponent implements OnInit {
 
   ngOnInit(): void {
     this.calculoPorcentaje();
-    this.configServ.loadHeroProyectos(1000);
-    this.configServ.loadChangeTab(1000);
+    this.configServ.loadHeroProyectos(500);
+    this.configServ.loadChangeTab(500);
 
 
   }
