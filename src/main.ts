@@ -10,3 +10,10 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+
+// new PerformanceObserver((entryList) => {
+//   for (const entry of entryList.getEntries()) {
+//     console.log('LCP candidate:', entry.startTime, entry);
+//   }
+// }).observe({ type: 'largest-contentful-paint', buffered: true });

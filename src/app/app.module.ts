@@ -1,29 +1,32 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LayoutModule } from './shared/components/layout.module';
+import { provideClientHydration } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 import { HttpInterceptorService } from './core/interceptors/http-interceptor.service';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideImgixLoader } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    HttpClientModule,
+    BrowserModule,
     AppRoutingModule,
-    LayoutModule
+    
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [
-    provideImgixLoader("https://oikos-constructora.imgix.net/"),
+    provideHttpClient(withFetch()),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
-    }
+    },
+    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })

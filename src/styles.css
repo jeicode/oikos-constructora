@@ -184,6 +184,7 @@ h1 {
 }
 
 .ctn_logos {
+    min-width: 73px;
     min-height: 40px;
     justify-content: center;
     align-items: center;
@@ -412,13 +413,12 @@ h1 {
 .cuerpo {
     width: 100%;
     position: relative;
-    /*padding-top: 46.5px ;*/
+    min-height: 100vh;
     padding-top: 93px;
     display: block;
     flex-direction: column;
     justify-content: center;
     background-color: #FAFAFA;
-    height: 100vh;
 }
 
 .cnt_central {
@@ -489,7 +489,7 @@ h1 {
     background: #f4f4f4;
     border-top: 1px solid #ccc;
     position: relative;
-    min-height: 560px;
+    min-height: 683px;
 }
 
 .cnt_lat_pie {
@@ -596,7 +596,7 @@ h1 {
 .cnt_mid_pie {
     width: 100%;
     padding: 84px 0 80px;
-    padding-left: 40%;
+    padding-left: 42%;
     padding-right: 56px;
     box-sizing: border-box;
     display: flex;
@@ -1549,6 +1549,7 @@ input[type=file]::-webkit-file-upload-button {
     width: 100%;
     text-align: center;
     font-size: 14px;
+    min-height: 20.5px;
 }
 
 .precio_usd b {

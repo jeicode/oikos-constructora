@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { BlogService } from "src/app/shared/services/api/blog.service";
 import { ConfigService } from "src/app/shared/services/functions/config.service";
 import { JsonLDService } from "src/app/shared/services/functions/json-ld.service";
@@ -9,7 +9,7 @@ import { SeoService } from "src/app/shared/services/functions/seo.service";
 @Injectable({
     providedIn: 'root'
 })
-export class DeatilBlogGuard implements CanActivate {
+export class DeatilBlogGuard  {
     constructor(  private blogService: BlogService, 
                   private jsonLD: JsonLDService,
                   private seoService: SeoService,

@@ -1,41 +1,39 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { PageService } from 'src/app/shared/services/api/page.service';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { NgClass, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { getElementsContent } from '../../services/apis/common.service';
 
-declare var $:any;
 @Component({
   standalone: true,
-  imports:[NgFor, NgClass, NgIf, ReactiveFormsModule, RouterModule,NgOptimizedImage],
+  imports:[NgClass, RouterLink],
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  getElementsContent = getElementsContent()
 
-  // injects
-  pageService = inject(PageService)
+  IMG_URL = signal(environment.imagenes_url)
+
   router = inject(Router)
 
-  BASE_URL:string = environment.imagenes_url;
-  menuMobileIsActive:boolean = false;
+  menuMobileIsActive = signal(false);
 
-  homeIsActive          : boolean = false;
-  suscribeListenRouter  : Subscription;
+  homeIsActive = signal(true);
+  suscribeListenRouter:WritableSignal<Subscription | undefined> = signal(undefined);
   
   // collections
-  logos: any = [];
-  linksHeader:any[] = []
+  logos:WritableSignal<any> = signal([]);
+  linksHeader:WritableSignal<any> = signal([]);
 
   constructor( ) {
-    this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
+    this.suscribeListenRouter.set(this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
-        if (this.router.url == '/') this.homeIsActive = true
-        else this.homeIsActive = false
+        if (this.router.url == '/') this.homeIsActive.set(true)
+        else this.homeIsActive.set(false)
       }
-    });
+    }))
   }
 
   ngOnInit(): void {
@@ -43,26 +41,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.suscribeListenRouter.unsubscribe()
+    this.suscribeListenRouter()?.unsubscribe()
   }
 
 
   closeNav(){
-    if($(".btn_menu_movil").hasClass('active')){
-      $(".btn_menu_movil").click();
-    }
+    this.menuMobileIsActive.set(false)
   }
 
   async getCollectionsPage(){
-    this.linksHeader = await this.pageService.getElementsContent('titulo menu', 'menu');
-    this.logos = await this.pageService.getElementsContent("titulo empresa", "logos_empresas", "field_name='ver en header' AND field_content='2'")
+    const linksHeader = await this.getElementsContent( {name: 'titulo menu', content:'menu' });
+    this.linksHeader.set(linksHeader);
+
+    const logos = await this.getElementsContent( {name:"titulo empresa", content: "logos_empresas", condicional: "field_name='ver en header' AND field_content='2'"})
+    this.logos.set(logos);
   }
-
-
-
-  toogleActiveMenuMobile(){
-    this.menuMobileIsActive = !this.menuMobileIsActive
-  }
-
 
 }

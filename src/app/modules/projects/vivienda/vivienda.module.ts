@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ViviendaRoutingModule } from './vivienda-routing.module';
 import { ViviendaComponent } from './pages/vivienda/vivienda.component';
-import { LayoutModule } from 'src/app/shared/components/layout.module';
 import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 import { ExecutedProjectsSlidePagComponent } from 'src/app/shared/components/executed-projects-slide-pag/executed-projects-slide-pag.component';
@@ -18,7 +17,6 @@ import { ThousandNumber } from 'src/app/shared/pipes/thousand-number.pipe';
   imports: [
     CommonModule,
     ViviendaRoutingModule,
-    LayoutModule,
     BreadcrumbComponent,
 
     // components

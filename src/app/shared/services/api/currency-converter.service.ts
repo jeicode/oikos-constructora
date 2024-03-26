@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Project } from 'src/app/core/models/project.model';
 import { environment } from 'src/environments/environment.prod';
+import { ConfigService } from '../functions/config.service';
 
 const BASE_URL = environment.base_url
 
@@ -12,6 +13,7 @@ const BASE_URL = environment.base_url
 export class CurrencyConverterService {
 
   currentCopPrice!:number;
+  configService = inject(ConfigService)
   constructor(private _http:HttpClient) { }
 
   async getContentHtmlExternalPage(urlPage:string):Promise<any>{ 
@@ -28,19 +30,22 @@ export class CurrencyConverterService {
    * @returns Price Colombian pesos COP by usd
    */
   private async getCopPriceByUsd():Promise<number | null>{
-    const urlPage = 'https://www.google.com/finance/quote/USD-COP?sa=X&ved=2ahUKEwiBpd_lo5L7AhV1VTABHSOsBHgQmY0JegQIBhAc';
-    const {html} = await this.getContentHtmlExternalPage(urlPage);
-    
-    if (html){
-      var parser = new DOMParser();
-      var htmlDoc = parser.parseFromString(html, 'text/html');
-      if (htmlDoc){
-        let copPrice = htmlDoc.querySelector('.fxKbKc')?.textContent;
-        if (copPrice){
-          const price = copPrice.replace(/,/g, '');
-          return Number(price);
-        }
 
+    if (this.configService.isBrowser()){
+      const urlPage = 'https://www.google.com/finance/quote/USD-COP?sa=X&ved=2ahUKEwiBpd_lo5L7AhV1VTABHSOsBHgQmY0JegQIBhAc';
+      const {html} = await this.getContentHtmlExternalPage(urlPage);
+      
+      if (html){
+        var parser = new DOMParser();
+        var htmlDoc = parser.parseFromString(html, 'text/html');
+        if (htmlDoc){
+          let copPrice = htmlDoc.querySelector('.fxKbKc')?.textContent;
+          if (copPrice){
+            const price = copPrice.replace(/,/g, '');
+            return Number(price);
+          }
+  
+        }
       }
     }
 

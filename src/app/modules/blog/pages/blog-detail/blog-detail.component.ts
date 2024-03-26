@@ -84,38 +84,43 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   }
 
   shareBy(share: 'linkedln' | 'fb' | 'twitter') {
-    let link = ""
-    const linkShare = window.location.href
-
-    switch (share) {
-      case 'fb':
-        link = `https://www.facebook.com/sharer/sharer.php?u=${linkShare}`
-        break;
-
-      case 'twitter':
-        link = `https://twitter.com/intent/tweet?text=${linkShare}`
-        break;
-
-      case 'linkedln':
-        link = `https://www.linkedin.com/sharing/share-offsite/?url=${linkShare}`
-        break;
-
+    if (this.configServ.isBrowser()){
+      let link = ""
+      const linkShare = window.location.href
+  
+      switch (share) {
+        case 'fb':
+          link = `https://www.facebook.com/sharer/sharer.php?u=${linkShare}`
+          break;
+  
+        case 'twitter':
+          link = `https://twitter.com/intent/tweet?text=${linkShare}`
+          break;
+  
+        case 'linkedln':
+          link = `https://www.linkedin.com/sharing/share-offsite/?url=${linkShare}`
+          break;
+  
+      }
+  
+      window.open(link, "_blank");
     }
 
-    window.open(link, "_blank");
   }
 
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   configScrollPagination() {
-    if ($ && $(window).width() > 1200) {
-      var scroll = $(window).scrollTop();
-      if (scroll >= 420) {
-        this.scrollPaginationIsActive = true
-      } else {
-        this.scrollPaginationIsActive = false
+    if (this.configServ.isBrowser()){
+      if ($ && $(window).width() > 1200) {
+        var scroll = $(window).scrollTop();
+        if (scroll >= 420) {
+          this.scrollPaginationIsActive = true
+        } else {
+          this.scrollPaginationIsActive = false
+        }
+  
       }
-
     }
 
   }

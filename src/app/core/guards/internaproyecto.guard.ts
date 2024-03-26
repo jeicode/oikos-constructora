@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { PageService } from "src/app/shared/services/api/page.service";
 import { ProjectService } from "src/app/shared/services/api/project.service";
 import { SeoService } from "src/app/shared/services/functions/seo.service";
@@ -7,7 +7,7 @@ import { SeoService } from "src/app/shared/services/functions/seo.service";
 @Injectable({
     providedIn: 'root'
 })
-export class InternaProyectoGuard implements CanActivate {
+export class InternaProyectoGuard  {
     constructor(private pageService: PageService, private projService: ProjectService, private router: Router, private seoService: SeoService) { }
 
     async canActivate(

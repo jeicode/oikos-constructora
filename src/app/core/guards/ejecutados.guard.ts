@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { PageService } from "src/app/shared/services/api/page.service";
 import { SeoService } from "src/app/shared/services/functions/seo.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class EjecutadosGuard implements CanActivate {
+export class EjecutadosGuard  {
     constructor(private pageService: PageService, private router: Router, private seoService: SeoService) { }
 
     async canActivate(
