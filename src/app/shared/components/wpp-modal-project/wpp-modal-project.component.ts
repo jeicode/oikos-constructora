@@ -55,7 +55,6 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   }
     
   async sendContactUserWpp(){
-
     if (this.contactWppForm.valid){
       this.contactWppForm.patchValue({
         project_id: this.project.id
@@ -65,7 +64,6 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
       if (res) {
         this.redirectToWppLink();
       } 
-
       else {
 
         await this.globalService.sendMailApiError({
@@ -92,14 +90,11 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
     return this.formService.hasErrorsFieldForm(form, field, this.showErrors)
   } 
 
-
+  
   redirectToWppLink(){
-    if(this.project.origin=='home')
-      window.open(this.project.api_wsp, '_blank')
-    else
-      window.open(this.project.api_wsp_flotante, '_blank')
+    if(this.project.origin=='home') window.open(this.project.api_wsp, '_blank')
+    else window.open(this.project.api_wsp_flotante, '_blank')
   }
-
 
   
 }

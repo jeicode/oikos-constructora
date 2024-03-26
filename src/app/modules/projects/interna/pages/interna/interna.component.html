@@ -134,16 +134,16 @@
                 </div>
                 <div class="btn" (click)="goToVentas()" *ngIf="data?.seccion=='4'">Conozca nuestros proyectos en venta</div>
                 <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank"
-                    *ngIf="data.vista360 && data.id!='1'">Recorrido<img
+                    *ngIf="data?.vista360 && data?.id!='1'">Recorrido<img
                         ngSrc="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
                 <a class="btn" href="{{data?.vista360}}" rel="noopener,nofollow" target="_blank"
-                    *ngIf="data.vista360 && data.id=='1'">Recorrido tipo 1<img
+                    *ngIf="data?.vista360 && data?.id=='1'">Recorrido tipo 1<img
                         ngSrc="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
                 <a class="btn" href="https://www.oikos.com.co/constructora/maquetas-360/san_pablo_lirios/" rel="noopener,nofollow" target="_blank"
-                    *ngIf="data.id=='1'">Recorrido tipo 2<img
+                    *ngIf="data?.id=='1'">Recorrido tipo 2<img
                     ngSrc="assets/images/diseno/int_proyecto/icono_recorrido.svg" width="20" height="20" alt=""> </a>
                 <a class="btn" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank"
-                    *ngIf="data.url_waze">Cómo llegar <img
+                    *ngIf="data?.url_waze">Cómo llegar <img
                     ngSrc="assets/images/diseno/int_proyecto/icono_waze.svg" width="20" height="20" alt=""> </a>
             </div>
 
@@ -207,7 +207,7 @@
                                 <a style="cursor:pointer" class="btn read" (click)="seguirLeyendo()">Seguir Leyendo</a>
                             </div>
                             <picture>
-                                @if (data.vista360) {
+                                @if (data?.vista360) {
                                     <a 
                                         class="btn" 
                                         href="{{data?.vista360}}" 
@@ -304,7 +304,8 @@
                         </div>
                         <div class="row_btn_waze">
                             <a class="btn btn_waze_p" href="{{data?.url_waze}}" rel="noopener,nofollow" target="_blank"
-                                *ngIf="data.url_waze!='' && data.url_waze!=null">Cómo llegar 
+                                *ngIf="data.url_waze">
+                                Cómo llegar 
                                 
                                 <img
                                     ngSrc="assets/images/diseno/int_proyecto/icono_waze.svg" 
@@ -479,7 +480,7 @@
                             <label for="">Número de cuotas</label>
                             <select class="cuotasinicialfinanciar" (change)="diferenciadordecuotasmensuales()">
                                 <option value="{{i.nro}}" [selected]="j==0"
-                                    *ngFor="let i of data.numero_cuotas; index as j">{{i.nro}}</option>
+                                    *ngFor="let i of data?.numero_cuotas; index as j">{{i.nro}}</option>
                             </select>
                         </div>
                     </div>
