@@ -34,9 +34,7 @@
             <div class="info_heading_proy">
                 <div class="item_hp" *ngIf="data?.direccion_proyecto">
                     <span class="fas fa-map-marker-alt"></span>
-                    <div>
-                        <b> Dirección proyecto: </b> {{data?.direccion_proyecto}}
-                    </div>
+                    <div [innerHTML]="data?.direccion_proyecto"></div>
                 </div>
                 <div class="item_hp" *ngIf="data?.direccion_salaventas">
                     <span class="fas fa-map-marker-alt"></span>
