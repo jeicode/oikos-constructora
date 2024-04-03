@@ -161,7 +161,7 @@
                             {{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}
                         </div>
                         <div class="info_datos_pe">
-                            <div *ngIf="i?.direccion_proyecto!=''"> <b> Dirección:</b> {{i?.direccion_proyecto}}</div>
+                            <div *ngIf="i?.direccion_proyecto" [innerHtml]="i?.direccion_proyecto"></div>
                             <div *ngIf="i?.ubicacion_proyecto!=''"> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
                             <div *ngIf="i?.zona_proyecto!=''"> <b> Zona:</b> {{i?.zona_proyecto}}</div>
                             <div *ngIf="i?.telefono_salaventas!=''"> <b> Teléfono:</b> {{i?.telefono_salaventas}}</div>
