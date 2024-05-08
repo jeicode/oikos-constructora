@@ -211,11 +211,10 @@ export class InternaComponent implements OnInit, OnDestroy {
     var plazoaniosa = $(".plazoaniosa").val();
     var financiar = $(".valorafinanciar").val();
 
-    if (porcentaje == '' || porcentaje == null)
-      porcentaje = this.data.porcentaje_minimo;
+    if (porcentaje == '' || porcentaje == null) porcentaje = this.data?.porcentaje_minimo;
 
     this.porcFinanciar = (100 - porcentaje);
-    this.datosCalc = await this.projService.getCalculoPorcentaje(this.data.valor_proyecto, porcentaje, cuotasinicialfinanciar, plazoaniosa, financiar);
+    this.datosCalc = await this.projService.getCalculoPorcentaje(this.data?.valor_proyecto, porcentaje, cuotasinicialfinanciar, plazoaniosa, financiar);
     this.datosCalc = this.datosCalc[0];
 
     $(".valorCuotaInicial").val('$ ' + this.datosCalc['cuotaInicial']);
@@ -281,7 +280,7 @@ export class InternaComponent implements OnInit, OnDestroy {
         porcentajeseparacion: this.data.porcentaje_separacion,
         url_proyecto: window.location.href,
         proyecto: this.data.titulo_proyecto,
-        valorProyecto: this.data.valor_proyecto,
+        valorProyecto: this.data?.valor_proyecto,
         sendTo: this.data.email_contactos,
         id_proyecto: this.data.id,
         gracias_a: "1",

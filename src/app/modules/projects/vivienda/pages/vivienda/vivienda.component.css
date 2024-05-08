@@ -678,7 +678,7 @@
   font-weight: 300;
 }
 
-.info_datos_pe b {
+::ng-deep .info_datos_pe b {
   font-weight: 700;
 }
 
