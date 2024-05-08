@@ -28,6 +28,12 @@ export class ContactFormComponent implements OnInit {
   affairList:any[] = []
   housingProjects:any[] = []
 
+  
+  //data analytics
+  sourceTrack           : string | null | undefined;
+  mediumTrack           : string | null | undefined;
+  campaignTrack           : string | null | undefined;
+
   @Input() typeForm:'general'  | 'postventas'  = 'general';
   @Input() recipient_mail:string = '';
 
@@ -36,6 +42,10 @@ export class ContactFormComponent implements OnInit {
               private contactService: ContactService, private pageService: PageService, private projectService: ProjectService) { }
 
   ngOnInit(): void {
+    this.sourceTrack = localStorage.getItem('sourceTrack');
+    this.mediumTrack = localStorage.getItem('mediumTrack');
+    this.campaignTrack = localStorage.getItem('campaignTrack');
+
     this.initForm()
     this.getProjectsHome();
   }
@@ -100,7 +110,10 @@ export class ContactFormComponent implements OnInit {
         comentario: message,
         asunto: affair,
         correo_destinatario: this.recipient_mail,
-        proyecto: project
+        proyecto: project,
+        source: this.sourceTrack,
+        medium: this.mediumTrack,
+        campaign: this.campaignTrack,
       }
       const response = await this.contactService.postContactForm(data)
 

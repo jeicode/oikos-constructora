@@ -63,6 +63,11 @@ export class InternaComponent implements OnInit, OnDestroy {
   markers: any = [];
   notifyChanges: Subject<any> = new Subject<any>();
 
+  //data analytics
+  sourceTrack           : string | null | undefined;
+  mediumTrack           : string | null | undefined;
+  campaignTrack           : string | null | undefined;
+
   contactForm: FormGroup = this.fb.group({
     nombre: new FormControl('', Validators.required),
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
@@ -106,6 +111,10 @@ export class InternaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.sourceTrack = localStorage.getItem('sourceTrack');
+    this.mediumTrack = localStorage.getItem('mediumTrack');
+    this.campaignTrack = localStorage.getItem('campaignTrack');
+
     this.calculoPorcentaje();
     this.configServ.loadHeroProyectos(200);
     this.configServ.loadChangeTab(300);
@@ -274,7 +283,10 @@ export class InternaComponent implements OnInit, OnDestroy {
         valorProyecto: this.data?.valor_proyecto,
         sendTo: this.data.email_contactos,
         id_proyecto: this.data.id,
-        gracias_a: "1"
+        gracias_a: "1",
+        source: this.sourceTrack,
+        medium: this.mediumTrack,
+        campaign: this.campaignTrack,
       }
       const resp = await this.projService.setCalculadoraForm(values);
       if (resp.resp != 'no') {
@@ -322,7 +334,10 @@ export class InternaComponent implements OnInit, OnDestroy {
         mensaje: this.contactForm2.controls['mensaje2'].value,
         id_proyecto: this.data.id,
         nombre_proyecto: this.data.titulo_proyecto,
-        sendTo: this.data.email_contactos
+        sendTo: this.data.email_contactos,
+        source: this.sourceTrack,
+        medium: this.mediumTrack,
+        campaign: this.campaignTrack,
       }
       const resp = await this.projService.setContactFormProyecto(values);
       if (resp.resp != 'no') {
