@@ -91,6 +91,14 @@
   <script defer src="assets/js/funciones.min.js"></script>
   <script defer src="assets/plugins/lightbox/lightbox.min.js"></script>
     <!--MIGRAR-->
+  
+    <script src="https://cdn.jsdelivr.net/npm/visitdata/dist/visitdata.umd.js"></script>
+    <script>
+      let trackData = visitData.get();
+      localStorage.setItem('sourceTrack',trackData.source);
+      localStorage.setItem('mediumTrack',trackData.medium);
+      localStorage.setItem('campaignTrack',trackData.campaign);
+    </script>
 
 </body>
 

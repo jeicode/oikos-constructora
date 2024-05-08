@@ -24,6 +24,12 @@ export class ModalPreLaunchProjectComponent implements OnInit, OnDestroy {
   eventsSubscription!:Subscription;
   showErrors: boolean = false;
 
+  //data analytics
+  sourceTrack           : string | null | undefined;
+  mediumTrack           : string | null | undefined;
+  campaignTrack           : string | null | undefined;
+
+
 
   form: FormGroup = this.fb.group({
     name: ['', Validators.required],
@@ -43,6 +49,9 @@ export class ModalPreLaunchProjectComponent implements OnInit, OnDestroy {
     this.eventsSubscription.unsubscribe()
   }
   ngOnInit(): void { 
+    this.sourceTrack = localStorage.getItem('sourceTrack');
+    this.mediumTrack = localStorage.getItem('mediumTrack');
+    this.campaignTrack = localStorage.getItem('campaignTrack');
     this.eventsSubscription = this.modalEvent.subscribe((event:any) => {
       const {openModal} = event
       if (openModal){
@@ -56,7 +65,11 @@ export class ModalPreLaunchProjectComponent implements OnInit, OnDestroy {
       this.form.patchValue({
         project_id: this.project.id,
         title_project: this.project.titulo_proyecto,
-        sendTo: this.project.email_contactos
+        sendTo: this.project.email_contactos,
+        source: this.sourceTrack,
+        medium: this.mediumTrack,
+        campaign: this.campaignTrack,
+
       })
 
       const res = await this.projectService.createContactPreLaunchProject(this.form.getRawValue())

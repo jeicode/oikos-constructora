@@ -32,6 +32,11 @@ export class CalculateFormComponent implements OnInit {
   datosAnio             : any = [];
   porcFinanciar         : number = 100;
 
+  //data analytics
+  sourceTrack           : string | null | undefined;
+  mediumTrack           : string | null | undefined;
+  campaignTrack         : string | null | undefined;
+
   calculateForm: FormGroup = this.fb.group({
     full_name:['', this.formService.noWhitespaceValidator],
     project_slug: ['', this.formService.noWhitespaceValidator],
@@ -47,6 +52,9 @@ export class CalculateFormComponent implements OnInit {
               private projectService: ProjectService, private router: Router) { }
 
   ngOnInit(): void {
+    this.sourceTrack = localStorage.getItem('sourceTrack');
+    this.mediumTrack = localStorage.getItem('mediumTrack');
+    this.campaignTrack = localStorage.getItem('campaignTrack');
     this.getProjectsHome()
   }
 
@@ -143,7 +151,10 @@ export class CalculateFormComponent implements OnInit {
       proyecto: this.selectedProject.titulo_proyecto,
       valorProyecto: this.selectedProject.valor_proyecto,
       sendTo: this.selectedProject.email_contactos,
-      id_proyecto: this.selectedProject.id
+      id_proyecto: this.selectedProject.id,
+      source: this.sourceTrack,
+      medium: this.mediumTrack,
+      campaign: this.campaignTrack,
     }
 
     if(this.calculateForm.valid){
