@@ -30,6 +30,11 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   modalIsOpen: boolean = false;
   showErrors:boolean = false
 
+  //data analytics
+  sourceTrack           : string | null | undefined;
+  mediumTrack           : string | null | undefined;
+  campaignTrack           : string | null | undefined;
+
   contactWppForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.pattern(regexEmail)]],
@@ -47,6 +52,9 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.sourceTrack = localStorage.getItem('sourceTrack');
+    this.mediumTrack = localStorage.getItem('mediumTrack');
+    this.campaignTrack = localStorage.getItem('campaignTrack');
     this.eventsSubscription = this.modalEvent.subscribe((event:any) => this.setOpenModalValue(event?.openModal));
   }
   
@@ -59,7 +67,18 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
       this.contactWppForm.patchValue({
         project_id: this.project.id
       })
-      const data = this.contactWppForm.getRawValue()
+      const { email, name, phone, project_id} = this.contactWppForm.getRawValue()
+
+      const data = {
+        email,
+        name,
+        phone,
+        project_id,        
+        source: this.sourceTrack,
+        medium: this.mediumTrack,
+        campaign: this.campaignTrack
+      }
+
       const res = await this.projectService.createContactWppProject(data);
       if (res) {
         this.redirectToWppLink();
