@@ -142,50 +142,7 @@
             <div class="swiper-pagination"></div>
         </div>
     </section>
-    
-    <section class="s_proyectos_ejecutados">
-        <div class="cnt_central">
-            <div class="c_proyectos_ejecutados">
-    
-                <div class="title_section al-center" [innerHTML]="data.subtitulo_proyectos_ejecutados"></div>
-    
-                <app-executed-projects-slide-pag></app-executed-projects-slide-pag>
-    
-                <div class="cont_proyecto_eject" [ngClass]="j==0 ? 'active' : ''" [attr.data-proyecto]="j+1" 
-                    *ngFor="let i of ejecutados; index as j">
-                    <div class="info_pe">
-                        <div class="title_pe">
-                            <h2>{{i?.titulo_proyecto}}</h2>
-                        </div>
-                        <div class="lugar">
-                            {{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}
-                        </div>
-                        <div class="info_datos_pe">
-                            <div *ngIf="i?.direccion_proyecto" [innerHtml]="i?.direccion_proyecto"></div>
-                            <div *ngIf="i?.ubicacion_proyecto!=''"> <b> Ciudad:</b> {{i?.ubicacion_proyecto}}</div>
-                            <div *ngIf="i?.zona_proyecto!=''"> <b> Zona:</b> {{i?.zona_proyecto}}</div>
-                            <div *ngIf="i?.telefono_salaventas!=''"> <b> Teléfono:</b> {{i?.telefono_salaventas}}</div>
-                            <div *ngIf="i?.celular_salaventas!=''"> <b> Celular:</b> {{i?.celular_salaventas}}</div>
-                            <div *ngIf="i?.email!=''"> <b> Email:</b> {{i?.email}}</div>
-                        </div>
-                    </div>
-                    <div class="c_slider_pe">
-                        <!-- Swiper -->
-                        <div class="swiper swiperPe">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img width="530" height="390" src="{{imagenes_url+i?.imagen_principal_proyecto}}" alt="{{i?.alt_principal}}">
-                                </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                </div>           
-    
-            </div>
-        </div>
-    </section>
-    
+        
     <app-modal-pre-launch-project   [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
                                     [project]="projectSelectedToModal">
     </app-modal-pre-launch-project>
