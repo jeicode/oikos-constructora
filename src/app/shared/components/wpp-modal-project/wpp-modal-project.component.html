@@ -53,9 +53,9 @@
             </div>
             <button type="submit" class="btn_form_wa disabled" 
                     (click)="sendContactUserWpp()"
-                    [disabled]="contactWppForm.invalid"
+                    [disabled]="contactWppForm.invalid || disabledButton"
                     [id]="idBtnWpp ? idBtnWpp : 'btn_form_wa_'+project.titulo_proyecto_wsp">
-                Iniciar conversación
+                {{textoButton}}
             </button>
         </form>
     </div>

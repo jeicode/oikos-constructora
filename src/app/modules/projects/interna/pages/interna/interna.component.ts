@@ -97,6 +97,11 @@ export class InternaComponent implements OnInit, OnDestroy {
         this.slug = this.activateRoute.snapshot.paramMap.get('slug');
         this.getData();
         this.configServ.goUpPage()
+        setTimeout(() => {
+          this.diferenciadordecuotasmensuales();
+          this.calculoPorcentaje();
+        },3000)
+        
       }
     });
   }
@@ -287,6 +292,7 @@ export class InternaComponent implements OnInit, OnDestroy {
         source: this.sourceTrack,
         medium: this.mediumTrack,
         campaign: this.campaignTrack,
+        url_origen: window.location.href
       }
       const resp = await this.projService.setCalculadoraForm(values);
       if (resp.resp != 'no') {
@@ -338,6 +344,7 @@ export class InternaComponent implements OnInit, OnDestroy {
         source: this.sourceTrack,
         medium: this.mediumTrack,
         campaign: this.campaignTrack,
+        url_origen: window.location.href
       }
       const resp = await this.projService.setContactFormProyecto(values);
       if (resp.resp != 'no') {

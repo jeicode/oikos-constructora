@@ -29,6 +29,8 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   eventsSubscription!: Subscription;
   modalIsOpen: boolean = false;
   showErrors:boolean = false
+  disabledButton    : boolean = false;
+  textoButton       : string = "Iniciar conversación";
 
   //data analytics
   sourceTrack           : string | null | undefined;
@@ -64,10 +66,15 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
     
   async sendContactUserWpp(){
     if (this.contactWppForm.valid){
+
+      this.textoButton = "Por favor espere...";
+      this.disabledButton = true;
+
       this.contactWppForm.patchValue({
         project_id: this.project.id
       })
       const { email, name, phone, project_id} = this.contactWppForm.getRawValue()
+      this.contactWppForm.reset()
 
       const data = {
         email,
@@ -76,7 +83,8 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
         project_id,        
         source: this.sourceTrack,
         medium: this.mediumTrack,
-        campaign: this.campaignTrack
+        campaign: this.campaignTrack,
+        url_origen: window.location.href
       }
 
       const res = await this.projectService.createContactWppProject(data);
@@ -97,6 +105,8 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
 
       }
       this.contactWppForm.reset()
+      this.disabledButton = false;
+      this.textoButton = "Iniciar conversación";
 
     } else {
       this.showErrors = true;

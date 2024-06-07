@@ -42,6 +42,8 @@ export class ViviendaComponent implements OnInit {
   notifyChanges: Subject<any> = new Subject<any>();
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
+  url_filtro            : any = [];
+
 
   constructor(private pageService: PageService, private router: Router,
               private responsiveService:ResponsiveService, private currencyConverter: CurrencyConverterService,
@@ -146,7 +148,14 @@ export class ViviendaComponent implements OnInit {
   }
 
   async getProyectos(){
-    this.proyectos = await this.projService.getProyectosByTipo('1');
+    this.url_filtro = this.router.parseUrl(this.router.url);
+
+    if(this.url_filtro.queryParams['ciudad']){
+      this.proyectos = await this.projService.getProyectosByTipo('1', this.url_filtro.queryParams['ciudad']);
+    }else{
+      this.proyectos = await this.projService.getProyectosByTipo('1');
+    }
+
     if(this.proyectos?.length==0){
       this.proyectos_ver = false;
     }else{
@@ -154,9 +163,14 @@ export class ViviendaComponent implements OnInit {
     }
   }
 
-  async buscarProyectos(){
+  async buscarProyectos(ciudad?: any){
     this.toogleContainerSearch();
-    this.proyectos = await this.projService.getProyectosByTipo('1', this.ciudad, this.tipo_search, this.precio_search);
+
+    if(ciudad){
+      this.proyectos = await this.projService.getProyectosByTipo('1', ciudad, this.tipo_search, this.precio_search);
+    }else{
+      this.proyectos = await this.projService.getProyectosByTipo('1', this.ciudad, this.tipo_search, this.precio_search);
+    }
 
     if(this.proyectos.length==0){
       this.proyectos_ver = false;
