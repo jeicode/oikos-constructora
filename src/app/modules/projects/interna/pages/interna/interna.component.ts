@@ -10,6 +10,7 @@ import { FormService } from 'src/app/shared/services/functions/form.service';
 import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
 import { GlobalService } from 'src/app/shared/services/api/global.service';
+import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -20,6 +21,7 @@ declare var $: any;
   styleUrls: ['./interna.component.css']
 })
 export class InternaComponent implements OnInit, OnDestroy {
+
 
   breadcrumbs: Breadcrumb[] = [];
 
@@ -64,9 +66,9 @@ export class InternaComponent implements OnInit, OnDestroy {
   notifyChanges: Subject<any> = new Subject<any>();
 
   //data analytics
-  sourceTrack           : string | null | undefined;
-  mediumTrack           : string | null | undefined;
-  campaignTrack           : string | null | undefined;
+  sourceTrack: string | null | undefined;
+  mediumTrack: string | null | undefined;
+  campaignTrack: string | null | undefined;
 
   contactForm: FormGroup = this.fb.group({
     nombre: new FormControl('', Validators.required),
@@ -87,6 +89,7 @@ export class InternaComponent implements OnInit, OnDestroy {
     private configServ: ConfigService,
     private projService: ProjectService,
     private router: Router,
+    public responsive: ResponsiveService,
     private activateRoute: ActivatedRoute,
     private globalService: GlobalService,
     private fb: FormBuilder,
@@ -304,7 +307,7 @@ export class InternaComponent implements OnInit, OnDestroy {
           errors: {
             url: this.router.url,
             request: values,
-            response:resp
+            response: resp
           }
         });
         alert('Opps ocurrió un error enviando el formulario')
@@ -356,7 +359,7 @@ export class InternaComponent implements OnInit, OnDestroy {
           errors: {
             url: this.router.url,
             request: values,
-            response:resp.resp
+            response: resp.resp
           }
         });
         alert('Opps ocurrió un error enviando el formulario')
@@ -382,7 +385,7 @@ export class InternaComponent implements OnInit, OnDestroy {
     }
   }
 
-  closeContactModal(){
+  closeContactModal() {
     $(".contacto_flotante").removeClass('active');
   }
 
