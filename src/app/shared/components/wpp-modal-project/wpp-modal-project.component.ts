@@ -37,6 +37,8 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   mediumTrack           : string | null | undefined;
   campaignTrack           : string | null | undefined;
 
+  url_origen            : any;
+
   contactWppForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.pattern(regexEmail)]],
@@ -58,6 +60,11 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
     this.mediumTrack = localStorage.getItem('mediumTrack');
     this.campaignTrack = localStorage.getItem('campaignTrack');
     this.eventsSubscription = this.modalEvent.subscribe((event:any) => this.setOpenModalValue(event?.openModal));
+
+    this.url_origen = this.router.url;
+    if(this.url_origen=='/'){
+      this.modalIsOpen = true;
+    }
   }
   
   setOpenModalValue(openModal:boolean|undefined){
