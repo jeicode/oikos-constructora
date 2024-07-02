@@ -1,115 +1,114 @@
 
-@if (housingProjects().length > 0) {
-    <section class="s_cards_proyectos">
-        <div class="cnt_central">
-            <div class="c_cards_proyectos">
-                @for (i of housingProjects(); track $index) {
-                    <div class="card_p">
-                        <picture>
-                            <span 
-                                class="tag_state" 
-                                [ngStyle]="{'background-color': i.color_secundario}">
-                                {{i.estado_proyecto}}
-                            </span>
-                            @if (i.vista360 || i.url_waze) {
-                                <div class="btns_icons">
-                                    @if (i?.vista360) {
-                                        <a [href]="i.vista360" target="_blank" class="btn_icon">
-                                            <img ngSrc="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
-                                        </a>
-                                    }
-                                    @else {
-                                        <a [href]="i.url_waze" target="_blank"  class="btn_icon">
-                                            <span class="fas fa-map-marker-alt"></span>
-                                        </a>
-                                    }
-                                </div>
+<section class="s_cards_proyectos">
+    <div class="cnt_central">
+        <div class="c_cards_proyectos">
+            @for (i of housingProjects(); track $index) {
+                <div class="card_p">
+                    <picture>
+                        <span 
+                            class="tag_state" 
+                            [ngStyle]="{'background-color': i.color_secundario}">
+                            {{i.estado_proyecto}}
+                        </span>
+                        @if (i.vista360 || i.url_waze) {
+                            <div class="btns_icons">
+                                @if (i?.vista360) {
+                                    <a [href]="i.vista360" target="_blank" class="btn_icon">
+                                        <img ngSrc="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20">
+                                    </a>
+                                }
+                                @else {
+                                    <a [href]="i.url_waze" target="_blank"  class="btn_icon">
+                                        <span class="fas fa-map-marker-alt"></span>
+                                    </a>
+                                }
+                            </div>
 
-                            }
+                        }
 
-                            @if (i.interna === 'si') {
-                                <a routerLink="/proyecto/{{i.url_amigable}}">
-                                    <img 
-                                    width="350" height="168" 
-                                    defaultImg
-                                    [ngSrc]="IMG_URL()+i.imagen_principal_proyecto" 
-                                    [alt]="i.alt_principal" 
-                                    [title]="i.title_principal">
-                                </a>
-
-                            }
-                            @else {
-                                <img width="350" height="168" 
+                        @if (i.interna === 'si') {
+                            <a routerLink="/proyecto/{{i.url_amigable}}">
+                                <img 
+                                width="350" height="168" 
                                 defaultImg
                                 [ngSrc]="IMG_URL()+i.imagen_principal_proyecto" 
                                 [alt]="i.alt_principal" 
                                 [title]="i.title_principal">
+                            </a>
 
-                            }
-                            
-                        </picture>
-                        <h2 class="name_proyecto" [ngStyle]="{'background-color': i.color_primario}">
-                            <picture>
-                                <img 
-                                    width="87" height="87" defaultImg
-                                    [ngSrc]="IMG_URL()+i.logo_proyecto" 
-                                    [alt]="i.alt_logo" 
-                                    [title]="i.title_logo">
-                            </picture>
-                            <div>{{i.titulo_proyecto}}</div>
-                        </h2>
-                        <div class="datos_proyecto">
-                            <h3>{{i.zona_proyecto}} / {{i.ubicacion_proyecto}}</h3>
-                            @if (i.valor_proyecto_formato) {
-                                <h4>
-                                    <span>Desde</span>
-                                    ${{i.valor_proyecto_formato}} 
-                                </h4>
-                            }
-
-                            <div class="precio_usd">
-                                @if (i.dollar_value) {
-                                    Precio de referencia 
-                                    <b>USD {{i.dollar_value | thousandNumber:'es'}}</b>
-                                }
-                            </div>
-                            
-                        </div>
-                        <div class="franja_p">
-                            <img width="20" height="20" ngSrc="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
-                            <span>{{i.texto_adicional}}</span>
-                        </div>
-
-                        @if (i.interna === 'si') {
-                            <div class="ctas_proyectos">
-                                <a 
-                                    class="btn_whatsapp c-pointer" 
-                                    (click)="selectProjectToModal(i)">
-                                    <span class="fab fa-whatsapp"></span> 
-                                    Contactar
-                                </a>
-        
-                                <a routerLink="/proyecto/{{i.url_amigable}}" 
-                                    class="btn">
-                                    Ver proyecto
-                                </a>
-        
-                            </div>
                         }
-    
                         @else {
-                            <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
-                                <a  class="btn" (click)="selectProjectToPreLaunch(i)">
-                                    Inscribirse
-                                </a>
-                            </div>
+                            <img width="350" height="168" 
+                            defaultImg
+                            [ngSrc]="IMG_URL()+i.imagen_principal_proyecto" 
+                            [alt]="i.alt_principal" 
+                            [title]="i.title_principal">
+
                         }
+                        
+                    </picture>
+                    <h2 class="name_proyecto" [ngStyle]="{'background-color': i.color_primario}">
+                        <picture>
+                            <img 
+                                width="87" height="87" defaultImg
+                                [ngSrc]="IMG_URL()+i.logo_proyecto" 
+                                [alt]="i.alt_logo" 
+                                [title]="i.title_logo">
+                        </picture>
+                        <div>{{i.titulo_proyecto}}</div>
+                    </h2>
+                    <div class="datos_proyecto">
+                        <h3>{{i.zona_proyecto}} / {{i.ubicacion_proyecto}}</h3>
+                        @if (i.valor_proyecto_formato) {
+                            <h4>
+                                <span>Desde</span>
+                                ${{i.valor_proyecto_formato}} 
+                            </h4>
+                        }
+
+                        <div class="precio_usd">
+                            @if (i.dollar_value) {
+                                Precio de referencia 
+                                <b>USD {{i.dollar_value | thousandNumber:'es'}}</b>
+                            }
+                        </div>
+                        
                     </div>
-                } 
-            </div>
+                    <div class="franja_p">
+                        <img width="20" height="20" ngSrc="assets/images/diseno/proyectos_vivienda/icono_proyecto.svg" alt="">
+                        <span>{{i.texto_adicional}}</span>
+                    </div>
+
+                    @if (i.interna === 'si') {
+                        <div class="ctas_proyectos">
+                            <a 
+                                class="btn_whatsapp c-pointer" 
+                                (click)="selectProjectToModal(i)">
+                                <span class="fab fa-whatsapp"></span> 
+                                Contactar
+                            </a>
+    
+                            <a routerLink="/proyecto/{{i.url_amigable}}" 
+                                class="btn">
+                                Ver proyecto
+                            </a>
+    
+                        </div>
+                    }
+
+                    @else {
+                        <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
+                            <a  class="btn" (click)="selectProjectToPreLaunch(i)">
+                                Inscribirse
+                            </a>
+                        </div>
+                    }
+                </div>
+            } 
         </div>
-    </section>
-}
+    </div>
+</section>
+
 
 @if (projectSelectedToModal.id) {
     <app-modal-pre-launch-project   

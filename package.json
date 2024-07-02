@@ -4,12 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "dl": "ng build && cd dist/browser && npx http-server -o -b --cors --proxy http://localhost:8080",
     "build": "ng build",
     "build:test": "ng build --base-href /constructora/test/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr": "node dist/server/server.mjs"
+    "serve:ssr": "node dist/server/server.mjs",
+    "dl": "ng build && cd dist/browser && npx http-server -o -b --cors --proxy http://localhost:8080"
   },
   "private": true,
   "dependencies": {
@@ -27,7 +27,6 @@
     "express": "4.19.1",
     "ng-recaptcha": "13.2.1",
     "rxjs": "~7.8.1",
-    "save": "^2.9.0",
     "swiper": "8.4.2",
     "tslib": "2.6.2",
     "zone.js": "~0.14.4"
