@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { getPageContent } from 'src/app/shared/services/apis/page.service';
-import { CsService } from 'src/app/shared/services/functions/cs.service';
 import { ItemsPlanetComponent } from './components/items-planet/items-planet.component';
 import { ProjectsBannerComponent } from './components/projects-banner/projects-banner.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
@@ -21,7 +20,6 @@ import { WhyChooseUsComponent } from './components/why-choose-us/why-choose-us.c
 export class HomePageComponent implements OnInit {
 
   getPageContent = getPageContent()
-  cs = inject(CsService);
   data = signal(undefined);
 
   ngOnInit(): void {

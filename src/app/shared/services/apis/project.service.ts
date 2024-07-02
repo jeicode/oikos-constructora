@@ -5,8 +5,6 @@ import { environment } from "src/environments/environment";
 
 const { api_url: API_URL } = environment
 
-
-
 export const getProyectosByTipo = () => {
     const _http = inject(HttpClient)
     return async (tipo: string, ciudad?: string, tipo_proyecto?: string, anio?: string, limite?: any, section?: any, order?: any): Promise<any> => {

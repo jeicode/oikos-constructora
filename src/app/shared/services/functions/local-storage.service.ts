@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { ConfigService } from './config.service';
 
 
 @Injectable({
@@ -7,26 +8,29 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
 
   infoIsLoaded: boolean = false
-  isBrowser:boolean  = false;
+  configService = inject(ConfigService)
+  isBrowser: boolean = false;
 
-  constructor() {}
+  constructor() { }
 
-    /**
-   * 
-   * @param name name item
-   * @returns boolean
-   */
-  existItemInLocalStg = (name:string)  => {
-    let exist = localStorage.getItem(name) || null
-    if (exist && exist !== 'undefined'){
+  /**
+ * 
+ * @param name name item
+ * @returns boolean
+ */
+  existItemInLocalStg = (name: string) => {
+    if (this.configService.isBrowser()) {
+      let exist = localStorage.getItem(name) || null
+      if (exist && exist !== 'undefined') {
 
         try {
-            return JSON.parse(exist)
+          return JSON.parse(exist)
         } catch (error) {
-            return exist
+          return exist
         }
+      }
+      return null
     }
-    return null
   }
 
 
@@ -35,13 +39,17 @@ export class LocalStorageService {
   * @param name name item
   * @returns boolean
   */
-  removeItemsLocalStg = (names:string[]) => {
-    return new Promise( resolve => {
+  removeItemsLocalStg = (names: string[]) => {
+    if (this.configService.isBrowser()) {
+      return new Promise(resolve => {
         for (let i = 0; i < names.length; i++) {
-            localStorage.removeItem(names[i]) 
+          localStorage.removeItem(names[i])
         }
         resolve(true)
-    })
+      })
+    }
+
+    return null
   }
 
 }

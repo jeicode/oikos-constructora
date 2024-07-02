@@ -103,8 +103,8 @@ export class InternaComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.diferenciadordecuotasmensuales();
           this.calculoPorcentaje();
-        },3000)
-        
+        }, 3000)
+
       }
     });
   }
@@ -119,9 +119,11 @@ export class InternaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sourceTrack = localStorage.getItem('sourceTrack');
-    this.mediumTrack = localStorage.getItem('mediumTrack');
-    this.campaignTrack = localStorage.getItem('campaignTrack');
+    if (this.configServ.isBrowser()) {
+      this.sourceTrack = localStorage.getItem('sourceTrack');
+      this.mediumTrack = localStorage.getItem('mediumTrack');
+      this.campaignTrack = localStorage.getItem('campaignTrack');
+    }
 
     this.calculoPorcentaje();
     this.configServ.loadHeroProyectos(200);
@@ -214,36 +216,39 @@ export class InternaComponent implements OnInit, OnDestroy {
   }
 
   async calculoPorcentaje() {
-    var porcentaje = $(".cambiarPorcentaje").val();
-    var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
-    var plazoaniosa = $(".plazoaniosa").val();
-    var financiar = $(".valorafinanciar").val();
+    if (this.configServ.isBrowser()) {
+      var porcentaje = $(".cambiarPorcentaje").val();
+      var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
+      var plazoaniosa = $(".plazoaniosa").val();
+      var financiar = $(".valorafinanciar").val();
 
-    if (porcentaje == '' || porcentaje == null) porcentaje = this.data?.porcentaje_minimo;
+      if (porcentaje == '' || porcentaje == null) porcentaje = this.data?.porcentaje_minimo;
 
-    this.porcFinanciar = (100 - porcentaje);
-    this.datosCalc = await this.projService.getCalculoPorcentaje(this.data?.valor_proyecto, porcentaje, cuotasinicialfinanciar, plazoaniosa, financiar);
-    this.datosCalc = this.datosCalc[0];
+      this.porcFinanciar = (100 - porcentaje);
+      this.datosCalc = await this.projService.getCalculoPorcentaje(this.data?.valor_proyecto, porcentaje, cuotasinicialfinanciar, plazoaniosa, financiar);
+      this.datosCalc = this.datosCalc[0];
 
-    $(".valorCuotaInicial").val('$ ' + this.datosCalc['cuotaInicial']);
-    $(".diferencia").val('$ ' + this.datosCalc['diferencia']);
-    if (this.datosCalc['cuotasinicialfinanciar'] != 'inf') {
-      $(".cuotamensual").val('$ ' + this.datosCalc['cuotasinicialfinanciar']);
+      $(".valorCuotaInicial").val('$ ' + this.datosCalc?.['cuotaInicial']);
+      $(".diferencia").val('$ ' + this.datosCalc?.['diferencia']);
+      if (this.datosCalc?.['cuotasinicialfinanciar'] != 'inf') {
+        $(".cuotamensual").val('$ ' + this.datosCalc?.['cuotasinicialfinanciar']);
+      }
+      $(".valorafinanciar").val('$ ' + this.datosCalc?.['valorafinanciar']);
+      this.plazoanios();
     }
-    $(".valorafinanciar").val('$ ' + this.datosCalc['valorafinanciar']);
-
-    this.plazoanios();
   }
 
   async diferenciadordecuotasmensuales() {
-    var saldocuotainicial = $(".diferencia").val();
-    var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
+    if (this.configServ.isBrowser()) {
+      var saldocuotainicial = $(".diferencia").val();
+      var cuotasinicialfinanciar = $(".cuotasinicialfinanciar").val();
 
-    this.datosCuota = await this.projService.getCalculoCuota(saldocuotainicial, cuotasinicialfinanciar);
-    this.datosCuota = this.datosCuota[0];
+      this.datosCuota = await this.projService.getCalculoCuota(saldocuotainicial, cuotasinicialfinanciar);
+      this.datosCuota = this.datosCuota[0];
 
-    if (this.datosCuota['valorcuotas'] != 'inf') {
-      $(".cuotamensual").val('$ ' + this.datosCuota['valorcuotas']);
+      if (this.datosCuota?.['valorcuotas'] != 'inf') {
+        $(".cuotamensual").val('$ ' + this.datosCuota?.['valorcuotas']);
+      }
     }
   }
 
@@ -253,8 +258,7 @@ export class InternaComponent implements OnInit, OnDestroy {
 
     this.datosAnio = await this.projService.getPlazoanios(cuota, valorafinanciar);
     this.datosAnio = this.datosAnio[0];
-
-    $(".cuotahipoteca").val('$ ' + this.datosAnio['total']);
+    $(".cuotahipoteca").val('$ ' + this.datosAnio?.['total']);
   }
 
   hasErrorsFieldForm(field: string): Boolean {

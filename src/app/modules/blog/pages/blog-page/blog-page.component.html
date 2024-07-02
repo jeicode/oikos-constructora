@@ -1,127 +1,150 @@
 <body class="">
+  <div class="cnt_gen_noticias">
+    <span class="bg_round">
+      <span></span>
+    </span>
 
-    <div class="cnt_gen_noticias">
-        <span class="bg_round">
-            <span></span>
-        </span>
+    <div class="cnt_central">
+      <app-breadcrumb [spliceRoutes]="spliceRoutes"></app-breadcrumb>
 
-        <div class="cnt_central">
-            
-            <app-breadcrumb [spliceRoutes]="spliceRoutes"></app-breadcrumb>
+      <h1 class="row_h_gen_noticias">Noticias</h1>
 
-            <h1 class="row_h_gen_noticias">
-                Noticias
-            </h1>
-
-            <!-- MAIN NEWS -->
-            <div class="cnt_tob_not_dest">
-
-                <!-- 1 -->
-                <a routerLink="/noticias-constructora/{{mainBlog.friendly_url}}" class="cnt_not_dest">
-                    <div class="img_not_dest">
-                        <img defaultImg [src]="BASE_URL+mainBlog.imagen" [alt]="mainBlog.imagen_alt"
-                            [title]="mainBlog.imagen_title" width="616" height="375">
-                    </div>
-                    <div class="cnt_inf_not_dest">
-                        <div class="cat_not" *ngIf="mainBlog.nombre_categoria">
-                            {{ mainBlog.nombre_categoria }}
-                        </div>
-                        <div class="row_fecha">
-                            <span class="material-icons ic_fech_not">access_time</span>
-                            <div class="fecha_nota">{{ mainBlog.date_format }}</div>
-                        </div>
-                        <div class="h_not_dest">
-                            {{ mainBlog.title }}
-                        </div>
-                        <div class="txt_not_dest" [innerHtml]="mainBlog.summary"></div>
-                    </div>
-                </a>
-
-                <!-- 2,3,4 -->
-                <div class="col_top_dest">
-                    <a routerLink="/noticias-constructora/{{i?.friendly_url}}" *ngFor="let i of secondMainNews"
-                        class="cnt_otra_not_dest">
-                        <div class="img_not_dest">
-                            <img defaultImg [src]="BASE_URL+i?.imagen" [alt]="i?.imagen_alt" [title]="i?.imagen_title"
-                                width="282" height="178">
-                        </div>
-                        <div class="cnt_inf_not_dest">
-                            <div class="cat_not" *ngIf="i.nombre_categoria">
-                                {{ i?.nombre_categoria }}
-                            </div>
-                            <div class="row_fecha">
-                                <span class="material-icons ic_fech_not">access_time</span>
-                                <div class="fecha_nota">{{ i?.date_format }}</div>
-                            </div>
-                            <div class="h_not_dest" [innerHtml]="i?.title"></div>
-                        </div>
-                    </a>
-                </div>
+      <!-- MAIN NEWS -->
+      <div class="cnt_tob_not_dest">
+        <!-- 1 -->
+        <a
+          routerLink="/noticias-constructora/{{ mainBlog.friendly_url }}"
+          class="cnt_not_dest"
+        >
+          <div class="img_not_dest">
+            <img
+              defaultImg
+              [src]="BASE_URL + mainBlog.imagen"
+              [alt]="mainBlog.imagen_alt"
+              [title]="mainBlog.imagen_title"
+              width="616"
+              height="375"
+            />
+          </div>
+          <div class="cnt_inf_not_dest">
+            <div class="cat_not" *ngIf="mainBlog.nombre_categoria">
+              {{ mainBlog.nombre_categoria }}
             </div>
-
-            <div class="cnt_bot_not" id="pageUp">
-
-                <!-- MOST RECIENT BLOGS -->
-                <div class="col_gen_list_not">
-                    <div class="row_h_list_not">
-                        <div class="h_not_recientes">
-                            Post recientes
-                        </div>
-                        <span class="sep_list_not"></span>
-                        <div class="paginador_list_not">
-                            <a  class="jp-previous" (click)="beforePage()" 
-                                [ngClass]="{'jp-disabled': numPage <= 1}">
-                                ←
-                            </a>
-                            <!-- <a class="jp-current">1</a>
-                            <a class="">2</a> -->
-                            <a  class="jp-next" (click)="nextPage()"
-                                [ngClass]="{'jp-disabled': remainingPages < 0}"   >
-                                →
-                            </a>
-                        </div>
-                    </div>
-                    <div class="list_not" id="list_container">
-                        <a routerLink="/noticias-constructora/{{i?.friendly_url}}" class="itm_list_not" *ngFor="let i of blogs">
-                            <div class="img_not_list">
-                                <img defaultImg [src]="BASE_URL+i?.imagen" [alt]="i?.imagen_alt" [title]="i?.imagen_title">
-                            </div>
-                            <div class="catedoria" *ngIf="i.nombre_categoria">
-                                {{ i?.nombre_categoria }}
-                            </div>
-                            <div class="cnt_inf_nota_list">
-                                <div class="row_fecha">
-                                    <span class="material-icons ic_fech_not">access_time</span>
-                                    <div class="fecha_nota">{{ i?.date_format }}</div>
-                                </div>
-                                <div class="txt_not_list">{{i?.title}}</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-
-                <!-- INTEREST BLOGS -->
-                <div class="col_post_dest">
-                    <div class="ctn_lat_post_dets">
-                        <div class="h_post_dest">
-                            Posts descatados
-                        </div>
-                        <div class="list_post_dest">
-                            <a routerLink="/noticias-constructora/{{i?.friendly_url}}" class="itm_post_dest"
-                                *ngFor="let i of interestBlogs">
-                                <div class="row_fecha">
-                                    <span class="material-icons ic_fech_not">access_time</span>
-                                    <div class="fecha_nota">{{ i?.date_format }}</div>
-                                </div>
-                                <div class="txt_not_list" [innerHtml]="i?.title"></div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="row_fecha">
+              <span class="material-icons ic_fech_not">access_time</span>
+              <div class="fecha_nota">{{ mainBlog.date_format }}</div>
             </div>
+            <div class="h_not_dest">
+              {{ mainBlog.title }}
+            </div>
+            <div class="txt_not_dest" [innerHtml]="mainBlog.summary"></div>
+          </div>
+        </a>
 
+        <!-- 2,3,4 -->
+        <div class="col_top_dest">
+          <a
+            routerLink="/noticias-constructora/{{ i?.friendly_url }}"
+            *ngFor="let i of secondMainNews"
+            class="cnt_otra_not_dest"
+          >
+            <div class="img_not_dest">
+              <img
+                defaultImg
+                [src]="BASE_URL + i?.imagen"
+                [alt]="i?.imagen_alt"
+                [title]="i?.imagen_title"
+                width="282"
+                height="178"
+              />
+            </div>
+            <div class="cnt_inf_not_dest">
+              <div class="cat_not" *ngIf="i.nombre_categoria">
+                {{ i?.nombre_categoria }}
+              </div>
+              <div class="row_fecha">
+                <span class="material-icons ic_fech_not">access_time</span>
+                <div class="fecha_nota">{{ i?.date_format }}</div>
+              </div>
+              <div class="h_not_dest" [innerHtml]="i?.title"></div>
+            </div>
+          </a>
         </div>
+      </div>
+
+      <div class="cnt_bot_not" id="pageUp">
+        <!-- MOST RECIENT BLOGS -->
+        <div class="col_gen_list_not">
+          <div class="row_h_list_not">
+            <div class="h_not_recientes">Post recientes</div>
+            <span class="sep_list_not"></span>
+            <div class="paginador_list_not">
+              <a
+                class="jp-previous"
+                (click)="beforePage()"
+                [ngClass]="{ 'jp-disabled': numPage <= 1 }"
+              >
+                ←
+              </a>
+              <!-- <a class="jp-current">1</a>
+                            <a class="">2</a> -->
+              <a
+                class="jp-next"
+                (click)="nextPage()"
+                [ngClass]="{ 'jp-disabled': remainingPages < 0 }"
+              >
+                →
+              </a>
+            </div>
+          </div>
+          <div class="list_not" id="list_container">
+            <a
+              routerLink="/noticias-constructora/{{ i?.friendly_url }}"
+              class="itm_list_not"
+              *ngFor="let i of blogs"
+            >
+              <div class="img_not_list">
+                <img
+                  defaultImg
+                  [src]="BASE_URL + i?.imagen"
+                  [alt]="i?.imagen_alt"
+                  [title]="i?.imagen_title"
+                />
+              </div>
+              <div class="catedoria" *ngIf="i.nombre_categoria">
+                {{ i?.nombre_categoria }}
+              </div>
+              <div class="cnt_inf_nota_list">
+                <div class="row_fecha">
+                  <span class="material-icons ic_fech_not">access_time</span>
+                  <div class="fecha_nota">{{ i?.date_format }}</div>
+                </div>
+                <div class="txt_not_list">{{ i?.title }}</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- INTEREST BLOGS -->
+        <div class="col_post_dest">
+          <div class="ctn_lat_post_dets">
+            <div class="h_post_dest">Posts descatados</div>
+            <div class="list_post_dest">
+              <a
+                routerLink="/noticias-constructora/{{ i?.friendly_url }}"
+                class="itm_post_dest"
+                *ngFor="let i of interestBlogs"
+              >
+                <div class="row_fecha">
+                  <span class="material-icons ic_fech_not">access_time</span>
+                  <div class="fecha_nota">{{ i?.date_format }}</div>
+                </div>
+                <div class="txt_not_list" [innerHtml]="i?.title"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </body>

@@ -9,6 +9,7 @@ import { regexEmail, regexNumber } from '../../data/regex';
 import { ProjectService } from '../../services/api/project.service';
 import { GlobalService } from '../../services/api/global.service';
 import { Router } from '@angular/router';
+import { ConfigService } from '../../services/functions/config.service';
 
 
 @Component({
@@ -20,24 +21,24 @@ import { Router } from '@angular/router';
 })
 export class WppModalProjectComponent implements OnInit, OnDestroy {
 
-  BASE_URL:String = environment.imagenes_url;
-  @Input() project:Project = new Project()
+  BASE_URL: String = environment.imagenes_url;
+  @Input() project: Project = new Project()
   @Input() modalEvent!: Observable<boolean>;
   @Input() showFloatingButton: boolean = false;
   @Input() idBtnWpp: string = ''
 
   eventsSubscription!: Subscription;
   modalIsOpen: boolean = false;
-  showErrors:boolean = false
-  disabledButton    : boolean = false;
-  textoButton       : string = "Iniciar conversación";
+  showErrors: boolean = false
+  disabledButton: boolean = false;
+  textoButton: string = "Iniciar conversación";
 
   //data analytics
-  sourceTrack           : string | null | undefined;
-  mediumTrack           : string | null | undefined;
-  campaignTrack           : string | null | undefined;
+  sourceTrack: string | null | undefined;
+  mediumTrack: string | null | undefined;
+  campaignTrack: string | null | undefined;
 
-  url_origen            : any;
+  url_origen: any;
 
   contactWppForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
@@ -46,9 +47,10 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
     project_id: [''],
   })
 
-  constructor(private fb:FormBuilder, private formService:FormService,
-              private globalService: GlobalService, private router: Router,
-              private projectService: ProjectService) { }
+  constructor(private fb: FormBuilder, private formService: FormService,
+    private configServ: ConfigService,
+    private globalService: GlobalService, private router: Router,
+    private projectService: ProjectService) { }
 
 
   ngOnDestroy(): void {
@@ -56,23 +58,27 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sourceTrack = localStorage.getItem('sourceTrack');
-    this.mediumTrack = localStorage.getItem('mediumTrack');
-    this.campaignTrack = localStorage.getItem('campaignTrack');
-    this.eventsSubscription = this.modalEvent.subscribe((event:any) => this.setOpenModalValue(event?.openModal));
+    if (this.configServ.isBrowser()) {
+      this.sourceTrack = localStorage.getItem('sourceTrack');
+      this.mediumTrack = localStorage.getItem('mediumTrack');
+      this.campaignTrack = localStorage.getItem('campaignTrack');
+    }
+
+
+    this.eventsSubscription = this.modalEvent.subscribe((event: any) => this.setOpenModalValue(event?.openModal));
 
     this.url_origen = this.router.url;
-    if(this.url_origen=='/'){
+    if (this.url_origen == '/') {
       this.modalIsOpen = true;
     }
   }
-  
-  setOpenModalValue(openModal:boolean|undefined){
+
+  setOpenModalValue(openModal: boolean | undefined) {
     if (openModal !== undefined) this.modalIsOpen = openModal
   }
-    
-  async sendContactUserWpp(){
-    if (this.contactWppForm.valid){
+
+  async sendContactUserWpp() {
+    if (this.contactWppForm.valid) {
 
       this.textoButton = "Por favor espere...";
       this.disabledButton = true;
@@ -80,14 +86,14 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
       this.contactWppForm.patchValue({
         project_id: this.project.id
       })
-      const { email, name, phone, project_id} = this.contactWppForm.getRawValue()
+      const { email, name, phone, project_id } = this.contactWppForm.getRawValue()
       this.contactWppForm.reset()
 
       const data = {
         email,
         name,
         phone,
-        project_id,        
+        project_id,
         source: this.sourceTrack,
         medium: this.mediumTrack,
         campaign: this.campaignTrack,
@@ -97,7 +103,7 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
       const res = await this.projectService.createContactWppProject(data);
       if (res) {
         this.redirectToWppLink();
-      } 
+      }
       else {
 
         await this.globalService.sendMailApiError({
@@ -105,7 +111,7 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
           errors: {
             url: this.router.url,
             request: data,
-            response:res
+            response: res
           }
         });
         alert('Opps ocurrió un error enviando el formulario')
@@ -119,18 +125,18 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
       this.showErrors = true;
     }
   }
-  
-  
-  hasErrorsFieldForm(field:string): Boolean {
+
+
+  hasErrorsFieldForm(field: string): Boolean {
     const form = this.contactWppForm
     return this.formService.hasErrorsFieldForm(form, field, this.showErrors)
-  } 
+  }
 
-  
-  redirectToWppLink(){
-    if(this.project.origin=='home') window.open(this.project.api_wsp, '_blank')
+
+  redirectToWppLink() {
+    if (this.project.origin == 'home') window.open(this.project.api_wsp, '_blank')
     else window.open(this.project.api_wsp_flotante, '_blank')
   }
 
-  
+
 }

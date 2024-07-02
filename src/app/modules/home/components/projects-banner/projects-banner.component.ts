@@ -3,15 +3,14 @@ import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core
 import { RouterLink } from '@angular/router';
 import { BannerHome } from 'src/app/core/models/banner-home.model';
 import { SortArrayStringSplitPipe } from 'src/app/shared/pipes/sort-array.pipe';
-import { CsService } from 'src/app/shared/services/functions/cs.service';
 import { environment } from 'src/environments/environment';
 import { getBannersHome } from 'src/app/shared/services/apis/common.service';
-import SwiperCore, { Lazy, Navigation, Pagination, SwiperOptions } from 'swiper';
+import SwiperCore, { Pagination, SwiperOptions } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
+import { ConfigService } from 'src/app/shared/services/functions/config.service';
 
 
-SwiperCore.use([Navigation, Pagination, Lazy]);
-
+SwiperCore.use([Pagination]);
 
 @Component({
   selector: 'app-projects-banner',
@@ -26,31 +25,24 @@ SwiperCore.use([Navigation, Pagination, Lazy]);
     SortArrayStringSplitPipe
   ],
   templateUrl: './projects-banner.component.html',
-  styleUrls: ['../../home-page.component.css'],
+  styleUrls: ['./projects-banner.component.css'],
 
 })
 export class ProjectsBannerComponent implements OnInit {
-  
-  cs = inject(CsService);
+
+  idxActiveBanner = signal(0)
   getBannersHome = getBannersHome();
+
+  configService = inject(ConfigService)
 
   IMG_URL = signal(environment.imagenes_url)
   bannerHome: any = []
   bannersHome: WritableSignal<BannerHome[]> = signal([])
 
   config: WritableSignal<SwiperOptions> = signal({
-    lazy: {
-      loadPrevNext: true
-    },
-    autoplay: {
-      delay: 10000,
-    },
     parallax: true,
     slidesPerView: 1,
     effect: 'fade',
-    fadeEffect: {
-      crossFade: true
-    },
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
@@ -60,11 +52,14 @@ export class ProjectsBannerComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getBannersHome({name: 'titulo banner home', content: 'banner_home'}).then((res:any) => {
+    this.getBannersHome({ name: 'titulo banner home', content: 'banner_home' }).then((res: any) => {
       this.bannersHome.set(res)
-      this.cs.loadCEvent.update(i => i.concat('app-projects-banner'))
     })
 
+  }
+
+  changeActive([event]: any) {
+    this.idxActiveBanner.set(event.activeIndex)
   }
 
 }

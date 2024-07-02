@@ -1,152 +1,119 @@
-@if(bannersHome().length > 0){
-    <section class="s_home_hero">
-        <div class="swiperHomeHero">
-            <div class="swiper-pagination"></div>
-            <swiper [config]="config()">
-                @for (i of bannersHome(); track $index) {
-                    <ng-template swiperSlide>
-                        @if (i.titulo_proyecto) {
-                            <div class="bg_img_h_hero">
-                                @if ($index==0) {
-                                <img width="1920" height="700" priority
-                                    [ngSrc]="IMG_URL()+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
-                                }
-    
-                                @else {
-                                <img width="1920" height="700" class="swiper-lazy"
-                                    [attr.data-src]="IMG_URL()+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
-                                }
-                            </div>
-    
-    
-                            <div class="cnt_h_hero">
-                                
-                                <!-- MEJOR CLS DE ESTE ELEMENTO -->
-                                <div class="desc_txt_hero">
-                                    <aside class="aside_prjct">
-    
-                                        @if ($index == 0) {
-                                        <img defaultImg width="100" height="100" [src]="IMG_URL()+i.logo_proyecto">
-                                        }
-                                        @else {
-                                        <img defaultImg width="100" height="100" class="swiper-lazy"
-                                            [attr.data-src]="IMG_URL()+i.logo_proyecto">
-    
-                                        }
-                                        <div class="dt_prjct" [ngStyle]="{'background-color': i?.color_primario }">
-                                            <div class="place_prjct">
-                                                {{i?.titulo_proyecto}}
-                                            </div>
-                                            @if ($index !== 0) {
-                                            @for (z of i.zonas | sortArraySplitStr:i.beneficios_proyecto ; track $index) {
-                                            <div class="item_prjct">
-                                                <img defaultImg width="28" height="28" class="swiper-lazy"
-                                                    [attr.data-src]="IMG_URL()+z.imagen" [title]="z.title" [alt]="z.alt">
-                                                <span>{{z.nombre}}</span>
-                                            </div>
-    
-                                            }
-                                            }
-                                            @else {
-                                            @for (z of i.zonas | sortArraySplitStr:i.beneficios_proyecto ; track $index) {
-                                            <div class="item_prjct">
-                                                <img defaultImg width="28" height="28" [src]="IMG_URL()+z.imagen" [title]="z.title"
-                                                    [alt]="z.alt">
-                                                <span>{{z.nombre}}</span>
-                                            </div>
-    
-                                            }
-    
-                                            }
-                                        </div>
-                                    </aside>
-                                    <div class="datos_info_prjct">
-                                        <div class="tag" [ngStyle]="{'background-color': i?.color_secundario }">
-                                            {{ i.estado_proyecto }}
-                                        </div>
-                                        <h2>{{i.field_content}}</h2>
-                                        <h3>{{i.descripcion_banner_home}}</h3>
-                                        @if (i.valor_proyecto) {
-                                        <h2>
-                                            <span> Desde</span>
-                                            <br>
-                                            {{ i?.valor_proyecto }}
-                                        </h2>
-    
-                                        }
-                                        <a class="btn" [routerLink]="i.link_cta_banner">
-                                            {{i.texto_cta_banner}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- MEJOR CLS DE ESTE ELEMENTO -->
+<section class="s_home_hero">
+  <div class="swiperHomeHero">
+    <div class="swiper-pagination"></div>
+    <swiper [config]="config()" (activeIndexChange)="changeActive($event)">
+      @for (i of bannersHome(); track $index) {
+        <ng-template swiperSlide>
+          @if ($index <= idxActiveBanner() + 1) {
+            <div class="bg_img_h_hero">
+              <img
+                width="1920"
+                height="700"
+                priority
+                [ngSrc]="
+                  IMG_URL() +
+                  (i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)
+                "
+              />
+            </div>
+            <div class="cnt_h_hero">
+              <!-- MEJOR CLS DE ESTE ELEMENTO -->
+              <div class="desc_txt_hero">
+                <aside class="aside_prjct">
+                  @if ($index == idxActiveBanner()) {
+                    <img
+                      defaultImg
+                      width="100"
+                      height="100"
+                      [src]="IMG_URL() + i.logo_proyecto"
+                    />
+                  }
 
-                                <!-- MEJOR CLS DE ESTE ELEMENTO -->
-                                <div class="grand_img_h_hero">
-                                    <picture class="grand_img_hero1">
-    
-                                        @if ($index==0) {
-                                        <img [priority]="$index==0" width="516" height="454"
-                                            [ngSrc]="IMG_URL()+(i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)"
-                                            [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt"
-                                            [title]="i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title">
-                                        }
-                                        @else {
-                                        <img width="516" height="454" class="swiper-lazy"
-                                            [attr.data-src]="IMG_URL()+(i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)"
-                                            [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt"
-                                            [title]="i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title">
-    
-                                        }
-                                    </picture>
-    
-                                    @if (i?.galeria?.[1]) {
-                                    <picture class="grand_img_hero_mini">
-                                        <img width="204" height="137" class="swiper-lazy"
-                                            [attr.data-src]="IMG_URL()+i.galeria[1].field_content" [alt]="i.galeria[1].alt"
-                                            [title]="i.galeria[1].title">
-                                    </picture>
-                                    }
-                                </div>
-                                <!-- MEJOR CLS DE ESTE ELEMENTO -->
+                  <div
+                    class="dt_prjct"
+                    [ngStyle]="{ 'background-color': i?.color_primario }"
+                  >
+                    <div class="place_prjct">
+                      {{ i?.titulo_proyecto }}
+                    </div>
+                    @if ($index == idxActiveBanner()) {
+                      @for (
+                        z of i.zonas | sortArraySplitStr: i.beneficios_proyecto;
+                        track $index
+                      ) {
+                        <div class="item_prjct">
+                          <img
+                            defaultImg
+                            width="28"
+                            height="28"
+                            [src]="IMG_URL() + z.imagen"
+                            [title]="z.title"
+                            [alt]="z.alt"
+                          />
+                          <span>{{ z.nombre }}</span>
+                        </div>
+                      }
+                    }
+                  </div>
+                </aside>
+                <div class="datos_info_prjct">
+                  <div
+                    class="tag"
+                    [ngStyle]="{ 'background-color': i?.color_secundario }"
+                  >
+                    {{ i.estado_proyecto }}
+                  </div>
+                  <h2>{{ i.field_content }}</h2>
+                  <h3>{{ i.descripcion_banner_home }}</h3>
+                  @if (i.valor_proyecto) {
+                    <h2>
+                      <span> Desde</span>
+                      <br />
+                      {{ i?.valor_proyecto }}
+                    </h2>
+                  }
+                  <a class="btn" [routerLink]="i.link_cta_banner">
+                    {{ i.texto_cta_banner }}
+                  </a>
+                </div>
+              </div>
+              <!-- MEJOR CLS DE ESTE ELEMENTO -->
 
-    
-                            </div>
-                        }
-    
-                        @else {
-                            <div class="bg_img_h_hero_2">
-                                @if (i?.link_cta_banner) {
-                                    <a href="{{i.link_cta_banner}}">
-                                        <picture>
-                                            <source media="(max-width: 425px)" srcset="{{IMG_URL()+i.imagen[1]}}">
-                                            <source media="(max-width: 1024px)" srcset="{{IMG_URL()+i.imagen[2]}}">
-    
-                                            <source media="(min-width: 1025px)"
-                                                [srcset]="IMG_URL()+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
-                                            <img [ngSrc]="IMG_URL()+i.imagen[1]" alt="Imagen" class="bg_img_h_hero_2" width="1920"
-                                                height="700">
-                                        </picture>
-                                    </a>
-                                }
-    
-                                @else {
-                                    <picture>
-                                        <source media="(max-width: 425px)" srcset="{{IMG_URL()+i.imagen[1]}}">
-                                        <source media="(max-width: 1024px)" srcset="{{IMG_URL()+i.imagen[2]}}">
-                                        <source media="(min-width: 1025px)"
-                                            [srcset]="IMG_URL()+ (i.imagen[0] ? i.imagen[0]: i.galeria[0].field_content)">
-                                        <img [ngSrc]="IMG_URL()+i.imagen[1]" alt="Imagen" class="bg_img_h_hero_2" width="1920"
-                                            height="700">
-    
-                                    </picture>
-                                }
-                            </div>
-                        }
-    
-                    </ng-template>
+              <!-- MEJOR CLS DE ESTE ELEMENTO -->
+              <div class="grand_img_h_hero">
+                <picture class="grand_img_hero1">
+                  <img
+                    [priority]="$index == 0"
+                    width="516"
+                    height="454"
+                    [ngSrc]="
+                      IMG_URL() +
+                      (i.imagen[0] ? i.imagen[0] : i.galeria[0].field_content)
+                    "
+                    [alt]="i.imagen_alt[0] ? i.imagen_alt[0] : i.galeria[0].alt"
+                    [title]="
+                      i.imagen_title[0] ? i.imagen_title[0] : i.galeria[0].title
+                    "
+                  />
+                </picture>
+
+                @if (i?.galeria?.[1]) {
+                  <picture class="grand_img_hero_mini">
+                    <img
+                      width="204"
+                      height="137"
+                      [src]="IMG_URL() + i.galeria[1].field_content"
+                      [alt]="i.galeria[1].alt"
+                      [title]="i.galeria[1].title"
+                    />
+                  </picture>
                 }
-            </swiper>
-        </div>
-    </section>
-}
+              </div>
+              <!-- MEJOR CLS DE ESTE ELEMENTO -->
+            </div>
+          }
+        </ng-template>
+      }
+    </swiper>
+  </div>
+</section>

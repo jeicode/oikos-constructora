@@ -17,29 +17,29 @@ export class BlogPageComponent implements OnInit {
 
   BASE_URL = environment.imagenes_url
 
-  oninitIsExecute:boolean = false;
+  oninitIsExecute: boolean = false;
 
   //pagination
-  numPage:number = 1;
-  remainingPages:number = 0
-  
+  numPage: number = 1;
+  remainingPages: number = 0
+
   // blogs
-  mainBlog:Blog = new Blog()
-  secondMainNews:Blog[] = []
-  interestBlogs:Blog[] = []
-  blogs:Blog[] = []
+  mainBlog: Blog = new Blog()
+  secondMainNews: Blog[] = []
+  interestBlogs: Blog[] = []
+  blogs: Blog[] = []
 
-  spliceRoutes:number[] = [];
+  spliceRoutes: number[] = [];
 
-  routerListener:Subscription;
+  routerListener: Subscription;
 
-  constructor(private blogService: BlogService, private router: Router, 
-              public responsiveService: ResponsiveService,
-              @Inject(DOCUMENT) private doc: Document, private pageService: PageService) {
-    this.routerListener = this.router.events.subscribe(async (event:any) => {      
-      if (event instanceof NavigationEnd  ) {
+  constructor(private blogService: BlogService, private router: Router,
+    public responsiveService: ResponsiveService,
+    @Inject(DOCUMENT) private doc: Document, private pageService: PageService) {
+    this.routerListener = this.router.events.subscribe(async (event: any) => {
+      if (event instanceof NavigationEnd) {
 
-        if (router.url.includes('pagina/')) this.spliceRoutes = [2,4];
+        if (router.url.includes('pagina/')) this.spliceRoutes = [2, 4];
         this.blogs = this.blogService.currentBlogs
         this.numPage = this.blogService.currentNumPage
         this.remainingPages = this.blogService.remainingPages
@@ -57,40 +57,33 @@ export class BlogPageComponent implements OnInit {
   }
 
 
-  async init(){
-    const tasks = [
-      () => this.getMainNew(),
-      () => this.getSecondMainNews(),
-      () => this.getInterestNews()
-    ]
-
-
-    for (const task of tasks) {
-      await task();
-    }
+  async init() {
+    await this.getMainNew()
+    await this.getSecondMainNews()
+    await this.getInterestNews()
   }
 
 
-  async getMainNew(){
+  async getMainNew() {
     const mainBlog = await this.blogService.getMainNew()
     if (mainBlog) this.mainBlog = mainBlog
   }
 
 
-  async getSecondMainNews(){
+  async getSecondMainNews() {
     const secondMainNews = await this.blogService.getSecondMainNews()
     if (secondMainNews) this.secondMainNews = secondMainNews
   }
 
 
-  async getInterestNews(){
+  async getInterestNews() {
     const interestBlogs = await this.blogService.getInterestNews()
-    if(interestBlogs) this.interestBlogs = interestBlogs
-    
+    if (interestBlogs) this.interestBlogs = interestBlogs
+
   }
 
 
-  nextPage(){
+  nextPage() {
     if (this.remainingPages > 0) {
       this.numPage++;
       this.router.navigate(['/noticias-constructora/pagina/', this.numPage]);
@@ -98,8 +91,8 @@ export class BlogPageComponent implements OnInit {
     }
   }
 
-  beforePage(){
-    if (this.numPage > 1){
+  beforePage() {
+    if (this.numPage > 1) {
       this.numPage--;
       this.router.navigate(['/noticias-constructora/pagina/', this.numPage]);
     }
