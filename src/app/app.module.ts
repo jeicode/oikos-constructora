@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,11 +16,12 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
+
     HeaderComponent,
     FooterComponent
   ],
   providers: [
+    [{ provide: APP_BASE_HREF, useValue: '/constructora' }],
     provideHttpClient(withFetch()),
     {
       provide: HTTP_INTERCEPTORS,

@@ -160,7 +160,7 @@ export class InternaComponent implements OnInit, OnDestroy {
       await this.diferenciadordecuotasmensuales();
       this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
 
-      this.cargarSitios(this.sitiosInteres[0].id);
+      this.cargarSitios(this.sitiosInteres?.[0]?.id);
 
     }
   }

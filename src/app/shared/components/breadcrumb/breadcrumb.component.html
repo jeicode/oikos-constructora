@@ -13,10 +13,14 @@
 </div>-->
 
 <div class="miga" [style.color]="colorTxt">
-    <a href="https://www.oikos.com.co/constructora/" [style.color]="colorTxt">Home <span class="fas fa-chevron-right"> </span></a>
-    <div *ngFor="let i of rutas; index as j">
-        <a href="{{i?.url}}" [style.color]="colorTxt" *ngIf="i?.url!=''">{{i?.title}} <span class="fas fa-chevron-right" *ngIf="j+1 != rutas.length"> </span></a>
-        <a *ngIf="i?.url==''" [style.color]="colorTxt">{{i?.title}} </a>
-    </div>
-    
+  <a href="https://www.oikos.com.co/constructora/" [style.color]="colorTxt"
+    >Home <span class="fas fa-chevron-right"> </span
+  ></a>
+  <div *ngFor="let i of rutas; index as j">
+    <a href="{{ i?.url }}" [style.color]="colorTxt" *ngIf="i?.url != ''"
+      >{{ i?.title }}
+      <span class="fas fa-chevron-right" *ngIf="j + 1 != rutas.length"> </span
+    ></a>
+    <a *ngIf="i?.url == ''" [style.color]="colorTxt">{{ i?.title }} </a>
+  </div>
 </div>

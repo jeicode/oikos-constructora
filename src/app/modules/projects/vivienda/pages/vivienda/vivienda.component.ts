@@ -9,7 +9,7 @@ import { Project } from 'src/app/core/models/project.model';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
 
-declare var $:any;
+declare var $: any;
 @Component({
   selector: 'app-vivienda',
   templateUrl: './vivienda.component.html',
@@ -17,40 +17,40 @@ declare var $:any;
 })
 export class ViviendaComponent implements OnInit {
 
-  data                  : any = []; //data page
-  general               : any = []; //data website
-  imagenes              : any = [];
-  ciudades              : any = [];
-  proyectos             : Project[] = [];
-  typesProject          : any = [];
-  banners               : any = [];
-  ejecutados            : any = [];
-  precios               : any = [];
-  suscribeListenRouter  : Subscription;
-  isSubmitted           : boolean = false;
-  proyectos_ver         : boolean = true;
-  captcha               : string = "";
-  imagenes_url          : string = "";
-  imagen_banner         : string = "";
-  ciudad                : string = "NA";
-  tipo_search           : string = "NA";
-  precio_search         : string = "NA";
-  projectSelectedToModal:Project = new Project()
+  data: any = []; //data page
+  general: any = []; //data website
+  imagenes: any = [];
+  ciudades: any = [];
+  proyectos: Project[] = [];
+  typesProject: any = [];
+  banners: any = [];
+  ejecutados: any = [];
+  precios: any = [];
+  suscribeListenRouter: Subscription;
+  isSubmitted: boolean = false;
+  proyectos_ver: boolean = true;
+  captcha: string = "";
+  imagenes_url: string = "";
+  imagen_banner: string = "";
+  ciudad: string = "NA";
+  tipo_search: string = "NA";
+  precio_search: string = "NA";
+  projectSelectedToModal: Project = new Project()
 
   modalLaunchProjectIsOpen: boolean = false;
 
   notifyChanges: Subject<any> = new Subject<any>();
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
-  url_filtro            : any = [];
+  url_filtro: any = [];
 
 
   constructor(private pageService: PageService, private router: Router,
-              private responsiveService:ResponsiveService, private currencyConverter: CurrencyConverterService,
-              public configServ: ConfigService, private projService: ProjectService) {
+    private responsiveService: ResponsiveService, private currencyConverter: CurrencyConverterService,
+    public configServ: ConfigService, private projService: ProjectService) {
     this.imagenes_url = environment.imagenes_url;
-    this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
-      if (event instanceof NavigationEnd  ) {
+    this.suscribeListenRouter = this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
         this.configServ.goUpPage()
         this.pageService.closeNav();
       }
@@ -58,13 +58,13 @@ export class ViviendaComponent implements OnInit {
   }
 
 
-  openModalPreLaunchProject(){
+  openModalPreLaunchProject() {
     this.modalLaunchProjectIsOpen = true;
   }
 
 
-  toogleContainerSearch(){
-    if(this.responsiveService.isMobile){
+  toogleContainerSearch() {
+    if (this.responsiveService.isMobile) {
       const containerFiltro = document.querySelector('.filtro_proyectos');
       $(containerFiltro).slideToggle().css('display', 'flex')
     }
@@ -77,51 +77,47 @@ export class ViviendaComponent implements OnInit {
     this.pageService.closeNav();
   }
 
-  async init(){
-    const tasks = [
-      () => this.getData(),
-      () => this.getSecciones(),
-      () => this.getProyectos(),
-      () => this.convertCopToUsdProjects(),
-      () => this.getEjecutados(),
-      () => this.getPreciosProyectos(),
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+  async init() {
+    await Promise.all([
+      this.getData(),
+      this.getSecciones(),
+      this.getProyectos(),
+      this.getEjecutados(),
+      this.getPreciosProyectos(),
+    ])
+    this.convertCopToUsdProjects()
   }
 
 
-  async convertCopToUsdProjects(){
+  async convertCopToUsdProjects() {
     await this.currencyConverter.convertCopToUsdProjects(this.proyectos)
   }
 
 
-  selectProjectToPreLaunch(project:Project){
+  selectProjectToPreLaunch(project: Project) {
     this.projectSelectedToModal = project
-    this.notifyChangesPreLaunchProject.next({openModal:true});
+    this.notifyChangesPreLaunchProject.next({ openModal: true });
   }
 
-  selectProjectToModal(project:Project){
+  selectProjectToModal(project: Project) {
     this.projectSelectedToModal = project
-    this.notifyChanges.next({openModal:true});
+    this.notifyChanges.next({ openModal: true });
   }
 
 
-  async getData(){
+  async getData() {
     this.data = await this.pageService.getContentPage('proyectos-construccion-vivienda')
   }
 
-  async getEjecutados(){
+  async getEjecutados() {
     this.ejecutados = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', '', '', 'descripcion_precio DESC');
     this.configServ.loadbannerEjecutados(1000);
   }
 
-  async getImagenes(){
+  async getImagenes() {
     this.imagenes = await this.pageService.getImagesBySlugPage('proyectos-construccion-vivienda');
 
-    this.imagen_banner = this.imagenes_url+this.imagenes[0]['field_content'];
+    this.imagen_banner = this.imagenes_url + this.imagenes[0]['field_content'];
   }
 
   async getSecciones() {
@@ -131,55 +127,55 @@ export class ViviendaComponent implements OnInit {
 
     const typesProject = await this.projService.getHousingTypesByType('1');
     if (typesProject) this.typesProject = typesProject;
-    
+
     this.banners = await this.pageService.getElementsContent('titulo banner vivienda', 'banner_vivienda');
   }
 
-  getCiudad(ciudad: any){
+  getCiudad(ciudad: any) {
     this.ciudad = ciudad;
   }
 
-  getTipo(tipo: any){
+  getTipo(tipo: any) {
     this.tipo_search = tipo;
   }
 
-  getPrecio(precio: any){
+  getPrecio(precio: any) {
     this.precio_search = precio;
   }
 
-  async getProyectos(){
+  async getProyectos() {
     this.url_filtro = this.router.parseUrl(this.router.url);
 
-    if(this.url_filtro.queryParams['ciudad']){
+    if (this.url_filtro.queryParams['ciudad']) {
       this.proyectos = await this.projService.getProyectosByTipo('1', this.url_filtro.queryParams['ciudad']);
-    }else{
+    } else {
       this.proyectos = await this.projService.getProyectosByTipo('1');
     }
 
-    if(this.proyectos?.length==0){
+    if (this.proyectos?.length == 0) {
       this.proyectos_ver = false;
-    }else{
+    } else {
       this.proyectos_ver = true;
     }
   }
 
-  async buscarProyectos(ciudad?: any){
+  async buscarProyectos(ciudad?: any) {
     this.toogleContainerSearch();
 
-    if(ciudad){
+    if (ciudad) {
       this.proyectos = await this.projService.getProyectosByTipo('1', ciudad, this.tipo_search, this.precio_search);
-    }else{
+    } else {
       this.proyectos = await this.projService.getProyectosByTipo('1', this.ciudad, this.tipo_search, this.precio_search);
     }
 
-    if(this.proyectos.length==0){
+    if (this.proyectos.length == 0) {
       this.proyectos_ver = false;
-    }else{
+    } else {
       this.proyectos_ver = true;
     }
   }
 
-  async limpiarFiltros(){
+  async limpiarFiltros() {
     this.toogleContainerSearch();
     this.getProyectos();
     $(".filtroCiudad").val("NA");
@@ -187,7 +183,7 @@ export class ViviendaComponent implements OnInit {
     $(".filtroPrecio").val("NA");
   }
 
-  async getPreciosProyectos(){
+  async getPreciosProyectos() {
     this.precios = await this.projService.getPreciosProyectos('1');
   }
 }

@@ -48,14 +48,16 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    this.buildProjectsSection()
+    if (this.configServ.isBrowser()) {
+      this.buildProjectsSection()
+    }
   }
   ngOnInit(): void {
     this.getInterestNews()
   }
 
 
-  addDynamicCardProjectsComponent(containerElement:any, projects:Project[]) {
+  addDynamicCardProjectsComponent(containerElement: any, projects: Project[]) {
     let factory = this.resolver.resolveComponentFactory(CardProjectComponent);
     const ref = factory.create(this.injector, [], containerElement);
     this.app.attachView(ref.hostView);
@@ -71,7 +73,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
 
 
   async buildProjectsSection() {
-    const elements:any = this.eleRef.nativeElement.querySelectorAll('.proyectos_nota')
+    const elements: any = this.eleRef.nativeElement.querySelectorAll('.proyectos_nota')
     elements.forEach(async (e: any) => {
       // remove brackets
       const txtcontent: string = e.textContent.replace(/[{}]/g, '');
@@ -80,29 +82,29 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
       e.classList = e.className.replace('d_none', '')
       this.addDynamicCardProjectsComponent(e, projects);
     })
-    
+
   }
 
   shareBy(share: 'linkedln' | 'fb' | 'twitter') {
-    if (this.configServ.isBrowser()){
+    if (this.configServ.isBrowser()) {
       let link = ""
       const linkShare = window.location.href
-  
+
       switch (share) {
         case 'fb':
           link = `https://www.facebook.com/sharer/sharer.php?u=${linkShare}`
           break;
-  
+
         case 'twitter':
           link = `https://twitter.com/intent/tweet?text=${linkShare}`
           break;
-  
+
         case 'linkedln':
           link = `https://www.linkedin.com/sharing/share-offsite/?url=${linkShare}`
           break;
-  
+
       }
-  
+
       window.open(link, "_blank");
     }
 
@@ -111,7 +113,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   configScrollPagination() {
-    if (this.configServ.isBrowser()){
+    if (this.configServ.isBrowser()) {
       if ($ && $(window).width() > 1200) {
         var scroll = $(window).scrollTop();
         if (scroll >= 420) {
@@ -119,7 +121,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
         } else {
           this.scrollPaginationIsActive = false
         }
-  
+
       }
     }
 

@@ -9,7 +9,7 @@ import { Project } from 'src/app/core/models/project.model';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
 
-declare var $:any;
+declare var $: any;
 @Component({
   selector: 'app-comerciales',
   templateUrl: './comerciales.component.html',
@@ -17,36 +17,36 @@ declare var $:any;
 })
 export class ComercialesComponent implements OnInit {
 
-  data                  : any = []; //data page
-  general               : any = []; //data website
-  imagenes              : any = [];
-  ciudades              : any = [];
-  typesProject         : any = [];
-  proyectos             : any = [];
-  banners               : any = [];
-  ejecutados            : Project[] = [];
-  precios               : any = [];
-  suscribeListenRouter  : Subscription;
-  isSubmitted           : boolean = false;
-  proyectos_ver         : boolean = true;
-  captcha               : string = "";
-  imagenes_url          : string = "";
-  imagen_banner         : string = "";
-  ciudad                : string = "NA";
-  tipo_search           : string = "NA";
-  precio_search         : string = "NA";
+  data: any = []; //data page
+  general: any = []; //data website
+  imagenes: any = [];
+  ciudades: any = [];
+  typesProject: any = [];
+  proyectos: any = [];
+  banners: any = [];
+  ejecutados: Project[] = [];
+  precios: any = [];
+  suscribeListenRouter: Subscription;
+  isSubmitted: boolean = false;
+  proyectos_ver: boolean = true;
+  captcha: string = "";
+  imagenes_url: string = "";
+  imagen_banner: string = "";
+  ciudad: string = "NA";
+  tipo_search: string = "NA";
+  precio_search: string = "NA";
 
 
-  projectSelectedToModal:Project = new Project()
+  projectSelectedToModal: Project = new Project()
   notifyChanges: Subject<any> = new Subject<any>();
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
-  constructor(private pageService: PageService, private router: Router, 
-              public configServ: ConfigService, private projService: ProjectService,
-              private responsiveService: ResponsiveService, private currencyConverter:CurrencyConverterService) {
+  constructor(private pageService: PageService, private router: Router,
+    public configServ: ConfigService, private projService: ProjectService,
+    private responsiveService: ResponsiveService, private currencyConverter: CurrencyConverterService) {
     this.imagenes_url = environment.imagenes_url;
-    this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
-      if (event instanceof NavigationEnd  ) {
+    this.suscribeListenRouter = this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
         this.configServ.goUpPage()
         this.pageService.closeNav();
       }
@@ -58,34 +58,27 @@ export class ComercialesComponent implements OnInit {
     this.pageService.closeNav();
   }
 
-  async init(){
-    const tasks = [
-      () => this.getData(),
-      () => this.getSecciones(),
-      () => this.getProyectos(),
-      () => this.convertCopToUsdProjects(),
-      () => this.getEjecutados(),
-      () => this.getPreciosProyectos()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+  async init() {
+    await this.getData()
+    await this.getSecciones()
+    await this.getProyectos()
+    await this.convertCopToUsdProjects()
+    await this.getEjecutados()
+    await this.getPreciosProyectos()
   }
 
 
-  async convertCopToUsdProjects(){
+  async convertCopToUsdProjects() {
     await this.currencyConverter.convertCopToUsdProjects(this.proyectos)
   }
 
-  async getData(){
+  async getData() {
     this.data = await this.pageService.getContentPage('proyectos-construccion-comerciales-industriales')
   }
 
-  async getImagenes(){
+  async getImagenes() {
     this.imagenes = await this.pageService.getImagesBySlugPage('proyectos-construccion-comerciales-industriales');
-
-    this.imagen_banner = this.imagenes_url+this.imagenes[0]['field_content'];
+    this.imagen_banner = this.imagenes_url + this.imagenes[0]['field_content'];
   }
 
   async getSecciones() {
@@ -98,49 +91,48 @@ export class ComercialesComponent implements OnInit {
     this.banners = await this.pageService.getElementsContent('titulo banner comerciales', 'banner_comerciales');
   }
 
-  getCiudad(ciudad: any){
+  getCiudad(ciudad: any) {
     this.ciudad = ciudad;
   }
 
-  getTipo(tipo: any){
+  getTipo(tipo: any) {
     this.tipo_search = tipo;
   }
 
-  getPrecio(precio: any){
+  getPrecio(precio: any) {
     this.precio_search = precio;
   }
 
 
-  toogleContainerSearch(){
-    if(this.responsiveService.isMobile){
+  toogleContainerSearch() {
+    if (this.responsiveService.isMobile) {
       const containerFiltro = document.querySelector('.filtro_proyectos');
       $(containerFiltro).slideToggle().css('display', 'flex')
     }
 
   }
 
-  async getProyectos(){
+  async getProyectos() {
     this.proyectos = await this.projService.getProyectosByTipo('2');
 
-    if(this.proyectos.length==0){
+    if (this.proyectos.length == 0) {
       this.proyectos_ver = false;
-    }else{
+    } else {
       this.proyectos_ver = true;
     }
   }
 
-  async buscarProyectos(){
+  async buscarProyectos() {
     this.toogleContainerSearch()
     this.proyectos = await this.projService.getProyectosByTipo('2', this.ciudad, this.tipo_search, this.precio_search);
-
-    if(this.proyectos.length==0){
+    if (this.proyectos.length == 0) {
       this.proyectos_ver = false;
-    }else{
+    } else {
       this.proyectos_ver = true;
     }
   }
 
-  async limpiarFiltros(){
+  async limpiarFiltros() {
     this.toogleContainerSearch()
     this.getProyectos();
     $(".filtroCiudad").val("NA");
@@ -148,12 +140,12 @@ export class ComercialesComponent implements OnInit {
     $(".filtroPrecio").val("NA");
   }
 
-  async getEjecutados(){
+  async getEjecutados() {
     this.ejecutados = await this.projService.getProyectosByTipo('4');
     this.configServ.loadbannerEjecutados(1000);
   }
 
-  async getPreciosProyectos(){
+  async getPreciosProyectos() {
     this.precios = await this.projService.getPreciosProyectos('2');
   }
 
@@ -162,9 +154,9 @@ export class ComercialesComponent implements OnInit {
    * 
    * @param project selected project to modal
    */
-  selectProjectToModal(project:Project){
+  selectProjectToModal(project: Project) {
     this.projectSelectedToModal = project
-    this.notifyChanges.next({openModal:true});
+    this.notifyChanges.next({ openModal: true });
   }
 
 
@@ -172,9 +164,9 @@ export class ComercialesComponent implements OnInit {
    * 
    * @param project project selected to prelaunch modal form
    */
-  selectProjectToPreLaunch(project:Project){
+  selectProjectToPreLaunch(project: Project) {
     this.projectSelectedToModal = project
-    this.notifyChangesPreLaunchProject.next({openModal:true});
+    this.notifyChangesPreLaunchProject.next({ openModal: true });
   }
 
 }

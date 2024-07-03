@@ -29,93 +29,95 @@ export class ExecutedProjectsSlidePagComponent implements OnInit {
 
 
   async getEjecutados() {
-    this.ejecutados = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', '', '', 'descripcion_precio DESC');
-    this.initSlide()
+    if (this.configService.isBrowser()) {
+      this.ejecutados = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', '', '', 'descripcion_precio DESC');
+      console.log('%csrc/app/shared/components/executed-projects-slide-pag/executed-projects-slide-pag.component.ts:33 this.ejecutados', 'color: #007acc;', this.ejecutados);
+      this.initSlide()
+
+    }
   }
 
-
   initSlide() {
-    if (this.configService.isBrowser()) {
-      if ($(window).width() >= 960) {
-        $(function () {
-          /* initiciate jPages */
-          const pages = $("div.holder").jPages({
-            previous: '← Anterior',
-            next: 'Siguiente →',
-            perPage: 7,
-            startRange: 0,
-            midRange: 0,
-            endRange: 0,
+    if ($(window).width() >= 960) {
+      $(function () {
+        /* initiciate jPages */
+        const pages = $("div.holder").jPages({
+          previous: '← Anterior',
+          next: 'Siguiente →',
+          perPage: 7,
+          startRange: 0,
+          midRange: 0,
+          endRange: 0,
+          containerID: "itemContainer",
+          animation: "bounceInUp"
+        }).pages
+
+        if (pages && pages.hasOwnProperty('showing')) {
+          pages['showing'] = false
+        }
+        /* on select change */
+        $("select").change(function () {
+
+          var newAnimation = $($("select")).val();
+          /* destroy jPages and initiate plugin again */
+          $("div.holder").jPages("destroy").jPages({
             containerID: "itemContainer",
-            animation: "bounceInUp"
-          }).pages
-  
-          if (pages && pages.hasOwnProperty('showing')) {
-            pages['showing'] = false
-          }
-          /* on select change */
-          $("select").change(function () {
-  
-            var newAnimation = $($("select")).val();
-            /* destroy jPages and initiate plugin again */
-            $("div.holder").jPages("destroy").jPages({
-              containerID: "itemContainer",
-              animation: newAnimation
-            });
+            animation: newAnimation
           });
         });
-      }
-      else if ($(window).width() >= 480) {
-        $(function () {
-          /* initiciate jPages */
-          $("div.holder").jPages({
-            previous: '← Anterior',
-            next: 'Siguiente →',
-            perPage: 4,
-            startRange: 0,
-            midRange: 0,
-            endRange: 0,
-            containerID: "itemContainer",
-            animation: "bounceInUp"
-          });
-          /* on select change */
-          $("select").change(function () {
-            /* get new css animation */
-            var newAnimation = $("select").val();
-            /* destroy jPages and initiate plugin again */
-            $("div.holder").jPages("destroy").jPages({
-              containerID: "itemContainer",
-              animation: newAnimation
-            });
-          });
-        });
-      }
-      else {
-        $(function () {
-          /* initiciate jPages */
-          $("div.holder").jPages({
-            previous: '← Anterior',
-            next: 'Siguiente →',
-            perPage: 3,
-            startRange: 0,
-            midRange: 0,
-            endRange: 0,
-            containerID: "itemContainer",
-            animation: "bounceInUp"
-          });
-          /* on select change */
-          $("select").change(function () {
-            /* get new css animation */
-            var newAnimation = $("select").val();
-            /* destroy jPages and initiate plugin again */
-            $("div.holder").jPages("destroy").jPages({
-              containerID: "itemContainer",
-              animation: newAnimation
-            });
-          });
-        });
-      }
+      });
     }
+    else if ($(window).width() >= 480) {
+      $(function () {
+        /* initiciate jPages */
+        $("div.holder").jPages({
+          previous: '← Anterior',
+          next: 'Siguiente →',
+          perPage: 4,
+          startRange: 0,
+          midRange: 0,
+          endRange: 0,
+          containerID: "itemContainer",
+          animation: "bounceInUp"
+        });
+        /* on select change */
+        $("select").change(function () {
+          /* get new css animation */
+          var newAnimation = $("select").val();
+          /* destroy jPages and initiate plugin again */
+          $("div.holder").jPages("destroy").jPages({
+            containerID: "itemContainer",
+            animation: newAnimation
+          });
+        });
+      });
+    }
+    else {
+      $(function () {
+        /* initiciate jPages */
+        $("div.holder").jPages({
+          previous: '← Anterior',
+          next: 'Siguiente →',
+          perPage: 3,
+          startRange: 0,
+          midRange: 0,
+          endRange: 0,
+          containerID: "itemContainer",
+          animation: "bounceInUp"
+        });
+        /* on select change */
+        $("select").change(function () {
+          /* get new css animation */
+          var newAnimation = $("select").val();
+          /* destroy jPages and initiate plugin again */
+          $("div.holder").jPages("destroy").jPages({
+            containerID: "itemContainer",
+            animation: newAnimation
+          });
+        });
+      });
+    }
+
   }
 
 }
