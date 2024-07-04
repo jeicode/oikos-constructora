@@ -23,11 +23,11 @@ import { APP_BASE_HREF } from '@angular/common';
   providers: [
     [{ provide: APP_BASE_HREF, useValue: '/constructora' }],
     provideHttpClient(withFetch()),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpInterceptorService,
+    //   multi: true
+    // },
     provideClientHydration()
   ],
   bootstrap: [AppComponent]
