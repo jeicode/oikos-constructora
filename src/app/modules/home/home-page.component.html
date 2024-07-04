@@ -5,9 +5,7 @@
   <app-projects-list></app-projects-list>
 </div>
 
-@defer (on viewport) {
+@defer {
   <app-why-choose-us [data]="data"></app-why-choose-us>
   <app-items-planet [data]="data"></app-items-planet>
-} @placeholder {
-  <div class="bg_grad"></div>
 }

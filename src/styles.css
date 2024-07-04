@@ -68,6 +68,7 @@
 .ic_gp:before {
     content: "\e909";
 }
+
 @font-face {
     font-family: "icomoon";
     src: url("/assets/fonts/icomoon.eot?c7s859");
@@ -877,13 +878,13 @@ h1 {
 
 /*********************/
 
-.h_cl_pie.proy_footer{
+.h_cl_pie.proy_footer {
     color: var(--color-c2);
 }
 
 /*Botones Flotantes header*/
 
-.cnt_btns_forms_flotantes{
+.cnt_btns_forms_flotantes {
     display: none;
     padding: 16px;
     align-items: center;
@@ -902,13 +903,15 @@ h1 {
     width: 90%;
     margin: 0 auto;
 }
-.btns_forms_flotantes{
+
+.btns_forms_flotantes {
     display: flex;
     justify-content: space-between;
     width: 100%;
     gap: 24px;
 }
-.bnt_flot_form{
+
+.bnt_flot_form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -923,38 +926,44 @@ h1 {
     /* offset-x | offset-y | blur-radius | color */
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
-.bnt_flot_form:hover{
-   transform: scale(1.1); 
-   transition: all 150ms ease-in;
+
+.bnt_flot_form:hover {
+    transform: scale(1.1);
+    transition: all 150ms ease-in;
 }
-.bnt_flot_form img{
+
+.bnt_flot_form img {
     height: 16px;
     width: 16px;
 }
-.bnt_flot_form strong{
+
+.bnt_flot_form strong {
     font-size: 14px;
     color: white;
 }
 
-.btn_flot_calculadora{
-    background: rgb(69,101,178);
-    background: linear-gradient(154deg, rgba(69,101,178,1) -50%, rgba(69,101,178,1) 60%, rgba(19,32,62,1) 150%);
+.btn_flot_calculadora {
+    background: rgb(69, 101, 178);
+    background: linear-gradient(154deg, rgba(69, 101, 178, 1) -50%, rgba(69, 101, 178, 1) 60%, rgba(19, 32, 62, 1) 150%);
 }
-.btn_flot_wp{
-    background: rgb(72,226,99);
-    background: linear-gradient(154deg, rgba(72,226,99,1) 0%, rgba(53,194,77,1) 60%);
-}
-.btn_flot_correo{
 
-    background: rgb(253,183,24);
-    background: linear-gradient(154deg, rgba(253,183,24,1) 0%, rgba(189,135,12,1) 100%);
+.btn_flot_wp {
+    background: rgb(72, 226, 99);
+    background: linear-gradient(154deg, rgba(72, 226, 99, 1) 0%, rgba(53, 194, 77, 1) 60%);
+}
+
+.btn_flot_correo {
+
+    background: rgb(253, 183, 24);
+    background: linear-gradient(154deg, rgba(253, 183, 24, 1) 0%, rgba(189, 135, 12, 1) 100%);
 }
 
 .img_pr_wa_form {
     min-width: 35px;
     height: 35px;
 }
-.titulo_calculadora{
+
+.titulo_calculadora {
     text-align: center;
     margin-bottom: 10px;
     color: var(--color-c2);
@@ -1430,6 +1439,7 @@ input[type=file]::-webkit-file-upload-button {
     .txt_logos_h {
         display: none;
     }
+
     .img_pr_wa_form {
         min-width: 50px;
         height: 50px;
@@ -1437,19 +1447,23 @@ input[type=file]::-webkit-file-upload-button {
 }
 
 @media screen and (max-width: 600px) {
+
     .btn_z_clientes,
     .txt_pse {
         margin-left: 8px;
     }
-    .txt_pse{
+
+    .txt_pse {
         margin-left: 0;
         padding: 2px;
     }
-    .btn_oikos_logos{
+
+    .btn_oikos_logos {
         margin: 0;
         padding: 0 4px;
         min-width: 20px;
     }
+
     .cuerpo {
         padding-top: 76px;
     }
@@ -1496,18 +1510,19 @@ input[type=file]::-webkit-file-upload-button {
     .s_carr_proy {
         padding-top: 1px;
     }
-    
-    .cnt_btns_forms_flotantes{
+
+    .cnt_btns_forms_flotantes {
         display: flex;
     }
+
     .cont_input_x2 {
         gap: 15px;
     }
-    
+
 }
 
 @media screen and (max-width: 350px) {
-    .btns_forms_flotantes{
+    .btns_forms_flotantes {
         gap: 10px;
     }
 }
@@ -1578,11 +1593,13 @@ input[type=file]::-webkit-file-upload-button {
 .btn-disabled {
     opacity: .5;
 }
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
-} 
+}
