@@ -45,7 +45,7 @@ export class ProjectsListComponent implements OnInit {
   async getProjectsHome() {
     const data = await this.getProyectosByTipo('1', undefined, undefined, undefined, undefined, 'home');
     this.housingProjects.set(data)
-    this.currencyConverter.convertCopToUsdProjects(this.housingProjects())
+    this.currencyConverter.convertCopToUsd(this.housingProjects())
   }
   /**
    * 

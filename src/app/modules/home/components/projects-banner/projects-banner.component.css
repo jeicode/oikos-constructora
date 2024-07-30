@@ -3,7 +3,7 @@
     display: flex;
     gap: 10px;
     left: 0px;
-    bottom: 62px;
+    bottom: 25px;
     margin: auto;
     justify-content: center;
 }
@@ -33,7 +33,7 @@
 
 .s_home_hero {
     position: relative;
-    min-height: 650px;
+    min-height: 550px;
 }
 
 .s_home_hero::before {
@@ -52,8 +52,8 @@
 }
 
 :host ::ng-deep .s_home_hero .swiper-slide {
-    min-height: 650px;
-    padding: 80px;
+    min-height: 550px;
+    padding: 40px 80px;
     height: 100%;
 }
 
@@ -201,7 +201,7 @@
 
 .datos_info_prjct .tag {
     padding: 4px 20px;
-    border-radius: 100px;
+    border-radius: 0;
     width: fit-content;
     color: #ffffff;
 }
@@ -299,6 +299,21 @@
     min-height: 454px;
 }
 
+.row_price_banner {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-right: 20px;
+}
+
+.row_price_banner .btn {
+    font-size: 22px;
+    padding: 8px 24px;
+}
+
 @media screen and (min-width: 2540px) {
     .s_home_hero::before {
         background-size: cover;
@@ -309,7 +324,7 @@
 
 @media screen and (max-width: 1440px) {
     :host ::ng-deep .s_home_hero .swiper-slide {
-        padding: 80px 60px;
+        padding: 40px 60px;
     }
 
     .datos_info_prjct h1 {
@@ -320,7 +335,6 @@
 @media screen and (max-width: 1280px) {
     :host ::ng-deep .s_home_hero .swiper-slide {
         padding: 50px 30px 50px 60px;
-        min-height: 550px;
     }
 
     .datos_info_prjct h1 {
@@ -348,8 +362,6 @@
         right: 0 !important;
         margin: auto !important;
         flex-direction: row !important;
-        top: 8px !important;
-        bottom: initial !important;
         height: 12px !important;
         width: 100%;
     }
@@ -361,13 +373,21 @@
 }
 
 @media screen and (max-width: 768px) {
+    .row_price_banner {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding-right: 0;
+        gap: 15px;
+    }
+
     .s_home_hero {
         margin-top: 10px;
         min-height: 757px;
     }
 
     :host ::ng-deep .s_home_hero .swiper-slide {
-        padding: 32px 20px;
+        padding: 32px 20px 65px;
         min-height: initial;
     }
 
@@ -412,10 +432,15 @@
     }
 
     .desc_txt_hero {
-        flex-direction: column;
+        flex-direction: column-reverse;
         order: 2;
         padding-top: 0px;
-        gap: 0;
+        gap: 20px;
+    }
+
+    .row_price_banner {
+        text-align: center;
+        align-items: center;
     }
 
     .aside_prjct {

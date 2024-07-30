@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { SwiperModule } from 'swiper/angular';
-import SwiperCore,{ Navigation, Pagination, SwiperOptions } from 'swiper';
+import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
 import { ProjectService } from '../../services/api/project.service';
 import { Project } from 'src/app/core/models/project.model';
 import { environment } from 'src/environments/environment';
@@ -22,7 +22,7 @@ SwiperCore.use([Navigation, Pagination]);
   templateUrl: './slide-projects.component.html',
   styleUrls: ['./slide-projects.component.css'],
   standalone: true,
-  imports:[
+  imports: [
     CommonModule,
     SwiperModule,
     RouterModule,
@@ -36,45 +36,45 @@ SwiperCore.use([Navigation, Pagination]);
 })
 export class SlideProjectsComponent implements OnInit {
 
-  BASE_URL:string = environment.imagenes_url
-  projectSelectedToModal:Project = new Project()
+  BASE_URL: string = environment.imagenes_url
+  projectSelectedToModal: Project = new Project()
   notifyModalChanges: Subject<any> = new Subject<any>();
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
   config: SwiperOptions = {
     slidesPerView: 1,
-    breakpoints:{
-        1050:{
-            slidesPerView: 3,
-        },
-        768:{
-            slidesPerView: 2,
-        },
-        100:{
-            slidesPerView: 1,
-        },
+    breakpoints: {
+      1050: {
+        slidesPerView: 3,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      100: {
+        slidesPerView: 1,
+      },
     },
     navigation: {
-        nextEl: ".cnt_car_proy_dest .swiper-button-next",
-        prevEl: ".cnt_car_proy_dest .swiper-button-prev",
-      },
+      nextEl: ".cnt_car_proy_dest .swiper-button-next",
+      prevEl: ".cnt_car_proy_dest .swiper-button-prev",
+    },
   };
 
-  @Input() projects:Project[] = []
+  @Input() projects: Project[] = []
 
 
 
-  constructor(private projectService: ProjectService, public configServ:ConfigService,
-              private currencyConverter:CurrencyConverterService) {}
-  
+  constructor(private projectService: ProjectService, public configServ: ConfigService,
+    private currencyConverter: CurrencyConverterService) { }
+
   ngOnInit(): void {
-    this.getFeaturedProjects()  
+    this.getFeaturedProjects()
   }
 
 
-  async getFeaturedProjects(){
+  async getFeaturedProjects() {
     if (this.projects.length == 0) this.projects = await this.projectService.getFeaturedProjects()
-    await this.currencyConverter.convertCopToUsdProjects(this.projects)
+    await this.currencyConverter.convertCopToUsd(this.projects)
   }
 
 
@@ -82,18 +82,18 @@ export class SlideProjectsComponent implements OnInit {
    * 
    * @param project selected project to modal
    */
-  selectProjectToModal(project:Project){
+  selectProjectToModal(project: Project) {
     this.projectSelectedToModal = project
-    this.notifyModalChanges.next({openModal:true});
+    this.notifyModalChanges.next({ openModal: true });
   }
 
   /**
    * 
    * @param project project selected to prelaunch modal form
    */
-  selectProjectToPreLaunch(project:Project){
+  selectProjectToPreLaunch(project: Project) {
     this.projectSelectedToModal = project
-    this.notifyChangesPreLaunchProject.next({openModal:true});
+    this.notifyChangesPreLaunchProject.next({ openModal: true });
   }
 
 }

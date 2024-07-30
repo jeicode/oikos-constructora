@@ -199,6 +199,15 @@ input {
   margin: 0;
 }
 
+.s_modal_calculadora .cont_submit {
+  justify-content: center;
+}
+
+.s_modal_calculadora .cont_submit .btn {
+  font-size: 20px;
+  height: 39px;
+}
+
 .cont_submit .btn {
   text-align: center;
   justify-content: center;
@@ -212,11 +221,13 @@ input {
   width: 100%;
   min-height: 520px;
 }
-:host::ng-deep.s_proyecto_h .cnt_central{
-  
+
+:host::ng-deep.s_proyecto_h .cnt_central {
+
   max-width: 1440px;
 }
-:host::ng-deep.s_proyecto_h .cnt_central .miga{
+
+:host::ng-deep.s_proyecto_h .cnt_central .miga {
   margin-top: 0;
   justify-content: flex-start;
 }
@@ -238,20 +249,20 @@ input {
 }
 
 .precio_hp {
-  min-height: 196px;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(2, auto);
   gap: 30px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   justify-items: flex-start;
 }
 
 .price_project {
-  min-height: 95px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
+  gap: 6px;
 }
 
 .price_project h4 {
@@ -260,7 +271,6 @@ input {
   text-align: center;
   font-size: 18px;
   font-weight: 700;
-  margin: 0 0 6px;
 }
 
 .price_project .cont_price {
@@ -276,7 +286,6 @@ input {
   font-size: 14px;
   text-align: center;
   display: block;
-  margin: 6px 0 0;
 }
 
 .hero_proyecto {
@@ -288,9 +297,11 @@ input {
   margin: 0 auto;
   padding: 0 20px;
 }
-.info_h_proyecto{
+
+.info_h_proyecto {
   flex-grow: 1;
 }
+
 .h_logo_proyect {
   min-height: 166px;
   display: flex;
@@ -450,6 +461,34 @@ input {
   padding-left: 16px;
   padding-right: 16px;
   gap: 8px;
+}
+
+.s_desc_proyecto {
+  position: relative;
+}
+
+.sec_float_calculate {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 2;
+}
+
+.float_calculate {
+  position: sticky;
+  top: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 75px;
+  height: 75px;
+  border-radius: 15px 0 0 15px;
+  background: var(--color-c2);
+  color: #fff;
+  cursor: pointer;
 }
 
 .c_desc_proyecto {
@@ -983,12 +1022,14 @@ input {
   border-radius: 20px;
   height: 197px;
 }
-.img_slider_tipo a{
+
+.img_slider_tipo a {
   display: block;
   width: 100%;
   height: 100%;
 }
-.img_slider_tipo a img{
+
+.img_slider_tipo a img {
   display: block;
   width: 100%;
   height: 100%;
@@ -1038,13 +1079,22 @@ input {
   text-align: center;
   height: auto;
   background: #FDB718;
-  box-shadow: 0 12px 12px rgba(253,183,24,.4);
+  box-shadow: 0 12px 12px rgba(253, 183, 24, .4);
   animation: zooms 2s infinite;
 }
-@keyframes zooms{
-  0%{transform: scale(1);}
-  50%{transform: scale(1.1);}
-  100%{transform: scale(1);}
+
+@keyframes zooms {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .slide_h_proyecto {
@@ -1069,18 +1119,30 @@ input {
   flex-direction: column;
   gap: 12px;
 }
+
 /*CLS ajustes*/
 
-.mySwiper2 .swiper-slide{
+.mySwiper2 .swiper-slide {
   min-height: 360px;
 }
 
-
-
-.input-div{
+.input-div {
   position: relative;
 }
 
+.row_form_calculate_three {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.row_form_calculate_three .info {
+  flex-basis: calc(34% - 10px);
+}
+
+.row_form_calculate_three .info:last-child {
+  flex-basis: 100%;
+}
 
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
@@ -1098,9 +1160,11 @@ input {
     display: flex;
     flex-direction: column;
   }
-  .col_slide_p{
+
+  .col_slide_p {
     height: auto;
   }
+
   .progress_state {
     display: none;
   }
@@ -1127,9 +1191,10 @@ input {
 
   .precio_hp {
     grid-template-columns: repeat(3, auto);
-    
+
   }
-  .img_slider_tipo{
+
+  .img_slider_tipo {
     height: 250px;
   }
 }
@@ -1138,11 +1203,13 @@ input {
   .info_banner_calcula {
     grid-template-columns: 1fr;
   }
-  .h_logo_proyect picture{
+
+  .h_logo_proyect picture {
     width: 100px;
     min-width: 100px;
     height: 100px;
   }
+
   .info_banner_calcula {
     max-height: initial;
     position: relative;
@@ -1185,8 +1252,12 @@ input {
 }
 
 @media screen and (max-width: 480px) {
-  
-  .info_h_proyecto{
+
+  .row_form_calculate_three .info {
+    flex-basis: calc(51% - 10px) !important;
+  }
+
+  .info_h_proyecto {
     min-height: 627px;
   }
 
@@ -2032,13 +2103,18 @@ input {
   .cont_proyecto_eject:before {
     display: none;
   }
+
   /* CLS ajustes*/
-  .mySwiper2 .swiper-slide{
+  .mySwiper2 .swiper-slide {
     min-height: 280px;
   }
 }
 
 @media screen and (max-width: 600px) {
+  .cont_input_x2.row_form_calculate {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .s_proyecto_h {
     padding: 30px 0 100px;
   }
@@ -2075,22 +2151,26 @@ input {
     justify-content: center;
     justify-items: center;
   }
+
   /*CLS ajustes*/
-  .mySwiper2 .swiper-slide{
+  .mySwiper2 .swiper-slide {
     min-width: 303px;
     min-height: 214px;
   }
-  .mySwiper2 .swiper-slide img{
+
+  .mySwiper2 .swiper-slide img {
     min-width: 303px;
     min-height: 214px;
   }
+
   .info_proj picture {
     height: 210px;
   }
 }
+
 @media screen and (max-width: 480px) {
-  
-  .img_slider_tipo{
+
+  .img_slider_tipo {
     height: 220px;
   }
 }

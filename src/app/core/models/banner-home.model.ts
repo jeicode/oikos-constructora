@@ -20,7 +20,7 @@ export class BannerHome {
         public field_content: string = "",
         public id_parent: string = "",
         public metadescription: string = "",
-        public imagen: string[] =[""],
+        public imagen: string[] = [""],
         public imagen_title: string[] = [""],
         public imagen_alt: string[] = [""],
         public descripcion_banner_home: string = "",
@@ -28,13 +28,15 @@ export class BannerHome {
         public link_cta_banner: string = "",
         public titulo_proyecto: string | undefined = "",
         public valor_proyecto: string | undefined = "",
+        public valor_proyecto_formato: string | undefined = "",
         public logo_proyecto: string = "",
         public color_primario: string | undefined = "",
         public color_secundario: string | undefined = "",
         public estado_proyecto: string | undefined = "",
-        public beneficios_proyecto:string = "",
+        public beneficios_proyecto: string = "",
         public galeria: Galeria[] = [],
-        public zonas: Zona[]  = [],
+        public zonas: Zona[] = [],
+        public dollar_value: number = 0,
     ) { }
 
 }

@@ -90,7 +90,7 @@ export class ViviendaComponent implements OnInit {
 
 
   async convertCopToUsdProjects() {
-    await this.currencyConverter.convertCopToUsdProjects(this.proyectos)
+    await this.currencyConverter.convertCopToUsd(this.proyectos)
   }
 
 

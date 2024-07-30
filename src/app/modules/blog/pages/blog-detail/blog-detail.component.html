@@ -62,8 +62,8 @@
 
                     <app-card-project></app-card-project>
 
-                    <div class="row_banner_not_int">
-                        <div class="cnt_banner_proy_not_int" *ngIf="activeBlog.proyecto">
+                    <div class="row_banner_not_int" *ngIf="activeBlog.proyecto">
+                        <div class="cnt_banner_proy_not_int">
                             <div class="img_banner_proy_not_int">
                                 <img defaultImg [src]="BASE_URL+activeBlog.proyecto.imagen_principal_proyecto"
                                     [alt]="activeBlog.proyecto.alt_principal"

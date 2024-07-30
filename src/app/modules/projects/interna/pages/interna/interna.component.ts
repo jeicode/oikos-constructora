@@ -11,6 +11,7 @@ import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
 import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
 import { GlobalService } from 'src/app/shared/services/api/global.service';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
+import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -93,7 +94,8 @@ export class InternaComponent implements OnInit, OnDestroy {
     private activateRoute: ActivatedRoute,
     private globalService: GlobalService,
     private fb: FormBuilder,
-    private formServ: FormService) {
+    private formServ: FormService,
+    private currencyConverter: CurrencyConverterService) {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -137,9 +139,12 @@ export class InternaComponent implements OnInit, OnDestroy {
 
 
   async getData() {
-    const [data] = await this.projService.getProyectoByUrl(this.slug);
+    let data = await this.projService.getProyectoByUrl(this.slug);
+    console.log(data);
+
+    await this.currencyConverter.convertCopToUsd(data);
     if (data) {
-      this.data = data;
+      this.data = data[0];
       const { seccion } = this.data
       this.breadcrumbs = this.getBreadcrumbList(seccion);
       this.porcFinanciar = (100 - this.data?.porcentaje_minimo);
@@ -164,7 +169,6 @@ export class InternaComponent implements OnInit, OnDestroy {
 
     }
   }
-
 
   getBreadcrumbList(seccion: string): any[] {
     let breads = [new Breadcrumb('Oikos Constructora', '/'),]

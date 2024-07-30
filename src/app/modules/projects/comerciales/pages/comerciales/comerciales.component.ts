@@ -69,7 +69,7 @@ export class ComercialesComponent implements OnInit {
 
 
   async convertCopToUsdProjects() {
-    await this.currencyConverter.convertCopToUsdProjects(this.proyectos)
+    await this.currencyConverter.convertCopToUsd(this.proyectos)
   }
 
   async getData() {

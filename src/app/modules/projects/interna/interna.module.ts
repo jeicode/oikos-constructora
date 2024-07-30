@@ -12,6 +12,7 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
 import { SwiperModule } from 'swiper/angular';
 import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
 import { HTMLPipe } from 'src/app/shared/pipes/html-data.pipe';
+import { ThousandNumber } from "../../../shared/pipes/thousand-number.pipe";
 
 @NgModule({
   declarations: [
@@ -25,12 +26,12 @@ import { HTMLPipe } from 'src/app/shared/pipes/html-data.pipe';
     SafePipe,
     HTMLPipe,
     NgOptimizedImage,
-
     //standalones
     SlideProjectsComponent,
     BreadcrumbComponent,
     SwiperModule,
-    WppModalProjectComponent
-  ]
+    WppModalProjectComponent,
+    ThousandNumber
+]
 })
 export class InternaModule { }

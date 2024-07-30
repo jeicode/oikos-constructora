@@ -3,31 +3,21 @@
         <div class="cnt_inf_topbar_h">
             <div class="ctn_logos">
                 @for (i of logos(); track $index) {
-                    @if (i.enlace.includes('https://')) {
-                        <a [href]="i.enlace" target="_blank"
-                            class="btn_oikos_logos">
-                            <img 
-                                width="38" 
-                                height="24" 
-                                [src]="IMG_URL()+i.imagen?.[0]" 
-                                [alt]="i.imagen_alt?.[0]"
-                                [title]="i.imagen_title?.[0]"
-                            >
-                            <span class="txt_logos_h">{{i?.field_content}}</span>
-                        </a>
+                @if (i.enlace.includes('https://')) {
+                <a [href]="i.enlace" target="_blank" class="btn_oikos_logos">
+                    <img width="38" height="24" [src]="IMG_URL()+i.imagen?.[0]" [alt]="i.imagen_alt?.[0]"
+                        [title]="i.imagen_title?.[0]">
+                    <span class="txt_logos_h">{{i?.field_content}}</span>
+                </a>
 
-                    }
-                    @else {
-                        <a [href]="i.enlace" target="_blank" class="btn_oikos_logos">
-                            <img 
-                                width="38" 
-                                height="24" 
-                                [src]="IMG_URL()+i.imagen?.[0]" 
-                                [alt]="i.imagen_alt?.[0]"
-                                [title]="i.imagen_title?.[0]">
-                        </a>
+                }
+                @else {
+                <a [href]="i.enlace" target="_blank" class="btn_oikos_logos">
+                    <img width="38" height="24" [src]="IMG_URL()+i.imagen?.[0]" [alt]="i.imagen_alt?.[0]"
+                        [title]="i.imagen_title?.[0]">
+                </a>
 
-                    }
+                }
                 }
             </div>
 
@@ -57,50 +47,46 @@
     <div class="nav_bar_h">
 
         @if (homeIsActive()) {
-            <h1 
-                class="logo_pri">
-                <a routerLink="/">
-                    Grupo Oikos
-                </a>
-            </h1>
+        <h1 class="logo_pri">
+            <a routerLink="/">
+                Grupo Oikos
+            </a>
+        </h1>
         }
 
         @else {
-            <div class="logo_pri">
-                <a routerLink="/">
-                    Grupo Oikos
-                </a>
-            </div>
+        <div class="logo_pri">
+            <a routerLink="/">
+                Grupo Oikos
+            </a>
+        </div>
         }
 
 
         @if (linksHeader().length > 0) {
-            <nav  class="nav" [ngClass]="{'active': menuMobileIsActive()}">
-                <ul>
-                    @for (i of linksHeader(); track $index) {
-                        <li (click)="closeNav()">
-                            @if (i.enlace_menu.includes('https://')) {
-                                <a  [href]="i.enlace_menu"
-                                    target="_blank">
-                                    {{i.field_content}}
-                                </a>
-                            }
-                            @else {
-                                <a routerLink="{{i.enlace_menu}}">{{i.field_content}}</a>
-                            }
-        
-                        </li>
-
-                    }
-                    <a routerLink="/contactanos" class="btn contacto_h" (click)="closeNav()">
-                        Contacto
+        <nav class="nav" [ngClass]="{'active': menuMobileIsActive()}">
+            <ul>
+                @for (i of linksHeader(); track $index) {
+                <li (click)="closeNav()">
+                    @if (i.enlace_menu.includes('https://')) {
+                    <a [href]="i.enlace_menu" target="_blank">
+                        {{i.field_content}}
                     </a>
-                </ul>
-            </nav>
+                    }
+                    @else {
+                    <a routerLink="{{i.enlace_menu}}">{{i.field_content}}</a>
+                    }
+
+                </li>
+
+                }
+                <a routerLink="/contactanos" class="btn contacto_h btn_contacto_header" (click)="closeNav()">
+                    Recibe Asesoría
+                </a>
+            </ul>
+        </nav>
         }
-        <div 
-            class="btn_menu_movil" 
-            [ngClass]="{'active': menuMobileIsActive()}" 
+        <div class="btn_menu_movil" [ngClass]="{'active': menuMobileIsActive()}"
             (click)="this.menuMobileIsActive.set(!this.menuMobileIsActive())">
             <span>
                 <span></span>

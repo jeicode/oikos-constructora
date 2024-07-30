@@ -969,6 +969,10 @@ h1 {
     color: var(--color-c2);
 }
 
+.btn_contacto_header {
+    font-size: 18px;
+    animation: bounce 2s ease infinite;
+}
 
 @media screen and (max-width: 1400px) {
     .nav ul li {
@@ -1601,5 +1605,35 @@ input[type=file]::-webkit-file-upload-button {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    70% {
+        transform: translateY(0%);
+    }
+
+    80% {
+        transform: translateY(-15%);
+    }
+
+    90% {
+        transform: translateY(0%);
+    }
+
+    95% {
+        transform: translateY(-7%);
+    }
+
+    97% {
+        transform: translateY(0%);
+    }
+
+    99% {
+        transform: translateY(-3%);
+    }
+
+    100% {
+        transform: translateY(0);
     }
 }

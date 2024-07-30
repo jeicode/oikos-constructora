@@ -12,8 +12,8 @@ import { WppModalProjectComponent } from '../wpp-modal-project/wpp-modal-project
 @Component({
   selector: 'app-card-project',
   standalone: true,
-  imports:[
-    CommonModule, 
+  imports: [
+    CommonModule,
     RouterModule,
     WppModalProjectComponent,
     ModalPreLaunchProjectComponent,
@@ -25,19 +25,19 @@ import { WppModalProjectComponent } from '../wpp-modal-project/wpp-modal-project
 export class CardProjectComponent implements OnInit {
 
 
-  @Input() projects:Project[] = []
+  @Input() projects: Project[] = []
   idBtnWpp: string = ''
-  BASE_URL:string = environment.imagenes_url
+  BASE_URL: string = environment.imagenes_url
 
-  projectSelectedToModal:Project = new Project()
+  projectSelectedToModal: Project = new Project()
   notifyModalChanges: Subject<any> = new Subject<any>();
   notifyChangesPreLaunchProject: Subject<any> = new Subject<any>();
 
 
-  constructor(private currencyConverter:CurrencyConverterService) { }
+  constructor(private currencyConverter: CurrencyConverterService) { }
 
   ngOnInit(): void {
-    this.currencyConverter.convertCopToUsdProjects(this.projects)
+    this.currencyConverter.convertCopToUsd(this.projects)
   }
 
 
@@ -45,10 +45,10 @@ export class CardProjectComponent implements OnInit {
    * 
    * @param project selected project to modal
    */
-  selectProjectToModal(project:Project){
+  selectProjectToModal(project: Project) {
     this.projectSelectedToModal = project
     if (this.idBtnWpp) this.idBtnWpp += project.titulo_proyecto.replace(/ /g, '_')
-    this.notifyModalChanges.next({openModal:true});
+    this.notifyModalChanges.next({ openModal: true });
   }
 
 
@@ -57,9 +57,9 @@ export class CardProjectComponent implements OnInit {
    * 
    * @param project project selected to prelaunch modal form
    */
-  selectProjectToPreLaunch(project:Project){
+  selectProjectToPreLaunch(project: Project) {
     this.projectSelectedToModal = project
-    this.notifyChangesPreLaunchProject.next({openModal:true});
+    this.notifyChangesPreLaunchProject.next({ openModal: true });
   }
 
 

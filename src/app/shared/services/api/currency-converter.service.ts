@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { Project } from 'src/app/core/models/project.model';
 import { environment } from 'src/environments/environment.prod';
 import { ConfigService } from '../functions/config.service';
+import { BannerHome } from 'src/app/core/models/banner-home.model';
 
 const BASE_URL = environment.base_url
 
@@ -12,12 +13,12 @@ const BASE_URL = environment.base_url
 })
 export class CurrencyConverterService {
 
-  currentCopPrice!:number;
+  currentCopPrice!: number;
   configService = inject(ConfigService)
-  constructor(private _http:HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
-  async getContentHtmlExternalPage(urlPage:string):Promise<any>{ 
-    const url = `${BASE_URL}api/v1/getContentHtmlExternalPage?urlPage=${urlPage}`; 
+  async getContentHtmlExternalPage(urlPage: string): Promise<any> {
+    const url = `${BASE_URL}api/v1/getContentHtmlExternalPage?urlPage=${urlPage}`;
     return firstValueFrom(this._http.get(url)).then()
       .catch(err => {
         console.warn(err)
@@ -29,22 +30,22 @@ export class CurrencyConverterService {
    * 
    * @returns Price Colombian pesos COP by usd
    */
-  private async getCopPriceByUsd():Promise<number | null>{
+  private async getCopPriceByUsd(): Promise<number | null> {
 
-    if (this.configService.isBrowser()){
+    if (this.configService.isBrowser()) {
       const urlPage = 'https://www.google.com/finance/quote/USD-COP?sa=X&ved=2ahUKEwiBpd_lo5L7AhV1VTABHSOsBHgQmY0JegQIBhAc';
-      const {html} = await this.getContentHtmlExternalPage(urlPage);
-      
-      if (html){
+      const { html } = await this.getContentHtmlExternalPage(urlPage);
+
+      if (html) {
         var parser = new DOMParser();
         var htmlDoc = parser.parseFromString(html, 'text/html');
-        if (htmlDoc){
+        if (htmlDoc) {
           let copPrice = htmlDoc.querySelector('.fxKbKc')?.textContent;
-          if (copPrice){
+          if (copPrice) {
             const price = copPrice.replace(/,/g, '');
             return Number(price);
           }
-  
+
         }
       }
     }
@@ -52,24 +53,15 @@ export class CurrencyConverterService {
     return null;
   }
 
-
-  async convertCopToUsdProjects(projects:Project[]):Promise<Project[] | null>{
-    const priceCop = await this.getCopPriceByUsd()
-
-    if (priceCop && projects?.length > 0){
-      if (projects.length > 0){
-        return projects.map( (p) => {
-          if (p?.valor_proyecto){
-            p.dollar_value = Number(p?.valor_proyecto)/priceCop
-            p.dollar_value = Math.trunc(p.dollar_value); // remove decimals
-          }
-          return p;
-        })
-      }
+  async convertCopToUsd(data: any): Promise<any> {
+    const priceCop = await this.getCopPriceByUsd();
+    if (priceCop) {
+      return data.map((p: any) => {
+        p.dollar_value = Number(p?.valor_proyecto) / priceCop
+        p.dollar_value = Math.trunc(p.dollar_value); // remove decimals
+        return p
+      })
     }
-
-    return null
-
   }
 
 }
