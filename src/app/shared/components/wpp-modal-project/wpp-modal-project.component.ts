@@ -100,6 +100,7 @@ export class WppModalProjectComponent implements OnInit, OnDestroy {
         url_origen: window.location.href
       }
 
+
       const res = await this.projectService.createContactWppProject(data);
       if (res) {
         this.redirectToWppLink();
