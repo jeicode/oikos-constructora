@@ -140,8 +140,6 @@ export class InternaComponent implements OnInit, OnDestroy {
 
   async getData() {
     let data = await this.projService.getProyectoByUrl(this.slug);
-    console.log(data);
-
     await this.currencyConverter.convertCopToUsd(data);
     if (data) {
       this.data = data[0];

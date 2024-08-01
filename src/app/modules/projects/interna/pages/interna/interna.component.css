@@ -1155,11 +1155,30 @@ input {
 .sec_img_recorridos {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   max-width: 203px;
 }
 
+.direction_recorrido {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  color: #fff;
+  align-items: center;
+}
+
+.txt_direction {
+  text-decoration: underline;
+}
+
+.sec_img_recorridos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .info_recorridos {
+  width: 100%;
   padding: 25px;
 }
 
@@ -1185,6 +1204,17 @@ input {
 .btns_recorridos .btn:not(:first-child) {
   background: transparent;
   border: 1px solid #fff;
+}
+
+.sec_directions_recorridos {
+  display: flex;
+  flex-direction: row;
+  gap: 22px;
+  color: #fff;
+  padding-top: 24px;
+  margin-top: 24px;
+  width: 100%;
+  border-top: 1px solid #fff;
 }
 
 @media screen and (max-width: 1200px) {

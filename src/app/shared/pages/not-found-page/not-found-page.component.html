@@ -1,15 +1,12 @@
-<body class="cuerpo">
-    <section class="s_gracias_404 s_404">
-        <div class="cnt_central">
-            <div class="c_gracias_404 c_404">
-                <picture>
-                    <img width="393" height="240" [src]="IMG_URL+images[0]?.field_content"
-                        [alt]="images[0]?.alt" [title]="images[0]?.title">
-                </picture>
-                <h2>{{ data?.titulo_404 }}</h2>
-                <a [routerLink]="data?.link_btn_404" class="btn al-center">{{data?.texto_btn_404}}</a>
-            </div>
+<section class="s_gracias_404 s_404">
+    <div class="cnt_central">
+        <div class="c_gracias_404 c_404">
+            <picture class="picture_404">
+                <img width="393" height="240" [src]="IMG_URL+images[0]?.field_content" [alt]="images[0]?.alt"
+                    [title]="images[0]?.title">
+            </picture>
+            <h2>{{ data?.titulo_404 }}</h2>
+            <a [routerLink]="data?.link_btn_404" class="btn al-center">{{data?.texto_btn_404}}</a>
         </div>
-    </section>
-    
-</body>
+    </div>
+</section>
