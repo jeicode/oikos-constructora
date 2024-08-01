@@ -208,9 +208,11 @@
                 Maqueta virtual
                 <img width="20" height="20" ngSrc="./assets/images/diseno/proyectos_vivienda/icon_360.svg" alt="" />
               </a>
-              <a href="" class="btn btn_apto">
-                Apto. tipo 1
+              @if(data?.id == '1'){
+              <a href="https://www.oikos.com.co/constructora/maquetas-360/san_pablo_lirios/" class="btn btn_apto">
+                Apto. tipo 2
               </a>
+              }
             </div>
             @if(data?.url_direccion_proyecto||data?.url_direccion_salaventas){
             <div class="sec_directions_recorridos">
