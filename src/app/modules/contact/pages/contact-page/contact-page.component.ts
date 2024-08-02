@@ -10,13 +10,13 @@ import { environment } from 'src/environments/environment.prod';
 export class ContactPageComponent implements OnInit {
 
   data: any;
-  BASE_URL:string = environment.imagenes_url
+  BASE_URL: string = environment.imagenes_url
 
-  formIsShow:boolean = false;
+  formIsShow: boolean = false;
   // collections
   itemsContact: any[] = []
   itemActive: any;
-  indexItemActive!:number;
+  indexItemActive!: number;
 
   constructor(private pageService: PageService) { }
 
@@ -27,43 +27,37 @@ export class ContactPageComponent implements OnInit {
 
 
   async init() {
-    const tasks = [
-      () => this.getData(),
-      () => this.getCollectionsPage()
-    ]
-
-    for (const task of tasks) {
-      await task();
-    }
+    await this.getData()
+    await this.getCollectionsPage()
   }
 
   async getData() {
     const data = await this.pageService.getContentPage('contactanos')
     if (data) this.data = data
-    
+
   }
 
   async getCollectionsPage() {
     const itemsContact = await this.pageService.getElementsContent('titulo item contacto', 'item_contacto');
-    
+
     if (itemsContact?.length > 0) this.itemsContact = itemsContact
   }
 
 
-  activeItemContact(index:number){
+  activeItemContact(index: number) {
     this.itemActive = this.itemsContact[index]
     this.indexItemActive = index;
 
-    if(index==1){
+    if (index == 1) {
       window.open("https://clientes.oikos.com.co/solicitudoikos/", "_blank");
-    }else{
+    } else {
       this.showForm()
     }
   }
 
-  showForm(){
+  showForm() {
     this.formIsShow = true
   }
 
-  
+
 }

@@ -4,6 +4,7 @@
 }
 
 .row_h_gen_noticias {
+    min-height: 98px;
     width: 100%;
     display: flex;
     gap: 32px;
@@ -221,6 +222,7 @@
     cursor: pointer;
     margin: 0 4px;
 }
+
 :host ::ng-deep .paginador_list_not {
     color: red;
 }

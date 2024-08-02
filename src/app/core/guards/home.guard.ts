@@ -5,7 +5,7 @@ import { JsonLDService } from "src/app/shared/services/functions/json-ld.service
 import { SeoService } from "src/app/shared/services/functions/seo.service";
 
 
-export const homeGuard: CanActivateFn = async ( _route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) => {
+export const homeGuard: CanActivateFn = async (_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) => {
   const pageService = inject(PageService)
   const seoService = inject(SeoService);
   const jsonLD = inject(JsonLDService);
@@ -17,6 +17,5 @@ export const homeGuard: CanActivateFn = async ( _route: ActivatedRouteSnapshot, 
     jsonLD.insertSchema(jsonLD.getHomeSchema(), { className: 'home_schema', id: 0 })
     return true
   }
-
   return false;
 };

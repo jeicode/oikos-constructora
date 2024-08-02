@@ -11,7 +11,7 @@ import { PageService } from 'src/app/shared/services/api/page.service';
 @Component({
   selector: 'app-blog-page',
   templateUrl: './blog-page.component.html',
-  styleUrls: ['./blog-page.component.css']
+  styleUrls: ['./blog-page.component.css'],
 })
 export class BlogPageComponent implements OnInit {
 

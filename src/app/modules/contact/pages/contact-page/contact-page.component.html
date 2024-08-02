@@ -1,58 +1,73 @@
-<body class="">
+<div class="cnt_gen_contacto">
+  <!-- SE ELIMINA, CAUSA PROBLEMAS EN LA CARGA -->
+  <span class="bg_round">
+    <span></span>
+  </span>
 
-    <div class="cnt_gen_contacto">
-        <span class="bg_round">
-            <span></span>
-        </span>
+  <div class="cnt_central">
+    <app-breadcrumb></app-breadcrumb>
 
-        <div class="cnt_central">
+    <h1 class="h_contacto">
+      {{ data?.titulo_contacto }}
+    </h1>
+    <div class="txt_contacto" [innerHtml]="data?.descripcion"></div>
 
-            <app-breadcrumb></app-breadcrumb>
-
-            <h1 class="h_contacto">
-                {{ data?.titulo_contacto}}
-            </h1>
-            <div class="txt_contacto" [innerHtml]="data?.descripcion"></div>
-
-            <div class="row_mod_contacto">
-                <div class="mod_contacto" [ngClass]="{'active':formIsShow ? index === indexItemActive : true}" 
-                    (click)="activeItemContact(index)" *ngFor="let i of itemsContact; let index=index">
-                    <div class="img_mod_contacto">
-                        <img [src]="BASE_URL+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]">
-                    </div>
-                    <div class="cnt_inf_mod_contacto">
-                        <span class="ic_mod_contacto">
-                            <img [src]="BASE_URL+i?.imagen[1]" [alt]="i?.imagen_alt[1]" [title]="i?.imagen_title[1]">
-                        </span>
-                        <div class="h_mod_contacto">
-                            {{i?.field_content}}
-                        </div>
-                        <div class="txt_mod_contacto" [innerHtml]="i?.descripcion_item_contacto"></div>
-                        <div class="bnt_mod_contacto">
-                            {{i?.texto_boton_item_contacto}}
-                            <span class="material-icons">arrow_forward</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cnt_form_mod_contacto" *ngIf="formIsShow">
-                    <div class="btn_volver_contacto" (click)="formIsShow = false">
-                        <span class="material-icons">arrow_back</span>
-                        Volver
-                    </div>
-
-                    <app-contact-form [typeForm]="itemActive?.tipo_formulario_contacto" 
-                                    *ngIf=" itemActive?.tipo_formulario_contacto === 'general' || 
-                                            itemActive?.tipo_formulario_contacto === 'postventas'"
-                                    [recipient_mail]="itemActive?.correo_destinatario">
-                    </app-contact-form>
-
-                    <app-calculate-form *ngIf="itemActive?.tipo_formulario_contacto === 'calcula'"></app-calculate-form>
-
-                </div>
-        
-            </div>
+    <div class="row_mod_contacto">
+      <div
+        class="mod_contacto"
+        [ngClass]="{ active: formIsShow ? index === indexItemActive : true }"
+        (click)="activeItemContact(index)"
+        *ngFor="let i of itemsContact; let index = index"
+      >
+        <div class="img_mod_contacto">
+          <img
+            [src]="BASE_URL + i?.imagen[0]"
+            [alt]="i?.imagen_alt[0]"
+            [title]="i?.imagen_title[0]"
+          />
         </div>
+        <div class="cnt_inf_mod_contacto">
+          <span class="ic_mod_contacto">
+            <img
+              [src]="BASE_URL + i?.imagen[1]"
+              [alt]="i?.imagen_alt[1]"
+              [title]="i?.imagen_title[1]"
+            />
+          </span>
+          <div class="h_mod_contacto">
+            {{ i?.field_content }}
+          </div>
+          <div
+            class="txt_mod_contacto"
+            [innerHtml]="i?.descripcion_item_contacto"
+          ></div>
+          <div class="bnt_mod_contacto">
+            {{ i?.texto_boton_item_contacto }}
+            <span class="material-icons">arrow_forward</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cnt_form_mod_contacto" *ngIf="formIsShow">
+        <div class="btn_volver_contacto" (click)="formIsShow = false">
+          <span class="material-icons">arrow_back</span>
+          Volver
+        </div>
+
+        <app-contact-form
+          [typeForm]="itemActive?.tipo_formulario_contacto"
+          *ngIf="
+            itemActive?.tipo_formulario_contacto === 'general' ||
+            itemActive?.tipo_formulario_contacto === 'postventas'
+          "
+          [recipient_mail]="itemActive?.correo_destinatario"
+        >
+        </app-contact-form>
+
+        <app-calculate-form
+          *ngIf="itemActive?.tipo_formulario_contacto === 'calcula'"
+        ></app-calculate-form>
+      </div>
     </div>
-    
-</body>
+  </div>
+</div>

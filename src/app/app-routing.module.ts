@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactGuard } from './core/guards/contact.guard';
 import { homeGuard } from './core/guards/home.guard';
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'contactanos',
-    loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
+    loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule),
+    canActivate: [ContactGuard]
   },
   {
     path: 'gracias/:slug',

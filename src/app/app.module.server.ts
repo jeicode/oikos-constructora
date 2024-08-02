@@ -11,7 +11,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     ServerModule,
   ],
   providers: [
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,124 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # First check if domain starts with www. and add it
+  # then if not using SSL force it
+  RewriteCond %{HTTP_HOST} !^$
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteCond %{HTTPS}s ^on(s)|
+  RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=302,L,NE]
+
+  # Redirect only the home page to https://www.grupooikos.com/
+  RewriteCond %{HTTP_HOST} ^(www\.)?oikos\.com\.co$ [NC]
+  RewriteRule ^$ https://www.grupooikos.com/ [R=301,L]
+  
+  # Allow access to the /constructora directory and any other paths
+    #   RewriteCond %{REQUEST_URI} !^/constructora [NC]
+    #   RewriteCond %{REQUEST_URI} !^/ [NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ http://localhost:8082/$1 [P,L]
+    
+</IfModule>
+
+Redirect 301 /noticias-grupo-oikos/balance-grupo-oikos https://www.grupooikos.com/noticias-grupo-oikos/balance-grupo-oikos
+Redirect 301 /noticias-grupo-oikos/constructora-en-sector-educativo https://www.grupooikos.com/noticias-grupo-oikos/constructora-en-sector-educativo
+Redirect 301 /noticias-grupo-oikos/invierta-en-proyectos-de-oikos https://www.grupooikos.com/noticias-grupo-oikos/invierta-en-proyectos-de-oikos
+Redirect 301 /noticias-grupo-oikos/premios-fiabci-colombia-2011 https://www.grupooikos.com/noticias-grupo-oikos/premios-fiabci-colombia-2011
+Redirect 301 /noticias-grupo-oikos/pago-impuesto-predial https://www.grupooikos.com/noticias-grupo-oikos/pago-impuesto-predial
+Redirect 301 /noticias-grupo-oikos/miembro-de-la-cccs https://www.grupooikos.com/noticias-grupo-oikos/miembro-de-la-cccs
+Redirect 301 /noticias-grupo-oikos/gabriel-diaz-presidente-de-asooccidente https://www.grupooikos.com/noticias-grupo-oikos/gabriel-diaz-presidente-de-asooccidente
+Redirect 301 /noticias-grupo-oikos/oikos-lider-en-construccion https://www.grupooikos.com/noticias-grupo-oikos/oikos-lider-en-construccion
+Redirect 301 /noticias-grupo-oikos/certificacion-bereau-veritas-para-grupo-oikos https://www.grupooikos.com/noticias-grupo-oikos/certificacion-bereau-veritas-para-grupo-oikos
+Redirect 301 /noticias-grupo-oikos/fiducia-inmobiliaria https://www.grupooikos.com/noticias-grupo-oikos/fiducia-inmobiliaria
+Redirect 301 /noticias-grupo-oikos/el-grupo-oikos-y-metaza-en-la-creacion-de-metalikos https://www.grupooikos.com/noticias-grupo-oikos/el-grupo-oikos-y-metaza-en-la-creacion-de-metalikos
+Redirect 301 /noticias-grupo-oikos/condecoracion-la-gran-cruz-orden-al-merito-ambiental-baron-alexander-von-humboldt https://www.grupooikos.com/noticias-grupo-oikos/condecoracion-la-gran-cruz-orden-al-merito-ambiental-baron-alexander-von-humboldt
+Redirect 301 /noticias-grupo-oikos/celebracion-de-cierre https://www.grupooikos.com/noticias-grupo-oikos/celebracion-de-cierre
+Redirect 301 /noticias-grupo-oikos/costos-de-vivir-como-independiente https://www.grupooikos.com/noticias-grupo-oikos/costos-de-vivir-como-independiente
+Redirect 301 /noticias-grupo-oikos/educacion-en-la-sabana-de-bogota https://www.grupooikos.com/noticias-grupo-oikos/educacion-en-la-sabana-de-bogota
+Redirect 301 /noticias-grupo-oikos/estilo-de-vida-de-los-bogotanos https://www.grupooikos.com/noticias-grupo-oikos/estilo-de-vida-de-los-bogotanos
+Redirect 301 /noticias-grupo-oikos/buenas-inversiones-para-el-2016 https://www.grupooikos.com/noticias-grupo-oikos/buenas-inversiones-para-el-2016
+Redirect 301 /noticias-grupo-oikos/tendencias-de-los-empresarios-colombianos https://www.grupooikos.com/noticias-grupo-oikos/tendencias-de-los-empresarios-colombianos
+Redirect 301 /noticias-grupo-oikos/asi-se-vive-en-chapinero https://www.grupooikos.com/noticias-grupo-oikos/asi-se-vive-en-chapinero
+Redirect 301 /noticias-grupo-oikos/cesantias-una-forma-de-alcanzar-sus-suenos https://www.grupooikos.com/noticias-grupo-oikos/cesantias-una-forma-de-alcanzar-sus-suenos
+Redirect 301 /noticias-grupo-oikos/el-lugar-favorito-de-los-universitarios https://www.grupooikos.com/noticias-grupo-oikos/el-lugar-favorito-de-los-universitarios
+Redirect 301 /noticias-grupo-oikos/donde-estan-buscando-vivienda-los-bogotanos https://www.grupooikos.com/noticias-grupo-oikos/donde-estan-buscando-vivienda-los-bogotanos
+Redirect 301 /noticias-grupo-oikos/aumente-la-rentabilidad-de-su-patrimonio https://www.grupooikos.com/noticias-grupo-oikos/aumente-la-rentabilidad-de-su-patrimonio
+Redirect 301 /noticias-grupo-oikos/tradicion-y-cultura-cerca-de-bogota https://www.grupooikos.com/noticias-grupo-oikos/tradicion-y-cultura-cerca-de-bogota
+Redirect 301 /noticias-grupo-oikos/beneficios-para-todos-sin-salir-de-casa https://www.grupooikos.com/noticias-grupo-oikos/beneficios-para-todos-sin-salir-de-casa
+Redirect 301 /noticias-grupo-oikos/zipaquira-potencia-en-construccion-para-2016 https://www.grupooikos.com/noticias-grupo-oikos/zipaquira-potencia-en-construccion-para-2016
+Redirect 301 /noticias-grupo-oikos/5-consejos-para-comprar-su-vivienda https://www.grupooikos.com/noticias-grupo-oikos/5-consejos-para-comprar-su-vivienda
+Redirect 301 /noticias-grupo-oikos/aproveche-el-espacio-de-su-apartaestudio https://www.grupooikos.com/noticias-grupo-oikos/aproveche-el-espacio-de-su-apartaestudio
+Redirect 301 /noticias-grupo-oikos/zipaquira-un-municipio-ideal-para-invertir https://www.grupooikos.com/noticias-grupo-oikos/zipaquira-un-municipio-ideal-para-invertir
+Redirect 301 /noticias-grupo-oikos/los-mejores-apartamentos-en-hayuelos https://www.grupooikos.com/noticias-grupo-oikos/los-mejores-apartamentos-en-hayuelos
+Redirect 301 /noticias-grupo-oikos/el-abc-de-los-derechos-fiduciarios https://www.grupooikos.com/noticias-grupo-oikos/el-abc-de-los-derechos-fiduciarios
+Redirect 301 /noticias-grupo-oikos/parques-industriales-y-bodegas-una-buena-inversion https://www.grupooikos.com/noticias-grupo-oikos/parques-industriales-y-bodegas-una-buena-inversion
+Redirect 301 /noticias-grupo-oikos/bogota-un-atractivo-sitio-para-universitarios https://www.grupooikos.com/noticias-grupo-oikos/bogota-un-atractivo-sitio-para-universitarios
+Redirect 301 /noticias-grupo-oikos/3-beneficios-de-vivir-en-casas-campestres https://www.grupooikos.com/noticias-grupo-oikos/3-beneficios-de-vivir-en-casas-campestres
+Redirect 301 /noticias-grupo-oikos/expansion-de-la-sabana-de-la-bogota-en-construccion https://www.grupooikos.com/noticias-grupo-oikos/expansion-de-la-sabana-de-la-bogota-en-construccion
+Redirect 301 /noticias-grupo-oikos/cundinamarca-y-la-costa-en-auge-de-construccion https://www.grupooikos.com/noticias-grupo-oikos/cundinamarca-y-la-costa-en-auge-de-construccion
+Redirect 301 /noticias-grupo-oikos/el-pasado-presente-y-futuro-de-chapinero https://www.grupooikos.com/noticias-grupo-oikos/el-pasado-presente-y-futuro-de-chapinero
+Redirect 301 /noticias-grupo-oikos/proyecto-de-oikos-seleccionado-en-el-orp2016 https://www.grupooikos.com/noticias-grupo-oikos/proyecto-de-oikos-seleccionado-en-el-orp2016
+Redirect 301 /noticias-grupo-oikos/formas-para-vivir-de-vacaciones-todo-el-ano https://www.grupooikos.com/noticias-grupo-oikos/formas-para-vivir-de-vacaciones-todo-el-ano
+Redirect 301 /noticias-grupo-oikos/inversion-hotelera-se-toma-la-sabana-de-bogota https://www.grupooikos.com/noticias-grupo-oikos/inversion-hotelera-se-toma-la-sabana-de-bogota
+Redirect 301 /noticias-grupo-oikos/consejos-para-decorar-una-casa-campestre https://www.grupooikos.com/noticias-grupo-oikos/consejos-para-decorar-una-casa-campestre
+Redirect 301 /noticias-grupo-oikos/zipaquira-un-paraiso-cerca-de-la-capital https://www.grupooikos.com/noticias-grupo-oikos/zipaquira-un-paraiso-cerca-de-la-capital
+Redirect 301 /noticias-grupo-oikos/como-se-construye-un-edificio-como-infinitum https://www.grupooikos.com/noticias-grupo-oikos/como-se-construye-un-edificio-como-infinitum
+Redirect 301 /noticias-grupo-oikos/arrendar-o-comprar-cual-es-la-mejor-opcion-para-su-empresa https://www.grupooikos.com/noticias-grupo-oikos/arrendar-o-comprar-cual-es-la-mejor-opcion-para-su-empresa
+Redirect 301 /noticias-grupo-oikos/las-microciudades-se-toman-la-sabana-de-bogota https://www.grupooikos.com/noticias-grupo-oikos/las-microciudades-se-toman-la-sabana-de-bogota
+Redirect 301 /noticias-grupo-oikos/por-que-invertir-en-derechos-fiduciarios-es-una-buena-opcion https://www.grupooikos.com/noticias-grupo-oikos/por-que-invertir-en-derechos-fiduciarios-es-una-buena-opcion
+Redirect 301 /noticias-grupo-oikos/la-tendencia-de-los-grandes-empresarios https://www.grupooikos.com/noticias-grupo-oikos/la-tendencia-de-los-grandes-empresarios
+Redirect 301 /noticias-grupo-oikos/invertir-en-bodegas-es-un-buen-negocio https://www.grupooikos.com/noticias-grupo-oikos/invertir-en-bodegas-es-un-buen-negocio
+Redirect 301 /noticias-grupo-oikos/la-sabana-el-mejor-lugar-para-sus-hijos https://www.grupooikos.com/noticias-grupo-oikos/la-sabana-el-mejor-lugar-para-sus-hijos
+Redirect 301 /noticias-grupo-oikos/chapinero-lugar-ideal-para-universitarios https://www.grupooikos.com/noticias-grupo-oikos/chapinero-lugar-ideal-para-universitarios
+Redirect 301 /noticias-grupo-oikos/la-sabana-de-bogota-cuna-de-las-microciudades https://www.grupooikos.com/noticias-grupo-oikos/la-sabana-de-bogota-cuna-de-las-microciudades
+Redirect 301 /noticias-grupo-oikos/las-obras-que-transformaran-a-chapinero-en-los-proximos-anos https://www.grupooikos.com/noticias-grupo-oikos/las-obras-que-transformaran-a-chapinero-en-los-proximos-anos
+Redirect 301 /noticias-grupo-oikos/invierta-su-dinero-de-manera-inteligente-para-el-2017 https://www.grupooikos.com/noticias-grupo-oikos/invierta-su-dinero-de-manera-inteligente-para-el-2017
+Redirect 301 /noticias-grupo-oikos/grupo-oikos-la-experiencia-y-calidad-no-se-improvisan-se-premian https://www.grupooikos.com/noticias-grupo-oikos/grupo-oikos-la-experiencia-y-calidad-no-se-improvisan-se-premian
+Redirect 301 /noticias-grupo-oikos/la-industria-en-colombia-esta-en-crecimiento https://www.grupooikos.com/noticias-grupo-oikos/la-industria-en-colombia-esta-en-crecimiento
+Redirect 301 /noticias-grupo-oikos/el-sector-industrial-en-la-sabana-de-bogota-proyecta-un-buen-2017 https://www.grupooikos.com/noticias-grupo-oikos/el-sector-industrial-en-la-sabana-de-bogota-proyecta-un-buen-2017
+Redirect 301 /noticias-grupo-oikos/una-constructora-que-acompana-sus-suenos https://www.grupooikos.com/noticias-grupo-oikos/una-constructora-que-acompana-sus-suenos
+Redirect 301 /noticias-grupo-oikos/oikos-a-su-alcance-con-la-nueva-app https://www.grupooikos.com/noticias-grupo-oikos/oikos-a-su-alcance-con-la-nueva-app
+Redirect 301 /noticias-grupo-oikos/celebra-40-anos-construyendo-futuro-con-oikos https://www.grupooikos.com/noticias-grupo-oikos/celebra-40-anos-construyendo-futuro-con-oikos
+Redirect 301 /noticias-grupo-oikos/proyectos-mixtos-para-el-gusto-de-todos https://www.grupooikos.com/noticias-grupo-oikos/proyectos-mixtos-para-el-gusto-de-todos
+Redirect 301 /noticias-grupo-oikos/40-anos-del-grupo-oikos https://www.grupooikos.com/noticias-grupo-oikos/40-anos-del-grupo-oikos
+Redirect 301 /noticias-grupo-oikos/nominacion-a-mejor-lider-empresarial-en-premios-portafolio-2019 https://www.grupooikos.com/noticias-grupo-oikos/nominacion-a-mejor-lider-empresarial-en-premios-portafolio-2019
+Redirect 301 /noticias-grupo-oikos/reconocimiento-fiabci-a-la-trayectoria https://www.grupooikos.com/noticias-grupo-oikos/reconocimiento-fiabci-a-la-trayectoria
+Redirect 301 /noticias-grupo-oikos/informe-fraude-grupo-empresarial-oikos-sas https://www.grupooikos.com/noticias-grupo-oikos/informe-fraude-grupo-empresarial-oikos-sas
+Redirect 301 /noticias-grupo-oikos/informe-sostenibilidad-grupo-oikos https://www.grupooikos.com/noticias-grupo-oikos/informe-sostenibilidad-grupo-oikos
+Redirect 301 /noticias-grupo-oikos/grupo-oikos-contemplado-para-certificado-edge https://www.grupooikos.com/noticias-grupo-oikos/grupo-oikos-contemplado-para-certificado-edge
+Redirect 301 /noticias-grupo-oikos/noticia-prueba https://www.grupooikos.com/noticias-grupo-oikos/noticia-prueba
+Redirect 301 /noticias-grupo-oikos/noticia-prueba-2 https://www.grupooikos.com/noticias-grupo-oikos/noticia-prueba-2
+Redirect 301 /noticias-grupo-oikos/crecimiento-grupo-empresarial https://www.grupooikos.com/noticias-grupo-oikos/crecimiento-grupo-empresarial
+Redirect 301 /noticias-grupo-oikos/prueba-1 https://www.grupooikos.com/noticias-grupo-oikos/prueba-1
+Redirect 301 /noticias-grupo-oikos/prueba https://www.grupooikos.com/noticias-grupo-oikos/prueba
+Redirect 301 /noticias-grupo-oikos/asdasd https://www.grupooikos.com/noticias-grupo-oikos/asdasd
+Redirect 301 /noticias-grupo-oikos/premio-fiabci-constructora https://www.grupooikos.com/noticias-grupo-oikos/premio-fiabci-constructora
+Redirect 301 /noticias-grupo-oikos/construyendo-memorias-oikos https://www.grupooikos.com/noticias-grupo-oikos/construyendo-memorias-oikos
+Redirect 301 /noticias-grupo-oikos/invertir-en-novedades-urbanisticas-en-bogota https://www.grupooikos.com/noticias-grupo-oikos/invertir-en-novedades-urbanisticas-en-bogota
+Redirect 301 /noticias-grupo-oikos/compromiso-social-del-grupo-oikos https://www.grupooikos.com/noticias-grupo-oikos/compromiso-social-del-grupo-oikos
+Redirect 301 /noticias-grupo-oikos/garantizar-un-flujo-de-ingresos-con-valorizacion-de-propiedades https://www.grupooikos.com/noticias-grupo-oikos/garantizar-un-flujo-de-ingresos-con-valorizacion-de-propiedades
+Redirect 301 /noticias-grupo-oikos/oikos-constructora-innovaciones-en-tecnologia https://www.grupooikos.com/noticias-grupo-oikos/oikos-constructora-innovaciones-en-tecnologia
+Redirect 301 /noticias-grupo-oikos/retos-del-2023-y-panorama-en-el-2024-del-sector-finca-raiz https://www.grupooikos.com/noticias-grupo-oikos/retos-del-2023-y-panorama-en-el-2024-del-sector-finca-raiz
+Redirect 301 /noticias-grupo-oikos/informe-de-gestion-y-sostenibilidad-oikos https://www.grupooikos.com/noticias-grupo-oikos/informe-de-gestion-y-sostenibilidad-oikos
+Redirect 301 /noticias-grupo-oikos/nuevas-tecnologias-que-transforman-el-sector-inmobiliario-colombiano https://www.grupooikos.com/noticias-grupo-oikos/nuevas-tecnologias-que-transforman-el-sector-inmobiliario-colombiano
+Redirect 301 /noticias-grupo-oikos/invertir-en-construccion-sostenible-en-colombia https://www.grupooikos.com/noticias-grupo-oikos/invertir-en-construccion-sostenible-en-colombia
+
+
+Redirect 301 /contactenos https://www.grupooikos.com/contactenos
+Redirect 301 /trabaje-con-nosotros https://www.grupooikos.com/trabaje-con-nosotros
+Redirect 301 /gracias/general https://www.grupooikos.com/gracias/general
+Redirect 301 /gracias/trabaje https://www.grupooikos.com/gracias/trabaje
+Redirect 301 /legales/politicas-de-privacidad https://www.grupooikos.com/legales/politicas-de-privacidad
+Redirect 301 /legales/politica-de-impuestos https://www.grupooikos.com/legales/politica-de-impuestos
+Redirect 301 /legales/politica-general-seguridad https://www.grupooikos.com/legales/politica-general-seguridad
+Redirect 301 /legales/clausulas-estandares-contratos https://www.grupooikos.com/legales/clausulas-estandares-contratos
+Redirect 301 /legales/datos-sociedad https://www.grupooikos.com/legales/datos-sociedad
+Redirect 301 /legales/solicitud-reversion-pago https://www.grupooikos.com/legales/solicitud-reversion-pago
+Redirect 301 /oikos-en-los-medios https://www.grupooikos.com/oikos-en-los-medios
+Redirect 301 /noticias-grupo-oikos https://www.grupooikos.com/noticias-grupo-oikos
+Redirect 301 /intranet-grupo-oikos https://www.grupooikos.com/intranet-grupo-oikos
+Redirect 301 /proveedores-grupo-oikos https://www.grupooikos.com/proveedores-grupo-oikos
+Redirect 301 /quienes-somos https://www.grupooikos.com/quienes-somos
