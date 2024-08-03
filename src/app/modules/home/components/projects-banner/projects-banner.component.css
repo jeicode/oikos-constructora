@@ -133,7 +133,7 @@
     grid-template-columns: 1.5fr 1fr;
     position: relative;
     z-index: 2;
-    gap: 40px;
+    gap: 90px;
 }
 
 .desc_txt_hero {
@@ -351,6 +351,7 @@
 @media screen and (max-width: 1050px) {
     .cnt_h_hero {
         grid-template-columns: 1fr;
+        gap: 40px;
     }
 
     .desc_txt_hero {
