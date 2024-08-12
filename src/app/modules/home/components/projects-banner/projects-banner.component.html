@@ -44,14 +44,23 @@
         <div class="row_price_banner">
           <div class="col_price">
             @if (i.valor_proyecto_formato) {
-            <h2>
+            <h2 class="cnt_prec_peso">
               <span> Desde</span>
-              <br />
-              {{ i?.valor_proyecto_formato }}
+              <div class="row_precio_peso">
+                <span class="ic_bandera_precio">
+                  <img src="assets/images/diseno/ic_prec_peso.png" alt="">
+                </span>
+                <div class="precio_col_peso">
+                  {{ i?.valor_proyecto_formato }}
+                </div>
+              </div>
             </h2>
             <div class="precio_usd">
-              Precio de referencia
+              <span class="ic_bandera_precio">
+                <img src="assets/images/diseno/ic_prec_dolar.png" alt="">
+              </span>
               <b>USD {{i?.dollar_value | thousandNumber:'es'}}</b>
+              <span class="etq_prec_ref">Precio de referencia</span>
             </div>
             }
           </div>

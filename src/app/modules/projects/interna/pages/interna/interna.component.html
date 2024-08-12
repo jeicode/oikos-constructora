@@ -75,13 +75,27 @@
         @if (data?.tipo_proyecto && data?.valor_proyecto_formato) {
         <h4>{{ data?.tipo_proyecto }} DESDE</h4>
         }
-        @if(data?.valor_proyecto_formato){
-        <div class="cont_price">$ {{ data?.valor_proyecto_formato }}</div>
-        @if(data?.dollar_value){
-        <b>USD {{data?.dollar_value | thousandNumber:'es'}}</b>
-        }
-        <span>{{ data?.descripcion_precio }}</span>
-        }
+        <div class="row_precios_divisas">
+          @if(data?.valor_proyecto_formato){
+            <div class="row_precio_peso">
+              <span class="ic_bandera_precio">
+                <img src="assets/images/diseno/ic_prec_peso.png" alt="">
+              </span>
+              <div class="precio_col_peso">$ {{ data?.valor_proyecto_formato }}</div>
+            </div>
+          @if(data?.dollar_value){
+            <div class="precio_usd">
+              <span class="ic_bandera_precio">
+                <img src="assets/images/diseno/ic_prec_dolar.png" alt="">
+              </span>
+              <b>USD {{data?.dollar_value | thousandNumber:'es'}}</b>
+              <span class="etq_prec_ref">Precio de referencia</span>
+            </div>
+          }
+          <span>{{ data?.descripcion_precio }}</span>
+          }
+        </div>
+            
       </div>
       <div class="col_slide_p">
         <div style="
@@ -129,7 +143,7 @@
   <div class="sec_float_calculate">
     <div class="float_calculate" (click)="modalIsOpen = true">
       <i class="fal fa-calculator-alt"></i>
-      Calcular
+      Calcular cuota
     </div>
   </div>
   <div class="cnt_central">

@@ -142,6 +142,8 @@
     gap: 30px;
     position: relative;
     z-index: 2;
+    flex-grow: 1;
+    padding-right: 40px;
 }
 
 .aside_prjct {
@@ -194,7 +196,6 @@
 
 
 .datos_info_prjct {
-    max-width: 680px;
     position: relative;
     z-index: 1;
 }
@@ -302,16 +303,58 @@
 .row_price_banner {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 30px;
-    padding-right: 20px;
 }
 
+.cnt_prec_peso{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding-top: 24px;
+}
 .row_price_banner .btn {
     font-size: 22px;
-    padding: 8px 24px;
+    padding: 8px 20px;
+    height: 40px;
+    margin-top: 16px;
+}
+.row_precio_peso{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.ic_bandera_precio{
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+.ic_bandera_precio img{
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: contain;
+}
+.precio_col_peso{
+    font-size: 34px;
+}
+.precio_usd {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: #436AC9;
+}
+
+.precio_usd b {
+    font-size: 24px;
+    font-weight: 900;
+}
+.etq_prec_ref{
+    width: 59px;
+    font-size: 13px;
+    line-height: 12px;
 }
 
 @media screen and (min-width: 2540px) {
@@ -484,4 +527,5 @@
         max-height: 90px;
         min-height: initial;
     }
+
 }

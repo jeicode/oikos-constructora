@@ -204,8 +204,11 @@ input {
 }
 
 .s_modal_calculadora .cont_submit .btn {
-  font-size: 20px;
-  height: 39px;
+  font-size: 24px;
+  height: 50px;
+  padding: 8px 32px;
+  width: 160px;
+  margin-top: 24px;
 }
 
 .cont_submit .btn {
@@ -259,8 +262,8 @@ input {
 
 .price_project {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
-  align-items: center;
   padding-bottom: 20px;
   gap: 6px;
 }
@@ -353,7 +356,7 @@ input {
 }
 
 .h_interna_proy {
-  font-size: 14px;
+  font-size: 20px;
   color: #2A3C7F;
   padding-bottom: 8px;
   text-transform: uppercase;
@@ -483,12 +486,20 @@ input {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  width: 75px;
-  height: 75px;
+  width: 85px;
+  height: 90px;
   border-radius: 15px 0 0 15px;
-  background: var(--color-c2);
-  color: #fff;
+  background: #FDB718;
+  color: var(--color-c2);
   cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 12px 12px #fdb81876;
+  text-align: center;
+  font-size: 18px;
+  line-height: 18px;
+}
+.float_calculate i{
+  font-size: 24px;
 }
 
 .c_desc_proyecto {
@@ -1216,6 +1227,49 @@ input {
   width: 100%;
   border-top: 1px solid #fff;
 }
+/******/
+.row_precios_divisas{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.row_precio_peso{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ic_bandera_precio{
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+.ic_bandera_precio img{
+  width: 100%;
+  display: block;
+  height: 100%;
+  object-fit: contain;
+}
+.precio_col_peso{
+  font-size: 30px;
+  color: var(--color-c2);
+  font-weight: 900;
+}
+.precio_usd {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #436AC9;
+}
+
+.precio_usd b {
+  font-size: 24px;
+  font-weight: 900;
+}
+.etq_prec_ref{
+  width: 59px;
+  font-size: 13px;
+  line-height: 12px;
+}
 
 @media screen and (max-width: 1200px) {
   .grand_cont_ctas .btn {
@@ -1322,16 +1376,18 @@ input {
     text-align: center;
   }
 
+  /*****/
+  .row_precios_divisas{
+    flex-direction: column;
+    gap: 8px;
+  }
+
 }
 
 @media screen and (max-width: 480px) {
 
   .row_form_calculate_three .info {
     flex-basis: calc(51% - 10px) !important;
-  }
-
-  .info_h_proyecto {
-    min-height: 627px;
   }
 
   .col_slide_p {
