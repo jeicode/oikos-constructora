@@ -1,117 +1,144 @@
 <footer class="footer">
-    <div class="cnt_lat_pie">
-        <div class="cnt_gen_inf_lat_pie">
-            @if (companies().length>0) {
-                <div class="cnt_logos_pie">
-                    @for (i of companies(); track $index) {
-                        <a [href]="i?.enlace" target="_blank" rel="noopener" class="logo_pie">
-                            <img [ngSrc]="IMG_URL()+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]"
-                                width="80" height="60">
-                        </a>
-
-                    }
-                </div>
-            }
-            @if (configFooter()) {
-                <div>
-                    <div class="txt_pie">
-                        {{ configFooter()?.texto_footer }}
-                    </div>
-                    <div class="cnt_dir_pie">
-                        <div class="direccion_pie">
-                            <span class="material-icons">place</span>
-                            {{ configFooter()?.address }}
-                        </div>
-                        <div class="direccion_pie">
-                            <span class="material-icons">mail</span>
-                            {{configFooter()?.contactemails }}
-                        </div>
-                    </div>
-                </div>
-            }
-
-            @if (logos.length > 0) {
-                <div class="cnt_gen_cert_pie">
-
-                    @for (i of logos(); track $index) {
-                        <div class="logo_cert_pie">
-                            <img [ngSrc]="IMG_URL()+i?.imagen[0]" [alt]="i?.imagen_alt[0]" [title]="i?.imagen_title[0]"
-                                height="143" width="140">
-                        </div>
-                    }
-                </div>
-            }
+  <div class="cnt_lat_pie">
+    <div class="cnt_gen_inf_lat_pie">
+      @if (companies().length > 0) {
+        <div class="cnt_logos_pie">
+          @for (i of companies(); track $index) {
+            <a
+              [href]="i?.enlace"
+              target="_blank"
+              rel="noopener"
+              class="logo_pie"
+            >
+              <img
+                [ngSrc]="IMG_URL() + i?.imagen[0]"
+                [alt]="i?.imagen_alt[0]"
+                [title]="i?.imagen_title[0]"
+                width="80"
+                height="60"
+              />
+            </a>
+          }
         </div>
+      }
+      @if (configFooter()) {
+        <div>
+          <div class="txt_pie">
+            {{ configFooter()?.texto_footer }}
+          </div>
+          <div class="cnt_dir_pie">
+            <div class="direccion_pie">
+              <span class="material-icons">place</span>
+              {{ configFooter()?.address }}
+            </div>
+            <div class="direccion_pie">
+              <span class="material-icons">mail</span>
+              {{ configFooter()?.contactemails }}
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (logos.length > 0) {
+        <div class="cnt_gen_cert_pie">
+          @for (i of logos(); track $index) {
+            <div class="logo_cert_pie">
+              <img
+                [ngSrc]="IMG_URL() + i?.imagen[0]"
+                [alt]="i?.imagen_alt[0]"
+                [title]="i?.imagen_title[0]"
+                height="143"
+                width="140"
+              />
+            </div>
+          }
+        </div>
+      }
     </div>
+  </div>
 
-    @if (menuFooter().length > 0) {
-        <div class="cnt_mid_pie">
+  @if (menuFooter().length > 0) {
+    <div class="cnt_mid_pie">
+      @for (i of menuFooter(); track $index) {
+        <div
+          class="col_mid_men_pie"
+          #menuEle
+          (click)="dropdownToogleMenu(menuEle)"
+        >
+          <div class="h_cl_pie">
+            {{ i?.field_content }}
+          </div>
+          <ul class="menu_pie">
+            @for (j of i?.hijos; track $index) {
+              <li>
+                @if (
+                  j?.url_enlace_footer?.includes("https://") ||
+                  j?.url_enlace_footer?.includes("http://")
+                ) {
+                  <a
+                    [href]="j?.url_enlace_footer"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {{ j?.field_content }}
+                  </a>
 
-            @for (i of menuFooter(); track $index) {
-                <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)">
-                    <div class="h_cl_pie">
-                        {{i?.field_content}}
-                    </div>
-                    <ul class="menu_pie">
-                        @for (j of i.hijos; track $index) {
-                            <li>
-                                @if (j?.url_enlace_footer?.includes('https://') || j?.url_enlace_footer?.includes('http://')) {
-                                    <a [href]="j?.url_enlace_footer" target="_blank" rel="noopener">
-                                        {{ j?.field_content }}
-                                    </a>
-                                }
-        
-                                @else {
-                                    <a routerLink="{{j?.url_enlace_footer}}">
-                                        {{ j?.field_content }}
-                                    </a>
-                                }
-                            </li>
-                        }
-                    </ul>
-                </div>
-            }
-
-            @for (i of menuFooterProyectos(); track $index) {
-                <div class="col_mid_men_pie" #menuEle (click)="dropdownToogleMenu(menuEle)">
-                    <div class="h_cl_pie proy_footer">
-                        {{i.field_content}}
-                    </div>
-                    <ul class="menu_pie">
-                        @for (j of i.hijos; track $index) {
-                            <li>
-                                @if (j?.url_enlace_footer?.includes('https://')) {
-                                    <a [href]="j?.url_enlace_footer" target="_blank" rel="noopener">
-                                        {{ j?.field_content }}
-                                    </a>
-
-                                }
-                                @else {
-                                    <a routerLink="{{j?.url_enlace_footer}}">
-                                        {{ j?.field_content }}
-                                    </a>
-                                }
-                            </li>
-                        }
-                    </ul>
-                </div>
-            }
-        </div>
-    }
-    @if (socialNetwork().length > 0) {
-        <div class="cnt_bot_pie">
-            <div class="cnt_redes_pie">
-                @for (i of socialNetwork(); track $index) {
-                    <a [href]="i?.url" target="_blank" rel="nofollow">
-                        <i [class]="i?.class_footer"></i>
-                    </a>
+                } @else {
+                  <a routerLink="{{ j?.url_enlace_footer }}">
+                    {{ j?.field_content }}
+                  </a>
                 }
-            </div>
-            <div class="copyr_pie">
-                ©OIKOS CONSTRUCTORA 2022. Todos los derechos reservados.
-            </div>
+              </li>
+            }
+          </ul>
         </div>
+      }
 
-    }
+      @for (i of menuFooterProyectos(); track $index) {
+        <div
+          class="col_mid_men_pie"
+          #menuEle
+          (click)="dropdownToogleMenu(menuEle)"
+        >
+          <div class="h_cl_pie proy_footer">
+            {{ i.field_content }}
+          </div>
+          <ul class="menu_pie">
+            @for (j of i?.hijos; track $index) {
+              <li>
+                @if (j?.url_enlace_footer?.includes("https://")) {
+                  <a
+                    [href]="j?.url_enlace_footer"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {{ j?.field_content }}
+                  </a>
+                } @else {
+                  <a routerLink="{{ j?.url_enlace_footer }}">
+                    {{ j?.field_content }}
+                  </a>
+                }
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  }
+  @if (socialNetwork().length > 0) {
+    <div class="cnt_bot_pie">
+      <div class="cnt_redes_pie">
+        @for (i of socialNetwork(); track $index) {
+          <a [href]="i?.url" target="_blank" rel="nofollow">
+            <i [class]="i?.class_footer"></i>
+          </a>
+        }
+      </div>
+      <div class="copyr_pie">
+        ©OIKOS CONSTRUCTORA 2022. Todos los derechos reservados.
+      </div>
+    </div>
+  }
 </footer>
 <survey-modal></survey-modal>
