@@ -971,7 +971,7 @@ h1 {
 
 .btn_contacto_header {
     font-size: 18px;
-    animation: bounce 2.2s ease infinite;
+    /* animation: bounce 2.2s ease infinite; */
     background:#007aff !important;
     color: #fff !important;
 }
