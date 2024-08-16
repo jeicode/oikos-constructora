@@ -1230,7 +1230,9 @@ input {
 /******/
 .row_precios_divisas{
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 8px;
   align-items: center;
 }
 .row_precio_peso{
@@ -1269,6 +1271,9 @@ input {
   width: 59px;
   font-size: 13px;
   line-height: 12px;
+}
+.etq_mas_desc{
+  color: var(--color-c2);
 }
 
 @media screen and (max-width: 1200px) {
