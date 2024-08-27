@@ -1,0 +1,151 @@
+<section class="s_proyecto_vivienda">
+    <div class="cnt_central">
+
+        <div class="cnt_central">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+        
+        <!-- buscador -->
+        <div class="c_proyecto_vivienda">
+            <h1 class="title_section al_center" [innerHTML]="data.titulo_proyecto_vivienda"></h1>
+            <div class="container_filtro">
+                <div class="act_filtro_mobile" (click)="toogleContainerSearch()">
+                    <h3>
+                        {{data.titulo_busqueda}}
+                    </h3>
+                    <a class="btn_icon_search">
+                        <span class="fas fa-search"></span>
+                    </a>
+                </div>
+                <form class="filtro_proyectos">
+                    <select #nomCiudad (change)="getCiudad(nomCiudad.value)" class="filtroCiudad">
+                        <option value="NA" selected>Ciudad</option>
+                        <option value="{{i?.id}}" *ngFor="let i of ciudades">{{i?.field_content}}</option>
+                    </select>
+                    <select #nomTipo (change)="getTipo(nomTipo.value)" class="filtroTipo">
+                        <option value="NA" selected>Tipo de vivienda</option>
+                        <option value="{{i?.id}}" *ngFor="let i of typesProject">{{i?.field_content}}</option>
+                    </select>
+                    <select #nomPrecio class="precio filtroPrecio" (change)="getPrecio(nomPrecio.value)">
+                        <option value="NA" selected>Precio</option>
+                        <option value="{{i?.rango}}" *ngFor="let i of precios">{{i?.mostrar}}</option>
+                    </select>
+                    <div class="cont_filtr_btns">
+                        <button type="button" class="btn_link_reset" (click)="limpiarFiltros()">Limpiar <span class="fas fa-times"></span> </button>
+                        <button type="button" class="btn" (click)="buscarProyectos()">Buscar <span class="fas fa-search"></span> </button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+</section>
+
+<section class="s_cards_proyectos">
+    <div class="cnt_central">
+        <div class="c_cards_proyectos">
+            <div class="card_p" *ngFor="let i of proyectos">
+                <picture>
+                    <span class="tag_state" [ngStyle]="{'background-color': i?.color_secundario}">{{i?.estado_proyecto}}</span>
+                    <div class="btns_icons" *ngIf="i?.vista360 || i?.url_waze">
+                        <a href="{{i?.vista360}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.vista360!='' && i?.vista360!=null">
+                            <img src="assets/images/diseno/proyectos_vivienda/icon_360.svg" width="20" height="20"  alt="">
+                        </a>
+                        <a href="{{i?.url_waze}}" target="_blank" rel="nofollow,noopener" class="btn_icon" *ngIf="i?.url_waze!='' && i?.url_waze!=null">
+                            <span class="fas fa-map-marker-alt"></span>
+                        </a>
+                    </div>
+                    <a *ngIf="i?.interna === 'si'; else notRedirect" 
+                        routerLink="/proyecto/{{i?.url_amigable}}">
+                        <img width="350" height="219" 
+                        defaultImg [src]="imagenes_url+i?.imagen_principal_proyecto" 
+                        [alt]="i?.alt_principal" 
+                        [title]="i?.title_principal">
+                    </a>
+                    <ng-template #notRedirect>
+                        <img width="350" height="219" 
+                        defaultImg
+                        [src]="imagenes_url+i?.imagen_principal_proyecto" 
+                        [alt]="i?.alt_principal" 
+                        [title]="i?.title_principal">
+                    </ng-template>
+                </picture>
+                <h2 class="name_proyecto" [ngStyle]="{'background-color': i?.color_primario}">
+                    <picture>
+                        <img width="87" height="87" src="{{imagenes_url+i?.logo_proyecto}}" alt="{{i?.alt_logo}}" title="{{i?.title_logo}}">
+                    </picture>
+                    <div>{{i?.titulo_proyecto}}</div>
+                </h2>
+                <div class="datos_proyecto">
+                    <h3>{{i?.zona_proyecto}} / {{i?.ubicacion_proyecto}}</h3>
+                    <h4 *ngIf="i?.valor_proyecto_formato"><span>
+                        Desde</span> ${{i?.valor_proyecto_formato}} 
+                    </h4>
+                    <div class="precio_usd" *ngIf="i?.dollar_value">
+                        Precio de referencia 
+                        <b>USD {{i?.dollar_value | thousandNumber:'es'}}</b>
+                    </div>
+                </div>
+                <div class="franja_p">
+                    <span> {{i?.texto_adicional}} </span>
+                </div>
+                <div class="ctas_proyectos" 
+                    *ngIf="i?.interna === 'si'; else redirect">
+                    <a class="btn_whatsapp c-pointer" (click)="selectProjectToModal(i)">
+                        <span class="fab fa-whatsapp"></span> 
+                        Contactar
+                    </a>
+
+                    <a routerLink="/proyecto/{{i?.url_amigable}}" 
+                        class="btn">
+                        Ver proyecto
+                    </a>
+
+                </div>
+
+                <ng-template #redirect>
+                    <div class="ctas_proyectos" [ngStyle]="{'grid-template-columns': '2fr 1fr'}">
+                        <a  class="btn" (click)="selectProjectToPreLaunch(i)">
+                            Inscribirse
+                        </a>
+                    </div>
+                    
+                </ng-template>
+                    
+            </div>
+            <p *ngIf="!proyectos_ver" style="text-align:center;">No existe información relacionado con el filtro utilizado</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="s_futuros_proyectos" *ngIf="banners.length>0">    
+    <!-- Swiper -->
+    <div class="swiper swiperFuturos">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let i of banners">
+                <div class="c_futuros_proyectos">
+                    <div class="info_fp">
+                        <h5>{{i?.field_content}}</h5>
+                        <h2 [innerHTML]="i?.subtitulo_banner_vivienda"></h2>
+                        <a href="{{i?.enlace_cta_banner_vivienda}}" class="btn contacto_h">{{i?.texto_cta_banner_vivienda}}</a>
+                    </div>
+                    <div class="img_fp">
+                        <img width="1280" height="720" src="{{imagenes_url+i?.imagen}}" alt="{{i?.imagen_alt}}" title="{{i?.imagen_title}}">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+    
+<app-modal-pre-launch-project   [modalEvent]="notifyChangesPreLaunchProject.asObservable()" 
+                                [project]="projectSelectedToModal">
+</app-modal-pre-launch-project>
+<app-wpp-modal-project [modalEvent]="notifyChanges.asObservable()" 
+                        [project]="projectSelectedToModal">
+</app-wpp-modal-project>
+

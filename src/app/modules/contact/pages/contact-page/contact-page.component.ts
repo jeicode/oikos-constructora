@@ -49,7 +49,7 @@ export class ContactPageComponent implements OnInit {
     this.indexItemActive = index;
 
     if (index == 1) {
-      window.open("https://clientes.oikos.com.co/solicitudoikos/", "_blank");
+      window.open("https://zonadeclientes.oikos.com.co/solicitudoikos/", "_blank");
     } else {
       this.showForm()
     }

@@ -27,6 +27,14 @@ const routes: Routes = [
     loadChildren: () => import('./modules/projects/vivienda/vivienda.module').then(m => m.ViviendaModule)
   },
   {
+    path: 'proyectos-construccion-vivienda-vis',
+    loadChildren: () => import('./modules/projects/vivienda-vis/vivienda-vis.module').then(m => m.ViviendaVisModule)
+  },
+  {
+    path: 'proyectos-construccion-vivienda-no-vis',
+    loadChildren: () => import('./modules/projects/vivienda-no-vis/vivienda-no-vis.module').then(m => m.ViviendaNoVisModule)
+  },
+  {
     path: 'proyectos-construccion-comerciales-industriales',
     loadChildren: () => import('./modules/projects/comerciales/comerciales.module').then(m => m.ComercialesModule)
   },

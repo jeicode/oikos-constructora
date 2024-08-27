@@ -97,7 +97,8 @@ export class Project {
         public numero_cuotas: any[] = [],
         public financiar: string = "",
         public dollar_value:number = 0,
-        public origin: string = ""
+        public origin: string = "",
+        public vis: string = ""
         ){}
 
     }
