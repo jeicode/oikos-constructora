@@ -2,29 +2,50 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/shared/services/functions/config.service';
 import { ProjectService } from 'src/app/shared/services/api/project.service';
 import { Subject, Subscription } from 'rxjs';
-import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/functions/form.service';
 
 import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
-import { Breadcrumb } from 'src/app/core/models/breadcrumb.model';
 import { GlobalService } from 'src/app/shared/services/api/global.service';
 import { ResponsiveService } from 'src/app/shared/services/functions/responsive.service';
 import { CurrencyConverterService } from 'src/app/shared/services/api/currency-converter.service';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { SafePipe } from 'src/app/shared/pipes/safe-resource-url.pipe';
+import { HTMLPipe } from 'src/app/shared/pipes/html-data.pipe';
+import { SlideProjectsComponent } from 'src/app/shared/components/slide-projects/slide-projects.component';
+import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
+import { SwiperModule } from 'swiper/angular';
+import { WppModalProjectComponent } from 'src/app/shared/components/wpp-modal-project/wpp-modal-project.component';
+import { ThousandNumber } from 'src/app/shared/pipes/thousand-number.pipe';
 
 SwiperCore.use([Navigation, Pagination]);
 
 declare var $: any;
 @Component({
+  standalone: true,
   selector: 'app-interna',
+  imports:[
+    CommonModule,
+    RouterLink,
+    ReactiveFormsModule,
+    RecaptchaModule,
+    SafePipe,
+    HTMLPipe,
+    NgOptimizedImage,
+    //standalones
+    SlideProjectsComponent,
+    BreadcrumbComponent,
+    SwiperModule,
+    WppModalProjectComponent,
+    ThousandNumber
+  ],
   templateUrl: './interna.component.html',
   styleUrls: ['./interna.component.css']
 })
 export class InternaComponent implements OnInit, OnDestroy {
-
-
-  breadcrumbs: Breadcrumb[] = [];
 
   // swiper
   config: SwiperOptions = {
@@ -106,7 +127,6 @@ export class InternaComponent implements OnInit, OnDestroy {
           this.diferenciadordecuotasmensuales();
           this.calculoPorcentaje();
         }, 3000)
-
       }
     });
   }
@@ -140,13 +160,10 @@ export class InternaComponent implements OnInit, OnDestroy {
 
   async getData() {
     let data = await this.projService.getProyectoByUrl(this.slug);
-    await this.currencyConverter.convertCopToUsd(data);
-    if (data) {
+    if (data?.[0]) {
       this.data = data[0];
-      const { seccion } = this.data
-      this.breadcrumbs = this.getBreadcrumbList(seccion);
+      await this.currencyConverter.convertCopToUsd(data);
       this.porcFinanciar = (100 - this.data?.porcentaje_minimo);
-
       this.zonas = this.data?.zonas;
       this.galeria = this.data?.galeria;
       this.planos = this.data?.planos;
@@ -162,39 +179,9 @@ export class InternaComponent implements OnInit, OnDestroy {
       await this.calculoPorcentaje();
       await this.diferenciadordecuotasmensuales();
       this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
-
       this.cargarSitios(this.sitiosInteres?.[0]?.id);
 
     }
-  }
-
-  getBreadcrumbList(seccion: string): any[] {
-    let breads = [new Breadcrumb('Oikos Constructora', '/'),]
-
-    switch (seccion) {
-      case '1':
-        breads.push(
-          new Breadcrumb('Proyectos contrucción vivienda', '/proyectos-construccion-vivienda'),
-          new Breadcrumb(this.data?.titulo_proyecto),
-        )
-        break;
-
-      case '2':
-        breads.push(
-          new Breadcrumb('Proyectos contrucción comerciales', '/proyectos-construccion-comerciales-industriales'),
-          new Breadcrumb(this.data?.titulo_proyecto),
-        )
-        break;
-
-      case '4':
-        breads.push(
-          new Breadcrumb('Proyectos ejecutados', '/proyectos-ejecutados'),
-          new Breadcrumb(this.data?.titulo_proyecto),
-        )
-        break;
-    }
-    return breads;
-
   }
 
   /**

@@ -238,7 +238,7 @@ input {
 .s_proyecto_h:before {
   content: "";
   position: absolute;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/curva_inf.svg") no-repeat center;
+  background: url("/assets/images/diseno/proyectos_vivienda/curva_inf.svg") no-repeat center;
   background-position: center bottom;
   background-size: cover;
   bottom: -1px;
@@ -859,7 +859,7 @@ input {
 }
 
 .info_avance_obra {
-  background: linear-gradient(0deg, rgba(24, 35, 96, 0.9), rgba(24, 35, 96, 0.9)), linear-gradient(0deg, #182360, #182360), url("../../../../../../assets/images/diseno/int_proyecto/bg_proyecto.webp") no-repeat center;
+  background: linear-gradient(0deg, rgba(24, 35, 96, 0.9), rgba(24, 35, 96, 0.9)), linear-gradient(0deg, #182360, #182360), url("/assets/images/diseno/int_proyecto/bg_proyecto.webp") no-repeat center;
   background-size: cover;
   background-blend-mode: normal, color, normal;
   border-radius: 46px;
@@ -1443,7 +1443,7 @@ input {
   left: 0;
   right: 0;
   bottom: -2px;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/curva_bg.svg") no-repeat;
+  background: url("/assets/images/diseno/proyectos_vivienda/curva_bg.svg") no-repeat;
   background-size: cover;
   background-position: center top;
   z-index: 1;
@@ -1463,7 +1463,7 @@ input {
   position: absolute;
   left: 0;
   top: 0;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/puntos.svg") no-repeat center;
+  background: url("/assets/images/diseno/proyectos_vivienda/puntos.svg") no-repeat center;
   width: 20px;
   height: 70px;
 }
@@ -1765,7 +1765,7 @@ input {
   content: "";
   position: absolute;
   width: 100%;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/curva_sup.svg") no-repeat center;
+  background: url("/assets/images/diseno/proyectos_vivienda/curva_sup.svg") no-repeat center;
   background-size: cover;
   background-position: center bottom;
   width: 100%;
@@ -1781,7 +1781,7 @@ input {
   content: "";
   position: absolute;
   width: 100%;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/curva_inf.svg") no-repeat center;
+  background: url("/assets/images/diseno/proyectos_vivienda/curva_inf.svg") no-repeat center;
   background-size: cover;
   background-position: center top;
   width: 100%;
@@ -1817,7 +1817,7 @@ input {
 }
 
 .c_futuros_proyectos .info_fp {
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/bg_futuros.jpg"), linear-gradient(107.08deg, #4565B3 0%, #2B478B 31.11%, #13203E 100%);
+  background: url("/assets/images/diseno/proyectos_vivienda/bg_futuros.jpg"), linear-gradient(107.08deg, #4565B3 0%, #2B478B 31.11%, #13203E 100%);
   background-blend-mode: multiply;
   background-size: cover;
   background-position: center;
@@ -1838,7 +1838,7 @@ input {
   position: absolute;
   width: 20px;
   height: 70px;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/puntos.svg") no-repeat center;
+  background: url("/assets/images/diseno/proyectos_vivienda/puntos.svg") no-repeat center;
   background-size: contain;
   left: 3%;
   top: 20%;
@@ -2025,7 +2025,7 @@ input {
   justify-content: center;
   width: 100%;
   align-items: stretch;
-  background: url("../../../../../../assets/images/diseno/proyectos_vivienda/bg_pe.jpg"), rgba(10, 16, 45, 0.9215686275);
+  background: url("/assets/images/diseno/proyectos_vivienda/bg_pe.jpg"), rgba(10, 16, 45, 0.9215686275);
   border-radius: 48px 48px 97px 48px;
   background-blend-mode: multiply;
   background-size: cover;

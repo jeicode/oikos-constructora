@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactGuard } from './core/guards/contact.guard';
 import { homeGuard } from './core/guards/home.guard';
+import { InternaProyectoGuard } from './core/guards/internaproyecto.guard';
 
 const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./modules/home/home-page.component').then(m => m.HomePageComponent),
     canActivate: [homeGuard]
+  },
+  {
+    path: 'proyecto/:slug',
+    loadComponent: () => import('./modules/projects/interna/interna.component').then(m => m.InternaComponent),
+    canActivate: [InternaProyectoGuard]
   },
   {
     path: 'contactanos',
@@ -39,10 +45,6 @@ const routes: Routes = [
     loadChildren: () => import('./modules/projects/comerciales/comerciales.module').then(m => m.ComercialesModule)
   },
   {
-    path: 'proyecto/:slug',
-    loadChildren: () => import('./modules/projects/interna/interna.module').then(m => m.InternaModule)
-  },
-  {
     path: 'legales',
     loadChildren: () => import('./modules/legales/legales.module').then(m => m.LegalesModule)
   }, {
@@ -54,7 +56,8 @@ const routes: Routes = [
   }, {
     path: 'mapa-del-sitio',
     loadChildren: () => import('./modules/mapa/mapa.module').then(m => m.MapaModule)
-  }, {
+  }, 
+  {
     path: '**',
     loadComponent: () => import('../app/shared/pages/not-found-page/not-found-page.component').then(m => m.NotFoundPageComponent),
   },
