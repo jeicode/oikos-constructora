@@ -31,9 +31,7 @@ export class ExecutedProjectsSlidePagComponent implements OnInit {
   async getEjecutados() {
     if (this.configService.isBrowser()) {
       this.ejecutados = await this.projService.getProyectosByTipo('4', 'NA', 'NA', 'NA', '', '', 'descripcion_precio DESC');
-      console.log('%csrc/app/shared/components/executed-projects-slide-pag/executed-projects-slide-pag.component.ts:33 this.ejecutados', 'color: #007acc;', this.ejecutados);
       this.initSlide()
-
     }
   }
 

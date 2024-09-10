@@ -2,16 +2,12 @@
   <div class="cnt_central">
     <app-breadcrumb [breadcrumbs]="[
       {
-        title:'Home',
-        link:'/'
-      },
-      {
         title:'Proyectos de vivienda',
-        link:'/proyectos-construccion-vivienda'
+        url:'/proyectos-construccion-vivienda'
       },
       {
         title: data?.titulo_proyecto,
-        link:''
+        url:''
       },
     ]"></app-breadcrumb>
   </div>
@@ -78,7 +74,7 @@
           Contactar
           <span class="fab fa-whatsapp"></span>
         </a>
-        <a class="btn btn_calc_1" (click)="modalIsOpen = true"
+        <a class="btn btn_calc_1" (click)="calculateFormulas();modalIsOpen = true"
           *ngIf="data?.calculadora == '1' && !responsive.isMobile">Calcule su cuota mensual</a>
       </div>
     </div>
@@ -152,7 +148,7 @@
 </section>
 <section class="s_desc_proyecto">
   <div class="sec_float_calculate">
-    <div class="float_calculate" (click)="modalIsOpen = true">
+    <div class="float_calculate" (click)="calculateFormulas();modalIsOpen = true;">
       <i class="fal fa-calculator-alt"></i>
       Calcular cuota
     </div>
@@ -316,8 +312,13 @@
         <div class="info_sitios_interes" id="sect3" *ngIf="sitiosInteres.length > 0">
           <h3 class="title_section"><span> Sitios de </span>Interés</h3>
           <div class="tags_s_interes">
-            <span *ngFor="let i of sitiosInteres" (click)="cargarSitios(i?.id)" style="cursor: pointer">{{
-              i?.field_content }}</span>
+            @for (i of sitiosInteres; track $index) {
+              <span 
+                (click)="cargarSitios($index)" 
+                style="cursor: pointer">
+                {{i?.field_content }}
+              </span>
+            }
           </div>
           <div class="map">
             <iframe width="1050" height="350" [src]="url_mapa | safeHTML" style="border: none; margin-top: -67px">
@@ -381,9 +382,7 @@
   </div>
 </section>
 
-@defer (on viewport; when data) {
 <section class="s_carr_proy">
-  b
   <span class="bg_round">
     <span></span>
   </span>
@@ -398,10 +397,6 @@
     </div>
   </div>
 </section>
-} 
-@placeholder {
-<div class="s_carr_proy"></div>
-}
 
 <!-- modal wpp -->
 @defer () {
@@ -627,7 +622,7 @@
 <!--BNT FLotante-->
 <div class="cnt_btns_forms_flotantes">
   <div class="btns_forms_flotantes">
-    <a class="bnt_flot_form btn_flot_calculadora" (click)="closeContactModal(); modalIsOpen = true"
+    <a class="bnt_flot_form btn_flot_calculadora" (click)="closeContactModal(); calculateFormulas(); modalIsOpen = true"
       *ngIf="data?.calculadora == '1'">
       <img ngSrc="assets/images/diseno/calculadora-1.svg" alt="" width="24" height="24" />
       <strong> Calcular </strong>

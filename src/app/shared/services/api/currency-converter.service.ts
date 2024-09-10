@@ -36,7 +36,7 @@ export class CurrencyConverterService {
 
   async convertCopToUsd(data: any): Promise<any> {
     const priceCop = await this.getCopPriceByUsd();
-    if (priceCop) {
+    if (priceCop && data) {
       return data.map((p: any) => {
         p.dollar_value = Number(p?.valor_proyecto) / priceCop
         p.dollar_value = Math.trunc(p.dollar_value); // remove decimals

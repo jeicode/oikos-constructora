@@ -1,22 +1,8 @@
-<!--<div class="miga" [style.color]="colorTxt">
-    <div *ngFor="let i of breadcrumbs; let index = index">
-        <div *ngIf="index < breadcrumbs.length - 1;else lastItem" >
-            <a [style.color]="colorTxt" [routerLink]="i?.link">{{i?.title}}</a>
-            <span class="fas fa-chevron-right"></span>
-        </div>
-
-        <ng-template #lastItem>
-            <a [style.color]="colorTxt">{{i?.title}}</a>
-        </ng-template>
-        
-    </div>
-</div>-->
-
 <div class="miga" [style.color]="colorTxt">
   <a href="https://www.oikos.com.co/constructora/" [style.color]="colorTxt"
     >Home <span class="fas fa-chevron-right"> </span
   ></a>
-  <div *ngFor="let i of rutas; index as j">
+  <div *ngFor="let i of breadcrumbs; index as j">
     <a href="{{ i?.url }}" [style.color]="colorTxt" *ngIf="i?.url != ''"
       >{{ i?.title }}
       <span class="fas fa-chevron-right" *ngIf="j + 1 != rutas.length"> </span

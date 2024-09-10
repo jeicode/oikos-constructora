@@ -5,12 +5,17 @@ import { firstValueFrom } from 'rxjs';
 
 const { api_url: API_URL } = environment
 
+type paramInteres = {
+  id_proyecto: string
+  id_categoria?: string,
+}
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  currentPage: any;
+  project: any;
+
 
   constructor(private _http: HttpClient) { }
 
@@ -157,10 +162,7 @@ export class ProjectService {
    */
   async getCategoriasInteres(id_proyecto: string): Promise<any> {
     const url = `${API_URL}v1/getCategoriasInteres?id_proyecto=${id_proyecto}`;
-    return this._http.get(url).toPromise().then().catch(err => {
-      console.warn(err)
-      return false
-    })
+    return firstValueFrom(this._http.get(url));
   }
 
   /**
@@ -169,8 +171,9 @@ export class ProjectService {
    * @param id_proyecto 
    * @returns Promise<any>
    */
-  async getSitiosInteres(id_categoria: string, id_proyecto: string): Promise<any> {
-    const url = `${API_URL}v1/getSitiosInteres?id_proyecto=${id_proyecto}&id_categoria=${id_categoria}`;
+  
+  async getSitiosInteres({id_categoria, id_proyecto}:paramInteres): Promise<any> {
+    const url = `${API_URL}v1/getSitiosInteres?id_proyecto=${id_proyecto}`;
     return this._http.get(url).toPromise().then().catch(err => {
       console.warn(err)
       return false

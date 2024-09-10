@@ -60,7 +60,7 @@ export class SeoService {
       }
       this.updateCanonicalUrl(canonical);
       this.createTagsLink();
-      this.titlePage.setTitle(seoPage.title)
+      this.titlePage.setTitle(seoPage.title || seoPage.metatitle)
       this.meta.updateTag({ name: 'description', content: seoPage.metadescription });
       this.meta.updateTag({ name: 'robots', content: seoPage.metarobots });
     }

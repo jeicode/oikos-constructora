@@ -71,7 +71,6 @@ export class InternaComponent implements OnInit, OnDestroy {
   zonas: any = [];
   sitiosInteres: any = [];
   seccionesInteres: any = [];
-  slug: string | null = "";
   imagenes_url: string = "";
   captcha: string = '';
   url_mapa: string = '';
@@ -120,13 +119,8 @@ export class InternaComponent implements OnInit, OnDestroy {
     this.imagenes_url = environment.imagenes_url;
     this.suscribeListenRouter = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        this.slug = this.activateRoute.snapshot.paramMap.get('slug');
         this.getData();
         this.configServ.goUpPage()
-        setTimeout(() => {
-          this.diferenciadordecuotasmensuales();
-          this.calculoPorcentaje();
-        }, 3000)
       }
     });
   }
@@ -146,10 +140,6 @@ export class InternaComponent implements OnInit, OnDestroy {
       this.mediumTrack = localStorage.getItem('mediumTrack');
       this.campaignTrack = localStorage.getItem('campaignTrack');
     }
-
-    this.calculoPorcentaje();
-    this.configServ.loadHeroProyectos(200);
-    this.configServ.loadChangeTab(300);
   }
 
 
@@ -158,30 +148,39 @@ export class InternaComponent implements OnInit, OnDestroy {
   }
 
 
+
+  calculateFormulas(){
+    this.diferenciadordecuotasmensuales();
+    this.calculoPorcentaje();
+  }
+
+
   async getData() {
-    let data = await this.projService.getProyectoByUrl(this.slug);
-    if (data?.[0]) {
-      this.data = data[0];
-      await this.currencyConverter.convertCopToUsd(data);
-      this.porcFinanciar = (100 - this.data?.porcentaje_minimo);
-      this.zonas = this.data?.zonas;
-      this.galeria = this.data?.galeria;
-      this.planos = this.data?.planos;
-      this.tipologia = this.data?.tipologia;
-      this.avancesObra = this.data?.avances;
 
-      if (this.avancesObra) {
-        let listDates = this.avancesObra.map((a: any) => a?.title)
-        this.fechasAvancesObra = this.configServ.removeRepeatElementsArray(listDates);
-        this.actualizarAvanceObraActivo(0, this.fechasAvancesObra[0])
+    this.data = this.projService.project
+    await this.currencyConverter.convertCopToUsd([this.data]);
+
+    this.porcFinanciar = (100 - this.data?.porcentaje_minimo);
+    this.zonas = this.data?.zonas;
+    this.galeria = this.data?.galeria;
+    this.planos = this.data?.planos;
+    this.tipologia = this.data?.tipologia;
+    this.avancesObra = this.data?.avances;
+    this.projService.getSitiosInteres({id_proyecto: this.data?.id}).then(res => {
+      if (res){
+        this.sitiosInteres = res;
+        this.url_mapa = this.sitiosInteres?.[0].mapa_interes_proyecto;
       }
+    })
 
-      await this.calculoPorcentaje();
-      await this.diferenciadordecuotasmensuales();
-      this.sitiosInteres = await this.projService.getCategoriasInteres(this.data?.id);
-      this.cargarSitios(this.sitiosInteres?.[0]?.id);
-
+    if (this.avancesObra) {
+      let listDates = this.avancesObra.map((a: any) => a?.title)
+      this.fechasAvancesObra = this.configServ.removeRepeatElementsArray(listDates);
+      this.actualizarAvanceObraActivo(0, this.fechasAvancesObra[0])
     }
+
+    this.configServ.loadHeroProyectos();
+    this.configServ.loadChangeTab();
   }
 
   /**
@@ -211,19 +210,22 @@ export class InternaComponent implements OnInit, OnDestroy {
       var plazoaniosa = $(".plazoaniosa").val();
       var financiar = $(".valorafinanciar").val();
 
-      if (porcentaje == '' || porcentaje == null) porcentaje = this.data?.porcentaje_minimo;
+      if (!porcentaje) porcentaje = this.data?.porcentaje_minimo;
 
       this.porcFinanciar = (100 - porcentaje);
       this.datosCalc = await this.projService.getCalculoPorcentaje(this.data?.valor_proyecto, porcentaje, cuotasinicialfinanciar, plazoaniosa, financiar);
-      this.datosCalc = this.datosCalc[0];
+      this.datosCalc = this.datosCalc?.[0];
 
-      $(".valorCuotaInicial").val('$ ' + this.datosCalc?.['cuotaInicial']);
-      $(".diferencia").val('$ ' + this.datosCalc?.['diferencia']);
-      if (this.datosCalc?.['cuotasinicialfinanciar'] != 'inf') {
-        $(".cuotamensual").val('$ ' + this.datosCalc?.['cuotasinicialfinanciar']);
+      if(this.datosCalc){
+        $(".valorCuotaInicial").val('$ ' + this.datosCalc?.['cuotaInicial']);
+        $(".diferencia").val('$ ' + this.datosCalc?.['diferencia']);
+        if (this.datosCalc?.['cuotasinicialfinanciar'] != 'inf') {
+          $(".cuotamensual").val('$ ' + this.datosCalc?.['cuotasinicialfinanciar']);
+        }
+        $(".valorafinanciar").val('$ ' + this.datosCalc?.['valorafinanciar']);
+        this.plazoanios();
       }
-      $(".valorafinanciar").val('$ ' + this.datosCalc?.['valorafinanciar']);
-      this.plazoanios();
+
     }
   }
 
@@ -312,12 +314,8 @@ export class InternaComponent implements OnInit, OnDestroy {
     }
   }
 
-  async cargarSitios(id_categoria: any) {
-    this.seccionesInteres = await this.projService.getSitiosInteres(id_categoria, this.data.id);
-
-    if (this.seccionesInteres.length > 0) {
-      this.url_mapa = this.seccionesInteres[0].mapa_interes_proyecto;
-    }
+  async cargarSitios(idx: any) {
+    this.url_mapa = this.sitiosInteres[idx].mapa_interes_proyecto;
   }
 
   seguirLeyendo() {

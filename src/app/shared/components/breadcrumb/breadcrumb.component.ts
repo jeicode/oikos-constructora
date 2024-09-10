@@ -36,7 +36,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     this.suscribeListenRouter = this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd  ) {
         if (this.ngOnInitFirstCalled){
-          this.ngOnInit()
+          this.init()
           this.mappingRoutes()
         }
       }
@@ -52,18 +52,13 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   }
 
   async init(){
-    const tasks = [
-      () => this.getBreadCrumb()
-    ]
+    if (this.breadcrumbs.length == 0) this.getBreadCrumb()
 
-    for (const task of tasks) {
-      await task();
-    }
   }
 
   async getBreadCrumb(){
     if (this.configService.isBrowser()){
-      this.rutas = await this.pageService.getBreadCrumb(window.location.href);
+      this.breadcrumbs = await this.pageService.getBreadCrumb(window.location.href);
     }
   }
 
@@ -73,15 +68,15 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
    * @returns 
    */
   mappingRoutes(){
-    let linkBuilder = ''
-    this.breadcrumbs = this.paths.map( p => {
-      linkBuilder += `${p}/`
-      const crumb = new Breadcrumb()
-      crumb.title = this.capitalizeFirstLetter(p)
-      crumb.link = linkBuilder
-      return crumb
+    // let linkBuilder = ''
+    // this.breadcrumbs = this.paths.map( p => {
+    //   linkBuilder += `${p}/`
+    //   const crumb = new Breadcrumb()
+    //   crumb.title = this.capitalizeFirstLetter(p)
+    //   crumb.url = linkBuilder
+    //   return crumb
       
-    })
+    // })
   }
   
   /**

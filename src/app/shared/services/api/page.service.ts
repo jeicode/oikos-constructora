@@ -165,7 +165,7 @@ export class PageService {
    * @param friendlyUrl slug page
    * @returns Promise<any>
    */
-  async getBreadCrumb(slug: string){
+  async getBreadCrumb(slug: string):Promise<any>{
     const url = `${API_URL}v1/getBreadCrumb?url=${slug}`;
     return firstValueFrom(this._http.get(url));
   }
